@@ -1,10 +1,44 @@
-- 👋 Hi, I’m @oaonuraksoy
-- 👀 I’m interested in tech
-- 🌱 I’m currently learning tech
-- 💞️ I’m looking to collaborate on tech:)
-- 📫 How to reach me github@onuraksoy.com.tr
+<img align="right" alt="avatar" width="200" src="avatar2.JPG"> 
 
-<!---
-oaonuraksoy/oaonuraksoy is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+## Hackonomist 👋  Onur AKSOY
+ ![](https://img.shields.io/badge/rating-4.8%2F5-brightgreen)
+
+
+
+<table class="center">
+<tr> 
+          ⬇️⬇️⬇️ Tum Linkler ⬇️⬇️⬇️
+ </tr>
+<tr>
+  <td>
+<td><a href="https://twitch.tv/oaonuraksoy">
+<img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white">
+</a>
+<td></tr>
+  <tr>
+<td><a href="https://instagram.com/oaonuraksoy">
+<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white">
+</a> 
+<td><a href="https://twitter.com/oaonuraksoy">
+<img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white">
+</a>
+<td><a href="https://github.com/oaonuraksoy">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+  </a> </tr>
+  <tr>
+<td><a href="https://www.linkedin.com/in/oaonuraksoy/">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
+</a> 
+<td><a href="mailto:onuraksoy@ogr.iu.edu.tr">
+<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">
+</a>
+  </tr>
+</table>
+<br></br>
+
+
+[![Visitor](https://visitor-badge.laobi.icu/badge?page_id=oaonuraksoy.oaonuraksoy)](#)
+
+
+<img align="left" src="https://github-readme-stats.vercel.app/api?username=oaonuraksoy&theme=blue-green">
+
