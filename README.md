@@ -9,12 +9,6 @@
 <tr> 
           ⬇️⬇️⬇️ Tum Linkler ⬇️⬇️⬇️
  </tr>
-<tr>
-  <td>
-<td><a href="https://twitch.tv/oaonuraksoy">
-<img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white">
-</a>
-<td></tr>
   <tr>
 <td><a href="https://instagram.com/oaonuraksoy">
 <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white">
@@ -31,6 +25,9 @@
 </a> 
 <td><a href="mailto:onuraksoy@ogr.iu.edu.tr">
 <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">
+</a>
+<td><a href="https://onuraksoy.com.tr">
+<img src="https://img.shields.io/badge/OA-onuraksoy.com.tr-yellowgreen?style=for-the-badge&logo=google&logoColor=white%22">
 </a>
   </tr>
 </table>
