@@ -1,4 +1,4 @@
-<img align="right" alt="avatar" width="200" src="https://media.onuraksoy.com.tr//oa-contents/img-db/28092022/newavatar.png"> 
+<img align="right" alt="avatar" width="350" src="https://media.onuraksoy.com.tr//oa-contents/img-db/28092022/newavatar.png"> 
 
 ## Hackonomist 👋  Onur AKSOY
  ![](https://img.shields.io/badge/rating-4.8%2F5-brightgreen)
