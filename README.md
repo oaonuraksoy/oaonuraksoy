@@ -35,6 +35,7 @@
 
 
 [![Visitor](https://visitor-badge.laobi.icu/badge?page_id=oaonuraksoy.oaonuraksoy)](#)
+![mustafacagri's github stats](https://github-readme-stats.vercel.app/api?username=oaonurakso&show_icons=true&theme=radical)
 
 
 <img align="left" src="https://github-readme-stats.vercel.app/api?username=oaonuraksoy&theme=blue-green">
