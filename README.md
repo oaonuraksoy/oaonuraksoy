@@ -42,10 +42,6 @@ I am a results-driven **Growth & Tech Lead** and **AI Prompt Engineer** dedicate
 ### 📈 GitHub Statistics
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=oaonuraksoy&show_icons=true&theme=transparent&hide_border=true&count_private=true" alt="GitHub Stats" />
-  <br>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=oaonuraksoy&layout=compact&theme=transparent&hide_border=true" alt="Top Languages" />
-  <br>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=oaonuraksoy&theme=transparent&hide_border=true" alt="GitHub Streak" />
 </p>
 
