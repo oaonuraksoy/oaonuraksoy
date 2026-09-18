@@ -2,7 +2,7 @@
 title: "Orvyna App Studio — Bulut Web2App Mimarisi & Yerel Mağaza Dağıtım Motoru"
 description: "Duyarlı web uygulamalarını saniyeler içinde doğrudan Apple TestFlight / App Store Connect dağıtımına ve Google Play TWA AAB paketlerine dönüştüren bulut tabanlı yerel kabuk motoru."
 lang: "tr"
-role: "Kurucu & Full-Stack Platform Mühendisi"
+role: "Kurucu & Full-Stack Platform Geliştiricisi"
 period: "2024 — Günümüz"
 status: "Canlıda & Aktif"
 featured: true
@@ -24,7 +24,7 @@ metrics:
 ogImage: "/images/oa-logo-text.webp"
 ---
 
-## Yönetici Özeti
+## Projeye Genel Bakış
 
 Günümüz modern web uygulamaları masaüstü ve mobil kalitesinde kullanıcı deneyimi sunabilmektedir. Ancak bu web projelerini yerel uygulama mağazalarında sunmak, geleneksel çapraz platform araçlarıyla (React Native, Flutter, Cordova vb.) kod tabanını ikiye katlamayı ve karmaşık derleme süreçlerini zorunlu kılar.
 

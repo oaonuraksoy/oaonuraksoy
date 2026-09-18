@@ -1,10 +1,10 @@
 ---
-title: "The Renaissance of Local-First Software Engineering"
+title: "The Renaissance of Local-First Software Development"
 description: "Examining why modern enterprise tools are shifting away from pure cloud dependencies back toward local data sovereignty and microsecond-level desktop performance."
 pubDate: 2024-10-02
 lang: "en"
 ref: "local-first-software-engineering"
-tags: ["LocalFirst", "DesktopEngineering", "DistributedSystems", "DotNet"]
+tags: ["LocalFirst", "DesktopSoftware", "DistributedSystems", "DotNet"]
 thumbnail: "/images/broadcasts/local-first-software.webp"
 ---
 

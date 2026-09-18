@@ -15,7 +15,7 @@ export const GET: APIRoute = async () => {
 ---
 
 ## 1. Professional Overview & Philosophy
-Onur Aksoy engineers high-reliability digital systems, rejecting fragile wrapper architectures in favor of mathematically deterministic state machines and verified multi-tiered autonomous agent orchestration.
+Onur Aksoy architects and develops high-reliability digital systems, rejecting fragile wrapper architectures in favor of mathematically deterministic state machines and verified multi-tiered autonomous agent orchestration.
 
 Key Technical Principles:
 1. Determinism over Hallucination: Critical business logic and financial transactions must execute against strictly typed contracts and transactional databases.
@@ -47,7 +47,7 @@ Key Technical Principles:
         body += `  * ${m.label}: ${m.value}\n`;
       });
     }
-    body += `\n#### Executive Overview\n${p.executiveOverview}\n\n`;
+    body += `\n#### Project Overview\n${p.executiveOverview}\n\n`;
 
     if (p.benchmarks) {
       body += `#### Architectural Benchmark: ${p.benchmarks.title}\n`;
@@ -81,7 +81,7 @@ Key Technical Principles:
     body += `---\n\n`;
   }
 
-  body += `## 3. Engineering Broadcasts, Deep Dives & Articles\n\n`;
+  body += `## 3. Technical Broadcasts, Deep Dives & Articles\n\n`;
 
   for (const b of broadcastsEn) {
     body += `### Publication: ${b.data.title}\n`;
@@ -97,7 +97,7 @@ Key Technical Principles:
   body += `- [GitHub](https://github.com/oaonuraksoy): Developer profile and open source codebases\n`;
   body += `- [YouTube](https://youtube.com/@oaonuraksoy): Screencasts, architectural deep dives, and tutorials\n`;
   body += `- [LinkedIn](https://linkedin.com/in/oaonuraksoy): Professional history and industry background\n`;
-  body += `- [X / Twitter](https://x.com/oaonuraksoy): Real-time engineering thoughts and updates\n`;
+  body += `- [X / Twitter](https://x.com/oaonuraksoy): Real-time technical thoughts and project updates\n`;
   body += `- [Telegram](https://t.me/oaonuraksoy): Direct communications and updates\n`;
   body += `- [WhatsApp](https://wa.me/905511817053): Commercial advisory contact\n`;
   body += `- [Spotify](https://creators.spotify.com/pod/profile/oaonuraksoy/): Tech podcast episodes and audio streams\n`;

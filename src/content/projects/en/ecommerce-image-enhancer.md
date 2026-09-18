@@ -2,12 +2,12 @@
 title: "E-Commerce Image Enhancement Tool — AI-Powered Product Visual Studio"
 description: "A generative AI pipeline and visual enhancement workbench that automates background replacement, lighting harmonization, and edge fidelity preservation for marketplace-ready product assets."
 lang: "en"
-role: "AI Workflow Architect & Frontend Engineer"
+role: "AI Workflow Architect & Frontend Developer"
 period: "2024 — Present"
 status: "Interactive Tool / Active"
 featured: true
 order: 3
-tags: ["Generative AI", "Diffusion Models", "Canvas API", "Computer Vision", "Prompt Engineering", "Google Flow"]
+tags: ["Generative AI", "Diffusion Models", "Canvas API", "Computer Vision", "Prompt Architecture", "Google Flow"]
 accentColor: "#F0C878"
 links:
   tool: "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc"
@@ -24,7 +24,7 @@ metrics:
 ogImage: "/images/oa-logo-dark-text.webp"
 ---
 
-## Executive Overview
+## Project Overview
 
 High-converting e-commerce listings demand impeccable product photography: pristine studio lighting, photorealistic contextual backgrounds, and strict marketplace compliance (Amazon, Shopify, Trendyol). Traditional commercial studio photo shoots incur high overhead costs, long turnaround times, and physical logistics bottlenecks.
 

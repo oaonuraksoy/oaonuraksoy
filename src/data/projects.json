@@ -29,7 +29,7 @@
       "role": "Lead Systems Architect & Desktop Developer",
       "period": "2024 — Present",
       "status": "Production / MS Store Certified",
-      "executiveOverview": "In fast-paced retail and hospitality environments, cloud-dependent Point-of-Sale (POS) systems introduce critical vulnerabilities: internet outages halt billing, high API latencies degrade checkout velocity, and recurring monthly software rents burden small-to-medium businesses.\n\n**oaPOS** was conceived and engineered as an antidote to this vulnerability. It is a production-grade, native Windows desktop solution certified on the official Microsoft Store, engineered with an offline-first distributed architecture. By implementing a local **HOST/CLIENT socket synchronization model**, oaPOS delivers microsecond-level barcode recognition, instantaneous receipt generation, and uninterrupted store operations regardless of internet connectivity.",
+      "executiveOverview": "In fast-paced retail and hospitality environments, cloud-dependent Point-of-Sale (POS) systems introduce critical vulnerabilities: internet outages halt billing, high API latencies degrade checkout velocity, and recurring monthly software rents burden small-to-medium businesses.\n\n**oaPOS** was conceived and built as an antidote to this vulnerability. It is a production-grade, native Windows desktop solution certified on the official Microsoft Store, architected with an offline-first distributed architecture. By implementing a local **HOST/CLIENT socket synchronization model**, oaPOS delivers microsecond-level barcode recognition, instantaneous receipt generation, and uninterrupted store operations regardless of internet connectivity.",
       "mermaidTopology": "flowchart LR\n    subgraph LAN [\"Local Area Network (Zero Cloud Dependency)\"]\n        subgraph Host [\"HOST PRIMARY NODE\"]\n            H_Engine[\"🖥️ oaPOS Core Engine\"]\n            H_DB[(\"🗄️ Relational Store\\nPostgreSQL & SQLite Embedded\")]\n            H_Cache[\"⚡ Redis Local Memory Cache\"]\n            H_Engine <--> H_DB\n            H_Engine <--> H_Cache\n        end\n\n        subgraph Client1 [\"CLIENT CASHIER STATION 1\"]\n            C1_UI[\"⚡ WPF DirectX UI\"]\n            C1_Scanner[\"🔍 Hardware Barcode Hook\"]\n            C1_Scanner --> C1_UI\n        end\n\n        subgraph Client2 [\"CLIENT CASHIER STATION 2\"]\n            C2_UI[\"⚡ WPF DirectX UI\"]\n            C2_Thermal[\"🧾 Raw ESC/POS Printer\"]\n            C2_UI --> C2_Thermal\n        end\n\n        C1_UI <-- \"TCP/IP Sockets (<10ms)\" --> H_Engine\n        C2_UI <-- \"TCP/IP Sockets (<10ms)\" --> H_Engine\n    end\n\n    style LAN fill:#08090A,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style Host fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style Client1 fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED\n    style Client2 fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
       "benchmarks": {
         "title": "Architectural Benchmark: oaPOS vs. Cloud-Only SaaS POS",
@@ -146,7 +146,7 @@
     "en": {
       "title": "Orvyna App Studio — Cloud Web2App Architecture & Native Store Delivery Engine",
       "description": "An automated cloud compilation studio transforming responsive web applications into native-feel store-ready containers with direct Apple TestFlight / App Store Connect delivery and Google Play TWA AAB packaging.",
-      "role": "Creator & Full-Stack Platform Engineer",
+      "role": "Creator & Full-Stack Platform Developer",
       "period": "2024 — Present",
       "status": "Active Production",
       "executiveOverview": "Modern web applications frequently deliver desktop- and mobile-grade experiences, yet distributing them into official mobile app stores often requires cumbersome cross-platform frameworks (React Native, Flutter, Cordova), duplicate codebases, and continuous compilation pipeline overhead.\n\n**Orvyna App Studio** is not merely a PWA generator; it is an automated web2app compilation platform designed for real store delivery. On iOS, Orvyna integrates directly with the Apple App Store Connect API to automate builds straight into **TestFlight**. On Android, it synthesizes production-ready **Google Play Trusted Web Activity (TWA) AAB** bundles with sub-150KB shell footprints in under 3 seconds.",
@@ -189,7 +189,7 @@
     "tr": {
       "title": "Orvyna App Studio — Bulut Web2App Mimarisi & Yerel Mağaza Dağıtım Motoru",
       "description": "Duyarlı web uygulamalarını saniyeler içinde doğrudan Apple TestFlight / App Store Connect dağıtımına ve Google Play TWA AAB paketlerine dönüştüren bulut tabanlı yerel kabuk motoru.",
-      "role": "Kurucu & Full-Stack Platform Mühendisi",
+      "role": "Kurucu & Full-Stack Platform Geliştirici",
       "period": "2024 — Günümüz",
       "status": "Canlıda & Aktif",
       "executiveOverview": "Günümüz modern web uygulamaları masaüstü ve mobil kalitesinde kullanıcı deneyimi sunabilmektedir. Ancak bu web projelerini yerel uygulama mağazalarında sunmak, geleneksel çapraz platform araçlarıyla (React Native, Flutter, Cordova vb.) kod tabanını ikiye katlamayı ve karmaşık derleme süreçlerini zorunlu kılar.\n\n**Orvyna App Studio**, basit bir PWA aracı değildir; doğrudan mağaza dağıtımı sağlayan bulut tabanlı bir web2app üretim stüdyosudur. iOS tarafında doğrudan **Apple App Store Connect API** entegrasyonuyla derlemeleri doğrudan **TestFlight**'a iletir; Android tarafında ise saniyeler içinde **Google Play uyumlu TWA AAB** paketleri ve 150 KB altı ultra hafif yerel kabuklar üretir.",
@@ -236,7 +236,7 @@
     "order": 3,
     "featured": true,
     "accentColor": "#F0C878",
-    "tags": ["Generative AI", "Diffusion Models", "Canvas API", "Computer Vision", "Prompt Engineering", "Google Flow"],
+    "tags": ["Generative AI", "Diffusion Models", "Canvas API", "Computer Vision", "Prompt Architecture", "Google Flow"],
     "links": {
       "tool": "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc",
       "demo": "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc"
@@ -258,7 +258,7 @@
     "en": {
       "title": "E-Commerce Image Enhancement Tool — AI-Powered Product Visual Studio",
       "description": "A generative AI pipeline and visual enhancement workbench that automates background replacement, lighting harmonization, and edge fidelity preservation for marketplace-ready product assets.",
-      "role": "AI Workflow Architect & Frontend Engineer",
+      "role": "AI Workflow Architect & Frontend Developer",
       "period": "2024 — Present",
       "status": "Interactive Tool / Active",
       "executiveOverview": "High-converting e-commerce listings demand impeccable product photography: pristine studio lighting, photorealistic contextual backgrounds, and strict marketplace compliance (Amazon, Shopify, Trendyol). Traditional commercial studio photo shoots incur high overhead costs, long turnaround times, and physical logistics bottlenecks.\n\nThe **E-Commerce Image Enhancement Tool** was designed to eliminate these bottlenecks by fusing advanced computer vision segmentation with generative diffusion models. Accessible as an interactive cloud tool, it allows merchants and brands to convert raw smartphone photos into hyper-realistic commercial studio photographs in seconds.",
@@ -299,7 +299,7 @@
     "tr": {
       "title": "E-Commerce Image Enhancement Tool — Yapay Zeka Destekli Ürün Görsel Stüdyosu",
       "description": "Pazaryeri standartlarında ürün görselleri üretmek için arka plan kaldırma, ışık uyumlandırma ve ürün kenar sadakatini otomatikleştiren üretken yapay zeka ve görsel geliştirme çalışma alanı.",
-      "role": "Yapay Zeka İş Akışı Mimarı & Frontend Mühendisi",
+      "role": "Yapay Zeka İş Akışı Mimarı & Frontend Geliştirici",
       "period": "2024 — Günümüz",
       "status": "İnteraktif Araç / Aktif",
       "executiveOverview": "Yüksek dönüşüm sağlayan e-ticaret listelemeleri kusursuz ürün fotoğrafları gerektirir: Doğru stüdyo ışığı, doğal bağlamsal arka planlar ve pazaryeri (Amazon, Trendyol, Hepsiburada, Shopify) kurallarına tam uyumluluk. Geleneksel ticari stüdyo çekimleri ise yüksek maliyet, lojistik zahmet ve haftalar süren onay süreçleri anlamına gelir.\n\n**E-Commerce Image Enhancement Tool**, gelişmiş bilgisayarlı görü ve difüzyon modellerini bir araya getirerek bu darboğazı ortadan kaldırmak için inşa edildi. İnteraktif bir bulut aracı olarak sunulan sistem, akıllı telefonla çekilmiş ham ürün fotoğraflarını saniyeler içinde ticari kalitede stüdyo karelerine dönüştürür.",

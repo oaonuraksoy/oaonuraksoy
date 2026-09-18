@@ -1,5 +1,5 @@
 ---
-title: "AI Influencer Kapatılma Krizleri: YPP 'Düşük Çaba' Banı, Meta Algoritmaları ve Tutarlılık Mühendisliği"
+title: "AI Influencer Kapatılma Krizleri: YPP 'Düşük Çaba' Banı, Meta Algoritmaları ve Tutarlılık Mimarisi"
 description: "Yapay zeka influencer hesaplarının %80'inin ilk 45 günde neden kapatıldığının teknik otopsisi: Akustik Slop spektrogram tespiti, PRNU sensör gürültüsü eksikliği, Video Selfie tuzağı ve FLUX.1 + ComfyUI tutarlılık mimarisi."
 pubDate: 2026-04-10
 lang: "tr"
@@ -39,7 +39,7 @@ downloads:
     hash: "sha256:03e10e4b5f3855f3a6d9e74684aa38cafdd0bc55a4a3238334d212f6296085f0"
 ---
 
-## Yönetici Özeti: 3. Haftada Gelen Sessiz Algoritmik İnfaz
+## 3. Haftada Gelen Sessiz Algoritmik İnfaz
 
 Sosyal medya ve dijital içerik sektöründe yapay zeka tarafından üretilen modeller (AI Influencer / Virtual Human) büyük bir ticari vaat gibi sunulsa da, sektörel veriler acı bir gerçeği işaret eder: **Yeni açılan yapay zeka influencer hesaplarının %82'si ilk 45 gün içerisinde ya doğrudan kapatılmakta (account suspension) ya da algoritmik görünürlükleri sıfıra indirilmektedir (shadowban).**
 
@@ -47,7 +47,7 @@ Bu başarısızlığın nedeni pazarlama eksikliği değil; platformların derin
 
 İnternetteki popüler kılavuzların iddia ettiğinin aksine; Midjourney'e rastgele prompt yazarak veya standart bir Text-to-Speech (TTS) motoruyla seslendirilen 10 saniyelik stok videolar yükleyerek sürdürülebilir bir sanal kimlik oluşturulamaz.
 
-Bu teknik inceleme; YouTube YPP (Partner Programı) filtrelerinin sentetik içerikleri nasıl mimlediğini, Meta'nın cihaz ve sensör telemetrisini ve **FLUX.1 [dev] + ComfyUI** tabanlı deterministik tutarlılık boru hattının matematiksel altyapısını eksiksiz bir mühendislik perspektifiyle masaya yatırır.
+Bu teknik inceleme; YouTube YPP (Partner Programı) filtrelerinin sentetik içerikleri nasıl mimlediğini, Meta'nın cihaz ve sensör telemetrisini ve **FLUX.1 [dev] + ComfyUI** tabanlı deterministik tutarlılık boru hattının matematiksel altyapısını eksiksiz bir mimari ve teknik perspektifle masaya yatırır.
 
 ```mermaid
 flowchart TD
@@ -57,15 +57,15 @@ flowchart TD
         A2 -->|Liveness Check| T3["360 Derece Video Selfie Doğrulama Tuzağı"]
     end
 
-    subgraph MuhendislikCozumu ["2. Hackonomist Deterministik Boru Hattı"]
+    subgraph CozumHatti ["2. Hackonomist Deterministik Boru Hattı"]
         M1["Akustik IR Modülasyonu"] --> S1["Oda Reverb + -32dB Analog Gürültü"]
         M2["PRNU Enjeksiyonu"] --> S2["Sony A7IV Sensör Voltaj Gürültüsü Bindirme"]
         M3["Cihaz Isınma Protokolü"] --> S3["Fiziksel SIM + 30 Günlük Donanım Telemetrisi"]
         M4["FLUX.1 + ComfyUI"] --> S4["LoRA Ağırlıkları + IP-Adapter FaceID + ControlNet"]
     end
 
-    AlgoritmikTehditler --> MuhendislikCozumu
-    MuhendislikCozumu --> Prod["Kurşungeçirmez Sanal Varlık"]
+    AlgoritmikTehditler --> CozumHatti
+    CozumHatti --> Prod["Kurşungeçirmez Sanal Varlık"]
 ```
 
 ---
@@ -86,7 +86,7 @@ Standart ElevenLabs veya benzeri sinirsel TTS motorları, insan sesini mikrosani
 
 YouTube Content ID motoru, ses kanalının Fast Fourier Transform (FFT) analizini çıkarır. Spektrogramdaki harmonik enerji dağılımı ($HNR - \text{Harmonics-to-Noise Ratio}$) doğal insan eşiklerini aştığı anda video doğrudan **"Automated Speech / Mass-Produced"** olarak bayraklanır.
 
-#### Mühendislik Çözümü: Spektral Perturbasyon ve IR Konvolüsyonu
+#### Çözüm Mimarisi: Spektral Perturbasyon ve IR Konvolüsyonu
 Sentetik sesi bu filtreden kurtarmak için ham ses dosyası aşağıdaki boru hattından geçirilir:
 - **Konvolüsyonel Dürtü Yanıtı (Impulse Response):** Ses dosyası stüdyo ortamında kaydedilmiş gerçek bir oda akustiği (Room Impulse Response) ile konvolüsyona sokulur ($y[n] = x[n] * h[n]$).
 - **Analog Taban Gürültüsü Enjeksiyonu:** $-32 \text{ dB}$ LUFS seviyesinde pembe gürültü (pink noise) veya reel mikrofon ön yükseltici (pre-amp) termal gürültüsü eklenir.
@@ -176,7 +176,7 @@ Yapay zeka modellerinin %99'u bu aşamada ölür. Çünkü:
 
 ---
 
-## 3. Tutarlılık Mühendisliği: FLUX.1 LoRA & ComfyUI Deterministik Boru Hattı
+## 3. Tutarlılık Mimarisi: FLUX.1 LoRA & ComfyUI Deterministik Boru Hattı
 
 Rastgele prompt yazımı ("beautiful 25yo woman, brunette, street style") bir influencer yönetemez. Çünkü her tohumda (seed) yüz kemik oranları, göz bebek mesafesi (interpupillary distance) ve cilt dokusu radikal şekilde değişir.
 
@@ -257,6 +257,6 @@ Bu yayında detaylandırılan tüm araçlar ve şemalar **The Vault** üzerinden
 
 ## 6. Sektörel Karar ve Sonuç (The Hackonomist Perspektifi)
 
-2026 ve ötesinde bir yapay zeka influencer'ı yönetmek, bir grafik tasarımcının değil **bir sistem mühendisinin ve büyüme korsanının (growth hacker)** işidir.
+2026 ve ötesinde bir yapay zeka influencer'ı yönetmek, sıradan bir görsel üreticisinin değil; **platform algoritmalarını, veri boru hatlarını ve donanım telemetrisini anlayan teknik bir geliştiricinin (hacker & builder)** işidir.
 
 Platform algoritmaları her geçen gün daha sofistike hale gelirken; başarı şansı rastgele prompting yapanlarda değil, **akustik spektrogramları manipüle edebilen, PRNU sensör gürültüsü enjekte eden, donanım telemetrisini simüle eden ve LoRA hiperparametrelerini matematiksel bir disiplinle optimize edenlerde** olacaktır.

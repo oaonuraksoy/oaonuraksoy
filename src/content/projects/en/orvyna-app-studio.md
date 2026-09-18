@@ -2,7 +2,7 @@
 title: "Orvyna App Studio — Cloud Web2App Architecture & Native Store Delivery Engine"
 description: "An automated cloud compilation studio transforming responsive web applications into native-feel store-ready containers with direct Apple TestFlight / App Store Connect delivery and Google Play TWA AAB packaging."
 lang: "en"
-role: "Creator & Full-Stack Platform Engineer"
+role: "Creator & Full-Stack Platform Developer"
 period: "2024 — Present"
 status: "Active Production"
 featured: true
@@ -24,7 +24,7 @@ metrics:
 ogImage: "/images/oa-logo-text.webp"
 ---
 
-## Executive Overview
+## Project Overview
 
 Modern web applications frequently deliver desktop- and mobile-grade experiences, yet distributing them into official mobile app stores often requires cumbersome cross-platform frameworks (React Native, Flutter, Cordova), duplicate codebases, and continuous compilation pipeline overhead.
 

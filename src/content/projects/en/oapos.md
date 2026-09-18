@@ -23,11 +23,11 @@ metrics:
 ogImage: "/images/oa-logo-dark.webp"
 ---
 
-## Executive Overview
+## Project Overview
 
 In fast-paced retail and hospitality environments, cloud-dependent Point-of-Sale (POS) systems introduce critical vulnerabilities: internet outages halt billing, high API latencies degrade checkout velocity, and recurring monthly software rents burden small-to-medium businesses.
 
-**oaPOS** was conceived and engineered as an antidote to this vulnerability. It is a production-grade, native Windows desktop solution certified on the official Microsoft Store, engineered with an offline-first distributed architecture. By implementing a local **HOST/CLIENT socket synchronization model**, oaPOS delivers microsecond-level barcode recognition, instantaneous receipt generation, and uninterrupted store operations regardless of internet connectivity.
+**oaPOS** was conceived and built as an antidote to this vulnerability. It is a production-grade, native Windows desktop solution certified on the official Microsoft Store, architected with an offline-first distributed architecture. By implementing a local **HOST/CLIENT socket synchronization model**, oaPOS delivers microsecond-level barcode recognition, instantaneous receipt generation, and uninterrupted store operations regardless of internet connectivity.
 
 ## System Architecture Topology
 

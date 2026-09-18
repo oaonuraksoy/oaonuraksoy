@@ -2,12 +2,12 @@
 title: "E-Commerce Image Enhancement Tool — Yapay Zeka Destekli Ürün Görsel Stüdyosu"
 description: "Pazaryeri standartlarında ürün görselleri üretmek için arka plan kaldırma, ışık uyumlandırma ve ürün kenar sadakatini otomatikleştiren üretken yapay zeka ve görsel geliştirme çalışma alanı."
 lang: "tr"
-role: "Yapay Zeka İş Akışı Mimarı & Frontend Mühendisi"
+role: "Yapay Zeka İş Akışı Mimarı & Frontend Geliştiricisi"
 period: "2024 — Günümüz"
 status: "İnteraktif Araç / Aktif"
 featured: true
 order: 3
-tags: ["Üretken Yapay Zeka", "Difüzyon Modelleri", "Canvas API", "Bilgisayarlı Görü", "Prompt Mühendisliği", "Google Flow"]
+tags: ["Üretken Yapay Zeka", "Difüzyon Modelleri", "Canvas API", "Bilgisayarlı Görü", "Prompt Mimarisi", "Google Flow"]
 accentColor: "#F0C878"
 links:
   tool: "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc"
@@ -24,7 +24,7 @@ metrics:
 ogImage: "/images/oa-logo-dark-text.webp"
 ---
 
-## Yönetici Özeti
+## Projeye Genel Bakış
 
 Yüksek dönüşüm sağlayan e-ticaret listelemeleri kusursuz ürün fotoğrafları gerektirir: Doğru stüdyo ışığı, doğal bağlamsal arka planlar ve pazaryeri (Amazon, Trendyol, Hepsiburada, Shopify) kurallarına tam uyumluluk. Geleneksel ticari stüdyo çekimleri ise yüksek maliyet, lojistik zahmet ve haftalar süren onay süreçleri anlamına gelir.
 

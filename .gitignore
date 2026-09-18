@@ -26,6 +26,7 @@ specs/
 AGENTS.md
 ARCHITECTURE.md
 CONTEXT.md
+.agent/
 
 # Logs & Temporary Files
 npm-debug.log*

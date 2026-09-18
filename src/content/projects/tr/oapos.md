@@ -23,7 +23,7 @@ metrics:
 ogImage: "/images/oa-logo-dark.webp"
 ---
 
-## Yönetici Özeti
+## Projeye Genel Bakış
 
 Yüksek tempolu perakende ve restoran işletmelerinde, tamamen buluta bağımlı POS (Satış Noktası) sistemleri ciddi operasyonel kırılganlıklar barındırır: İnternet kesintilerinde kasa kilitlenir, yüksek API gecikmeleri kasa kuyruklarını uzatır ve her ay ödenen zorunlu yazılım kiraları işletmelere maliyet yükü oluşturur.
 
