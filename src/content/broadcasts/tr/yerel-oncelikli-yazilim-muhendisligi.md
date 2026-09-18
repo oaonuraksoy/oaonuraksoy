@@ -3,8 +3,8 @@ title: "Yerel Öncelikli (Local-First) Yazılım Mühendisliğinin Rönesansı"
 description: "Modern kurumsal araçların neden tamamen buluta bağımlı yapılardan yerel veri egemenliğine ve mikrosaniye seviyesinde masaüstü performansına döndüğünün analizi."
 pubDate: 2024-10-02
 lang: "tr"
-tags: ["Yerel Öncelikli", "Masaüstü Mühendisliği", "Dağıtık Sistemler", "WPF"]
-readingTime: "4 dk okuma"
+ref: "local-first-software-engineering"
+tags: ["YerelOncelikli", "MasaustuMuhendisligi", "DagitikSistemler", "DotNet"]
 ---
 
 Son on yılda yazılım sektörü ne pahasına olursa olsun merkezi bulut mimarilerini öne çıkardı. Merkeziyetçilik güncellemeleri kolaylaştırsa da beraberinde ağır bir bedel getirdi: Şirketlerin sağlayıcılara kilitlenmesi, sürekli artan sunucu faturaları, ağ gecikmeleri ve internet koptuğunda tamamen duran iş akışları.

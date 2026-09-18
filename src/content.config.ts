@@ -29,18 +29,6 @@ const projects = defineCollection({
   })
 });
 
-const writing = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/writing' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.coerce.date(),
-    lang: z.enum(['en', 'tr']).default('en'),
-    tags: z.array(z.string()),
-    readingTime: z.string().optional()
-  })
-});
-
 const broadcasts = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/broadcasts' }),
   schema: z.object({
@@ -70,4 +58,4 @@ const broadcasts = defineCollection({
   })
 });
 
-export const collections = { projects, writing, broadcasts };
+export const collections = { projects, broadcasts };

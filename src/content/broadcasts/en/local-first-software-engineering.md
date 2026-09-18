@@ -3,8 +3,8 @@ title: "The Renaissance of Local-First Software Engineering"
 description: "Examining why modern enterprise tools are shifting away from pure cloud dependencies back toward local data sovereignty and microsecond-level desktop performance."
 pubDate: 2024-10-02
 lang: "en"
-tags: ["Local-First", "Desktop Engineering", "Distributed Systems", "WPF"]
-readingTime: "4 min read"
+ref: "local-first-software-engineering"
+tags: ["LocalFirst", "DesktopEngineering", "DistributedSystems", "DotNet"]
 ---
 
 Over the past decade, the software industry championed centralized cloud architectures at all costs. While centralization simplified billing and updates, it extracted a heavy toll: vendor lock-in, recurring operational rents, high network latency, and operational paralyzation during internet outages.

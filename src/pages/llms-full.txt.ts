@@ -4,7 +4,7 @@ import { getAllProjects } from '../utils/projects';
 
 export const GET: APIRoute = async () => {
   const projectsEn = getAllProjects('en');
-  const writingEn = await getCollection('writing', ({ data }) => data.lang === 'en');
+  const broadcastsEn = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
 
   let body = `# Onur Aksoy — Complete Architectural & Technical Digest
 > Domain: https://onuraksoy.com.tr
@@ -81,13 +81,15 @@ Key Technical Principles:
     body += `---\n\n`;
   }
 
-  body += `## 3. Engineering Essays & Technical Writing\n\n`;
+  body += `## 3. Engineering Broadcasts, Deep Dives & Articles\n\n`;
 
-  for (const w of writingEn) {
-    body += `### Article: ${w.data.title}\n`;
-    body += `- Date: ${w.data.pubDate.toISOString().split('T')[0]}\n`;
-    body += `- Summary: ${w.data.description}\n\n`;
-    body += `${w.body}\n\n---\n\n`;
+  for (const b of broadcastsEn) {
+    body += `### Publication: ${b.data.title}\n`;
+    body += `- Date: ${b.data.pubDate.toISOString().split('T')[0]}\n`;
+    body += `- Summary: ${b.data.description}\n`;
+    if (b.data.youtubeId) body += `- Video: https://www.youtube.com/watch?v=${b.data.youtubeId}\n`;
+    if (b.data.spotifyUrl) body += `- Podcast: ${b.data.spotifyUrl}\n`;
+    body += `\n${b.body}\n\n---\n\n`;
   }
 
   body += `## 4. Channels & Coordinates\n`;

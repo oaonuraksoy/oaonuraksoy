@@ -3,8 +3,8 @@ title: "The AI-Native Architecture: Moving Beyond Simple Chatbot Wrappers"
 description: "Why the next era of software engineering belongs to deterministic state machines orchestrated by autonomous reasoning engines rather than generic LLM wrappers."
 pubDate: 2024-11-15
 lang: "en"
-tags: ["AI Architecture", "System Design", "Autonomous Agents", "Software Engineering"]
-readingTime: "5 min read"
+ref: "ai-native-architecture-paradigm"
+tags: ["AIArchitecture", "SystemDesign", "AutonomousAgents", "SoftwareEngineering"]
 ---
 
 Most organizations approaching artificial intelligence make the initial mistake of building superficial conversational wrappers over standard REST endpoints. They treat Large Language Models as glorified search engines with conversational text generation capabilities.

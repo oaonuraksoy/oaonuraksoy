@@ -17,6 +17,7 @@ const countAll = broadcasts.length;
 const countVideo = broadcasts.filter((b) => !!b.data.youtubeId).length;
 const countAudio = broadcasts.filter((b) => !!b.data.spotifyUrl).length;
 const countVault = broadcasts.filter((b) => b.data.downloads && b.data.downloads.length > 0).length;
+const countArticle = broadcasts.filter((b) => !b.data.youtubeId && !b.data.spotifyUrl).length;
 
 const title = "Yayınlar & Bilgi Kasası — Onur Aksoy";
 const description = "Mühendislik ekran kayıtları, derin teknik transkriptler, interaktif zaman damgalı bölümler ve yüksek hızlı Google Drive mimari kaynakları.";
@@ -156,6 +157,13 @@ const description = "Mühendislik ekran kayıtları, derin teknik transkriptler,
           >
             📦 Bilgi Kasası (İndirmeler) <span class="opacity-80">({countVault})</span>
           </button>
+          <button
+            type="button"
+            class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
+            data-filter="article"
+          >
+            📄 Makaleler <span class="opacity-80">({countArticle})</span>
+          </button>
         </div>
 
         <!-- Sonuç Durumu -->
@@ -193,6 +201,7 @@ const description = "Mühendislik ekran kayıtları, derin teknik transkriptler,
         if (item.data.youtubeId) formats.push('video');
         if (item.data.spotifyUrl) formats.push('audio');
         if (item.data.downloads && item.data.downloads.length > 0) formats.push('vault');
+        if (!item.data.youtubeId && !item.data.spotifyUrl) formats.push('article');
 
         const tagsString = (item.data.tags || []).map((t) => t.toLowerCase()).join(' ');
 
@@ -235,6 +244,11 @@ const description = "Mühendislik ekran kayıtları, derin teknik transkriptler,
                 {item.data.downloads && item.data.downloads.length > 0 && (
                   <span class="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
                     <span>Kasa</span>
+                  </span>
+                )}
+                {!item.data.youtubeId && !item.data.spotifyUrl && (
+                  <span class="px-2 py-0.5 rounded-md bg-blue-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                    <span>Makale</span>
                   </span>
                 )}
               </div>
