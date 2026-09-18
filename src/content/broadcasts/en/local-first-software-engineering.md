@@ -5,6 +5,7 @@ pubDate: 2024-10-02
 lang: "en"
 ref: "local-first-software-engineering"
 tags: ["LocalFirst", "DesktopEngineering", "DistributedSystems", "DotNet"]
+thumbnail: "/images/broadcasts/local-first-software.webp"
 ---
 
 Over the past decade, the software industry championed centralized cloud architectures at all costs. While centralization simplified billing and updates, it extracted a heavy toll: vendor lock-in, recurring operational rents, high network latency, and operational paralyzation during internet outages.

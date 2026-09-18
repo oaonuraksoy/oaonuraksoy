@@ -5,6 +5,7 @@ pubDate: 2024-11-15
 lang: "tr"
 ref: "ai-native-architecture-paradigm"
 tags: ["YapayZekaMimarisi", "SistemTasarimi", "OtonomAjanlar", "YazilimMuhendisligi"]
+thumbnail: "/images/broadcasts/ai-native-architecture.webp"
 ---
 
 Yapay zeka ile geliştirmeye başlayan pek çok organizasyon, başlangıçta standart REST uç noktalarının üzerine yüzeysel sohbet arayüzleri (wrapper) inşa etme hatasına düşer. Büyük Dil Modellerini yalnızca metin üreten süslü arama motorları olarak görürler.

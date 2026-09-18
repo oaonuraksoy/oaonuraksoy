@@ -5,6 +5,7 @@ pubDate: 2024-11-15
 lang: "en"
 ref: "ai-native-architecture-paradigm"
 tags: ["AIArchitecture", "SystemDesign", "AutonomousAgents", "SoftwareEngineering"]
+thumbnail: "/images/broadcasts/ai-native-architecture.webp"
 ---
 
 Most organizations approaching artificial intelligence make the initial mistake of building superficial conversational wrappers over standard REST endpoints. They treat Large Language Models as glorified search engines with conversational text generation capabilities.

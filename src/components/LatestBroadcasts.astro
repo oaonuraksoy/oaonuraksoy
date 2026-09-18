@@ -1,0 +1,269 @@
+---
+import { getLatestBroadcasts } from '../utils/broadcasts';
+
+interface Props {
+  lang?: 'en' | 'tr';
+  limit?: number;
+}
+
+const { lang = 'en', limit = 5 } = Astro.props;
+const broadcasts = await getLatestBroadcasts(lang, limit);
+
+const isTr = lang === 'tr';
+
+const spotlight = broadcasts[0];
+const remainingBroadcasts = broadcasts.slice(1);
+
+const spotlightSlug = spotlight ? spotlight.id.replace(/^(en|tr)\//, '') : '';
+const spotlightUrl = isTr ? `/tr/broadcasts/${spotlightSlug}/` : `/broadcasts/${spotlightSlug}/`;
+const spotlightThumb = spotlight
+  ? (spotlight.data.youtubeId
+      ? `https://i.ytimg.com/vi/${spotlight.data.youtubeId}/maxresdefault.jpg`
+      : spotlight.data.thumbnail || '/images/oa-logo.webp')
+  : '';
+
+const spotlightDate = spotlight
+  ? spotlight.data.pubDate.toLocaleDateString(isTr ? 'tr-TR' : 'en-US', {
+      year: 'numeric',
+      month: isTr ? 'long' : 'short',
+      day: 'numeric'
+    })
+  : '';
+---
+
+{broadcasts.length > 0 && (
+  <section id="latest-broadcasts" class="py-20 border-t border-obsidian-border bg-obsidian-black/60 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-obsidian-border text-xs font-mono text-gold-tungsten mb-3">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            <span>{isTr ? "Teknik Yayınlar & Screencast'ler" : "Technical Transmissions & Screencasts"}</span>
+          </div>
+          <h2 class="text-3xl font-extrabold tracking-tight text-text-primary mt-1">
+            {isTr ? "Son Yayınlar & Mimari Analizler" : "Latest Engineering Broadcasts & Deep Dives"}
+          </h2>
+          <p class="text-sm sm:text-base text-text-muted max-w-2xl mt-2 leading-relaxed">
+            {isTr
+              ? "Doğrudan mimari analizler, tam metin transkriptler ve indirilebilir mühendislik vault kaynakları."
+              : "Direct-to-the-metal architectural breakdowns, full transcripts, and downloadable engineering vault assets."}
+          </p>
+        </div>
+        <a
+          href={isTr ? "/tr/broadcasts/" : "/broadcasts/"}
+          class="text-sm font-semibold text-gold-highlight hover:text-text-primary flex items-center gap-1 transition-colors flex-shrink-0"
+        >
+          {isTr ? "Tüm Yayınları Gör →" : "View All Broadcasts →"}
+        </a>
+      </div>
+
+      <!-- Vitrin & Kart Düzeni -->
+      <div class="space-y-8">
+        <!-- Spotlight Featured Item -->
+        {spotlight && (
+          <article class="relative rounded-2xl border border-gold-tungsten/40 bg-gradient-to-br from-obsidian-surface via-obsidian-surface to-obsidian-black p-6 sm:p-8 shadow-2xl overflow-hidden group">
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <!-- Thumbnail Side -->
+              <div class="lg:col-span-6 relative aspect-video rounded-xl overflow-hidden border border-obsidian-border bg-obsidian-black">
+                <a href={spotlightUrl} class="block w-full h-full">
+                  <img
+                    src={spotlightThumb}
+                    alt={spotlight.data.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/90 via-transparent to-transparent"></div>
+
+                  <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-gold-tungsten text-obsidian-black text-[11px] font-mono font-bold tracking-wider uppercase shadow">
+                    {isTr ? "★ En Son Yayın" : "★ Latest Broadcast"}
+                  </div>
+
+                  {spotlight.data.duration && (
+                    <div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-obsidian-black/90 border border-obsidian-border text-xs font-mono text-gold-tungsten">
+                      {spotlight.data.duration.replace('PT', '').toLowerCase()}
+                    </div>
+                  )}
+                </a>
+              </div>
+
+              <!-- Content Side -->
+              <div class="lg:col-span-6 space-y-4">
+                <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-text-muted">
+                  <time datetime={spotlight.data.pubDate.toISOString()} class="text-gold-tungsten">
+                    {spotlightDate}
+                  </time>
+                  <span>•</span>
+                  <div class="flex items-center gap-1.5">
+                    {spotlight.data.youtubeId && (
+                      <span class="px-2 py-0.5 rounded-md bg-red-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                        <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        <span>Video</span>
+                      </span>
+                    )}
+                    {spotlight.data.spotifyUrl && (
+                      <span class="px-2 py-0.5 rounded-md bg-emerald-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                        <span>Podcast</span>
+                      </span>
+                    )}
+                    {spotlight.data.downloads && spotlight.data.downloads.length > 0 && (
+                      <span class="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                        <span>Vault</span>
+                      </span>
+                    )}
+                    {!spotlight.data.youtubeId && !spotlight.data.spotifyUrl && (
+                      <span class="px-2 py-0.5 rounded-md bg-blue-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                        <span>Article</span>
+                      </span>
+                    )}
+                  </div>
+                  {spotlight.data.downloads && spotlight.data.downloads.length > 0 && (
+                    <>
+                      <span>•</span>
+                      <span class="text-gold-tungsten">
+                        {spotlight.data.downloads.length} {isTr ? "İndirilebilir Kaynak" : "Vault Downloads"}
+                      </span>
+                    </>
+                  )}
+                </div>
+
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-text-primary group-hover:text-gold-highlight transition-colors">
+                  <a href={spotlightUrl}>
+                    {spotlight.data.title}
+                  </a>
+                </h3>
+
+                <p class="text-sm sm:text-base text-text-muted line-clamp-3 leading-relaxed">
+                  {spotlight.data.description}
+                </p>
+
+                {spotlight.data.tags && spotlight.data.tags.length > 0 && (
+                  <div class="flex items-center gap-1.5 flex-wrap pt-1">
+                    {spotlight.data.tags.map((tag) => (
+                      <span class="text-xs font-mono text-text-muted px-2.5 py-0.5 rounded bg-obsidian-black border border-obsidian-border">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div class="pt-4 flex items-center gap-4">
+                  <a
+                    href={spotlightUrl}
+                    class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold text-xs hover:bg-gold-highlight transition-all duration-200 shadow-lg shadow-gold-tungsten/20"
+                  >
+                    <span>{isTr ? "Yayını ve Analizi İncele" : "Explore Broadcast & Transcript"}</span>
+                    <span>→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        )}
+
+        <!-- Remaining Broadcasts (Max 4) Compact Cards -->
+        {remainingBroadcasts.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {remainingBroadcasts.map((item) => {
+              const slug = item.id.replace(/^(en|tr)\//, '');
+              const url = isTr ? `/tr/broadcasts/${slug}/` : `/broadcasts/${slug}/`;
+              const itemDate = item.data.pubDate.toLocaleDateString(isTr ? 'tr-TR' : 'en-US', {
+                year: 'numeric',
+                month: isTr ? 'long' : 'short',
+                day: 'numeric'
+              });
+
+              return (
+                <article class="card-noir rounded-2xl p-6 flex flex-col justify-between group">
+                  <div>
+                    <!-- Format Rozetleri & Tarih -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                      <time datetime={item.data.pubDate.toISOString()} class="text-xs font-mono text-gold-tungsten">
+                        {itemDate}
+                      </time>
+
+                      <div class="flex items-center gap-1.5">
+                        {item.data.youtubeId && (
+                          <span class="px-2 py-0.5 rounded-md bg-red-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                            <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                            <span>Video</span>
+                          </span>
+                        )}
+                        {item.data.spotifyUrl && (
+                          <span class="px-2 py-0.5 rounded-md bg-emerald-600/90 text-white text-[10px] font-semibold">
+                            <span>Podcast</span>
+                          </span>
+                        )}
+                        {item.data.downloads && item.data.downloads.length > 0 && (
+                          <span class="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-[10px] font-semibold">
+                            <span>Vault</span>
+                          </span>
+                        )}
+                        {!item.data.youtubeId && !item.data.spotifyUrl && (
+                          <span class="px-2 py-0.5 rounded-md bg-blue-600/90 text-white text-[10px] font-semibold">
+                            <span>Article</span>
+                          </span>
+                        )}
+                        {item.data.duration && (
+                          <span class="px-2 py-0.5 rounded bg-obsidian-subtle border border-obsidian-border text-[10px] font-mono text-gold-highlight">
+                            {item.data.duration.replace('PT', '').toLowerCase()}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <!-- Başlık & Açıklama Özeti -->
+                    <h3 class="text-lg sm:text-xl font-bold text-text-primary mb-2.5 leading-snug group-hover:text-gold-highlight transition-colors">
+                      <a href={url}>
+                        {item.data.title}
+                      </a>
+                    </h3>
+
+                    <p class="text-sm text-text-muted line-clamp-2 leading-relaxed mb-4">
+                      {item.data.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <!-- Etiketler -->
+                    {item.data.tags && item.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-1.5 mb-5">
+                        {item.data.tags.slice(0, 3).map((tag) => (
+                          <span class="text-xs px-2 py-0.5 rounded bg-obsidian-surface border border-obsidian-border text-text-dim font-mono">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <!-- Detay Linki -->
+                    <div class="pt-4 border-t border-obsidian-border/60 flex items-center justify-between">
+                      <a
+                        href={url}
+                        class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                      >
+                        <span>{isTr ? "Mimari Analizi İncele" : "Read Architecture Breakdown"}</span>
+                        <span>→</span>
+                      </a>
+                      {item.data.downloads && item.data.downloads.length > 0 && (
+                        <span class="text-[11px] font-mono text-text-dim">
+                          {item.data.downloads.length} {isTr ? "kaynak" : "vault files"}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}

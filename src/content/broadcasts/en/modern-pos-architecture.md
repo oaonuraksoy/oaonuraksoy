@@ -58,20 +58,29 @@ Under real-world stress (crowded rush hours, ISP packet loss, retail basement ce
 
 In oaPOS, we inverted this dependency: **The local checkout terminal is completely sovereign.**
 
-```
-[ Barcode Scanner / Touch UI ]
-             │ (Instant UI dispatch < 1ms)
-             ▼
-[ Local Memory State Machine ]
-             │ (WAL Mode Transaction)
-             ▼
-[ Embedded SQLite / Local DB ]
-      │ (Async Background Batch)
-      ▼
-[ LAN Socket Broker (HOST Node) ]
-      │ (Periodic Delta Sync)
-      ▼
-[ Central PostgreSQL Cloud (Optional Cloud Aggregator) ]
+```mermaid
+flowchart TD
+    subgraph Station ["Terminal Node (Offline Sovereign)"]
+        UI["🖥️ Barcode Scanner / Touch UI"]
+        Mem["⚡ Local Memory State Machine\n(WAL Mode Transaction)"]
+        DB[("🗄️ Embedded SQLite / Local DB\n(Async Background Batch)")]
+        UI -->|"< 1ms UI Dispatch"| Mem
+        Mem -->|"WAL Commit"| DB
+    end
+
+    subgraph LAN ["Local Area Network (LAN)"]
+        Host["🔌 LAN Socket Broker (HOST Node)"]
+        DB -->|"Periodic Delta Sync"| Host
+    end
+
+    subgraph Cloud ["Optional Cloud Aggregator"]
+        CloudDB[("☁️ Central PostgreSQL Cloud")]
+        Host -.->|"Background Delta Aggregation"| CloudDB
+    end
+
+    style Station fill:#0E1013,stroke:#C58A3A,stroke-width:1.5px,color:#EDEDED
+    style LAN fill:#14171D,stroke:#8A5A20,stroke-width:1px,color:#EDEDED
+    style Cloud fill:#08090A,stroke:#1B1E24,stroke-width:1px,color:#9CA3AF
 ```
 
 ---

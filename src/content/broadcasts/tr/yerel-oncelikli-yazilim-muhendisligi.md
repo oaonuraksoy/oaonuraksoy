@@ -5,6 +5,7 @@ pubDate: 2024-10-02
 lang: "tr"
 ref: "local-first-software-engineering"
 tags: ["YerelOncelikli", "MasaustuMuhendisligi", "DagitikSistemler", "DotNet"]
+thumbnail: "/images/broadcasts/local-first-software.webp"
 ---
 
 Son on yılda yazılım sektörü ne pahasına olursa olsun merkezi bulut mimarilerini öne çıkardı. Merkeziyetçilik güncellemeleri kolaylaştırsa da beraberinde ağır bir bedel getirdi: Şirketlerin sağlayıcılara kilitlenmesi, sürekli artan sunucu faturaları, ağ gecikmeleri ve internet koptuğunda tamamen duran iş akışları.

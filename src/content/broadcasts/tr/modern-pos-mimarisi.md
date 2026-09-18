@@ -58,20 +58,29 @@ Gerçek dünya stresinde (yoğun kasa kuyrukları, internet kopmaları, AVM bodr
 
 oaPOS'ta bu bağımlılığı tersine çevirdik: **Kasa terminali 100% bağımsız ve egemendir.**
 
-```
-[ Barkod Okuyucu / Dokunmatik Ekran ]
-                 │ (Anlık UI Tepkisi < 1ms)
-                 ▼
-[ Yerel Bellek Durum Makinesi ]
-                 │ (WAL Modu Yerel İşlem)
-                 ▼
-[ Gömülü SQLite / Yerel DB ]
-         │ (Asenkron Arka Plan Kuyruğu)
-         ▼
-[ Yerel Ağ Soket Dağıtıcı (HOST Düğüm) ]
-         │ (Periyodik Fark Senkronizasyonu)
-         ▼
-[ Merkezi PostgreSQL Bulut (Opsiyonel Raporlama) ]
+```mermaid
+flowchart TD
+    subgraph KasaTerminali ["Kasa Terminali (Yerel Egemen Düğüm)"]
+        UI["🖥️ Barkod Okuyucu / Dokunmatik UI"]
+        Mem["⚡ Yerel Bellek Durum Makinesi\n(WAL Modu Yerel İşlem)"]
+        DB[("🗄️ Gömülü SQLite / Yerel DB\n(Asenkron Arka Plan Kuyruğu)")]
+        UI -->|"< 1ms UI Tepkisi"| Mem
+        Mem -->|"WAL Commit"| DB
+    end
+
+    subgraph AgDugumu ["Yerel Ağ (LAN)"]
+        Host["🔌 Yerel Ağ Soket Dağıtıcı (HOST Düğüm)"]
+        DB -->|"Periyodik Fark Senkronizasyonu"| Host
+    end
+
+    subgraph Bulut ["Opsiyonel Bulut Katmanı"]
+        CloudDB[("☁️ Merkezi PostgreSQL Bulut")]
+        Host -.->|"Arka Plan Veri Konsolidasyonu"| CloudDB
+    end
+
+    style KasaTerminali fill:#0E1013,stroke:#C58A3A,stroke-width:1.5px,color:#EDEDED
+    style AgDugumu fill:#14171D,stroke:#8A5A20,stroke-width:1px,color:#EDEDED
+    style Bulut fill:#08090A,stroke:#1B1E24,stroke-width:1px,color:#9CA3AF
 ```
 
 ---

@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import SEO from '../../../components/SEO.astro';
 import LiteYouTube from '../../../components/LiteYouTube.astro';
 import DriveDownloadCard from '../../../components/DriveDownloadCard.astro';
 import BroadcastJsonLd from '../../../components/BroadcastJsonLd.astro';
@@ -28,7 +27,9 @@ const { Content } = await render(item);
 const canonicalUrl = `https://onuraksoy.com.tr/tr/broadcasts/${Astro.params.slug}/`;
 const ogImage = item.data.youtubeId
   ? `https://i.ytimg.com/vi/${item.data.youtubeId}/maxresdefault.jpg`
-  : 'https://onuraksoy.com.tr/images/onur-aksoy-og.jpg';
+  : item.data.thumbnail
+    ? (item.data.thumbnail.startsWith('http') ? item.data.thumbnail : `https://onuraksoy.com.tr${item.data.thumbnail}`)
+    : 'https://onuraksoy.com.tr/images/onur-aksoy-og.jpg';
 const counterpartUrl = counterpartSlug ? `/broadcasts/${counterpartSlug}/` : '/broadcasts/';
 
 const hasVideo = !!item.data.youtubeId;
@@ -37,19 +38,14 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
 ---
 
 <BaseLayout
+  title={`${item.data.title} — Onur Aksoy Yayınlar`}
+  description={item.data.description}
+  image={ogImage}
   lang="tr"
   activeNav="broadcasts"
   counterpartUrl={counterpartUrl}
   disableDefaultJsonLd={true}
 >
-  <SEO
-    slot="head"
-    title={`${item.data.title} — Onur Aksoy Yayınlar`}
-    description={item.data.description}
-    lang="tr"
-    canonical={canonicalUrl}
-    ogImage={ogImage}
-  />
 
   <BroadcastJsonLd
     slot="head"
@@ -61,6 +57,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
     youtubeId={item.data.youtubeId}
     spotifyUrl={item.data.spotifyUrl}
     duration={item.data.duration}
+    thumbnail={item.data.thumbnail}
     chapters={item.data.chapters}
     downloads={item.data.downloads}
   />
@@ -131,6 +128,19 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
       </section>
     )}
 
+    <!-- Durum 1.5: Kapak Görseli Hero (Video yoksa ve kapak görseli varsa) -->
+    {!hasVideo && item.data.thumbnail && (
+      <section class="relative aspect-video rounded-2xl overflow-hidden border border-obsidian-border bg-obsidian-black shadow-2xl group" aria-label="Kapak Görseli">
+        <img
+          src={item.data.thumbnail}
+          alt={item.data.title}
+          class="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/60 via-transparent to-transparent pointer-events-none"></div>
+      </section>
+    )}
+
     <!-- Durum 2: Ses / Podcast Hero (Varsa) -->
     {hasAudio && (
       <section class={`p-5 rounded-xl border ${hasVideo ? 'border-emerald-900/40 bg-emerald-950/20' : 'border-emerald-700/50 bg-emerald-950/30 p-6 shadow-xl'} flex flex-col sm:flex-row items-center justify-between gap-4`}>
@@ -168,9 +178,84 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
       </section>
     )}
 
+    <!-- Üst Seviye Sistem Mimarisi Topolojisi (Frontmatter içinde tanımlıysa) -->
+    {item.data.mermaidTopology && (
+      <div class="mermaid-wrapper my-10 p-6 sm:p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border overflow-x-auto shadow-2xl">
+        <div class="text-xs font-mono text-gold-tungsten uppercase tracking-wider mb-4 flex items-center justify-between border-b border-obsidian-border/60 pb-3">
+          <span class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+            <span>Sistem Mimarisi Topolojisi</span>
+          </span>
+          <span class="text-[11px] text-text-muted lowercase font-mono">vektörel mimari diyagramı</span>
+        </div>
+        <pre class="mermaid">{item.data.mermaidTopology}</pre>
+      </div>
+    )}
+
     <!-- Markdown Makale & Transkript Gövdesi -->
     <article class="prose prose-invert prose-gold max-w-none pt-6 border-t border-obsidian-border/60">
       <Content />
     </article>
   </main>
+
+  <!-- İstemci Taraflı Vektörel Mermaid Topoloji İşleyicisi -->
+  <script is:inline>
+    // 1. Markdown içerisindeki "mermaid" kod bloklarını tespit et ve topoloji kartına dönüştür
+    const rawMermaidBlocks = document.querySelectorAll('pre[data-language="mermaid"], pre.mermaid, code.language-mermaid');
+    
+    rawMermaidBlocks.forEach((el) => {
+      const code = el.innerText || el.textContent || '';
+      if (!code.trim()) return;
+
+      const pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = code.trim();
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-wrapper my-8 p-6 sm:p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border overflow-x-auto shadow-2xl';
+      
+      const header = document.createElement('div');
+      header.className = 'text-xs font-mono text-gold-tungsten uppercase tracking-wider mb-4 flex items-center justify-between border-b border-obsidian-border/60 pb-3';
+      header.innerHTML = `
+        <span class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+          <span>Sistem Mimarisi Topolojisi</span>
+        </span>
+        <span class="text-[11px] text-text-muted lowercase font-mono">vektörel mimari diyagramı</span>
+      `;
+      
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
+
+      const target = el.tagName === 'CODE' ? el.parentElement : el;
+      if (target && target.parentElement) {
+        target.parentElement.replaceChild(wrapper, target);
+      }
+    });
+
+    // 2. Tüm .mermaid öğelerini derle ve render et
+    const mermaidNodes = document.querySelectorAll('.mermaid');
+    if (mermaidNodes.length > 0) {
+      import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs').then((m) => {
+        m.default.initialize({
+          startOnLoad: false,
+          theme: 'base',
+          themeVariables: {
+            darkMode: true,
+            background: '#08090A',
+            primaryColor: '#14171D',
+            primaryTextColor: '#EDEDED',
+            primaryBorderColor: '#C58A3A',
+            lineColor: '#D6A354',
+            secondaryColor: '#0E1013',
+            tertiaryColor: '#1B1E24',
+            fontFamily: 'ui-sans-serif, system-ui, sans-serif'
+          }
+        });
+        m.default.run({
+          nodes: Array.from(document.querySelectorAll('.mermaid'))
+        });
+      });
+    }
+  </script>
 </BaseLayout>
