@@ -1,0 +1,333 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getFeaturedProjects } from '../utils/projects';
+
+const featuredProjects = getFeaturedProjects('en');
+
+const competencies = [
+  {
+    title: 'AI-Native Engineering',
+    badge: 'Deterministic Workflows',
+    desc: 'Architecting agentic systems where domain state remains strictly typed while autonomous LLMs navigate high-density context graphs with zero regressions.',
+    tags: ['Agent Loops', 'Context Graphs', 'Dual-Layer Audits', 'Prompt Engineering']
+  },
+  {
+    title: 'Local-First Desktop Systems',
+    badge: 'Sub-10ms Latency',
+    desc: 'High-velocity Windows desktop software built on LAN-first socket synchronization and embedded engines, guaranteeing 100% offline autonomy.',
+    tags: ['.NET 8 / C#', 'DirectX Acceleration', 'HOST/CLIENT Sockets', 'PostgreSQL & NoSQL']
+  },
+  {
+    title: 'Progressive Web & Containers',
+    badge: 'Zero-Bloat Shells',
+    desc: 'Transforming web platforms into installable native-feel containers with sub-150KB shell footprints, offline caching, and instant compilation.',
+    tags: ['Astro 7', 'TypeScript', 'Web Components', 'Workbox / TWA']
+  },
+  {
+    title: 'Generative Visual Synthesis',
+    badge: 'Commercial Studio Quality',
+    desc: 'End-to-end computer vision and diffusion pipelines for e-commerce visual enhancements with sub-pixel edge fidelity and natural shadow physics.',
+    tags: ['Diffusion Models', 'Canvas Engine', 'Alpha Matting', 'Google Flow']
+  }
+];
+---
+
+<BaseLayout
+  title="Onur Aksoy — AI-Native Developer & Multidisciplinary Creator"
+  description="Personal technical portfolio and architecture case studies of Onur Aksoy. Specializing in AI-native engineering, local-first desktop software, and high-performance digital tools."
+  lang="en"
+  activeNav=""
+>
+  <!-- Hero Section -->
+  <section class="relative pt-12 sm:pt-20 pb-16 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <!-- Left: Intro & Manifesto -->
+        <div class="flex-1 text-center lg:text-left">
+          <!-- Availability Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-surface border border-obsidian-border mb-6">
+            <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+            <span class="text-xs font-mono text-text-muted">
+              Ankara, TR • Available for Strategic Contracts
+            </span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1] mb-6">
+            Architecting <span class="gold-gradient-text">AI-Native</span> & Resilient Systems.
+          </h1>
+
+          <p class="text-lg text-text-muted max-w-2xl leading-relaxed mb-8">
+            I am <strong class="text-text-primary font-semibold">Onur Aksoy</strong> <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30 ml-1">a.k.a. Hackonomist</span> — an AI-Native Developer and Multidisciplinary Creator. I specialize in bridging deterministic system design with adaptive intelligence, building production-certified desktop applications, local-first distributed architectures, and generative media engines.
+          </p>
+
+          <!-- Primary CTAs -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <a
+              href="#projects"
+              class="px-6 py-3 rounded-lg font-semibold text-sm bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight shadow-lg shadow-gold-tungsten/20 transition-all duration-200"
+            >
+              Explore Case Studies
+            </a>
+            <a
+              href="/about/"
+              class="px-6 py-3 rounded-lg font-semibold text-sm bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 text-text-primary transition-all duration-200"
+            >
+              Architectural Philosophy
+            </a>
+            <a
+              href="/contact/"
+              class="px-6 py-3 rounded-lg font-semibold text-sm text-gold-highlight hover:text-text-primary transition-colors"
+            >
+              Initiate Contact &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Portrait Frame with Gold Accents -->
+        <div class="relative w-64 sm:w-72 md:w-80 aspect-[4/5] flex-shrink-0">
+          <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-gold-dark via-gold-tungsten to-gold-highlight opacity-30 blur-lg transition duration-500 group-hover:opacity-60"></div>
+          <div class="relative w-full h-full rounded-2xl overflow-hidden border border-gold-tungsten/40 bg-obsidian-surface shadow-2xl">
+            <img
+              src="/images/onur-aksoy.webp"
+              alt="Onur Aksoy — AI-Native Developer"
+              class="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 scale-100 hover:scale-105"
+              width="320"
+              height="400"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/70 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-center">
+              <span class="text-xs font-mono tracking-wider uppercase text-gold-highlight font-semibold">
+                Onur Aksoy
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competency Matrix (4 Pillars) -->
+  <section class="py-16 border-t border-obsidian-border/70 bg-obsidian-surface/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 text-center max-w-2xl mx-auto">
+        <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+          Core Capabilities
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-2">
+          Engineering & Architectural Matrix
+        </h2>
+        <p class="text-sm text-text-muted mt-2">
+          Balanced disciplines spanning low-latency desktop infrastructure, generative media, and deterministic agent orchestration.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {competencies.map((comp) => (
+          <div class="card-noir p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-3">
+                <h3 class="text-lg font-bold text-text-primary">
+                  {comp.title}
+                </h3>
+                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30">
+                  {comp.badge}
+                </span>
+              </div>
+              <p class="text-sm text-text-muted leading-relaxed mb-6">
+                {comp.desc}
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-obsidian-border/50">
+              {comp.tags.map((t) => (
+                <span class="text-xs font-mono text-text-dim px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border">
+                  #{t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid Project Showcase -->
+  <section id="projects" class="py-20 border-t border-obsidian-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+            Production Implementations
+          </span>
+          <h2 class="text-3xl font-extrabold tracking-tight text-text-primary mt-1">
+            Featured Systems & Applications
+          </h2>
+        </div>
+        <a
+          href="/projects/"
+          class="text-sm font-semibold text-gold-highlight hover:text-text-primary flex items-center gap-1 transition-colors"
+        >
+          View Full Project Index &rarr;
+        </a>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {featuredProjects.map((project, index) => {
+          const isLarge = index === 0;
+          return (
+            <article
+              class={`card-noir rounded-2xl p-6 sm:p-8 flex flex-col justify-between ${
+                isLarge ? 'lg:col-span-12 xl:col-span-8' : 'lg:col-span-6 xl:col-span-4'
+              }`}
+            >
+              <div>
+                <!-- Status & Period -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-obsidian-subtle text-gold-highlight border border-obsidian-border">
+                    {project.status}
+                  </span>
+                  <span class="text-xs font-mono text-text-dim">
+                    {project.period}
+                  </span>
+                </div>
+
+                <!-- Title & Description -->
+                <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3 leading-snug">
+                  <a href={`/projects/${project.slug}/`} class="hover:text-gold-highlight transition-colors">
+                    {project.title}
+                  </a>
+                </h3>
+
+                <p class="text-sm text-text-muted leading-relaxed mb-6">
+                  {project.description}
+                </p>
+
+                <!-- Metrics Grid -->
+                {project.metrics && project.metrics.length > 0 && (
+                  <div class={`grid gap-3 mb-6 p-4 rounded-xl bg-obsidian-black border border-obsidian-border/80 ${
+                    isLarge ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-2'
+                  }`}>
+                    {project.metrics.map((m) => (
+                      <div>
+                        <div class="text-[11px] text-text-dim font-mono leading-tight mb-1">{m.label}</div>
+                        <div class="text-sm font-bold text-gold-highlight">{m.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                  {project.tags.map((tag) => (
+                    <span class="text-xs px-2 py-0.5 rounded bg-obsidian-surface border border-obsidian-border text-text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Action Links -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-obsidian-border/60">
+                  <a
+                    href={`/projects/${project.slug}/`}
+                    class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                  >
+                    Read Architectural Case Study &rarr;
+                  </a>
+
+                  <div class="flex items-center gap-3 text-xs">
+                    {project.links?.store && (
+                      <a
+                        href={project.links.store}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                      >
+                        Microsoft Store ↗
+                      </a>
+                    )}
+                    {project.links?.live && (
+                      <a
+                        href={project.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                      >
+                        Launch App ↗
+                      </a>
+                    )}
+                    {project.links?.tool && (
+                      <a
+                        href={project.links.tool}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                      >
+                        Launch Studio ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Direct Access Hub -->
+  <section class="py-20 border-t border-obsidian-border bg-obsidian-surface/40">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+        Direct Transmission
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
+        Ready to build mission-critical systems?
+      </h2>
+      <p class="text-sm sm:text-base text-text-muted leading-relaxed mb-8 max-w-xl mx-auto">
+        Whether you are planning a distributed desktop application, transitioning into an AI-native agent pipeline, or requiring architectural advisory in Ankara or globally.
+      </p>
+
+      <div class="p-8 rounded-2xl bg-obsidian-surface border border-gold-tungsten/30 shadow-2xl inline-block max-w-lg w-full">
+        <div class="text-xs font-mono text-gold-highlight mb-2">PRIMARY DISPATCH ADDRESS</div>
+        <a
+          href="mailto:dev@onuraksoy.com.tr"
+          class="text-xl sm:text-2xl font-mono font-bold text-text-primary hover:text-gold-highlight transition-colors break-all"
+        >
+          dev@onuraksoy.com.tr
+        </a>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-8 pt-6 border-t border-obsidian-border text-xs">
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/40 text-text-muted hover:text-gold-highlight transition-colors"
+          >
+            Telegram
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/40 text-text-muted hover:text-gold-highlight transition-colors"
+          >
+            WhatsApp
+          </a>
+          <a
+            href="https://linkedin.com/in/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/40 text-text-muted hover:text-gold-highlight transition-colors"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

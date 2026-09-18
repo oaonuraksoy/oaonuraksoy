@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const directChannels = [
+  {
+    name: 'Birincil E-Posta',
+    handle: 'dev@onuraksoy.com.tr',
+    href: 'mailto:dev@onuraksoy.com.tr',
+    desc: 'Resmi teklifler, mimari danışmanlık ve proje işbirlikleri için.'
+  },
+  {
+    name: 'Telegram Kanalı',
+    handle: '@oaonuraksoy',
+    href: 'https://t.me/oaonuraksoy',
+    desc: 'Hızlı ve şifreli doğrudan mesajlaşma.'
+  },
+  {
+    name: 'WhatsApp Hattı',
+    handle: '+90 551 181 70 53',
+    href: 'https://wa.me/905511817053',
+    desc: 'Öncelikli görüşmeler ve proje senkronizasyonları için anlık iletişim.'
+  },
+  {
+    name: 'LinkedIn Profili',
+    handle: 'in/oaonuraksoy',
+    href: 'https://linkedin.com/in/oaonuraksoy',
+    desc: 'Profesyonel geçmiş, referanslar ve kurumsal ağ.'
+  },
+  {
+    name: 'GitHub Depoları',
+    handle: 'github.com/oaonuraksoy',
+    href: 'https://github.com/oaonuraksoy',
+    desc: 'Açık kaynak katkıları, teknik depolar ve mimari örnekler.'
+  },
+  {
+    name: 'X (Twitter)',
+    handle: '@oaonuraksoy',
+    href: 'https://x.com/oaonuraksoy',
+    desc: 'Halka açık paylaşımlar, teknoloji analizleri ve mühendislik notları.'
+  }
+];
+---
+
+<BaseLayout
+  title="İletişim & Doğrudan Bağlantı — Onur Aksoy"
+  description="Onur Aksoy ile doğrudan iletişim kanalları. Kritik yazılım projeleri, yapay zeka sistem mimarileri ve masaüstü mühendisliği işbirlikleri."
+  lang="tr"
+  activeNav="contact"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Header -->
+    <div class="mb-14 max-w-2xl">
+      <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+        Doğrudan İletişim Hattı
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
+        Bağlantı Kurun
+      </h1>
+      <p class="text-base text-text-muted leading-relaxed">
+        Yüksek dirençli mimariler, deterministik yapay zeka pipeline'ları ve kesintisiz masaüstü yazılımları inşa etmek isteyen kurucu ve mühendislik ekipleriyle çalışıyorum.
+      </p>
+    </div>
+
+    <!-- Primary Email Featured Hero Box -->
+    <div class="p-8 sm:p-10 rounded-2xl bg-obsidian-surface border border-gold-tungsten/40 shadow-2xl mb-12">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-gold-highlight font-semibold">
+            Merkezi İletişim Geçidi
+          </span>
+          <div class="mt-2 text-2xl sm:text-3xl font-mono font-bold text-text-primary">
+            dev@onuraksoy.com.tr
+          </div>
+          <p class="text-xs text-text-muted mt-2">
+            Günlük kontrol edilir • Standart yanıt süresi &lt; 24 saat
+          </p>
+        </div>
+
+        <a
+          href="mailto:dev@onuraksoy.com.tr"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold text-sm hover:bg-gold-highlight transition-all shadow-md"
+        >
+          E-Posta Gönder &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Direct Channels Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
+      {directChannels.map((channel) => (
+        <a
+          href={channel.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="card-noir p-6 rounded-xl block group"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold text-gold-tungsten group-hover:text-gold-highlight uppercase">
+              {channel.name}
+            </span>
+            <span class="text-xs text-text-dim group-hover:text-gold-highlight transition-colors">
+              ↗
+            </span>
+          </div>
+          <div class="text-base font-mono font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mb-2">
+            {channel.handle}
+          </div>
+          <p class="text-xs text-text-muted leading-relaxed">
+            {channel.desc}
+          </p>
+        </a>
+      ))}
+    </div>
+
+    <!-- Advisory Protocols -->
+    <div class="p-8 rounded-2xl bg-obsidian-surface/60 border border-obsidian-border">
+      <h3 class="text-lg font-bold text-text-primary mb-3">
+        Çalışma Alanları & Kapsam
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-text-muted pt-2">
+        <div>
+          <strong class="text-text-primary block mb-1">1. Özel Masaüstü Sistemleri</strong>
+          .NET/WPF ile yerel ağ soket senkronizasyonlu, sıfır bulut bağımlı yüksek hızlı çözümler.
+        </div>
+        <div>
+          <strong class="text-text-primary block mb-1">2. Yapay Zeka Ajan Mimarisi</strong>
+          Katı doğrulama döngüleriyle donatılmış, halüsinasyonsuz otonom iş akışı orkestrasyonu.
+        </div>
+        <div>
+          <strong class="text-text-primary block mb-1">3. Mimari Denetim (Audit)</strong>
+          Mevcut kod tabanlarının bellek, gecikme ve güvenlik kırılganlıkları açısından sıfır-güven incelemesi.
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

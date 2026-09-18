@@ -1,0 +1,35 @@
+# Build & Dependencies
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Raw Assets
+OA_LOGO_SET/
+
+# Internal AI & Orchestration Docs (Must be kept private/local)
+agents/
+decisions/
+docs/
+plans/
+specs/
+AGENTS.md
+ARCHITECTURE.md
+CONTEXT.md
+
+# Logs & Temporary Files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log

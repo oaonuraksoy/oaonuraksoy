@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getAllProjects, renderMarkdown } from '../../../utils/projects';
+
+export async function getStaticPaths() {
+  const projects = getAllProjects('tr');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout
+  title={`${project.title} — Vaka Analizi | Onur Aksoy`}
+  description={project.description}
+  lang="tr"
+  activeNav="projects"
+  schemaType="SoftwareApplication"
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb & Back Link -->
+    <div class="mb-8">
+      <a
+        href="/tr/projects/"
+        class="inline-flex items-center gap-2 text-xs font-mono text-gold-tungsten hover:text-gold-highlight transition-colors"
+      >
+        &larr; Projeler İndeksine Geri Dön
+      </a>
+    </div>
+
+    <!-- Case Study Header -->
+    <header class="border-b border-obsidian-border pb-10 mb-12">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-obsidian-subtle text-gold-highlight border border-obsidian-border">
+          {project.status}
+        </span>
+        <span class="text-xs font-mono text-text-dim">
+          {project.period}
+        </span>
+        <span class="text-xs text-text-dim">•</span>
+        <span class="text-xs text-text-muted font-medium">
+          {project.role}
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary mb-6 leading-tight">
+        {project.title}
+      </h1>
+
+      <p class="text-lg text-text-muted leading-relaxed mb-8">
+        {project.description}
+      </p>
+
+      <!-- Key Metrics -->
+      {project.metrics && project.metrics.length > 0 && (
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-obsidian-surface border border-obsidian-border mb-8">
+          {project.metrics.map((m) => (
+            <div>
+              <div class="text-xs text-text-dim font-mono">{m.label}</div>
+              <div class="text-lg font-bold text-gold-highlight mt-0.5">{m.value}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- Direct Links & Tech Tags -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4">
+        <div class="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-obsidian-black border border-obsidian-border text-text-muted">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <div class="flex items-center gap-3">
+          {project.links?.store && (
+            <a
+              href={project.links.store}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
+            >
+              Microsoft Store Onaylı ↗
+            </a>
+          )}
+          {project.links?.live && (
+            <a
+              href={project.links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
+            >
+              Uygulamayı Aç ↗
+            </a>
+          )}
+          {project.links?.tool && (
+            <a
+              href={project.links.tool}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
+            >
+              Stüdyoyu Başlat ↗
+            </a>
+          )}
+          {project.links?.github && (
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold px-4 py-2 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten/50 transition-all"
+            >
+              GitHub ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <!-- Executive Overview -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-4 pb-2 border-b border-obsidian-border flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
+        Yönetici Özeti
+      </h2>
+      <div class="prose prose-invert max-w-none text-text-muted leading-relaxed" set:html={renderMarkdown(project.executiveOverview)} />
+    </section>
+
+    <!-- System Architecture Topology -->
+    {project.mermaidTopology && (
+      <div class="mermaid-wrapper my-10 p-6 sm:p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border overflow-x-auto">
+        <div class="text-xs font-mono text-gold-tungsten uppercase tracking-wider mb-4 flex items-center justify-between">
+          <span>Sistem Mimarisi Topolojisi</span>
+          <span class="text-[11px] text-text-dim lowercase">vektörel mimari diyagramı</span>
+        </div>
+        <pre class="mermaid">{project.mermaidTopology}</pre>
+      </div>
+    )}
+
+    <!-- Architectural Benchmark Table -->
+    {project.benchmarks && (
+      <section class="my-12">
+        <h2 class="text-2xl font-bold text-text-primary mb-4 pb-2 border-b border-obsidian-border flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
+          {project.benchmarks.title}
+        </h2>
+        <div class="overflow-x-auto rounded-xl border border-obsidian-border bg-obsidian-surface/60 my-6 shadow-xl">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b border-obsidian-border bg-obsidian-surface">
+                {project.benchmarks.headers.map((h, i) => (
+                  <th class={`p-3.5 sm:p-4 font-mono font-semibold ${
+                    i === 0 ? 'text-text-primary' : i === project.benchmarks.headers.length - 1 ? 'text-gold-highlight' : 'text-text-muted'
+                  }`}>
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-obsidian-border/50">
+              {project.benchmarks.rows.map((row) => (
+                <tr class="hover:bg-obsidian-subtle/50 transition-colors">
+                  {row.map((cell, i) => (
+                    <td class={`p-3.5 sm:p-4 ${
+                      i === 0 ? 'font-semibold text-text-primary' : i === row.length - 1 ? 'font-bold text-gold-highlight' : 'text-text-muted'
+                    }`}>
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )}
+
+    <!-- Technical In-Depth Architecture Sections -->
+    {project.sections && project.sections.length > 0 && (
+      <section class="my-12">
+        <h2 class="text-2xl font-bold text-text-primary mb-6 pb-2 border-b border-obsidian-border flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
+          Teknik Derinlemesine İnceleme
+        </h2>
+        <div class="space-y-6">
+          {project.sections.map((sec) => (
+            <div class="p-6 sm:p-8 rounded-xl bg-obsidian-surface/40 border border-obsidian-border/70 hover:border-gold-tungsten/30 transition-all">
+              <h3 class="text-lg sm:text-xl font-bold text-gold-highlight mb-3">
+                {sec.title}
+              </h3>
+              <div class="text-sm sm:text-base text-text-muted leading-relaxed" set:html={renderMarkdown(sec.content)} />
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Technical Stack Breakdown -->
+    {project.techStack && project.techStack.length > 0 && (
+      <section class="my-12">
+        <h2 class="text-2xl font-bold text-text-primary mb-6 pb-2 border-b border-obsidian-border flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
+          Teknoloji Yığını
+        </h2>
+        <div class="overflow-hidden rounded-xl border border-obsidian-border bg-obsidian-surface/60">
+          <dl class="divide-y divide-obsidian-border/50">
+            {project.techStack.map((item) => (
+              <div class="grid grid-cols-1 sm:grid-cols-3 p-4 sm:p-5 gap-2 text-xs sm:text-sm">
+                <dt class="font-mono text-text-dim font-medium">{item.label}</dt>
+                <dd class="sm:col-span-2 text-text-primary font-medium">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+    )}
+
+    <!-- Business Impact -->
+    {project.businessImpact && (
+      <section class="my-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-obsidian-surface to-obsidian-black border border-gold-tungsten/30 shadow-xl">
+        <h2 class="text-xl font-bold text-gold-highlight mb-3 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+          Sağlanan Katma Değer & İş Etkisi
+        </h2>
+        <p class="text-sm sm:text-base text-text-muted leading-relaxed">
+          {project.businessImpact}
+        </p>
+      </section>
+    )}
+
+    <!-- Bottom Inquiry Callout -->
+    <div class="mt-20 p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-text-primary">
+          Benzer bir sistem mimarisine mi ihtiyacınız var?
+        </h3>
+        <p class="text-sm text-text-muted mt-1">
+          Teknik danışmanlık, özel yazılım geliştirme veya sistem denetimi için doğrudan iletişime geçebilirsiniz.
+        </p>
+      </div>
+      <a
+        href="/tr/contact/"
+        class="flex-shrink-0 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black text-xs font-bold hover:bg-gold-highlight transition-all"
+      >
+        Projeyi Konuşalım &rarr;
+      </a>
+    </div>
+  </article>
+
+  <!-- Client-side Mermaid Initialization -->
+  <script is:inline>
+    const mermaidElements = document.querySelectorAll('.mermaid');
+    if (mermaidElements.length > 0) {
+      import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs').then((m) => {
+        m.default.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            darkMode: true,
+            background: '#08090A',
+            primaryColor: '#14171D',
+            primaryTextColor: '#EDEDED',
+            primaryBorderColor: '#C58A3A',
+            lineColor: '#D6A354',
+            secondaryColor: '#0E1013',
+            tertiaryColor: '#1B1E24',
+            fontFamily: 'ui-sans-serif, system-ui, sans-serif'
+          }
+        });
+        m.default.run();
+      });
+    }
+  </script>
+</BaseLayout>

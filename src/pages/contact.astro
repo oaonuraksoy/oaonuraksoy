@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const directChannels = [
+  {
+    name: 'Primary Email',
+    handle: 'dev@onuraksoy.com.tr',
+    href: 'mailto:dev@onuraksoy.com.tr',
+    desc: 'For formal inquiries, architectural reviews, and contract proposals.'
+  },
+  {
+    name: 'Telegram Messenger',
+    handle: '@oaonuraksoy',
+    href: 'https://t.me/oaonuraksoy',
+    desc: 'Encrypted direct messaging for rapid communication.'
+  },
+  {
+    name: 'WhatsApp Direct',
+    handle: '+90 551 181 70 53',
+    href: 'https://wa.me/905511817053',
+    desc: 'Instant messaging for ongoing project syncs and priority calls.'
+  },
+  {
+    name: 'LinkedIn Network',
+    handle: 'in/oaonuraksoy',
+    href: 'https://linkedin.com/in/oaonuraksoy',
+    desc: 'Professional credentials, recommendations, and enterprise network.'
+  },
+  {
+    name: 'GitHub Profile',
+    handle: 'github.com/oaonuraksoy',
+    href: 'https://github.com/oaonuraksoy',
+    desc: 'Open-source contributions, repositories, and architectural code.'
+  },
+  {
+    name: 'X (Twitter)',
+    handle: '@oaonuraksoy',
+    href: 'https://x.com/oaonuraksoy',
+    desc: 'Public broadcasts, engineering thoughts, and technology analysis.'
+  }
+];
+---
+
+<BaseLayout
+  title="Initiate Contact & Transmission — Onur Aksoy"
+  description="Direct contact hub and transmission channels for Onur Aksoy. Available for high-impact contracts, AI architecture consulting, and desktop systems engineering."
+  lang="en"
+  activeNav="contact"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Header -->
+    <div class="mb-14 max-w-2xl">
+      <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+        Direct Dispatch Hub
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
+        Initiate Transmission
+      </h1>
+      <p class="text-base text-text-muted leading-relaxed">
+        I engage with select engineering teams, founders, and enterprises seeking resilient architectures, deterministic AI pipelines, and zero-downtime desktop applications.
+      </p>
+    </div>
+
+    <!-- Primary Email Featured Hero Box -->
+    <div class="p-8 sm:p-10 rounded-2xl bg-obsidian-surface border border-gold-tungsten/40 shadow-2xl mb-12">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-gold-highlight font-semibold">
+            Central Communications Gateway
+          </span>
+          <div class="mt-2 text-2xl sm:text-3xl font-mono font-bold text-text-primary">
+            dev@onuraksoy.com.tr
+          </div>
+          <p class="text-xs text-text-muted mt-2">
+            PGP / S/MIME compatible • Monitored daily • Standard response latency &lt; 24h
+          </p>
+        </div>
+
+        <a
+          href="mailto:dev@onuraksoy.com.tr"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold text-sm hover:bg-gold-highlight transition-all shadow-md"
+        >
+          Send Email &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Direct Channels Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
+      {directChannels.map((channel) => (
+        <a
+          href={channel.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="card-noir p-6 rounded-xl block group"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold text-gold-tungsten group-hover:text-gold-highlight uppercase">
+              {channel.name}
+            </span>
+            <span class="text-xs text-text-dim group-hover:text-gold-highlight transition-colors">
+              ↗
+            </span>
+          </div>
+          <div class="text-base font-mono font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mb-2">
+            {channel.handle}
+          </div>
+          <p class="text-xs text-text-muted leading-relaxed">
+            {channel.desc}
+          </p>
+        </a>
+      ))}
+    </div>
+
+    <!-- Advisory Protocols -->
+    <div class="p-8 rounded-2xl bg-obsidian-surface/60 border border-obsidian-border">
+      <h3 class="text-lg font-bold text-text-primary mb-3">
+        Engagement Models & Scope
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-text-muted pt-2">
+        <div>
+          <strong class="text-text-primary block mb-1">1. Bespoke Systems</strong>
+          Architecting custom Windows desktop (.NET/WPF) or local-first software with LAN socket sync.
+        </div>
+        <div>
+          <strong class="text-text-primary block mb-1">2. AI-Native Pipelines</strong>
+          Implementing multi-layered autonomous agent frameworks with deterministic audit guards.
+        </div>
+        <div>
+          <strong class="text-text-primary block mb-1">3. Architectural Auditing</strong>
+          Zero-trust review of existing codebases for memory leaks, latency bottlenecks, and resilience.
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

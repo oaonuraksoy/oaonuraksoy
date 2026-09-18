@@ -1,0 +1,333 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getFeaturedProjects } from '../../utils/projects';
+
+const featuredProjects = getFeaturedProjects('tr');
+
+const competencies = [
+  {
+    title: 'Yapay Zeka Yerel Mühendislik',
+    badge: 'Deterministik İş Akışları',
+    desc: 'Çekirdek iş mantığının sıkı tiplerle korunduğu, otonom LLM ajanlarının sıfır regresyonla yüksek yoğunluklu bağlam grafiklerini işlediği sistem mimarileri.',
+    tags: ['Ajan Döngüleri', 'Bağlam Grafiği', 'Çift Kademeli Denetim', 'Prompt Mühendisliği']
+  },
+  {
+    title: 'Yerel Öncelikli Masaüstü Sistemleri',
+    badge: '10ms Altı Gecikme',
+    desc: 'Yerel ağ soket senkronizasyonu ve gömülü ilişkisel motorlar üzerinde çalışan, %100 çevrimdışı iş sürekliliği sunan yüksek hızlı Windows yazılımları.',
+    tags: ['.NET 8 / C#', 'DirectX Donanım Hızlandırma', 'HOST/CLIENT Soket', 'PostgreSQL & NoSQL']
+  },
+  {
+    title: 'Aşamalı Web & Konteynerleştirme',
+    badge: 'Hafif Kabuk Motoru',
+    desc: 'Web platformlarını 150 KB altı hafif kabuklarla masaüstü ve mobil mağaza kalitesinde kurumsal uygulamalara dönüştüren modern mimariler.',
+    tags: ['Astro 7', 'TypeScript', 'Web Components', 'Workbox / TWA']
+  },
+  {
+    title: 'Üretken Görsel Sentezi & Bilgisayarlı Görü',
+    badge: 'Ticari Stüdyo Standardı',
+    desc: 'E-ticaret pazaryerleri için alt-piksel kenar doğruluğu ve fotogerçekçi ışık fiziği sağlayan uçtan uca difüzyon ve görsel iyileştirme pipeline\'ları.',
+    tags: ['Difüzyon Modelleri', 'Canvas Motoru', 'Alfa Maskeleme', 'Google Flow']
+  }
+];
+---
+
+<BaseLayout
+  title="Onur Aksoy — Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı"
+  description="Onur Aksoy'un teknik portfolyosu ve vaka analizleri. Yapay zeka yerel mimariler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar."
+  lang="tr"
+  activeNav=""
+>
+  <!-- Hero Section -->
+  <section class="relative pt-12 sm:pt-20 pb-16 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <!-- Left: Intro & Manifesto -->
+        <div class="flex-1 text-center lg:text-left">
+          <!-- Availability Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-surface border border-obsidian-border mb-6">
+            <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+            <span class="text-xs font-mono text-text-muted">
+              Ankara, TR • Seçkin Girişimler ve Danışmanlık İçin Açık
+            </span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1] mb-6">
+            <span class="gold-gradient-text">Yapay Zeka Yerel</span> & Dayanıklı Sistemler.
+          </h1>
+
+          <p class="text-lg text-text-muted max-w-2xl leading-relaxed mb-8">
+            Ben <strong class="text-text-primary font-semibold">Onur Aksoy</strong> <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30 ml-1">a.k.a. Hackonomist</span> — Yapay Zeka Yerel (AI-Native) Geliştirici ve Çok Disiplinli Yaratıcıyım. Deterministik sistem tasarımı ile uyarlanabilir zekayı buluşturarak; üretim onaylı masaüstü yazılımları, yerel öncelikli dağıtık mimariler ve üretken medya motorları inşa ediyorum.
+          </p>
+
+          <!-- Primary CTAs -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <a
+              href="#projects"
+              class="px-6 py-3 rounded-lg font-semibold text-sm bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight shadow-lg shadow-gold-tungsten/20 transition-all duration-200"
+            >
+              Vaka Analizlerini İncele
+            </a>
+            <a
+              href="/tr/about/"
+              class="px-6 py-3 rounded-lg font-semibold text-sm bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 text-text-primary transition-all duration-200"
+            >
+              Mimari Felsefem
+            </a>
+            <a
+              href="/tr/contact/"
+              class="px-6 py-3 rounded-lg font-semibold text-sm text-gold-highlight hover:text-text-primary transition-colors"
+            >
+              İletişime Geç &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Portrait Frame with Gold Accents -->
+        <div class="relative w-64 sm:w-72 md:w-80 aspect-[4/5] flex-shrink-0">
+          <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-gold-dark via-gold-tungsten to-gold-highlight opacity-30 blur-lg transition duration-500 group-hover:opacity-60"></div>
+          <div class="relative w-full h-full rounded-2xl overflow-hidden border border-gold-tungsten/40 bg-obsidian-surface shadow-2xl">
+            <img
+              src="/images/onur-aksoy.webp"
+              alt="Onur Aksoy — AI-Native Developer"
+              class="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 scale-100 hover:scale-105"
+              width="320"
+              height="400"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/70 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-center">
+              <span class="text-xs font-mono tracking-wider uppercase text-gold-highlight font-semibold">
+                Onur Aksoy
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competency Matrix (4 Pillars) -->
+  <section class="py-16 border-t border-obsidian-border/70 bg-obsidian-surface/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 text-center max-w-2xl mx-auto">
+        <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+          Temel Yetkinlikler
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-2">
+          Mühendislik & Mimari Matrisi
+        </h2>
+        <p class="text-sm text-text-muted mt-2">
+          Düşük gecikmeli masaüstü altyapısı, üretken medya sistemleri ve deterministik yapay zeka ajan orkestrasyonu.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {competencies.map((comp) => (
+          <div class="card-noir p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-3">
+                <h3 class="text-lg font-bold text-text-primary">
+                  {comp.title}
+                </h3>
+                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30">
+                  {comp.badge}
+                </span>
+              </div>
+              <p class="text-sm text-text-muted leading-relaxed mb-6">
+                {comp.desc}
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-obsidian-border/50">
+              {comp.tags.map((t) => (
+                <span class="text-xs font-mono text-text-dim px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border">
+                  #{t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid Project Showcase -->
+  <section id="projects" class="py-20 border-t border-obsidian-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+            Canlı Sistemler
+          </span>
+          <h2 class="text-3xl font-extrabold tracking-tight text-text-primary mt-1">
+            Öne Çıkan Mühendislik Projeleri
+          </h2>
+        </div>
+        <a
+          href="/tr/projects/"
+          class="text-sm font-semibold text-gold-highlight hover:text-text-primary flex items-center gap-1 transition-colors"
+        >
+          Tüm Proje İndeksini Gör &rarr;
+        </a>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {featuredProjects.map((project, index) => {
+          const isLarge = index === 0;
+          return (
+            <article
+              class={`card-noir rounded-2xl p-6 sm:p-8 flex flex-col justify-between ${
+                isLarge ? 'lg:col-span-12 xl:col-span-8' : 'lg:col-span-6 xl:col-span-4'
+              }`}
+            >
+              <div>
+                <!-- Status & Period -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-obsidian-subtle text-gold-highlight border border-obsidian-border">
+                    {project.status}
+                  </span>
+                  <span class="text-xs font-mono text-text-dim">
+                    {project.period}
+                  </span>
+                </div>
+
+                <!-- Title & Description -->
+                <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3 leading-snug">
+                  <a href={`/tr/projects/${project.slug}/`} class="hover:text-gold-highlight transition-colors">
+                    {project.title}
+                  </a>
+                </h3>
+
+                <p class="text-sm text-text-muted leading-relaxed mb-6">
+                  {project.description}
+                </p>
+
+                <!-- Metrics Grid -->
+                {project.metrics && project.metrics.length > 0 && (
+                  <div class={`grid gap-3 mb-6 p-4 rounded-xl bg-obsidian-black border border-obsidian-border/80 ${
+                    isLarge ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-2'
+                  }`}>
+                    {project.metrics.map((m) => (
+                      <div>
+                        <div class="text-[11px] text-text-dim font-mono leading-tight mb-1">{m.label}</div>
+                        <div class="text-sm font-bold text-gold-highlight">{m.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                  {project.tags.map((tag) => (
+                    <span class="text-xs px-2 py-0.5 rounded bg-obsidian-surface border border-obsidian-border text-text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Action Links -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-obsidian-border/60">
+                  <a
+                    href={`/tr/projects/${project.slug}/`}
+                    class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                  >
+                    Mimari Vaka Analizini Oku &rarr;
+                  </a>
+
+                  <div class="flex items-center gap-3 text-xs">
+                    {project.links?.store && (
+                      <a
+                        href={project.links.store}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                      >
+                        Microsoft Store ↗
+                      </a>
+                    )}
+                    {project.links?.live && (
+                      <a
+                        href={project.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                      >
+                        Uygulamayı Aç ↗
+                      </a>
+                    )}
+                    {project.links?.tool && (
+                      <a
+                        href={project.links.tool}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                      >
+                        Stüdyoyu Başlat ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Direct Access Hub -->
+  <section class="py-20 border-t border-obsidian-border bg-obsidian-surface/40">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+        Doğrudan İletişim Hattı
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
+        Kritik sistemleri birlikte tasarlayalım.
+      </h2>
+      <p class="text-sm sm:text-base text-text-muted leading-relaxed mb-8 max-w-xl mx-auto">
+        Dağıtık bir masaüstü uygulaması geliştirmek, iş akışlarınızı yapay zeka yerel ajanlara taşımak veya mimari danışmanlık almak için doğrudan ulaşabilirsiniz.
+      </p>
+
+      <div class="p-8 rounded-2xl bg-obsidian-surface border border-gold-tungsten/30 shadow-2xl inline-block max-w-lg w-full">
+        <div class="text-xs font-mono text-gold-highlight mb-2">BİRİNCİL İLETİŞİM E-POSTASI</div>
+        <a
+          href="mailto:dev@onuraksoy.com.tr"
+          class="text-xl sm:text-2xl font-mono font-bold text-text-primary hover:text-gold-highlight transition-colors break-all"
+        >
+          dev@onuraksoy.com.tr
+        </a>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-8 pt-6 border-t border-obsidian-border text-xs">
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/40 text-text-muted hover:text-gold-highlight transition-colors"
+          >
+            Telegram
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/40 text-text-muted hover:text-gold-highlight transition-colors"
+          >
+            WhatsApp
+          </a>
+          <a
+            href="https://linkedin.com/in/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/40 text-text-muted hover:text-gold-highlight transition-colors"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

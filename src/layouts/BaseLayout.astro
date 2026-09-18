@@ -1,0 +1,78 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
+import JsonLd from '../components/JsonLd.astro';
+import '../styles/global.css';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  lang?: 'en' | 'tr';
+  activeNav?: string;
+  schemaType?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article';
+  faqs?: FAQItem[];
+}
+
+const {
+  title = 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
+  description = 'Personal portfolio and engineering case studies of Onur Aksoy. Architecting resilient desktop software, local-first systems, and deterministic AI applications.',
+  image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
+  lang = 'en',
+  activeNav = '',
+  schemaType = 'Person',
+  faqs
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth bg-obsidian-black text-text-primary">
+  <head>
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      lang={lang}
+    />
+    <JsonLd
+      type={schemaType}
+      title={title}
+      description={description}
+      image={image}
+      lang={lang}
+      faqs={faqs}
+    />
+  </head>
+  <body class="min-h-screen flex flex-col bg-obsidian-black selection:bg-gold-tungsten selection:text-obsidian-black">
+    <!-- Accessibility Skip Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-gold-tungsten text-obsidian-black font-semibold rounded-md shadow-lg outline-none"
+    >
+      {lang === 'tr' ? 'İçeriğe atla' : 'Skip to main content'}
+    </a>
+
+    <!-- Cinematic Film Grain Noise Overlay -->
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <!-- Ambient Subtle Warm Light at Top -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 ambient-glow pointer-events-none -z-10" aria-hidden="true"></div>
+
+    <!-- Global Header -->
+    <Header lang={lang} activeNav={activeNav} />
+
+    <!-- Main Content Slot -->
+    <main id="main-content" class="flex-grow w-full">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer lang={lang} />
+  </body>
+</html>

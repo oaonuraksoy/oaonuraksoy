@@ -1,0 +1,124 @@
+---
+interface Props {
+  lang?: 'en' | 'tr';
+  activeNav?: string;
+}
+
+const { lang = 'en', activeNav = '' } = Astro.props;
+
+const pathname = Astro.url.pathname;
+
+// Calculate counterpart link for language toggle
+let counterpartUrl = '/';
+if (lang === 'en') {
+  // Currently EN, target is TR
+  if (pathname === '/' || pathname === '') {
+    counterpartUrl = '/tr/';
+  } else {
+    counterpartUrl = `/tr${pathname.endsWith('/') ? pathname : pathname + '/'}`;
+  }
+} else {
+  // Currently TR, target is EN
+  counterpartUrl = pathname.replace(/^\/tr(\/|$)/, '$1') || '/';
+}
+
+const navItems = lang === 'tr' ? [
+  { label: 'Projeler', href: '/tr/projects/', key: 'projects' },
+  { label: 'Hakkımda', href: '/tr/about/', key: 'about' },
+  { label: 'İletişim', href: '/tr/contact/', key: 'contact' },
+] : [
+  { label: 'Projects', href: '/projects/', key: 'projects' },
+  { label: 'About', href: '/about/', key: 'about' },
+  { label: 'Contact', href: '/contact/', key: 'contact' },
+];
+
+const homeUrl = lang === 'tr' ? '/tr/' : '/';
+---
+
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-obsidian-black/80 border-b border-obsidian-border transition-colors duration-300">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a href={homeUrl} class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-tungsten rounded-lg py-1 px-1.5 transition-opacity hover:opacity-90">
+      <img
+        src="/images/oa-logo-header.webp"
+        alt="Onur Aksoy"
+        class="h-8 sm:h-9 w-auto object-contain"
+        width="170"
+        height="37"
+        loading="eager"
+      />
+      <span class="sr-only">Onur Aksoy — Homepage</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+      {navItems.map((item) => {
+        const isActive = activeNav === item.key || pathname.includes(`/${item.key}`);
+        return (
+          <a
+            href={item.href}
+            class={`text-sm font-medium transition-colors duration-200 ${
+              isActive
+                ? 'text-gold-highlight font-semibold'
+                : 'text-text-muted hover:text-text-primary'
+            }`}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Language Switcher & Direct Action -->
+    <div class="flex items-center gap-4">
+      <!-- Language Toggle Pill -->
+      <div class="flex items-center bg-obsidian-surface border border-obsidian-border rounded-full p-0.5 text-xs font-mono">
+        <a
+          href={lang === 'en' ? pathname : counterpartUrl}
+          class={`px-2.5 py-1 rounded-full transition-colors ${
+            lang === 'en'
+              ? 'bg-gold-tungsten text-obsidian-black font-semibold shadow-sm'
+              : 'text-text-muted hover:text-text-primary'
+          }`}
+          aria-label="Switch language to English"
+        >
+          EN
+        </a>
+        <a
+          href={lang === 'tr' ? pathname : counterpartUrl}
+          class={`px-2.5 py-1 rounded-full transition-colors ${
+            lang === 'tr'
+              ? 'bg-gold-tungsten text-obsidian-black font-semibold shadow-sm'
+              : 'text-text-muted hover:text-text-primary'
+          }`}
+          aria-label="Dili Türkçe'ye çevir"
+        >
+          TR
+        </a>
+      </div>
+
+      <!-- Quick Contact CTA -->
+      <a
+        href={lang === 'tr' ? '/tr/contact/' : '/contact/'}
+        class="hidden sm:inline-flex items-center justify-center text-xs font-semibold px-3.5 py-1.5 rounded-md border border-gold-tungsten/40 bg-gold-tungsten/10 text-gold-highlight hover:bg-gold-tungsten hover:text-obsidian-black transition-all duration-200"
+      >
+        {lang === 'tr' ? 'Bağlantı Kur' : 'Initiate Contact'}
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Bar Links -->
+  <div class="md:hidden border-t border-obsidian-border/50 bg-obsidian-surface/60 px-4 py-2 flex items-center justify-around text-xs">
+    {navItems.map((item) => {
+      const isActive = activeNav === item.key || pathname.includes(`/${item.key}`);
+      return (
+        <a
+          href={item.href}
+          class={`py-1 px-2 ${isActive ? 'text-gold-highlight font-semibold' : 'text-text-muted hover:text-text-primary'}`}
+        >
+          {item.label}
+        </a>
+      );
+    })}
+  </div>
+</header>

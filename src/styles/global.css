@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-obsidian: #08090A;
+    --surface-dark: #0E1013;
+    --surface-border: #1B1E24;
+    --dark-amber: #8A5A20;
+    --tungsten-gold: #C58A3A;
+    --warm-gold: #D6A354;
+    --highlight-gold: #F0C878;
+    --text-primary: #EDEDED;
+    --text-muted: #9DA3AE;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #08090A;
+    color: #EDEDED;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: #08090A;
+    color: #EDEDED;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #C58A3A;
+    color: #08090A;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #08090A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1B1E24;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8A5A20;
+  }
+}
+
+/* Film Grain Cinematic Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Vignette Ambient Background */
+.ambient-glow {
+  background: radial-gradient(circle at 50% -10%, rgba(197, 138, 58, 0.13) 0%, rgba(8, 9, 10, 0) 65%);
+}
+
+.card-noir {
+  background-color: #0E1013;
+  border: 1px solid #1B1E24;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-noir:hover {
+  border-color: rgba(197, 138, 58, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(197, 138, 58, 0.08);
+  transform: translateY(-2px);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F0C878 0%, #D6A354 45%, #C58A3A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-glow {
+  border: 1px solid rgba(197, 138, 58, 0.25);
+  box-shadow: 0 0 15px rgba(197, 138, 58, 0.1);
+}
+
+/* Markdown Table Styles */
+.prose table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid #1B1E24 !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+  background-color: #0E1013 !important;
+  margin: 2rem 0 !important;
+}
+
+.prose thead {
+  background-color: #14171D !important;
+  border-bottom: 1px solid rgba(197, 138, 58, 0.3) !important;
+}
+
+.prose th {
+  padding: 0.875rem 1.25rem !important;
+  font-family: var(--font-mono, monospace) !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #F0C878 !important;
+  border-bottom: 1px solid rgba(197, 138, 58, 0.25) !important;
+  text-align: left !important;
+}
+
+.prose td {
+  padding: 0.875rem 1.25rem !important;
+  font-size: 0.875rem !important;
+  color: #D1D5DB !important;
+  border-bottom: 1px solid #1B1E24 !important;
+  line-height: 1.5 !important;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.prose tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.015) !important;
+}
+
+.prose tbody tr:hover {
+  background-color: rgba(197, 138, 58, 0.05) !important;
+}
+
+/* Mermaid Topology Diagram Container */
+.mermaid-diagram {
+  margin: 2.5rem 0;
+  padding: 1.75rem;
+  background: #0E1013;
+  border: 1px solid rgba(197, 138, 58, 0.25);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px 0 rgba(197, 138, 58, 0.05);
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mermaid-diagram svg {
+  max-width: 100% !important;
+  height: auto !important;
+}
+

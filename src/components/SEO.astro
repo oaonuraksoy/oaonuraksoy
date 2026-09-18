@@ -1,0 +1,89 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  lang?: 'en' | 'tr';
+  type?: 'website' | 'article' | 'profile';
+}
+
+const siteUrl = 'https://onuraksoy.com.tr';
+
+const {
+  title = 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
+  description = 'Personal technical portfolio of Onur Aksoy. Architecting resilient desktop software, local-first systems, and deterministic AI applications.',
+  image = `${siteUrl}/images/onur-aksoy.webp`,
+  canonicalUrl = Astro.url.href,
+  lang = 'en',
+  type = 'website'
+} = Astro.props;
+
+// Determine counterpart URL for hreflang
+const pathname = Astro.url.pathname;
+let enPath = pathname;
+let trPath = pathname;
+
+if (pathname.startsWith('/tr')) {
+  trPath = pathname;
+  enPath = pathname.replace(/^\/tr(\/|$)/, '$1') || '/';
+} else {
+  enPath = pathname;
+  trPath = pathname === '/' ? '/tr/' : `/tr${pathname.endsWith('/') ? pathname : pathname + '/'}`;
+}
+
+const enUrl = new URL(enPath, siteUrl).href;
+const trUrl = new URL(trPath, siteUrl).href;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content="Onur Aksoy (Hackonomist)" />
+<meta name="keywords" content="Onur Aksoy, Hackonomist, AI-Native Developer, Software Architect, oaPOS, Orvyna, Local-First, Desktop Systems, Ankara Developer, Generative AI" />
+<meta name="theme-color" content="#08090A" />
+
+<!-- Canonical & Hreflang -->
+<link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="tr" href={trUrl} />
+<link rel="alternate" hreflang="x-default" href={enUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content="Onur Aksoy" />
+<meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
+<meta property="og:locale:alternate" content={lang === 'tr' ? 'en_US' : 'tr_TR'} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:site" content="@oaonuraksoy" />
+<meta name="twitter:creator" content="@oaonuraksoy" />
+
+<!-- GEO & AI Discoverability Tags -->
+<meta name="geo.region" content="TR-06" />
+<meta name="geo.placename" content="Ankara" />
+<meta name="geo.position" content="39.9334;32.8597" />
+<meta name="ICBM" content="39.9334, 32.8597" />
+<link rel="author" href="https://onuraksoy.com.tr" />
+<link rel="me" href="https://github.com/oaonuraksoy" />
+<link rel="me" href="https://x.com/oaonuraksoy" />
+<link rel="me" href="https://linkedin.com/in/oaonuraksoy" />
+<link rel="sitemap" href="/sitemap-index.xml" />

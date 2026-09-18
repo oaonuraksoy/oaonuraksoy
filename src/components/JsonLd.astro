@@ -1,0 +1,188 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  type?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article';
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  datePublished?: string;
+  lang?: 'en' | 'tr';
+  faqs?: FAQItem[];
+}
+
+const {
+  type = 'Person',
+  title = 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
+  description = 'Personal portfolio and technical case studies of Onur Aksoy. Pioneering deterministic AI architectures, local-first software, and high-performance digital tools.',
+  url = 'https://onuraksoy.com.tr',
+  image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
+  datePublished,
+  lang = 'en',
+  faqs
+} = Astro.props;
+
+const siteUrl = 'https://onuraksoy.com.tr';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteUrl}/#person`,
+  name: 'Onur Aksoy',
+  alternateName: ['Hackonomist', 'hackonomist', 'OA', 'Onur Aksoy (Hackonomist)'],
+  givenName: 'Onur',
+  familyName: 'Aksoy',
+  jobTitle: 'AI-Native Developer & Multidisciplinary Creator',
+  description: lang === 'tr' 
+    ? 'Onur Aksoy (a.k.a. Hackonomist); yapay zeka yerel mimariler, yerel öncelikli (local-first) masaüstü yazılımları, dijital büyüme ve hackonomik otomasyon sistemleri üreten kıdemli geliştirici ve yaratıcıdır.' 
+    : 'Onur Aksoy (a.k.a. Hackonomist) is an AI-native systems architect, local-first software engineer, and multidisciplinary creator building resilient tools, deterministic agentic systems, and digital growth infrastructure.',
+  url: siteUrl,
+  image: {
+    '@type': 'ImageObject',
+    '@id': `${siteUrl}/#primaryimage`,
+    url: `${siteUrl}/images/onur-aksoy.webp`,
+    caption: 'Onur Aksoy',
+    inLanguage: lang === 'tr' ? 'tr-TR' : 'en-US'
+  },
+  email: 'mailto:dev@onuraksoy.com.tr',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Ankara',
+    addressCountry: 'TR'
+  },
+  sameAs: [
+    'https://github.com/oaonuraksoy',
+    'https://x.com/oaonuraksoy',
+    'https://linkedin.com/in/oaonuraksoy',
+    'https://youtube.com/@oaonuraksoy',
+    'https://instagram.com/oaonuraksoy',
+    'https://t.me/oaonuraksoy',
+    'https://wa.me/905511817053',
+    'https://creators.spotify.com/pod/profile/oaonuraksoy/'
+  ],
+  knowsAbout: [
+    'Artificial Intelligence Architecture',
+    'Deterministic Agent Orchestration',
+    'Local-First Software',
+    'Astro 7 & Static Web',
+    '.NET & WPF Desktop Systems',
+    'Distributed LAN Sockets',
+    'TypeScript & Web Components',
+    'Generative Diffusion Models'
+  ]
+};
+
+const resolvedImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : '/' + image}`;
+
+const imageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageObject',
+  '@id': `${siteUrl}/#primaryimage`,
+  name: title,
+  caption: lang === 'tr' 
+    ? 'Onur Aksoy — Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı' 
+    : 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
+  contentUrl: resolvedImageUrl,
+  url: resolvedImageUrl,
+  width: resolvedImageUrl.includes('onur-aksoy.webp') ? 937 : 1200,
+  height: resolvedImageUrl.includes('onur-aksoy.webp') ? 1679 : 630,
+  encodingFormat: 'image/webp',
+  representativeOfPage: true,
+  author: {
+    '@id': `${siteUrl}/#person`
+  },
+  creator: {
+    '@id': `${siteUrl}/#person`
+  },
+  inLanguage: lang === 'tr' ? 'tr-TR' : 'en-US'
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'Onur Aksoy',
+  alternateName: ['Onur Aksoy Portfolio', 'OA Portfolyo'],
+  description: description,
+  inLanguage: ['en-US', 'tr-TR'],
+  primaryImageOfPage: {
+    '@id': `${siteUrl}/#primaryimage`
+  },
+  publisher: {
+    '@id': `${siteUrl}/#person`
+  }
+};
+
+let customSchema: any = null;
+
+if (type === 'SoftwareApplication') {
+  customSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: title,
+    description: description,
+    url: url,
+    image: {
+      '@type': 'ImageObject',
+      url: resolvedImageUrl
+    },
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Windows, Web, Multiplatform',
+    author: {
+      '@id': `${siteUrl}/#person`
+    }
+  };
+} else if (type === 'Article') {
+  customSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: title,
+    description: description,
+    url: url,
+    image: {
+      '@type': 'ImageObject',
+      url: resolvedImageUrl
+    },
+    datePublished: datePublished,
+    author: {
+      '@id': `${siteUrl}/#person`
+    },
+    publisher: {
+      '@id': `${siteUrl}/#person`
+    },
+    inLanguage: lang === 'tr' ? 'tr-TR' : 'en-US'
+  };
+}
+
+let faqSchema: any = null;
+if (faqs && faqs.length > 0) {
+  faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
+      }
+    }))
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(imageSchema)} />
+{faqSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+)}
+{customSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(customSchema)} />
+)}
