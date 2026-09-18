@@ -34,10 +34,10 @@ function getTypeBadge(type: string) {
         </div>
         <div>
           <h2 class="text-sm font-semibold text-text-primary">
-            {lang === 'tr' ? 'Kaynak Dosyaları & İndirmeler' : 'Project Assets & Downloads'}
+            {lang === 'tr' ? 'Kaynak Dosyaları & İndirmeler' : 'Source Files & Production Assets'}
           </h2>
           <p class="text-xs text-text-muted">
-            {lang === 'tr' ? "Google Drive yüksek hızlı doğrudan arşiv bağlantıları" : "High-speed Google Drive vault repository"}
+            {lang === 'tr' ? "Doğrudan indirilebilir kaynak kodlar ve 20TB yüksek hızlı arşiv deposu" : "Directly downloadable source files and 20TB high-speed vault archive"}
           </p>
         </div>
       </div>
@@ -49,6 +49,7 @@ function getTypeBadge(type: string) {
     <div class="space-y-3">
       {downloads.map((item) => {
         const badge = getTypeBadge(item.type);
+        const isExternal = item.driveUrl.startsWith('http');
         return (
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg border border-obsidian-border/80 bg-obsidian-black/60 hover:border-gold-tungsten/50 transition-all duration-200">
             <div class="space-y-1 min-w-0">
@@ -70,15 +71,20 @@ function getTypeBadge(type: string) {
 
             <a
               href={item.driveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              download={!isExternal ? item.name : undefined}
               class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-gold-tungsten/15 hover:bg-gold-tungsten text-gold-highlight hover:text-obsidian-black border border-gold-tungsten/30 text-xs font-semibold transition-all duration-200 shrink-0"
-              aria-label={`${lang === 'tr' ? "Drive'dan İndir" : "Download Vault"} (${item.name})`}
+              aria-label={`${lang === 'tr' ? (isExternal ? "Drive'dan İndir" : "Kasadan İndir") : (isExternal ? "Download from Drive" : "Direct Download")} (${item.name})`}
             >
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
               </svg>
-              <span>{lang === 'tr' ? "Drive'dan İndir ↗" : "Download Vault ↗"}</span>
+              <span>
+                {lang === 'tr' 
+                  ? (isExternal ? "Drive'dan Aç ↗" : "Doğrudan İndir ⤓") 
+                  : (isExternal ? "Open Drive ↗" : "Direct Download ⤓")}
+              </span>
             </a>
           </div>
         );

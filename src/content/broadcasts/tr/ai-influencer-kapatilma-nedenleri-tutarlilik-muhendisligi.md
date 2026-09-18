@@ -7,7 +7,7 @@ ref: "ai-influencer-account-bans-consistency-engineering"
 featured: true
 tags: ["YapayZeka", "AIInfluencer", "ComfyUI", "LoRA", "AlgoritmikBan", "SistemMimarisi", "GoruntuIsleme"]
 duration: "PT18M40S"
-thumbnail: "/images/oa-logo.webp"
+thumbnail: "/images/broadcasts/ai-influencer-consistency-engineering.webp"
 chapters:
   - time: "00:00"
     title: "Giriş: İlk 45 Günde Gelen Sessiz Algoritmik Ölüm"
@@ -23,20 +23,20 @@ chapters:
     title: "Canlılık Sentezi (LivePortrait) & The Vault İndirmeleri"
 downloads:
   - name: "ComfyUI-AI-Influencer-Production-Graph.json"
-    size: "142 KB"
+    size: "7.8 KB"
     type: "json"
-    driveUrl: "https://drive.google.com/file/d/1exampleDriveIdForComfyUIBlueprint/view"
-    hash: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    driveUrl: "/vault/ai-influencer/ComfyUI-AI-Influencer-Production-Graph.json"
+    hash: "sha256:e95833d0e4b0b6884dff2886bd310d23c180bb4c85ec07d7ef9b0a2bb10d2c99"
   - name: "prnu_sensor_noise_injector.py"
-    size: "8.4 KB"
+    size: "4.3 KB"
     type: "py"
-    driveUrl: "https://drive.google.com/file/d/1exampleDriveIdForPRNUScript/view"
-    hash: "sha256:a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e"
+    driveUrl: "/vault/ai-influencer/prnu_sensor_noise_injector.py"
+    hash: "sha256:6d6faa289e8a42a473293ec293700d970e4a4f56645134e4c0b12b17f052ecf2"
   - name: "ypp_audio_spectral_randomizer.sh"
-    size: "3.2 KB"
+    size: "2.0 KB"
     type: "sh"
-    driveUrl: "https://drive.google.com/file/d/1exampleDriveIdForAudioModulator/view"
-    hash: "sha256:2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae"
+    driveUrl: "/vault/ai-influencer/ypp_audio_spectral_randomizer.sh"
+    hash: "sha256:03e10e4b5f3855f3a6d9e74684aa38cafdd0bc55a4a3238334d212f6296085f0"
 ---
 
 ## Yönetici Özeti: 3. Haftada Gelen Sessiz Algoritmik İnfaz
@@ -51,21 +51,21 @@ Bu teknik inceleme; YouTube YPP (Partner Programı) filtrelerinin sentetik içer
 
 ```mermaid
 flowchart TD
-    subgraph Algoritmik Tehditler [1. Platform Algoritma Duvarı]
-        A1[YouTube YPP] -->|Spektrogram Taraması| T1[Akustik Slop / Reused Content Banı]
-        A2[Meta / Instagram] -->|Sensör Gürültüsü Eksikliği| T2[PRNU Yokluğu & CIB Filtresi]
-        A2 -->|Liveness Check| T3[360 Derece Video Selfie Doğrulama Tuzağı]
+    subgraph AlgoritmikTehditler ["1. Platform Algoritma Duvarı"]
+        A1["YouTube YPP"] -->|Spektrogram Taraması| T1["Akustik Slop / Reused Content Banı"]
+        A2["Meta / Instagram"] -->|Sensör Gürültüsü Eksikliği| T2["PRNU Yokluğu ve CIB Filtresi"]
+        A2 -->|Liveness Check| T3["360 Derece Video Selfie Doğrulama Tuzağı"]
     end
 
-    subgraph Muhendislik Cozumu [2. Hackonomist Deterministik Boru Hattı]
-        M1[Akustik IR Modülasyonu] --> S1[Oda Reverb + -32dB Analog Gürültü]
-        M2[PRNU Enjeksiyonu] --> S2[Sony A7IV Sensör Voltaj Gürültüsü Bindirme]
-        M3[Cihaz Isınma Protokolü] --> S3[Fiziksel SIM + 30 Günlük Donanım Telemetrisi]
-        M4[FLUX.1 + ComfyUI] --> S4[LoRA Ağırlıkları + IP-Adapter FaceID + ControlNet]
+    subgraph MuhendislikCozumu ["2. Hackonomist Deterministik Boru Hattı"]
+        M1["Akustik IR Modülasyonu"] --> S1["Oda Reverb + -32dB Analog Gürültü"]
+        M2["PRNU Enjeksiyonu"] --> S2["Sony A7IV Sensör Voltaj Gürültüsü Bindirme"]
+        M3["Cihaz Isınma Protokolü"] --> S3["Fiziksel SIM + 30 Günlük Donanım Telemetrisi"]
+        M4["FLUX.1 + ComfyUI"] --> S4["LoRA Ağırlıkları + IP-Adapter FaceID + ControlNet"]
     end
 
-    Algoritmik Tehditler --> Muhendislik Cozumu
-    Muhendislik Cozumu --> Prod[Kurşungeçirmez Sanal Varlık]
+    AlgoritmikTehditler --> MuhendislikCozumu
+    MuhendislikCozumu --> Prod["Kurşungeçirmez Sanal Varlık"]
 ```
 
 ---
@@ -202,21 +202,21 @@ Kusursuz bir ticari kare üretmek için ComfyUI üzerinde kurulan düğüm hiyer
 
 ```mermaid
 flowchart LR
-    A[Prompt: Concept Trigger] --> B[Dual CLIP Encode]
-    B --> C[FLUX.1 Base Model]
-    D[Trained LoRA Weights: 0.85] --> C
+    A["Prompt: Concept Trigger"] --> B["Dual CLIP Encode"]
+    B --> C["FLUX.1 Base Model"]
+    D["Trained LoRA Weights: 0.85"] --> C
     
-    E[Pose Reference Photo] --> F[ControlNet DWPose]
-    F --> G[KSampler: Euler Ancestral / 28 Steps]
+    E["Pose Reference Photo"] --> F["ControlNet DWPose"]
+    F --> G["KSampler: Euler Ancestral / 28 Steps"]
     C --> G
     
-    H[Identity Anchor Shot] --> I[IP-Adapter FaceID Plus V2]
+    H["Identity Anchor Shot"] --> I["IP-Adapter FaceID Plus V2"]
     I --> G
     
-    G --> J[Latent Decode: Raw Render]
-    J --> K[FaceDetailer: YOLOv8 Face Bounding Box]
-    K --> L[Sensor Noise Injection: PRNU Tool]
-    L --> M[Nihai Doğrulanmış Görsel]
+    G --> J["Latent Decode: Raw Render"]
+    J --> K["FaceDetailer: YOLOv8 Face Detection"]
+    K --> L["Sensor Noise Injection: PRNU Tool"]
+    L --> M["Nihai Doğrulanmış Görsel"]
 ```
 
 1. **Model Yükleme:** `flux1-dev.sft` + Karakter LoRA'sı ($0.85$ ağırlık).

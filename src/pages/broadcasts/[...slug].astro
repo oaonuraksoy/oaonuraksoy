@@ -201,7 +201,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
   <!-- Client-side Interactive Vector Mermaid Topology Renderer -->
   <script is:inline>
     // 1. Process any markdown code blocks with language "mermaid"
-    const rawMermaidBlocks = document.querySelectorAll('pre[data-language="mermaid"], pre.mermaid, code.language-mermaid');
+    const rawMermaidBlocks = document.querySelectorAll('pre[data-language="mermaid"], pre.mermaid');
     
     rawMermaidBlocks.forEach((el) => {
       const code = el.innerText || el.textContent || '';
@@ -227,9 +227,8 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
       wrapper.appendChild(header);
       wrapper.appendChild(pre);
 
-      const target = el.tagName === 'CODE' ? el.parentElement : el;
-      if (target && target.parentElement) {
-        target.parentElement.replaceChild(wrapper, target);
+      if (el.parentElement) {
+        el.parentElement.replaceChild(wrapper, el);
       }
     });
 
@@ -254,6 +253,8 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
         });
         m.default.run({
           nodes: Array.from(document.querySelectorAll('.mermaid'))
+        }).catch((err) => {
+          console.warn('Mermaid rendering notice:', err);
         });
       });
     }

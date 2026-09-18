@@ -136,6 +136,11 @@ Portfolyoda sergilenen tüm amiral gemisi projeler `src/data/projects.json` dosy
 3. İsteğe bağlı olarak detaylı markdown vaka analizlerini `src/content/projects/en/<slug>.md` ve `src/content/projects/tr/<slug>.md` içine ekleyin.
 4. `npm run build` komutu ile tip güvenliğini ve statik derlemeyi doğrulayın.
 
+### ✍️ Yeni Yayın Ekleme, Kapak Görselleri ve Vitrin (`src/content/broadcasts/`)
+Tüm yayınlar (Video, Podcast, Makale vb.) `src/content/broadcasts/{en,tr}/*.md` dizininde Markdown olarak tutulur.
+- **Kapak Görseli:** Frontmatter'a `thumbnail: '/images/broadcasts/<ad>.webp'` eklenmesi yeterlidir. Video yoksa sayfada 16:9 sinematik obsidian hero görseli ve OpenGraph/JSON-LD kartı olarak otomatik devreye girer.
+- **Otomatik Vitrin:** Yeni bir yayın eklendiğinde hem `/broadcasts/` sayfalarında listelenir hem de `LatestBroadcasts.astro` sayesinde ana sayfa vitrininde otomatik ilk 5'e yerleşir.
+
 ### 🚀 Geliştirme Komutları
 ```bash
 # Bağımlılıkları kur

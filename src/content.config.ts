@@ -52,7 +52,7 @@ const broadcasts = defineCollection({
       name: z.string(),
       size: z.string(),
       type: z.string(),
-      driveUrl: z.string().url(),
+      driveUrl: z.string(),
       hash: z.string().optional()
     })).default([]),
     mermaidTopology: z.string().optional()
