@@ -1,8 +1,11 @@
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import { getAllProjects } from '../utils/projects';
 
 export const GET: APIRoute = async () => {
   const projects = getAllProjects('en');
+  const broadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
+  broadcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   let projectsSection = '## Flagship Projects & Architectures\n';
   projects.forEach((p) => {
@@ -11,6 +14,19 @@ export const GET: APIRoute = async () => {
     if (p.links?.live) projectsSection += `  - [Live Platform](${p.links.live}): Web2App cloud builder\n`;
     if (p.links?.tool) projectsSection += `  - [Studio Tool](${p.links.tool}): Generative AI photo studio\n`;
     if (p.links?.github) projectsSection += `  - [GitHub Repository](${p.links.github}): Source code and issue tracking\n`;
+  });
+
+  let broadcastsSection = '## Technical Broadcasts, Engineering Treatises & The Vault\n';
+  broadcasts.forEach((b) => {
+    const slug = b.id.replace(/^en\//, '');
+    broadcastsSection += `- [${b.data.title}](https://onuraksoy.com.tr/broadcasts/${slug}/): ${b.data.description}\n`;
+    if (b.data.youtubeId) broadcastsSection += `  - [YouTube Screencast](https://www.youtube.com/watch?v=${b.data.youtubeId}): Interactive video chapters & transcript\n`;
+    if (b.data.spotifyUrl) broadcastsSection += `  - [Spotify Podcast](${b.data.spotifyUrl}): Audio deep dive\n`;
+    if (b.data.downloads && b.data.downloads.length > 0) {
+      b.data.downloads.forEach((d) => {
+        broadcastsSection += `  - [The Vault Asset: ${d.name}](${d.driveUrl}): ${d.size} ${d.type.toUpperCase()} downloadable blueprint\n`;
+      });
+    }
   });
 
   const content = `# Onur Aksoy
@@ -27,6 +43,7 @@ Onur Aksoy (Hackonomist) is a Senior Full-Stack Architect and AI-Native Engineer
 - [Turkish Edition (Türkçe)](https://onuraksoy.com.tr/tr/): Portfolyo ve teknik yayınların Türkçe versiyonu
 
 ${projectsSection}
+${broadcastsSection}
 ## Official Online Profiles (sameAs)
 - [GitHub](https://github.com/oaonuraksoy): Open source repositories, developer activity, and code bases
 - [YouTube](https://youtube.com/@oaonuraksoy): Technical deep dives, engineering podcasts, and live architecture reviews
