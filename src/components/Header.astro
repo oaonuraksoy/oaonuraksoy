@@ -2,32 +2,37 @@
 interface Props {
   lang?: 'en' | 'tr';
   activeNav?: string;
+  counterpartUrl?: string;
 }
 
-const { lang = 'en', activeNav = '' } = Astro.props;
+const { lang = 'en', activeNav = '', counterpartUrl: propCounterpartUrl } = Astro.props;
 
 const pathname = Astro.url.pathname;
 
 // Calculate counterpart link for language toggle
-let counterpartUrl = '/';
-if (lang === 'en') {
-  // Currently EN, target is TR
-  if (pathname === '/' || pathname === '') {
-    counterpartUrl = '/tr/';
+let counterpartUrl = propCounterpartUrl;
+if (!counterpartUrl) {
+  if (lang === 'en') {
+    // Currently EN, target is TR
+    if (pathname === '/' || pathname === '') {
+      counterpartUrl = '/tr/';
+    } else {
+      counterpartUrl = `/tr${pathname.endsWith('/') ? pathname : pathname + '/'}`;
+    }
   } else {
-    counterpartUrl = `/tr${pathname.endsWith('/') ? pathname : pathname + '/'}`;
+    // Currently TR, target is EN
+    counterpartUrl = pathname.replace(/^\/tr(\/|$)/, '$1') || '/';
   }
-} else {
-  // Currently TR, target is EN
-  counterpartUrl = pathname.replace(/^\/tr(\/|$)/, '$1') || '/';
 }
 
 const navItems = lang === 'tr' ? [
   { label: 'Projeler', href: '/tr/projects/', key: 'projects' },
+  { label: 'Yayınlar', href: '/tr/broadcasts/', key: 'broadcasts' },
   { label: 'Hakkımda', href: '/tr/about/', key: 'about' },
   { label: 'İletişim', href: '/tr/contact/', key: 'contact' },
 ] : [
   { label: 'Projects', href: '/projects/', key: 'projects' },
+  { label: 'Broadcasts', href: '/broadcasts/', key: 'broadcasts' },
   { label: 'About', href: '/about/', key: 'about' },
   { label: 'Contact', href: '/contact/', key: 'contact' },
 ];
@@ -72,7 +77,7 @@ const homeUrl = lang === 'tr' ? '/tr/' : '/';
     <!-- Language Switcher & Direct Action -->
     <div class="flex items-center gap-4">
       <!-- Language Toggle Pill -->
-      <div class="flex items-center bg-obsidian-surface border border-obsidian-border rounded-full p-0.5 text-xs font-mono">
+      <div class="flex items-center bg-obsidian-surface border border-obsidian-border rounded-full p-0.5 text-xs font-mono" role="group" aria-label="Language selection">
         <a
           href={lang === 'en' ? pathname : counterpartUrl}
           class={`px-2.5 py-1 rounded-full transition-colors ${
@@ -80,7 +85,7 @@ const homeUrl = lang === 'tr' ? '/tr/' : '/';
               ? 'bg-gold-tungsten text-obsidian-black font-semibold shadow-sm'
               : 'text-text-muted hover:text-text-primary'
           }`}
-          aria-label="Switch language to English"
+          aria-label="EN - Switch language to English"
         >
           EN
         </a>
@@ -91,7 +96,7 @@ const homeUrl = lang === 'tr' ? '/tr/' : '/';
               ? 'bg-gold-tungsten text-obsidian-black font-semibold shadow-sm'
               : 'text-text-muted hover:text-text-primary'
           }`}
-          aria-label="Dili Türkçe'ye çevir"
+          aria-label="TR - Dili Türkçe'ye çevir"
         >
           TR
         </a>
@@ -108,17 +113,17 @@ const homeUrl = lang === 'tr' ? '/tr/' : '/';
   </div>
 
   <!-- Mobile Bottom Bar Links -->
-  <div class="md:hidden border-t border-obsidian-border/50 bg-obsidian-surface/60 px-4 py-2 flex items-center justify-around text-xs">
+  <nav class="md:hidden border-t border-obsidian-border/50 bg-obsidian-surface/60 px-2 py-1.5 flex items-center justify-around text-xs" aria-label="Mobile Navigation">
     {navItems.map((item) => {
       const isActive = activeNav === item.key || pathname.includes(`/${item.key}`);
       return (
         <a
           href={item.href}
-          class={`py-1 px-2 ${isActive ? 'text-gold-highlight font-semibold' : 'text-text-muted hover:text-text-primary'}`}
+          class={`min-h-[44px] flex items-center px-2.5 py-2 transition-colors ${isActive ? 'text-gold-highlight font-semibold' : 'text-text-muted hover:text-text-primary'}`}
         >
           {item.label}
         </a>
       );
     })}
-  </div>
+  </nav>
 </header>

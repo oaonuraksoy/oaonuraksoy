@@ -91,13 +91,14 @@ Key Technical Principles:
   }
 
   body += `## 4. Channels & Coordinates\n`;
-  body += `- Email: dev@onuraksoy.com.tr\n`;
-  body += `- GitHub: https://github.com/oaonuraksoy\n`;
-  body += `- LinkedIn: https://linkedin.com/in/oaonuraksoy\n`;
-  body += `- X: https://x.com/oaonuraksoy\n`;
-  body += `- Telegram: https://t.me/oaonuraksoy\n`;
-  body += `- WhatsApp: https://wa.me/905511817053\n`;
-  body += `- Spotify: https://creators.spotify.com/pod/profile/oaonuraksoy/\n`;
+  body += `- Email: [dev@onuraksoy.com.tr](mailto:dev@onuraksoy.com.tr)\n`;
+  body += `- [GitHub](https://github.com/oaonuraksoy): Developer profile and open source codebases\n`;
+  body += `- [YouTube](https://youtube.com/@oaonuraksoy): Screencasts, architectural deep dives, and tutorials\n`;
+  body += `- [LinkedIn](https://linkedin.com/in/oaonuraksoy): Professional history and industry background\n`;
+  body += `- [X / Twitter](https://x.com/oaonuraksoy): Real-time engineering thoughts and updates\n`;
+  body += `- [Telegram](https://t.me/oaonuraksoy): Direct communications and updates\n`;
+  body += `- [WhatsApp](https://wa.me/905511817053): Commercial advisory contact\n`;
+  body += `- [Spotify](https://creators.spotify.com/pod/profile/oaonuraksoy/): Tech podcast episodes and audio streams\n`;
 
   return new Response(body, {
     headers: {

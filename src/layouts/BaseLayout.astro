@@ -16,6 +16,7 @@ interface Props {
   image?: string;
   lang?: 'en' | 'tr';
   activeNav?: string;
+  counterpartUrl?: string;
   schemaType?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article';
   faqs?: FAQItem[];
 }
@@ -26,6 +27,7 @@ const {
   image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
   lang = 'en',
   activeNav = '',
+  counterpartUrl,
   schemaType = 'Person',
   faqs
 } = Astro.props;
@@ -65,7 +67,7 @@ const {
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 ambient-glow pointer-events-none -z-10" aria-hidden="true"></div>
 
     <!-- Global Header -->
-    <Header lang={lang} activeNav={activeNav} />
+    <Header lang={lang} activeNav={activeNav} counterpartUrl={counterpartUrl} />
 
     <!-- Main Content Slot -->
     <main id="main-content" class="flex-grow w-full">

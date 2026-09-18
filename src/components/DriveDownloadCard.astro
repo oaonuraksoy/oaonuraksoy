@@ -1,0 +1,88 @@
+---
+interface DownloadItem {
+  name: string;
+  size: string;
+  type: string;
+  driveUrl: string;
+  hash?: string;
+}
+
+interface Props {
+  downloads: DownloadItem[];
+  lang?: 'en' | 'tr';
+}
+
+const { downloads = [], lang = 'en' } = Astro.props;
+
+function getTypeBadge(type: string) {
+  const t = type.toLowerCase();
+  if (t === 'zip' || t === 'tar' || t === 'gz') return { label: 'ZIP ARCHIVE', color: 'text-amber-400 border-amber-500/30 bg-amber-500/10' };
+  if (t === 'pdf') return { label: 'PDF DOCUMENT', color: 'text-rose-400 border-rose-500/30 bg-rose-500/10' };
+  if (t === 'code' || t === 'sql' || t === 'ts' || t === 'py') return { label: 'SOURCE CODE', color: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10' };
+  return { label: t.toUpperCase(), color: 'text-gold-tungsten border-gold-tungsten/30 bg-gold-tungsten/10' };
+}
+---
+
+{downloads.length > 0 && (
+  <div class="rounded-xl border border-obsidian-border bg-obsidian-surface p-6 space-y-4">
+    <div class="flex items-center justify-between border-b border-obsidian-border/60 pb-3">
+      <div class="flex items-center gap-2.5">
+        <div class="p-1.5 rounded bg-gold-tungsten/10 text-gold-tungsten">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-sm font-semibold text-text-primary">
+            {lang === 'tr' ? 'Kaynak Dosyaları & İndirmeler' : 'Project Assets & Downloads'}
+          </h2>
+          <p class="text-xs text-text-muted">
+            {lang === 'tr' ? "Google Drive yüksek hızlı doğrudan arşiv bağlantıları" : "High-speed Google Drive vault repository"}
+          </p>
+        </div>
+      </div>
+      <span class="text-xs font-mono text-gold-tungsten px-2.5 py-1 rounded bg-obsidian-black border border-obsidian-border">
+        20TB Storage Vault
+      </span>
+    </div>
+
+    <div class="space-y-3">
+      {downloads.map((item) => {
+        const badge = getTypeBadge(item.type);
+        return (
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg border border-obsidian-border/80 bg-obsidian-black/60 hover:border-gold-tungsten/50 transition-all duration-200">
+            <div class="space-y-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded border ${badge.color}`}>
+                  {badge.label}
+                </span>
+                <span class="text-xs text-text-muted font-mono">{item.size}</span>
+                {item.hash && (
+                  <span class="text-[10px] text-text-muted font-mono bg-obsidian-surface px-1.5 py-0.5 rounded border border-obsidian-border/40" title="SHA-256 Checksum">
+                    SHA: {item.hash.substring(0, 10)}...
+                  </span>
+                )}
+              </div>
+              <p class="text-xs sm:text-sm font-medium text-text-primary truncate">
+                {item.name}
+              </p>
+            </div>
+
+            <a
+              href={item.driveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-gold-tungsten/15 hover:bg-gold-tungsten text-gold-highlight hover:text-obsidian-black border border-gold-tungsten/30 text-xs font-semibold transition-all duration-200 shrink-0"
+              aria-label={`${lang === 'tr' ? "Drive'dan İndir" : "Download Vault"} (${item.name})`}
+            >
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+              <span>{lang === 'tr' ? "Drive'dan İndir ↗" : "Download Vault ↗"}</span>
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+)}

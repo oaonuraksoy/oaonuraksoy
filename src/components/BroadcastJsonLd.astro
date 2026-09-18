@@ -1,0 +1,134 @@
+---
+interface Chapter {
+  time: string;
+  seconds?: number;
+  title: string;
+}
+
+interface DownloadItem {
+  name: string;
+  size: string;
+  type: string;
+  driveUrl: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  canonicalUrl: string;
+  lang?: 'en' | 'tr';
+  youtubeId?: string;
+  duration?: string;
+  chapters?: Chapter[];
+  downloads?: DownloadItem[];
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  canonicalUrl,
+  lang = 'en',
+  youtubeId,
+  duration = 'PT15M00S',
+  chapters = [],
+  downloads = []
+} = Astro.props;
+
+// Convert "MM:SS" or "HH:MM:SS" to seconds
+function parseTimeToSeconds(timeStr: string): number {
+  const parts = timeStr.split(':').map(Number);
+  if (parts.length === 2) {
+    return parts[0] * 60 + parts[1];
+  } else if (parts.length === 3) {
+    return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  }
+  return 0;
+}
+
+const graph: any[] = [
+  {
+    '@type': 'TechArticle',
+    '@id': `${canonicalUrl}#article`,
+    'isPartOf': {
+      '@type': 'WebSite',
+      '@id': 'https://onuraksoy.com.tr/#website'
+    },
+    'headline': title,
+    'description': description,
+    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US',
+    'mainEntityOfPage': canonicalUrl,
+    'datePublished': pubDate.toISOString(),
+    'dateModified': pubDate.toISOString(),
+    'author': {
+      '@type': 'Person',
+      '@id': 'https://onuraksoy.com.tr/#person',
+      'name': 'Onur Aksoy',
+      'alternateName': 'Hackonomist',
+      'url': 'https://onuraksoy.com.tr'
+    },
+    'publisher': {
+      '@type': 'Person',
+      '@id': 'https://onuraksoy.com.tr/#person'
+    }
+  }
+];
+
+if (youtubeId) {
+  const clips = chapters.map((ch, idx) => {
+    const startSec = ch.seconds ?? parseTimeToSeconds(ch.time);
+    const nextChapter = chapters[idx + 1];
+    const endSec = nextChapter ? (nextChapter.seconds ?? parseTimeToSeconds(nextChapter.time)) : startSec + 180;
+    return {
+      '@type': 'Clip',
+      'name': ch.title,
+      'startOffset': startSec,
+      'endOffset': endSec,
+      'url': `https://www.youtube.com/watch?v=${youtubeId}&t=${startSec}s`
+    };
+  });
+
+  const videoObject: any = {
+    '@type': 'VideoObject',
+    '@id': `${canonicalUrl}#video`,
+    'name': title,
+    'description': description,
+    'thumbnailUrl': [
+      `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`,
+      `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
+    ],
+    'uploadDate': pubDate.toISOString(),
+    'duration': duration,
+    'contentUrl': `https://www.youtube.com/watch?v=${youtubeId}`,
+    'embedUrl': `https://www.youtube-nocookie.com/embed/${youtubeId}`,
+    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US'
+  };
+
+  if (clips.length > 0) {
+    videoObject.hasPart = clips;
+  }
+
+  graph.push(videoObject);
+}
+
+downloads.forEach((d) => {
+  graph.push({
+    '@type': 'DigitalDocument',
+    'name': d.name,
+    'fileFormat': d.type,
+    'url': d.driveUrl,
+    'creator': {
+      '@type': 'Person',
+      '@id': 'https://onuraksoy.com.tr/#person'
+    }
+  });
+});
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@graph': graph
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

@@ -22,7 +22,7 @@ export default {
         text: {
           primary: '#EDEDED',
           muted: '#9DA3AE',
-          dim: '#6B7280'
+          dim: '#9CA3AF'
         }
       },
       fontFamily: {

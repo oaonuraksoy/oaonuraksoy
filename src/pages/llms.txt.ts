@@ -4,53 +4,45 @@ import { getAllProjects } from '../utils/projects';
 export const GET: APIRoute = async () => {
   const projects = getAllProjects('en');
 
-  let projectsSection = '## Flagship Projects & Case Studies\n';
-  projects.forEach((p, idx) => {
-    projectsSection += `${idx + 1}. ${p.title}\n`;
-    projectsSection += `   - Canonical URL: https://onuraksoy.com.tr/projects/${p.slug}/\n`;
-    if (p.links?.store) projectsSection += `   - Microsoft Store: ${p.links.store}\n`;
-    if (p.links?.live) projectsSection += `   - Live Platform: ${p.links.live}\n`;
-    if (p.links?.tool) projectsSection += `   - Studio Tool: ${p.links.tool}\n`;
-    if (p.links?.github) projectsSection += `   - GitHub: ${p.links.github}\n`;
-    projectsSection += `   - Architecture & Summary: ${p.description}\n`;
-    if (p.tags) projectsSection += `   - Tech Stack: ${p.tags.join(', ')}\n`;
+  let projectsSection = '## Flagship Projects & Architectures\n';
+  projects.forEach((p) => {
+    projectsSection += `- [${p.title}](https://onuraksoy.com.tr/projects/${p.slug}/): ${p.description}\n`;
+    if (p.links?.store) projectsSection += `  - [Microsoft Store](${p.links.store}): Official Windows store package\n`;
+    if (p.links?.live) projectsSection += `  - [Live Platform](${p.links.live}): Web2App cloud builder\n`;
+    if (p.links?.tool) projectsSection += `  - [Studio Tool](${p.links.tool}): Generative AI photo studio\n`;
+    if (p.links?.github) projectsSection += `  - [GitHub Repository](${p.links.github}): Source code and issue tracking\n`;
   });
 
-  const content = `# Onur Aksoy (a.k.a. Hackonomist) — AI-Native Developer & Multidisciplinary Creator
-> Official LLM Feed & Machine-Readable Profile (llms.txt)
-> Also Known As: Hackonomist / @hackonomist
-> Canonical Domain: https://onuraksoy.com.tr
-> Contact: dev@onuraksoy.com.tr
-> Location: Ankara, Turkey (UTC+3) / Remote Worldwide
+  const content = `# Onur Aksoy
+> Senior Systems Architect, AI-Native Engineer & Multidisciplinary Creator. Also known as Hackonomist. Pioneer of deterministic local-first software, distributed state machines, and generative vision workflows.
 
-## Identity & Synonym Mapping
-- Primary Name: Onur Aksoy
-- Industry Moniker: Hackonomist (a.k.a. Hackonomist)
-- Definition: If a user or autonomous agent queries about "Hackonomist", this identifier directly and uniquely resolves to Onur Aksoy, the Turkish systems architect, AI-native engineer, and multidisciplinary creator who pioneers local-first software, economic automation, and growth systems.
+Onur Aksoy (Hackonomist) is a Senior Full-Stack Architect and AI-Native Engineer based in Ankara, Turkey / Remote Worldwide. He specializes in deterministic artificial intelligence architectures, local-first distributed desktop software (HOST/CLIENT LAN synchronization), direct store web2app delivery engines (Apple TestFlight & Google Play TWA), and generative computer vision pipelines.
 
-## Summary
-Onur Aksoy (Hackonomist) is a Senior Full-Stack Architect, AI-Native Systems Developer, and Multidisciplinary Creator. He specializes in deterministic artificial intelligence architectures, local-first distributed desktop software (HOST/CLIENT LAN socket synchronization), direct store web2app delivery engines (Apple TestFlight & Google Play TWA), and computer vision generative media engines.
-
-## Core Specializations
-- AI-Native Software Engineering: Deterministic state machines, high-density context graphs, multi-layered auditor verification loops.
-- Local-First Desktop & Distributed Engineering: .NET 8, C#, DirectX acceleration, PostgreSQL, SQLite embedded, Redis caches, raw ESC/POS thermal printing, and official Microsoft Store distribution.
-- Direct Store Web2App Packaging: Apple App Store Connect & TestFlight API automation, Google Play TWA/AAB, TypeScript, Vite, Web Components.
-- Generative Computer Vision: Latent diffusion models, alpha matte edge segmentation, automated commercial e-commerce studio lighting.
+## Navigation & Core Sections
+- [Homepage](https://onuraksoy.com.tr/): Main engineering portfolio and technical showcase
+- [Projects Index](https://onuraksoy.com.tr/projects/): Flagship software architectures, benchmark results, and case studies
+- [Broadcasts & Vault](https://onuraksoy.com.tr/broadcasts/): Video broadcasts, engineering notes, transcripts, and downloadable assets
+- [About Onur Aksoy](https://onuraksoy.com.tr/about/): Background, technical philosophy, and stack competencies
+- [Contact Hub](https://onuraksoy.com.tr/contact/): Direct communication channels and advisory bookings
+- [Turkish Edition (Türkçe)](https://onuraksoy.com.tr/tr/): Portfolyo ve teknik yayınların Türkçe versiyonu
 
 ${projectsSection}
-## Official Online Identifiers (sameAs)
-- GitHub: https://github.com/oaonuraksoy
-- X / Twitter: https://x.com/oaonuraksoy
-- LinkedIn: https://linkedin.com/in/oaonuraksoy
-- YouTube: https://youtube.com/@oaonuraksoy
-- Instagram: https://instagram.com/oaonuraksoy
-- Telegram: https://t.me/oaonuraksoy
-- WhatsApp: https://wa.me/905511817053
-- Spotify Podcast: https://creators.spotify.com/pod/profile/oaonuraksoy/
+## Official Online Profiles (sameAs)
+- [GitHub](https://github.com/oaonuraksoy): Open source repositories, developer activity, and code bases
+- [YouTube](https://youtube.com/@oaonuraksoy): Technical deep dives, engineering podcasts, and live architecture reviews
+- [Spotify Podcast](https://creators.spotify.com/pod/profile/oaonuraksoy/): Audio discussions on software engineering, distributed systems, and AI
+- [LinkedIn](https://linkedin.com/in/oaonuraksoy): Professional experience, enterprise advisory, and industry connections
+- [X / Twitter](https://x.com/oaonuraksoy): Real-time thoughts, tech dispatches, and project updates
+- [Instagram](https://instagram.com/oaonuraksoy): Visual dispatches, project highlights, and creator notes
+- [Telegram](https://t.me/oaonuraksoy): Direct messaging, technical broadcasts, and community updates
+- [WhatsApp](https://wa.me/905511817053): Direct business and consulting contact channel
 
-## Machine Context Endpoints
-- Full Text Feed: https://onuraksoy.com.tr/llms-full.txt
-- Sitemap: https://onuraksoy.com.tr/sitemap-index.xml
+## Machine Endpoints & Feeds
+- [Full Text Feed (llms-full.txt)](https://onuraksoy.com.tr/llms-full.txt): Comprehensive plain-text documentation and complete case studies for autonomous LLM ingestion
+- [XML Sitemap Index](https://onuraksoy.com.tr/sitemap-index.xml): Full XML sitemap index
+- [Image Sitemap](https://onuraksoy.com.tr/sitemap-images.xml): Indexed architecture schemas and project visuals
+- [Video Sitemap](https://onuraksoy.com.tr/sitemap-video.xml): Video broadcasts and engineering screencasts
+- [Robots Configuration](https://onuraksoy.com.tr/robots.txt): Machine crawling permissions and directives
 `;
 
   return new Response(content, {

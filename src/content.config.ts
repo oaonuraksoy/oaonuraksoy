@@ -41,4 +41,33 @@ const writing = defineCollection({
   })
 });
 
-export const collections = { projects, writing };
+const broadcasts = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/broadcasts' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    lang: z.enum(['en', 'tr']).default('en'),
+    ref: z.string(),
+    featured: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+    youtubeId: z.string().optional(),
+    spotifyUrl: z.string().url().optional(),
+    duration: z.string().optional(),
+    thumbnail: z.string().optional(),
+    chapters: z.array(z.object({
+      time: z.string(),
+      seconds: z.number().optional(),
+      title: z.string()
+    })).default([]),
+    downloads: z.array(z.object({
+      name: z.string(),
+      size: z.string(),
+      type: z.string(),
+      driveUrl: z.string().url(),
+      hash: z.string().optional()
+    })).default([])
+  })
+});
+
+export const collections = { projects, writing, broadcasts };

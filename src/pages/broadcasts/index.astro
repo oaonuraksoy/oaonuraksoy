@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SEO from '../../components/SEO.astro';
+import { getCollection } from 'astro:content';
+
+const broadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
+broadcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const title = "Broadcasts & Technical Vault — Onur Aksoy";
+const description = "Architectural screencasts, technical deep dives, interactive video chapters, transcripts, and high-speed downloadable engineering assets from Onur Aksoy.";
+---
+
+<BaseLayout lang="en" activeNav="broadcasts">
+  <SEO
+    slot="head"
+    title={title}
+    description={description}
+    lang="en"
+    canonical="https://onuraksoy.com.tr/broadcasts/"
+  />
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
+    <!-- Hero Header -->
+    <section class="space-y-4 max-w-3xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-obsidian-border text-xs font-mono text-gold-tungsten">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+        <span>Broadcasts & Knowledge Vault</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text-primary">
+        Engineering Screencasts, Deep Transcripts & Downloadable Assets.
+      </h1>
+      <p class="text-base sm:text-lg text-text-muted leading-relaxed">
+        Direct-to-the-metal architectural breakdowns. Every broadcast pairs deep video analysis with full text transcripts, timestamped chapters, and direct Google Drive downloads for source repositories and schemas.
+      </p>
+    </section>
+
+    <!-- Broadcasts Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {broadcasts.map((item) => {
+        const slug = item.id.replace(/^en\//, '');
+        const thumbUrl = item.data.youtubeId 
+          ? `https://i.ytimg.com/vi/${item.data.youtubeId}/maxresdefault.jpg`
+          : item.data.thumbnail || '/images/oa-logo.webp';
+
+        return (
+          <article class="group flex flex-col rounded-xl border border-obsidian-border bg-obsidian-surface hover:border-gold-tungsten/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-gold-tungsten/5">
+            <!-- Thumbnail & Video Badge -->
+            <a href={`/broadcasts/${slug}/`} class="relative aspect-video overflow-hidden bg-obsidian-black block">
+              <img
+                src={thumbUrl}
+                alt={item.data.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-85 group-hover:opacity-100"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/80 via-transparent to-transparent"></div>
+              
+              {item.data.duration && (
+                <div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-obsidian-black/90 border border-obsidian-border text-[11px] font-mono text-gold-tungsten">
+                  {item.data.duration.replace('PT', '').toLowerCase()}
+                </div>
+              )}
+
+              {item.data.youtubeId && (
+                <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-red-600/90 text-white text-xs font-semibold flex items-center gap-1.5 shadow">
+                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  <span>Video</span>
+                </div>
+              )}
+            </a>
+
+            <!-- Card Body -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2.5">
+                <div class="flex items-center gap-3 text-xs text-text-muted font-mono">
+                  <time datetime={item.data.pubDate.toISOString()}>
+                    {item.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </time>
+                  <span>•</span>
+                  <span>{item.data.chapters?.length || 0} Key Moments</span>
+                  {item.data.downloads && item.data.downloads.length > 0 && (
+                    <>
+                      <span>•</span>
+                      <span class="text-gold-tungsten">{item.data.downloads.length} Vault Downloads</span>
+                    </>
+                  )}
+                </div>
+
+                <h2 class="text-lg sm:text-xl font-bold text-text-primary group-hover:text-gold-highlight transition-colors line-clamp-2">
+                  <a href={`/broadcasts/${slug}/`}>
+                    {item.data.title}
+                  </a>
+                </h2>
+
+                <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                  {item.data.description}
+                </p>
+              </div>
+
+              <div class="pt-2 flex items-center justify-between border-t border-obsidian-border/60">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  {item.data.tags.slice(0, 3).map((tag) => (
+                    <span class="text-[11px] font-mono text-text-muted px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={`/broadcasts/${slug}/`}
+                  class="text-xs font-semibold text-gold-tungsten group-hover:text-gold-highlight flex items-center gap-1 transition-colors"
+                >
+                  <span>Explore Broadcast</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </section>
+  </main>
+</BaseLayout>
