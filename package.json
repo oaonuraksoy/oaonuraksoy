@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && npm run test:links",
+    "build": "astro build && node scripts/generate-sitemap-index.mjs && npm run test:links",
     "preview": "astro preview",
     "test:links": "node scripts/check-links.mjs",
     "astro": "astro"

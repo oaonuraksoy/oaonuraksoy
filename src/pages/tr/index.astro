@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getFeaturedProjects } from '../../utils/projects';
 import LatestBroadcasts from '../../components/LatestBroadcasts.astro';
 
-const featuredProjects = getFeaturedProjects('tr');
+const featuredProjects = await getFeaturedProjects('tr');
 
 const competencies = [
   {

@@ -1,0 +1,112 @@
+{
+  "id": "orvyna-app-studio",
+  "slug": "orvyna-app-studio",
+  "order": 2,
+  "featured": true,
+  "accentColor": "#D6A354",
+  "tags": ["iOS TestFlight", "App Store Connect", "Android TWA", "Web2App", "TypeScript", "Vite"],
+  "links": {
+    "live": "https://oaonuraksoy.github.io/orvyna-builder/",
+    "demo": "https://oaonuraksoy.github.io/orvyna-builder/"
+  },
+  "metrics": {
+    "en": [
+      { "label": "iOS Pipeline", "value": "App Store Connect & TestFlight" },
+      { "label": "Android Pipeline", "value": "Google Play TWA AAB" },
+      { "label": "Bundle Generation", "value": "< 3 Seconds" },
+      { "label": "Shell Footprint", "value": "< 150 KB" }
+    ],
+    "tr": [
+      { "label": "iOS Dağıtımı", "value": "App Store Connect & TestFlight" },
+      { "label": "Android Dağıtımı", "value": "Google Play TWA AAB" },
+      { "label": "Paket Üretim Süresi", "value": "< 3 Saniye" },
+      { "label": "Kabuk Boyutu", "value": "< 150 KB" }
+    ]
+  },
+  "en": {
+    "title": "Orvyna App Studio — Cloud Web2App Architecture & Native Store Delivery Engine",
+    "description": "An automated cloud compilation studio transforming responsive web applications into native-feel store-ready containers with direct Apple TestFlight / App Store Connect delivery and Google Play TWA AAB packaging.",
+    "role": "Creator & Full-Stack Platform Developer",
+    "period": "2024 — Present",
+    "status": "Active Production",
+    "executiveOverview": "Modern web applications frequently deliver desktop- and mobile-grade experiences, yet distributing them into official mobile app stores often requires cumbersome cross-platform frameworks (React Native, Flutter, Cordova), duplicate codebases, and continuous compilation pipeline overhead.\n\n**Orvyna App Studio** is not merely a PWA generator; it is an automated web2app compilation platform designed for real store delivery. On iOS, Orvyna integrates directly with the Apple App Store Connect API to automate builds straight into **TestFlight**. On Android, it synthesizes production-ready **Google Play Trusted Web Activity (TWA) AAB** bundles with sub-150KB shell footprints in under 3 seconds.",
+    "mermaidTopology": "flowchart TD\n    subgraph Client [\"Client Browser Session\"]\n        A[\"🌐 Web Application URL\"] --> B[\"⚡ Client-Side DOM & Meta Inspector\"]\n        B --> C[\"🎨 Color Palette & Icon Extractor\"]\n    end\n\n    subgraph Compiler [\"Orvyna Cloud Shell Synthesis Engine\"]\n        C --> D[\"⚙️ Store Shell Configuration Generator\"]\n        D --> E1[\"🍏 iOS Shell Engine (WKWebView & Native Hooks)\"]\n        D --> E2[\"🤖 Android TWA Engine\"]\n    end\n\n    subgraph Output [\"Instant Production Deliverables\"]\n        E1 --> G[\"🍏 iOS: Direct App Store Connect & TestFlight Pipeline\"]\n        E2 --> H[\"🛒 Android: Google Play Ready TWA AAB Bundle\"]\n    end\n\n    style Client fill:#0E1013,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style Compiler fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style Output fill:#08090A,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Architectural Benchmark: Orvyna Native Store Engine vs. Alternatives",
+      "headers": ["Architecture Metric", "Standard Browser PWA", "Heavy WebView Wrappers", "Orvyna Native Store Engine"],
+      "rows": [
+        ["iOS Distribution", "Safari 'Add to Home' Only (No Store)", "Complex Xcode/Mac Build Required", "Direct App Store Connect & TestFlight Pipeline"],
+        ["Android Distribution", "WebAPK (Limited Play presence)", "Heavy APK (20 MB – 50 MB)", "Google Play Ready TWA AAB Bundle"],
+        ["Shell Footprint", "Browser Cache Dependent", "15 MB – 40 MB", "< 150 KB Lightweight Native Shell"],
+        ["Compilation Latency", "Manual Config (Hours)", "5 – 15 Minutes", "< 3 Seconds Automated Synthesis"],
+        ["Update Cycle", "Manual Cache Invalidation", "Full App Store Review Cycle", "Instant Web-Pushed Updates"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Zero-Friction Web-to-Store Compilation",
+        "content": "Developers enter their responsive web URL; Orvyna automatically inspects the remote DOM tree, extracts relevant favicons, OpenGraph imagery, and meta definitions, and configures native store wrapper specifications for iOS and Android in real time."
+      },
+      {
+        "title": "2. High-Performance Shell & Native Bridge Hooks",
+        "content": "Unlike heavy webview wrappers that suffer from memory bloat and scroll stutter, Orvyna produces a lightweight shell (under 150 KB). It integrates:\n- **Intelligent Cache Strategies:** Network-first with stale-while-revalidate fallbacks for offline-ready continuity.\n- **Hardware Integration:** Deep integration with device navigation, Android hardware back buttons, iOS safe-area insets, and status bar theming.\n- **Push Notification Stubs:** Ready-to-connect native push notification adapters for Firebase Cloud Messaging and Apple APNs."
+      },
+      {
+        "title": "3. Direct Store Delivery Pipeline",
+        "content": "Operating directly within the modern browser sandbox via Web Streams and API integrations, users can configure, test, and dispatch their apps directly to Apple App Store Connect / TestFlight for iOS and generate production-ready Google Play TWA AAB bundles without exposing proprietary source code to third-party build servers."
+      }
+    ],
+    "techStack": [
+      { "label": "Core Engine", "value": "TypeScript, Vite, Web Components" },
+      { "label": "iOS Automation", "value": "Apple App Store Connect API & TestFlight pipeline" },
+      { "label": "Android Delivery", "value": "Google Play Trusted Web Activity (TWA) AAB engine" },
+      { "label": "Caching & Offline", "value": "Workbox Service Worker engine" },
+      { "label": "Interface", "value": "Tailwind CSS, Obsidian/Gold bespoke UI system" },
+      { "label": "Export Formats", "value": "Apple App Store Connect / TestFlight API automation, Android Google Play TWA AAB" }
+    ],
+    "businessImpact": "Orvyna eliminates days of boilerplate setup for developers looking to publish high-converting mobile apps to official app stores. It delivers direct TestFlight pipelines for iOS and Google Play AAB bundles for Android, reducing application footprint by over 90% while preserving 100% web velocity."
+  },
+  "tr": {
+    "title": "Orvyna App Studio — Bulut Web2App Mimarisi & Yerel Mağaza Dağıtım Motoru",
+    "description": "Duyarlı web uygulamalarını saniyeler içinde doğrudan Apple TestFlight / App Store Connect dağıtımına ve Google Play TWA AAB paketlerine dönüştüren bulut tabanlı yerel kabuk motoru.",
+    "role": "Kurucu & Full-Stack Platform Geliştirici",
+    "period": "2024 — Günümüz",
+    "status": "Canlıda & Aktif",
+    "executiveOverview": "Günümüz modern web uygulamaları masaüstü ve mobil kalitesinde kullanıcı deneyimi sunabilmektedir. Ancak bu web projelerini yerel uygulama mağazalarında sunmak, geleneksel çapraz platform araçlarıyla (React Native, Flutter, Cordova vb.) kod tabanını ikiye katlamayı ve karmaşık derleme süreçlerini zorunlu kılar.\n\n**Orvyna App Studio**, basit bir PWA aracı değildir; doğrudan mağaza dağıtımı sağlayan bulut tabanlı bir web2app üretim stüdyosudur. iOS tarafında doğrudan **Apple App Store Connect API** entegrasyonuyla derlemeleri doğrudan **TestFlight**'a iletir; Android tarafında ise saniyeler içinde **Google Play uyumlu TWA AAB** paketleri ve 150 KB altı ultra hafif yerel kabuklar üretir.",
+    "mermaidTopology": "flowchart TD\n    subgraph Tarayici [\"İstemci Tarayıcı Oturumu\"]\n        A[\"🌐 Web Sitesi URL Girişi\"] --> B[\"⚡ DOM & Meta Etiket Denetleyicisi\"]\n        B --> C[\"🎨 Renk Paleti ve Vektör İkon Ayrıştırıcı\"]\n    end\n\n    subgraph Derleyici [\"Orvyna Bulut Kabuk Sentez Motoru\"]\n        C --> D[\"⚙️ Mağaza Kabuk Yapılandırma Oluşturucu\"]\n        D --> E1[\"🍏 iOS Kabuk Motoru (WKWebView & Native Hooks)\"]\n        D --> E2[\"🤖 Android TWA Motoru\"]\n    end\n\n    subgraph Cikti [\"Hazır Üretim Çıktıları\"]\n        E1 --> G[\"🍏 iOS: Doğrudan App Store Connect & TestFlight Dağıtımı\"]\n        E2 --> H[\"🛒 Android: Google Play Uyumlu TWA AAB Paketi\"]\n    end\n\n    style Tarayici fill:#0E1013,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style Derleyici fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style Cikti fill:#08090A,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari Karşılaştırma: Orvyna Yerel Mağaza Motoru ve Alternatifleri",
+      "headers": ["Mimari Kriter", "Standart Tarayıcı PWA", "Ağır WebView Sarmalayıcıları", "Orvyna Yerel Mağaza Motoru"],
+      "rows": [
+        ["iOS Dağıtımı", "Yalnızca Safari 'Ana Ekrana Ekle'", "Karmaşık Xcode/Mac Derlemesi Gerekir", "Doğrudan App Store Connect & TestFlight Dağıtımı"],
+        ["Android Dağıtımı", "WebAPK (Sınırlı Mağaza Görünürlüğü)", "Ağır APK (20 MB – 50 MB)", "Google Play Uyumlu TWA AAB Paketi"],
+        ["Kabuk Boyutu", "Tarayıcı Önbelleğine Bağımlı", "15 MB – 40 MB", "< 150 KB Ultra Hafif Yerel Kabuk"],
+        ["Derleme Süresi", "Manuel Yapılandırma (Saatler)", "5 – 15 Dakika", "< 3 Saniye Otomatik Sentez"],
+        ["Güncelleme Döngüsü", "Manuel Önbellek Temizleme", "Mağaza İnceleme Süreci Zorunlu", "Web Üzerinden Anında Güncelleme"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Sürtünmesiz Web'den Yerel Mağazaya Dönüşüm",
+        "content": "Geliştiriciler yalnızca sitelerinin URL adresini girer; Orvyna uzak sayfa yapısını anında analiz eder, yüksek çözünürlüklü ikonları, renk temalarını ve OpenGraph meta etiketlerini ayıklar; iOS ve Android yerel mağaza kabuk tanımlamalarını otomatik oluşturur."
+      },
+      {
+        "title": "2. Yüksek Performanslı ve Hafif Kabuk Mimarisi",
+        "content": "Bellek tüketen ve kaydırma gecikmelerine neden olan ağır webview sarmalayıcılarının aksine, Orvyna 150 KB altı ultra hafif bir kabuk üretir:\n- **Akıllı Önbellekleme:** Network-first ve stale-while-revalidate stratejileriyle kesintisiz çevrimdışı çalışma kabiliyeti.\n- **Donanım Uyumu:** Android fiziksel geri tuşu yönetimi, iOS güvenli alan (safe-area) sınırları ve durum çubuğu renklendirmesi.\n- **Bildirim Altyapısı:** Firebase Cloud Messaging ve Apple APNs yerel bildirimleri için hazır bağlantı arayüzleri."
+      },
+      {
+        "title": "3. Doğrudan Mağaza Dağıtım Hattı",
+        "content": "Tüm süreç tarayıcı kum havuzunda yürütülür; iOS tarafında doğrudan Apple App Store Connect ve TestFlight API entegrasyonuyla dağıtım başlatılır, Android için ise Google Play uyumlu TWA AAB paketleri üçüncü taraf derleme sunucularına kaynak kod iletmeden üretilir."
+      }
+    ],
+    "techStack": [
+      { "label": "Çekirdek Motor", "value": "TypeScript, Vite, Modern Web Components" },
+      { "label": "iOS Otomasyonu", "value": "Apple App Store Connect API & TestFlight dağıtım hattı" },
+      { "label": "Android Dağıtımı", "value": "Google Play Güvenilir Web Etkinliği (TWA) AAB motoru" },
+      { "label": "Önbellek & Çevrimdışı", "value": "Workbox Service Worker" },
+      { "label": "Tasarım", "value": "Tailwind CSS, Obsidian & Tungsten Gold arayüz token'ları" },
+      { "label": "Çıktı Formatları", "value": "Apple App Store Connect / TestFlight API otomasyonu, Android Google Play TWA AAB" }
+    ],
+    "businessImpact": "Orvyna, web projelerini resmi mobil mağazalara taşımak isteyen ekipler için haftalar süren boilerplate konfigürasyonunu ortadan kaldırır. iOS için doğrudan TestFlight dağıtımı, Android için Google Play AAB paketleri sunarak uygulama boyutunu %90'ın üzerinde azaltır ve web geliştirme hızını korur."
+  }
+}

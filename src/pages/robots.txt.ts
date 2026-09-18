@@ -27,7 +27,6 @@ User-agent: CCBot
 Allow: /
 
 # Sitemaps
-Sitemap: https://onuraksoy.com.tr/sitemap.xml
 Sitemap: https://onuraksoy.com.tr/sitemap-index.xml
 Sitemap: https://onuraksoy.com.tr/sitemap-video.xml
 Sitemap: https://onuraksoy.com.tr/sitemap-images.xml

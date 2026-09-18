@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getAllProjects } from '../../../utils/projects';
 
-const projects = getAllProjects('tr');
+const projects = await getAllProjects('tr');
 ---
 
 <BaseLayout

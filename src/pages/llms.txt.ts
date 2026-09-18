@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { getAllProjects } from '../utils/projects';
 
 export const GET: APIRoute = async () => {
-  const projects = getAllProjects('en');
+  const projects = await getAllProjects('en');
   const broadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
   broadcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 

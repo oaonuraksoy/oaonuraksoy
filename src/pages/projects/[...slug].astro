@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAllProjects, renderMarkdown } from '../../utils/projects';
 
 export async function getStaticPaths() {
-  const projects = getAllProjects('en');
+  const projects = await getAllProjects('en');
   return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project }

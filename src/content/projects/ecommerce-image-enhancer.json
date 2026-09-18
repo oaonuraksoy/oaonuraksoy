@@ -1,0 +1,108 @@
+{
+  "id": "ecommerce-image-enhancer",
+  "slug": "ecommerce-image-enhancer",
+  "order": 3,
+  "featured": true,
+  "accentColor": "#F0C878",
+  "tags": ["Generative AI", "Diffusion Models", "Canvas API", "Computer Vision", "Prompt Architecture", "Google Flow"],
+  "links": {
+    "tool": "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc",
+    "demo": "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc"
+  },
+  "metrics": {
+    "en": [
+      { "label": "Production Turnaround", "value": "10x Faster" },
+      { "label": "Edge Mask Accuracy", "value": "Sub-pixel Alpha" },
+      { "label": "Lighting Coherence", "value": "Harmonized Shadows" },
+      { "label": "Cost Reduction", "value": "-85% vs Studio" }
+    ],
+    "tr": [
+      { "label": "Üretim Hızı", "value": "10 Kat Daha Hızlı" },
+      { "label": "Kenar Maskeleme", "value": "Alt-Piksel Hassasiyet" },
+      { "label": "Işıklandırma Uyumu", "value": "Gerçekçi Temas Gölgeleri" },
+      { "label": "Maliyet Tasarrufu", "value": "Stüdyoya Göre %85" }
+    ]
+  },
+  "en": {
+    "title": "E-Commerce Image Enhancement Tool — AI-Powered Product Visual Studio",
+    "description": "A generative AI pipeline and visual enhancement workbench that automates background replacement, lighting harmonization, and edge fidelity preservation for marketplace-ready product assets.",
+    "role": "AI Workflow Architect & Frontend Developer",
+    "period": "2024 — Present",
+    "status": "Interactive Tool / Active",
+    "executiveOverview": "High-converting e-commerce listings demand impeccable product photography: pristine studio lighting, photorealistic contextual backgrounds, and strict marketplace compliance (Amazon, Shopify, Trendyol). Traditional commercial studio photo shoots incur high overhead costs, long turnaround times, and physical logistics bottlenecks.\n\nThe **E-Commerce Image Enhancement Tool** was designed to eliminate these bottlenecks by fusing advanced computer vision segmentation with generative diffusion models. Accessible as an interactive cloud tool, it allows merchants and brands to convert raw smartphone photos into hyper-realistic commercial studio photographs in seconds.",
+    "mermaidTopology": "flowchart TD\n    subgraph Input [\"Input Asset Layer\"]\n        A[\"📸 Raw Product Photo (Smartphone / SKU)\"] --> B[\"✂️ Sub-Pixel Edge Segmentation\\n(BiRefNet / SAM Alpha Matte)\"]\n    end\n\n    subgraph CoreAI [\"Diffusion & Harmonization Engine\"]\n        B --> C[\"🧠 Spatial ControlNet Guidance\\n& Product Geometry Lock\"]\n        C --> D[\"💡 Ambient Lighting Synthesis\\n& Contact Shadow Generation\"]\n        D --> E[\"🎨 Contextual Background Diffusion\\n(Marble / Studio / Luxury Loft)\"]\n    end\n\n    subgraph Output [\"Marketplace Deliverable\"]\n        E --> F[\"🛍️ 4K High-Res Marketplace Asset\\n(WebP / Amazon 1:1 / Shopify Ready)\"]\n    end\n\n    style Input fill:#0E1013,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style CoreAI fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style Output fill:#08090A,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Comparative Benchmark: AI Visual Pipeline vs. Commercial Photo Studio",
+      "headers": ["Production Criteria", "Traditional Commercial Studio", "Manual Freelance Retouching", "AI Visual Enhancement Pipeline"],
+      "rows": [
+        ["Turnaround Time (per SKU)", "3 – 5 Days", "24 – 48 Hours", "< 60 Seconds"],
+        ["Cost per Final Image", "$40 – $150 (Equipment & Studio)", "$15 – $35 (Hourly Rate)", "< $0.50 (Compute Cost)"],
+        ["Edge & Logo Preservation", "Manual Pen Tool Masking", "Variable Human Error", "Sub-pixel Alpha Mask Lock"],
+        ["Lighting Consistency", "Physical Light Positioning", "Manual Photoshop Curves", "Automated Ambient Contact Shadows"],
+        ["Batch Scalability", "Low (Physical Bottlenecks)", "Medium (Linear Scaling)", "High (Instant Parallel Cloud Synthesis)"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Sub-Pixel Edge Segmentation & Product Protection",
+        "content": "A common pitfall of naive generative AI tools is that they hallucinate or distort the actual product — altering logos, button placements, or delicate fabric weaves. This tool establishes a rigid non-destructive product mask:\n- The foreground subject is isolated with sub-pixel edge detection.\n- Core product geometry and brand typography remain pixel-perfect and untouched."
+      },
+      {
+        "title": "2. Contextual Lighting & Contact Shadow Synthesis",
+        "content": "To avoid the 'cut-and-paste sticker' look, the generative pipeline analyzes the simulated scene's light sources (sunlight angle, warm ambient glow, or soft studio box) and renders natural contact shadows and subtle light bounces onto the product edges."
+      },
+      {
+        "title": "3. Rapid Batch Processing & Marketplace Presets",
+        "content": "- Automated aspect ratio conforming for Amazon (1:1 pure white), Instagram Shop, and Shopify hero banners.\n- One-click preset environments: Minimalist marble countertop, warm wooden surface, modern sunlit loft, or monochrome obsidian showcase."
+      }
+    ],
+    "techStack": [
+      { "label": "Visual Interface", "value": "HTML5 Canvas, Reactive UI, High-DPI preview engine" },
+      { "label": "AI Tool Platform", "value": "Google Flow Architecture / Shared AI Tooling Framework" },
+      { "label": "Model Coordination", "value": "Latent diffusion pipelines, depth estimation, and alpha matting" },
+      { "label": "Post-Processing", "value": "Client-side image contrast adjustment, color quantization, and progressive WebP exporter" }
+    ],
+    "businessImpact": "Deploying this AI-native tool reduces product visual preparation times from 3-5 days of studio post-processing to under 60 seconds per SKU, while reducing photography budget expenditures by up to 85%."
+  },
+  "tr": {
+    "title": "E-Commerce Image Enhancement Tool — Yapay Zeka Destekli Ürün Görsel Stüdyosu",
+    "description": "Pazaryeri standartlarında ürün görselleri üretmek için arka plan kaldırma, ışık uyumlandırma ve ürün kenar sadakatini otomatikleştiren üretken yapay zeka ve görsel geliştirme çalışma alanı.",
+    "role": "Yapay Zeka İş Akışı Mimarı & Frontend Geliştirici",
+    "period": "2024 — Günümüz",
+    "status": "İnteraktif Araç / Aktif",
+    "executiveOverview": "Yüksek dönüşüm sağlayan e-ticaret listelemeleri kusursuz ürün fotoğrafları gerektirir: Doğru stüdyo ışığı, doğal bağlamsal arka planlar ve pazaryeri (Amazon, Trendyol, Hepsiburada, Shopify) kurallarına tam uyumluluk. Geleneksel ticari stüdyo çekimleri ise yüksek maliyet, lojistik zahmet ve haftalar süren onay süreçleri anlamına gelir.\n\n**E-Commerce Image Enhancement Tool**, gelişmiş bilgisayarlı görü ve difüzyon modellerini bir araya getirerek bu darboğazı ortadan kaldırmak için inşa edildi. İnteraktif bir bulut aracı olarak sunulan sistem, akıllı telefonla çekilmiş ham ürün fotoğraflarını saniyeler içinde ticari kalitede stüdyo karelerine dönüştürür.",
+    "mermaidTopology": "flowchart TD\n    subgraph Girdi [\"Girdi Katmanı\"]\n        A[\"📸 Ham Ürün Fotoğrafı (Akıllı Telefon / SKU)\"] --> B[\"✂️ Alt-Piksel Kenar Segmentasyonu\\n(BiRefNet / SAM Alfa Maske)\"]\n    end\n\n    subgraph ModelKatmani [\"Difüzyon & Işıklandırma Motoru\"]\n        B --> C[\"🧠 Spatial ControlNet Yönlendirmesi\\n& Ürün Geometrisi Kilidi\"]\n        C --> D[\"💡 Ortam Işığı Sentezi\\n& Temas Gölgesi Üretimi\"]\n        D --> E[\"🎨 Bağlamsal Sahne Difüzyonu\\n(Mermer / Stüdyo / Modern Çatı Katı)\"]\n    end\n\n    subgraph Cikti [\"Pazaryeri Çıktısı\"]\n        E --> F[\"🛍️ 4K Yüksek Çözünürlüklü Görsel\\n(WebP / Amazon 1:1 / Shopify Uyumlu)\"]\n    end\n\n    style Girdi fill:#0E1013,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style ModelKatmani fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style Cikti fill:#08090A,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari Kıyaslama: Yapay Zeka Görsel Pipeline'ı ve Geleneksel Stüdyo",
+      "headers": ["Üretim Kriteri", "Geleneksel Ticari Stüdyo", "Manuel Freelance Rötuş", "Yapay Zeka Görsel İyileştirme Pipeline'ı"],
+      "rows": [
+        ["Ürün Başına Teslim Süresi", "3 – 5 Gün", "24 – 48 Saat", "< 60 Saniye"],
+        ["Nihai Görsel Başına Maliyet", "₺1.500 – ₺5.000 (Ekipman & Stüdyo)", "₺500 – ₺1.200 (Saatlik Ücret)", "< ₺15 (Bulut İşlem Maliyeti)"],
+        ["Kenar ve Logo Sadakati", "Manuel Pen Tool Dekupesi", "İnsan Kaynaklı Değişken Hata", "Alt-Piksel Alfa Maske Kilidi"],
+        ["Işıklandırma Tutarlılığı", "Fiziksel Işık Konumlandırma", "Photoshop Eğrileri / Tahminî", "Otomatik Ortam Işığı & Temas Gölgeleri"],
+        ["Toplu Üretim Ölçeği", "Düşük (Fiziksel Darboğaz)", "Orta (Doğrusal Ölçekleme)", "Yüksek (Anlık Paralel Bulut Üretimi)"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Ürün Bütünlüğünü Koruyan Alt-Piksel Segmentasyon",
+        "content": "Yapay zeka araçlarının en büyük riski ürün üzerindeki logoları, dikiş detaylarını veya malzeme dokusunu bozmasıdır. Bu araç, ürünü tahribatsız bir maske katmanında korur:\n- Ön plandaki nesne mikron düzeyinde kenar doğruluğuyla ayrıştırılır.\n- Ürünün orijinal renkleri, geometrisi ve marka yazıları kesinlikle bozulmaz."
+      },
+      {
+        "title": "2. Bağlamsal Işık & Doğal Temas Gölgeleri",
+        "content": "Arka planı değiştirilen ürünlerin 'yapıştırma' gibi durmasını önlemek için sistem, oluşturulan sanal odanın ışık kaynaklarını hesaplar; ürünün zeminle temas ettiği noktalara gerçekçi gölgeler ve hafif ışık sıçramaları (light wrap) uygular."
+      },
+      {
+        "title": "3. Hızlı Toplu İşlem & Pazaryeri Hazır Ayarları",
+        "content": "- Amazon için saf beyaz arka plan (1:1), Instagram Vitrin ve Shopify afişleri için otomatik oran uyarlama.\n- Tek tıkla seçilebilen lüks mermer tezgah, sıcak ahşap yüzey, güneş alan modern çatı katı veya obsidian siyahı minimalist sahneler."
+      }
+    ],
+    "techStack": [
+      { "label": "Kullanıcı Deneyimi", "value": "HTML5 Canvas, Gerçek Zamanlı Önizleme Motoru" },
+      { "label": "Yapay Zeka Altyapısı", "value": "Google Flow Architecture / Paylaşımlı AI Araç Çerçevesi" },
+      { "label": "Model Koordinasyonu", "value": "Derinlik haritası tahminleme, nesne ayrıştırma ve latent difüzyon" },
+      { "label": "Dışa Aktarım", "value": "İstemci tarafında WebP sıkıştırma ve metadata koruma" }
+    ],
+    "businessImpact": "Araç, bir ürünün fotoğraf çekimi ve rötuş süresini 3-5 günden 60 saniyenin altına indirirken, işletmelerin görsel bütçelerinde %85'e varan tasarruf sağlamıştır."
+  }
+}

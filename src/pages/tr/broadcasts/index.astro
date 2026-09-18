@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import SEO from '../../../components/SEO.astro';
 import { getCollection } from 'astro:content';
 
 const broadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'tr');
@@ -23,14 +22,7 @@ const title = "Yayınlar & Bilgi Kasası — Onur Aksoy";
 const description = "Teknik ekran kayıtları, derin mimari transkriptler, interaktif zaman damgalı bölümler ve yüksek hızlı mimari kaynaklar.";
 ---
 
-<BaseLayout lang="tr" activeNav="broadcasts">
-  <SEO
-    slot="head"
-    title={title}
-    description={description}
-    lang="tr"
-    canonical="https://onuraksoy.com.tr/tr/broadcasts/"
-  />
+<BaseLayout lang="tr" activeNav="broadcasts" title={title} description={description}>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
     <!-- Hero Header -->

@@ -1,19 +1,50 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const metricItemSchema = z.object({
+  label: z.string(),
+  value: z.string()
+});
+
+const benchmarkTableSchema = z.object({
+  title: z.string(),
+  headers: z.array(z.string()),
+  rows: z.array(z.array(z.string()))
+});
+
+const sectionItemSchema = z.object({
+  title: z.string(),
+  content: z.string()
+});
+
+const techStackItemSchema = z.object({
+  label: z.string(),
+  value: z.string()
+});
+
+const localizedContentSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  role: z.string(),
+  period: z.string(),
+  status: z.string(),
+  executiveOverview: z.string(),
+  mermaidTopology: z.string(),
+  benchmarks: benchmarkTableSchema,
+  sections: z.array(sectionItemSchema),
+  techStack: z.array(techStackItemSchema),
+  businessImpact: z.string().optional()
+});
+
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+  loader: glob({ pattern: '**/*.json', base: './src/content/projects' }),
   schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    lang: z.enum(['en', 'tr']).default('en'),
-    role: z.string(),
-    period: z.string(),
-    status: z.string(),
-    featured: z.boolean().default(false),
+    id: z.string(),
+    slug: z.string(),
     order: z.number().default(99),
+    featured: z.boolean().default(false),
+    accentColor: z.string(),
     tags: z.array(z.string()),
-    accentColor: z.string().optional(),
     links: z.object({
       live: z.string().url().optional(),
       store: z.string().url().optional(),
@@ -21,11 +52,12 @@ const projects = defineCollection({
       demo: z.string().url().optional(),
       tool: z.string().url().optional()
     }).optional(),
-    metrics: z.array(z.object({
-      label: z.string(),
-      value: z.string()
-    })).optional(),
-    ogImage: z.string().optional()
+    metrics: z.object({
+      en: z.array(metricItemSchema),
+      tr: z.array(metricItemSchema)
+    }),
+    en: localizedContentSchema,
+    tr: localizedContentSchema
   })
 });
 

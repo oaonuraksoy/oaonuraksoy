@@ -1,4 +1,4 @@
-import rawProjects from '../data/projects.json';
+import { getCollection } from 'astro:content';
 
 export interface ProjectMetric {
   label: string;
@@ -86,11 +86,11 @@ export interface ProjectLocalized {
   businessImpact?: string;
 }
 
-const projectsList = rawProjects as unknown as ProjectRaw[];
-
-export function getAllProjects(lang: 'en' | 'tr' = 'en'): ProjectLocalized[] {
-  return projectsList
-    .map((p) => {
+export async function getAllProjects(lang: 'en' | 'tr' = 'en'): Promise<ProjectLocalized[]> {
+  const collection = await getCollection('projects');
+  return collection
+    .map((entry) => {
+      const p = entry.data;
       const loc = p[lang] || p.en;
       const metrics = p.metrics?.[lang] || p.metrics?.en || [];
       return {
@@ -119,12 +119,14 @@ export function getAllProjects(lang: 'en' | 'tr' = 'en'): ProjectLocalized[] {
     .sort((a, b) => a.order - b.order);
 }
 
-export function getFeaturedProjects(lang: 'en' | 'tr' = 'en'): ProjectLocalized[] {
-  return getAllProjects(lang).filter((p) => p.featured);
+export async function getFeaturedProjects(lang: 'en' | 'tr' = 'en'): Promise<ProjectLocalized[]> {
+  const all = await getAllProjects(lang);
+  return all.filter((p) => p.featured);
 }
 
-export function getProjectBySlug(slug: string, lang: 'en' | 'tr' = 'en'): ProjectLocalized | undefined {
-  return getAllProjects(lang).find((p) => p.slug === slug);
+export async function getProjectBySlug(slug: string, lang: 'en' | 'tr' = 'en'): Promise<ProjectLocalized | undefined> {
+  const all = await getAllProjects(lang);
+  return all.find((p) => p.slug === slug);
 }
 
 export function renderMarkdown(md: string): string {

@@ -1,0 +1,119 @@
+{
+  "id": "oapos",
+  "slug": "oapos",
+  "order": 1,
+  "featured": true,
+  "accentColor": "#C58A3A",
+  "tags": [".NET 8", "WPF / DirectX", "C#", "PostgreSQL", "SQLite Embedded", "Redis Cache", "Local Socket Sync", "MS Store"],
+  "links": {
+    "store": "https://apps.microsoft.com/detail/9n0wq4v12wgx?hl=tr-TR&gl=TR"
+  },
+  "metrics": {
+    "en": [
+      { "label": "Transaction Latency", "value": "< 10ms" },
+      { "label": "Offline Resilience", "value": "100% Autonomous" },
+      { "label": "Store Certification", "value": "Official MS Store" },
+      { "label": "Terminal Sync", "value": "Real-time LAN Sockets" }
+    ],
+    "tr": [
+      { "label": "İşlem Gecikmesi", "value": "< 10ms" },
+      { "label": "Çevrimdışı Direnç", "value": "%100 Otonom" },
+      { "label": "Mağaza Sertifikası", "value": "Resmi MS Store" },
+      { "label": "Terminal Senkronizasyonu", "value": "Gerçek Zamanlı LAN" }
+    ]
+  },
+  "en": {
+    "title": "oaPOS — Windows Desktop POS & Real-Time Inventory Architecture",
+    "description": "A resilient, high-speed Windows desktop point-of-sale and inventory system built on a local HOST/CLIENT distributed architecture with zero cloud dependency and sub-10ms transaction latency.",
+    "role": "Lead Systems Architect & Desktop Developer",
+    "period": "2024 — Present",
+    "status": "Production / MS Store Certified",
+    "executiveOverview": "In fast-paced retail and hospitality environments, cloud-dependent Point-of-Sale (POS) systems introduce critical vulnerabilities: internet outages halt billing, high API latencies degrade checkout velocity, and recurring monthly software rents burden small-to-medium businesses.\n\n**oaPOS** was conceived and built as an antidote to this vulnerability. It is a production-grade, native Windows desktop solution certified on the official Microsoft Store, architected with an offline-first distributed architecture. By implementing a local **HOST/CLIENT socket synchronization model**, oaPOS delivers microsecond-level barcode recognition, instantaneous receipt generation, and uninterrupted store operations regardless of internet connectivity.",
+    "mermaidTopology": "flowchart LR\n    subgraph LAN [\"Local Area Network (Zero Cloud Dependency)\"]\n        subgraph Host [\"HOST PRIMARY NODE\"]\n            H_Engine[\"🖥️ oaPOS Core Engine\"]\n            H_DB[(\"🗄️ Relational Store\\nPostgreSQL & SQLite Embedded\")]\n            H_Cache[\"⚡ Redis Local Memory Cache\"]\n            H_Engine <--> H_DB\n            H_Engine <--> H_Cache\n        end\n\n        subgraph Client1 [\"CLIENT CASHIER STATION 1\"]\n            C1_UI[\"⚡ WPF DirectX UI\"]\n            C1_Scanner[\"🔍 Hardware Barcode Hook\"]\n            C1_Scanner --> C1_UI\n        end\n\n        subgraph Client2 [\"CLIENT CASHIER STATION 2\"]\n            C2_UI[\"⚡ WPF DirectX UI\"]\n            C2_Thermal[\"🧾 Raw ESC/POS Printer\"]\n            C2_UI --> C2_Thermal\n        end\n\n        C1_UI <-- \"TCP/IP Sockets (<10ms)\" --> H_Engine\n        C2_UI <-- \"TCP/IP Sockets (<10ms)\" --> H_Engine\n    end\n\n    style LAN fill:#08090A,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style Host fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style Client1 fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED\n    style Client2 fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Architectural Benchmark: oaPOS vs. Cloud-Only SaaS POS",
+      "headers": ["Performance & Operational Metric", "Cloud-Only SaaS POS", "Legacy On-Premise Systems", "oaPOS Local-First LAN Architecture"],
+      "rows": [
+        ["Checkout Latency", "300 ms – 1500 ms (API Roundtrip)", "50 ms – 100 ms", "< 10 ms (Local Memory & Direct Sockets)"],
+        ["Internet Outage Impact", "Complete Terminal Blackout", "Partial Functionality", "100% Autonomous Continuous Operations"],
+        ["Hardware Integration", "Virtual Web Print Drivers", "Complex Driver Configs", "Direct Win32 Raw ESC/POS & Barcode Hooks"],
+        ["Data Sovereignty", "Third-Party Cloud Servers", "Local Machine Only", "PostgreSQL / SQLite Local Store with LAN Sync"],
+        ["Recurring Cost", "Expensive Monthly SaaS Subscription", "High Initial Licensing", "One-Time Investment / Certified Microsoft Store"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Zero Cloud Dependency & Local-First Resilience",
+        "content": "Every retail transaction requires absolute guarantees. oaPOS executes all transaction logs, stock decrements, and cashier accounting directly against an optimized local transactional database (PostgreSQL cluster / SQLite Embedded with Redis memory caching). The system can run for years without ever touching an external server, guaranteeing complete privacy and zero downtime during ISP disruptions."
+      },
+      {
+        "title": "2. HOST / CLIENT Multi-Terminal LAN Synchronization",
+        "content": "Large venues and busy supermarkets require multiple checkout stations operating concurrently. oaPOS features a proprietary LAN discovery and socket streaming protocol:\n- **Host Node:** Manages the primary data ledger, fiscal reporting locks, and central inventory state.\n- **Client Nodes:** Connect automatically across the local network, syncing receipt items, inventory reservations, and payment states with sub-10ms wire latency.\n- **Automatic Fallback:** In the event of network disruption between stations, client terminals queue transactions locally and seamlessly reconcile via vector clocks when connectivity resumes."
+      },
+      {
+        "title": "3. Sub-10ms UI Responsiveness with WPF & Hardware Acceleration",
+        "content": "Built on the .NET runtime with Windows Presentation Foundation (WPF), the entire user interface utilizes DirectX hardware acceleration. Barcode scanner inputs are processed via raw input hooks rather than standard keyboard buffers, eliminating input drops even during rapid item scans."
+      },
+      {
+        "title": "4. Enterprise Inventory & Fiscal Compliance",
+        "content": "- Dynamic inventory categorisation, barcode variation hierarchies, and supplier batch tracking.\n- Daily Z-report calculations, cashier end-of-day balances, and automated thermal printer dispatch via ESC/POS protocol.\n- Microsoft Store certification adhering to Windows Desktop Bridge security, application sandboxing, and silent update compliance."
+      }
+    ],
+    "techStack": [
+      { "label": "Runtime & Language", "value": ".NET 8 / C#" },
+      { "label": "Presentation Engine", "value": "WPF / XAML with DirectX hardware acceleration" },
+      { "label": "Database Engine", "value": "PostgreSQL (multi-terminal cluster) / SQLite Embedded (autonomous node) & Redis (in-memory state)" },
+      { "label": "Networking", "value": "Asynchronous TCP Sockets with binary serializer protocols" },
+      { "label": "Printing Subsystem", "value": "Raw ESC/POS thermal command compiler (USB, Serial, Network LAN)" },
+      { "label": "Distribution", "value": "Windows App SDK & MSIX packaging for Microsoft Store" }
+    ],
+    "businessImpact": "By eliminating cloud monthly subscriptions and protecting store owners against ISP outages, oaPOS delivers an estimated 99.999% checkout availability across retail deployments, zero software recurring operational fees, and measurable cashier queue reduction during peak hours."
+  },
+  "tr": {
+    "title": "oaPOS — Windows Masaüstü POS & Gerçek Zamanlı Stok Takip Mimarisi",
+    "description": "Yerel HOST/CLIENT dağıtık ağ mimarisi üzerine kurulu, sıfır bulut bağımlılığı ve 10 milisaniye altı işlem gecikmesi sunan Microsoft Store onaylı Windows masaüstü satış ve envanter yönetim sistemi.",
+    "role": "Baş Sistem Mimarı & Masaüstü Yazılım Geliştirici",
+    "period": "2024 — Günümüz",
+    "status": "Canlıda / Microsoft Store Sertifikalı",
+    "executiveOverview": "Yüksek tempolu perakende ve restoran işletmelerinde, tamamen buluta bağımlı POS (Satış Noktası) sistemleri ciddi operasyonel kırılganlıklar barındırır: İnternet kesintilerinde kasa kilitlenir, yüksek API gecikmeleri kasa kuyruklarını uzatır ve her ay ödenen zorunlu yazılım kiraları işletmelere maliyet yükü oluşturur.\n\n**oaPOS**, bu yapısal sorunları kökünden çözmek amacıyla tasarlandı. Resmi Microsoft Store üzerinde onaylanmış ve dağıtımda olan sistem, çevrimdışı öncelikli (**offline-first**) yerel dağıtık mimariyle inşa edilmiştir. Geliştirilen **HOST/CLIENT yerel soket senkronizasyonu** sayesinde, internet bağlantısına ihtiyaç duymadan mikrosaniye seviyesinde barkod okuma, anlık fiş basımı ve kesintisiz işletme operasyonu sağlar.",
+    "mermaidTopology": "flowchart LR\n    subgraph LAN [\"Yerel Ağ (Sıfır Bulut Bağımlılığı)\"]\n        subgraph Host [\"HOST ANA KASA\"]\n            H_Engine[\"🖥️ oaPOS Çekirdek Motoru\"]\n            H_DB[(\"🗄️ İlişkisel Veritabanı\\nPostgreSQL & SQLite Embedded\")]\n            H_Cache[\"⚡ Redis Yerel Bellek Önbelleği\"]\n            H_Engine <--> H_DB\n            H_Engine <--> H_Cache\n        end\n\n        subgraph Client1 [\"İSTEMCİ KASA 1\"]\n            C1_UI[\"⚡ WPF DirectX Arayüzü\"]\n            C1_Scanner[\"🔍 Donanım Barkod Kancası\"]\n            C1_Scanner --> C1_UI\n        end\n\n        subgraph Client2 [\"İSTEMCİ KASA 2\"]\n            C2_UI[\"⚡ WPF DirectX Arayüzü\"]\n            C2_Thermal[\"🧾 Ham ESC/POS Yazıcı\"]\n            C2_UI --> C2_Thermal\n        end\n\n        C1_UI <-- \"TCP/IP Soketleri (<10ms)\" --> H_Engine\n        C2_UI <-- \"TCP/IP Soketleri (<10ms)\" --> H_Engine\n    end\n\n    style LAN fill:#08090A,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style Host fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style Client1 fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED\n    style Client2 fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari Karşılaştırma: oaPOS ve Bulut Bağımlı SaaS POS",
+      "headers": ["Performans & Operasyonel Kriter", "Bulut-Yalnızca SaaS POS", "Eski Nesil Yerel Sistemler", "oaPOS Yerel Öncelikli LAN Mimarisi"],
+      "rows": [
+        ["Kasa Satış Gecikmesi", "300 ms – 1500 ms (API Turu)", "50 ms – 100 ms", "< 10 ms (Bellek İçi & Doğrudan Soket)"],
+        ["İnternet Kesintisi Etkisi", "Kasanın Tamamen Kilitlenmesi", "Kısmi İşlevsellik", "%100 Otonom Kesintisiz Çalışma"],
+        ["Donanım Entegrasyonu", "Sanal Web Yazıcı Sürücüleri", "Karmaşık Sürücü Yapılandırması", "Doğrudan Win32 Ham ESC/POS & Barkod Kancaları"],
+        ["Veri Egemenliği", "Üçüncü Taraf Bulut Sunucuları", "Yalnızca Yerel Bilgisayar", "PostgreSQL / SQLite Yerel Depolama & LAN Senkronizasyonu"],
+        ["Tekrarlayan Maliyet", "Yüksek Aylık SaaS Aboneliği", "Yüksek İlk Lisans Bedeli", "Tek Seferlik Yatırım / Sertifikalı Microsoft Store"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Sıfır Bulut Bağımlılığı & Yerel Öncelikli Güvenilirlik",
+        "content": "Kasadaki her işlem kesinlik gerektirir. oaPOS, tüm satış kayıtlarını, stok düşümlerini ve cari hesap hareketlerini doğrudan optimize edilmiş yerel veritabanı motorunda (PostgreSQL kümesi / SQLite Embedded & Redis bellek önbelleği) işler. Sistem harici bir sunucuya tek bir bayt göndermeden yıllarca çalışabilir; bu da veri gizliliğini ve internet arızalarında %100 iş sürekliliğini garanti eder."
+      },
+      {
+        "title": "2. HOST / CLIENT Çoklu Terminal Yerel Ağ Senkronizasyonu",
+        "content": "Birden fazla kasaya sahip işletmeler için özel olarak geliştirilen yerel ağ soket protokolü:\n- **Ana Kasa (Host Node):** Merkezi veritabanını, mali mühürleri ve birincil stok bakiyesini yönetir.\n- **İstemci Kasalar (Client Nodes):** Yerel ağ üzerinden otomatik keşif (broadcast discovery) ile ana kasaya bağlanır; satılan ürünler, stok rezervasyonları ve ödemeler 10 milisaniyenin altında senkronize edilir.\n- **Kesinti Toleransı:** Ağda fiziksel bir kopma yaşanırsa terminaller kendi yerel kuyruklarında satışa devam eder; bağlantı onarıldığında çakışmasız biçimde ana kasayla uzlaşır."
+      },
+      {
+        "title": "3. WPF & Donanım Hızlandırmalı Akıcı Arayüz",
+        "content": ".NET platformunda Windows Presentation Foundation (WPF) ile geliştirilen kullanıcı arayüzü, DirectX donanım hızlandırmasından tam verim alır. Barkod okuyucu tetiklemeleri doğrudan düşük seviyeli giriş kancalarıyla (raw input) yakalanır, seri ürün okutmada dahi sıfır girdi kaybı yaşanır."
+      },
+      {
+        "title": "4. Kurumsal Envanter & Mali Raporlama",
+        "content": "- Detaylı stok kategorizasyonu, varyasyonlu barkod tanımları, tedarikçi ve son kullanma tarihi takibi.\n- Gün sonu Z-raporu hesaplamaları, kasiyer devir bakiyeleri ve ESC/POS protokolüyle doğrudan termal fiş yazıcı yönetimi.\n- Windows Desktop Bridge ve MSIX paketleme standartlarıyla resmi Microsoft Store güvenlik denetimlerinden tam puan."
+      }
+    ],
+    "techStack": [
+      { "label": "Çalışma Zamanı & Dil", "value": ".NET 8 / C#" },
+      { "label": "Görsel Katman", "value": "WPF / XAML ve DirectX donanım hızlandırmalı bileşenler" },
+      { "label": "Veritabanı Katmanı", "value": "PostgreSQL (küme) / SQLite Embedded (otonom) & Redis (bellek-içi durum)" },
+      { "label": "Ağ İletişimi", "value": "Asenkron TCP Soketleri ve ikili serileştirme protokolleri" },
+      { "label": "Yazıcı Altyapısı", "value": "Ham ESC/POS termal komut derleyicisi (USB, Seri Port, Ethernet LAN)" },
+      { "label": "Dağıtım", "value": "Windows App SDK & Microsoft Store için MSIX paketleme" }
+    ],
+    "businessImpact": "Aylık abonelik masraflarını ortadan kaldıran ve internet kesintilerinde kasayı kilitlemeyen oaPOS, perakende işletmelerinde %99.999 kasa erişilebilirliği, sıfır sunucu operasyonel gideri ve yoğun saatlerde belirgin kuyruk erimesi sağlamıştır."
+  }
+}

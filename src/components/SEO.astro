@@ -14,7 +14,7 @@ const {
   title = 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
   description = 'Personal technical portfolio of Onur Aksoy. Architecting resilient desktop software, local-first systems, and deterministic AI applications.',
   image = `${siteUrl}/images/onur-aksoy.webp`,
-  canonicalUrl = Astro.url.href,
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://onuraksoy.com.tr').href,
   lang = 'en',
   type = 'website'
 } = Astro.props;

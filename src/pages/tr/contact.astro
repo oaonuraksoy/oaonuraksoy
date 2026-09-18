@@ -39,6 +39,25 @@ const directChannels = [
     desc: 'Halka açık paylaşımlar, teknoloji analizleri ve mimari notlar.'
   }
 ];
+
+const faqs = [
+  {
+    question: "Yazılım mimarisi ve teknik danışmanlık süreçleriniz nasıl işliyor?",
+    answer: "İş birliklerimizi üç temel modelde yürütüyoruz: (1) Sabit kapsamlı teknik denetim (audit) ve mimari analiz sprinti, (2) Uçtan uca özel sistem geliştirme (.NET/WPF masaüstü, yerel öncelikli POS altyapıları, web2app paketleme), ve (3) Büyüyen mühendislik ekipleri için dönemsel sistem mimarlığı danışmanlığı. Süreç, net teknik gereksinimlerin ve metriklerin belirlendiği keşif görüşmesiyle başlar."
+  },
+  {
+    question: "Mevcut sistemlere yerel öncelikli (local-first) masaüstü altyapısı entegre edilebilir mi?",
+    answer: "Evet. İster eski kurumsal sistemleri modernize ediyor olun ister sıfırdan inşa edin; gömülü SQLite/PostgreSQL depolama, ham TCP/IP yerel ağ (LAN) soket senkronizasyonu ve sıfır bulut bağımlılığı sunan yerel öncelikli mimariler tasarlıyorum. İnternet kesintilerinde bile sistem sıfır gecikmeyle çalışmaya devam eder ve ağ sağlandığında deterministik biçimde senkronize olur."
+  },
+  {
+    question: "Yapay zeka ve deterministik ajan sistemleri denetimi ne kadar sürer?",
+    answer: "Büyük dil modeli (LLM) pipeline'ları ve otonom ajan sistemlerine yönelik kapsamlı mimari denetimler genellikle 3 ila 7 iş günü sürer; gecikme darboğazlarını, token maliyetlerini ve halüsinasyon koruma açıklarını detaylandıran uygulanabilir bir rapor sunulur. Özel deterministik ajan pipeline uygulamaları ise entegrasyon kapsamına bağlı olarak 2 ila 4 hafta arasında tamamlanır."
+  },
+  {
+    question: "Acil bir proje veya danışmanlık için nasıl hızlı bağlantı kurabilirim?",
+    answer: "Teknik gereksinimlerinizi, sistem darboğazlarınızı ve hedeflerinizi özetleyen bir mesajı dev@onuraksoy.com.tr adresine iletebilirsiniz. Anlık ve öncelikli iletişim için Telegram (@oaonuraksoy) veya WhatsApp (+90 551 181 70 53) üzerinden doğrudan mesaj gönderebilirsiniz. Tüm taleplere 24 saat içinde dönüş sağlanır."
+  }
+];
 ---
 
 <BaseLayout
@@ -46,6 +65,7 @@ const directChannels = [
   description="Onur Aksoy ile doğrudan iletişim kanalları. Kritik yazılım projeleri, yapay zeka sistem mimarileri ve masaüstü yazılım işbirlikleri."
   lang="tr"
   activeNav="contact"
+  faqs={faqs}
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
     <!-- Header -->
@@ -130,6 +150,37 @@ const directChannels = [
           <strong class="text-text-primary block mb-1">3. Mimari Denetim (Audit)</strong>
           Mevcut kod tabanlarının bellek, gecikme ve güvenlik kırılganlıkları açısından sıfır-güven incelemesi.
         </div>
+      </div>
+    </div>
+
+    <!-- Sıkça Sorulan Sorular -->
+    <div class="mt-16 pt-12 border-t border-obsidian-border">
+      <div class="mb-8">
+        <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+          İletişim & Danışmanlık SSS
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-1">
+          Sıkça Sorulan Sorular
+        </h2>
+        <p class="text-sm text-text-muted mt-1">
+          İş birliği modelleri, yerel öncelikli sistemler ve yapay zeka mimarisi süreçlerine dair doğrudan yanıtlar.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+            <summary class="flex items-center justify-between font-bold text-text-primary cursor-pointer list-none text-base group-open:text-gold-highlight transition-colors">
+              <span>{faq.question}</span>
+              <span class="ml-4 text-xs font-mono px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border text-gold-tungsten group-open:rotate-45 transition-transform duration-200">
+                +
+              </span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-obsidian-border/50 text-sm text-text-muted leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
       </div>
     </div>
   </div>

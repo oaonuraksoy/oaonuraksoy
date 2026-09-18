@@ -15,21 +15,28 @@ interface Props {
   faqs?: FAQItem[];
 }
 
+const siteUrl = 'https://onuraksoy.com.tr';
+
 const {
   type = 'Person',
   title = 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
   description = 'Personal portfolio and technical case studies of Onur Aksoy. Pioneering deterministic AI architectures, local-first software, and high-performance digital tools.',
-  url = 'https://onuraksoy.com.tr',
+  url,
   image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
   datePublished,
   lang = 'en',
   faqs
 } = Astro.props;
 
-const siteUrl = 'https://onuraksoy.com.tr';
+const pathname = Astro.url ? Astro.url.pathname : '/';
+const resolvedUrl = url || new URL(pathname, siteUrl).href;
+const isTr = lang === 'tr' || pathname.startsWith('/tr');
+const homeUrl = isTr ? `${siteUrl}/tr/` : `${siteUrl}/`;
 
-const personSchema = {
-  '@context': 'https://schema.org',
+const resolvedImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : '/' + image}`;
+
+// 1. Person Entity
+const personSchema: any = {
   '@type': 'Person',
   '@id': `${siteUrl}/#person`,
   name: 'Onur Aksoy',
@@ -37,7 +44,7 @@ const personSchema = {
   givenName: 'Onur',
   familyName: 'Aksoy',
   jobTitle: 'AI-Native Developer & Multidisciplinary Creator',
-  description: lang === 'tr' 
+  description: isTr 
     ? 'Onur Aksoy (a.k.a. Hackonomist); yapay zeka yerel mimariler, yerel öncelikli (local-first) masaüstü yazılımları, dijital büyüme ve hackonomik otomasyon sistemleri üreten kıdemli geliştirici ve yaratıcıdır.' 
     : 'Onur Aksoy (a.k.a. Hackonomist) is an AI-native systems architect, local-first software developer, and multidisciplinary creator building resilient tools, deterministic agentic systems, and digital growth infrastructure.',
   url: siteUrl,
@@ -46,7 +53,7 @@ const personSchema = {
     '@id': `${siteUrl}/#primaryimage`,
     url: `${siteUrl}/images/onur-aksoy.webp`,
     caption: 'Onur Aksoy',
-    inLanguage: lang === 'tr' ? 'tr-TR' : 'en-US'
+    inLanguage: isTr ? 'tr-TR' : 'en-US'
   },
   email: 'mailto:dev@onuraksoy.com.tr',
   address: {
@@ -76,14 +83,37 @@ const personSchema = {
   ]
 };
 
-const resolvedImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : '/' + image}`;
+// 2. WebSite Entity with Google SearchAction
+const websiteSchema: any = {
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'Onur Aksoy',
+  alternateName: ['Onur Aksoy Portfolio', 'OA Portfolyo'],
+  description: description,
+  inLanguage: ['en-US', 'tr-TR'],
+  primaryImageOfPage: {
+    '@id': `${siteUrl}/#primaryimage`
+  },
+  publisher: {
+    '@id': `${siteUrl}/#person`
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://www.google.com/search?q=site:onuraksoy.com.tr+{search_term_string}'
+    },
+    'query-input': 'required name=search_term_string'
+  }
+};
 
-const imageSchema = {
-  '@context': 'https://schema.org',
+// 3. Primary ImageObject
+const imageSchema: any = {
   '@type': 'ImageObject',
   '@id': `${siteUrl}/#primaryimage`,
   name: title,
-  caption: lang === 'tr' 
+  caption: isTr 
     ? 'Onur Aksoy — Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı' 
     : 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
   contentUrl: resolvedImageUrl,
@@ -98,35 +128,92 @@ const imageSchema = {
   creator: {
     '@id': `${siteUrl}/#person`
   },
-  inLanguage: lang === 'tr' ? 'tr-TR' : 'en-US'
+  inLanguage: isTr ? 'tr-TR' : 'en-US'
 };
 
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': `${siteUrl}/#website`,
-  url: siteUrl,
-  name: 'Onur Aksoy',
-  alternateName: ['Onur Aksoy Portfolio', 'OA Portfolyo'],
-  description: description,
-  inLanguage: ['en-US', 'tr-TR'],
-  primaryImageOfPage: {
-    '@id': `${siteUrl}/#primaryimage`
-  },
-  publisher: {
-    '@id': `${siteUrl}/#person`
+// 4. BreadcrumbList & WebPage
+const isHome = pathname === '/' || pathname === '/tr/' || pathname === '/tr';
+const sectionLabels: Record<string, { en: string; tr: string }> = {
+  projects: { en: 'Projects', tr: 'Projeler' },
+  broadcasts: { en: 'Broadcasts & Technical Vault', tr: 'Yayınlar & Bilgi Kasası' },
+  about: { en: 'About & Philosophy', tr: 'Hakkında & Felsefe' },
+  contact: { en: 'Contact', tr: 'İletişim' },
+  oapos: { en: 'oaPOS', tr: 'oaPOS' },
+  'orvyna-app-studio': { en: 'Orvyna App Studio', tr: 'Orvyna App Studio' },
+  'ecommerce-image-enhancer': { en: 'E-Commerce Image Enhancer', tr: 'E-Ticaret Görsel Geliştirici' }
+};
+
+let breadcrumbSchema: any = null;
+if (!isHome) {
+  const rawSegments = (isTr ? pathname.replace(/^\/tr(\/|$)/, '') : pathname).split('/').filter(Boolean);
+
+  const itemListElement: any[] = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: isTr ? 'Ana Sayfa' : 'Home',
+      item: homeUrl
+    }
+  ];
+
+  if (rawSegments.length >= 1) {
+    const seg1 = rawSegments[0];
+    const seg1Name = sectionLabels[seg1]?.[isTr ? 'tr' : 'en'] || (rawSegments.length === 1 ? title : seg1.charAt(0).toUpperCase() + seg1.slice(1));
+    const seg1Url = `${homeUrl}${seg1}/`;
+    itemListElement.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: seg1Name,
+      item: seg1Url
+    });
   }
+
+  if (rawSegments.length >= 2) {
+    const seg2 = rawSegments[1];
+    const seg2Name = title || sectionLabels[seg2]?.[isTr ? 'tr' : 'en'] || seg2;
+    itemListElement.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: seg2Name,
+      item: resolvedUrl
+    });
+  }
+
+  breadcrumbSchema = {
+    '@type': 'BreadcrumbList',
+    '@id': `${resolvedUrl}#breadcrumb`,
+    itemListElement: itemListElement
+  };
+}
+
+// 5. WebPage Entity
+const webpageSchema: any = {
+  '@type': 'WebPage',
+  '@id': `${resolvedUrl}#webpage`,
+  url: resolvedUrl,
+  name: title,
+  description: description,
+  isPartOf: {
+    '@id': `${siteUrl}/#website`
+  },
+  inLanguage: isTr ? 'tr-TR' : 'en-US'
 };
 
-let customSchema: any = null;
+if (breadcrumbSchema) {
+  webpageSchema.breadcrumb = {
+    '@id': `${resolvedUrl}#breadcrumb`
+  };
+}
 
+// 6. Custom Schema (SoftwareApplication or Article)
+let customSchema: any = null;
 if (type === 'SoftwareApplication') {
   customSchema = {
-    '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
+    '@id': `${resolvedUrl}#software`,
     name: title,
     description: description,
-    url: url,
+    url: resolvedUrl,
     image: {
       '@type': 'ImageObject',
       url: resolvedImageUrl
@@ -139,11 +226,14 @@ if (type === 'SoftwareApplication') {
   };
 } else if (type === 'Article') {
   customSchema = {
-    '@context': 'https://schema.org',
     '@type': 'TechArticle',
+    '@id': `${resolvedUrl}#article`,
+    isPartOf: {
+      '@id': `${resolvedUrl}#webpage`
+    },
     headline: title,
     description: description,
-    url: url,
+    url: resolvedUrl,
     image: {
       '@type': 'ImageObject',
       url: resolvedImageUrl
@@ -155,16 +245,16 @@ if (type === 'SoftwareApplication') {
     publisher: {
       '@id': `${siteUrl}/#person`
     },
-    inLanguage: lang === 'tr' ? 'tr-TR' : 'en-US'
+    inLanguage: isTr ? 'tr-TR' : 'en-US'
   };
 }
 
+// 7. FAQ Schema
 let faqSchema: any = null;
 if (faqs && faqs.length > 0) {
   faqSchema = {
-    '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    '@id': `${url}#faq`,
+    '@id': `${resolvedUrl}#faq`,
     mainEntity: faqs.map((item) => ({
       '@type': 'Question',
       name: item.question,
@@ -175,14 +265,29 @@ if (faqs && faqs.length > 0) {
     }))
   };
 }
+
+// Assemble Single @graph Array
+const graph: any[] = [
+  personSchema,
+  websiteSchema,
+  imageSchema,
+  webpageSchema
+];
+
+if (breadcrumbSchema) {
+  graph.push(breadcrumbSchema);
+}
+if (customSchema) {
+  graph.push(customSchema);
+}
+if (faqSchema) {
+  graph.push(faqSchema);
+}
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@graph': graph
+};
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(imageSchema)} />
-{faqSchema && (
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-)}
-{customSchema && (
-  <script type="application/ld+json" set:html={JSON.stringify(customSchema)} />
-)}
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

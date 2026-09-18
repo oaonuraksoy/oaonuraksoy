@@ -39,6 +39,25 @@ const directChannels = [
     desc: 'Public broadcasts, architectural thoughts, and technology analysis.'
   }
 ];
+
+const faqs = [
+  {
+    question: "What engagement models do you support for architecture advisory?",
+    answer: "I work across three primary engagement formats: (1) Fixed-scope architectural sprint or technical audit, (2) End-to-end bespoke system engineering (.NET/WPF desktop, local-first architectures, or web2app delivery), and (3) Fractional systems advisory / retainer for growing engineering teams. Every collaboration begins with a concise technical discovery session to define hard constraints, SLAs, and deliverables."
+  },
+  {
+    question: "Can you build offline-first and local desktop systems for existing infrastructure?",
+    answer: "Yes. Whether modernizing legacy enterprise systems or building from scratch, I engineer local-first architectures with embedded SQLite/PostgreSQL storage, raw TCP/IP LAN socket synchronization, and zero cloud lock-in. Your operations continue uninterrupted even during full internet outages, synchronizing reliably when connectivity is present."
+  },
+  {
+    question: "What is your typical turnaround for deterministic AI pipeline audits?",
+    answer: "Comprehensive architectural audits of LLM pipelines and autonomous agent systems typically take 3 to 7 business days, resulting in an actionable zero-trust remediation report detailing latency bottlenecks, token wastage, and deterministic guardrail gaps. Custom agentic pipeline implementations generally span 2 to 4 weeks depending on tool interfaces and verification criteria."
+  },
+  {
+    question: "How do we initiate a high-priority technical consultation?",
+    answer: "The fastest transmission route is sending an email to dev@onuraksoy.com.tr outlining your system specs, current architectural challenges, and target milestones. For immediate encrypted syncs, reach out via Telegram (@oaonuraksoy) or WhatsApp (+90 551 181 70 53). All inquiries are triaged within 24 hours."
+  }
+];
 ---
 
 <BaseLayout
@@ -46,6 +65,7 @@ const directChannels = [
   description="Direct contact hub and transmission channels for Onur Aksoy. Available for high-impact contracts, AI architecture consulting, and desktop systems development."
   lang="en"
   activeNav="contact"
+  faqs={faqs}
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
     <!-- Header -->
@@ -130,6 +150,37 @@ const directChannels = [
           <strong class="text-text-primary block mb-1">3. Architectural Auditing</strong>
           Zero-trust review of existing codebases for memory leaks, latency bottlenecks, and resilience.
         </div>
+      </div>
+    </div>
+
+    <!-- Frequently Asked Questions -->
+    <div class="mt-16 pt-12 border-t border-obsidian-border">
+      <div class="mb-8">
+        <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+          Transmission & Engagement FAQ
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-1">
+          Frequently Addressed Inquiries
+        </h2>
+        <p class="text-sm text-text-muted mt-1">
+          Direct, deterministic answers on consulting frameworks, local-first architectures, and AI system audits.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+            <summary class="flex items-center justify-between font-bold text-text-primary cursor-pointer list-none text-base group-open:text-gold-highlight transition-colors">
+              <span>{faq.question}</span>
+              <span class="ml-4 text-xs font-mono px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border text-gold-tungsten group-open:rotate-45 transition-transform duration-200">
+                +
+              </span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-obsidian-border/50 text-sm text-text-muted leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
       </div>
     </div>
   </div>

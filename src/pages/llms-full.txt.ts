@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { getAllProjects } from '../utils/projects';
 
 export const GET: APIRoute = async () => {
-  const projectsEn = getAllProjects('en');
+  const projectsEn = await getAllProjects('en');
   const broadcastsEn = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
 
   let body = `# Onur Aksoy — Complete Architectural & Technical Digest
@@ -50,7 +50,7 @@ Key Technical Principles:
     body += `\n#### Project Overview\n${p.executiveOverview}\n\n`;
 
     if (p.benchmarks) {
-      body += `#### Architectural Benchmark: ${p.benchmarks.title}\n`;
+      body += `#### ${p.benchmarks.title}\n`;
       body += `| ${p.benchmarks.headers.join(' | ')} |\n`;
       body += `| ${p.benchmarks.headers.map(() => '---').join(' | ')} |\n`;
       p.benchmarks.rows.forEach((row) => {

@@ -91,10 +91,10 @@ Bu depo, [onuraksoy.com.tr](https://onuraksoy.com.tr) resmi web sitesinin Astro 
 - **Çift Dilli Dizin Yapısı:** İngilizce (`/`) ve Türkçe (`/tr/`)
 - **GEO / SGE & LLM Entegrasyonu:** `llms.txt`, `llms-full.txt` ve Schema.org JSON-LD grafik entegrasyonu
 
-### ✍️ Yeni Proje Ekleme Rehberi (`src/data/projects.json`)
-Portfolyoda sergilenen tüm amiral gemisi projeler `src/data/projects.json` dosyası üzerinden beslenir:
-1. `src/data/projects.json` dosyasını açın.
-2. Yeni bir proje nesnesi ekleyin:
+### ✍️ Yeni Proje Ekleme Rehberi (`src/content/projects/<slug>.json`)
+Portfolyoda sergilenen tüm amiral gemisi projeler Astro Content Collections altında bağımsız JSON dosyaları (`src/content/projects/*.json`) olarak yönetilir ve derleme anında Zod şemasıyla doğrulanır:
+1. `src/content/projects/<slug>.json` adında yeni bir dosya oluşturun.
+2. Proje nesnesini JSON olarak tanımlayın:
    ```json
    {
      "id": "yeni-proje",
@@ -119,7 +119,9 @@ Portfolyoda sergilenen tüm amiral gemisi projeler `src/data/projects.json` dosy
        "status": "Production",
        "executiveOverview": "...",
        "mermaidTopology": "flowchart LR ...",
-       "benchmarks": { "title": "...", "headers": [], "rows": [] }
+       "benchmarks": { "title": "...", "headers": [], "rows": [] },
+       "sections": [],
+       "techStack": []
      },
      "tr": {
        "title": "Proje Başlığı",
@@ -129,12 +131,13 @@ Portfolyoda sergilenen tüm amiral gemisi projeler `src/data/projects.json` dosy
        "status": "Üretimde",
        "executiveOverview": "...",
        "mermaidTopology": "flowchart LR ...",
-       "benchmarks": { "title": "...", "headers": [], "rows": [] }
+       "benchmarks": { "title": "...", "headers": [], "rows": [] },
+       "sections": [],
+       "techStack": []
      }
    }
    ```
-3. İsteğe bağlı olarak detaylı markdown vaka analizlerini `src/content/projects/en/<slug>.md` ve `src/content/projects/tr/<slug>.md` içine ekleyin.
-4. `npm run build` komutu ile tip güvenliğini ve statik derlemeyi doğrulayın.
+3. `npm run build` komutu ile tip güvenliğini ve statik derlemeyi doğrulayın.
 
 ### ✍️ Yeni Yayın Ekleme, Kapak Görselleri ve Vitrin (`src/content/broadcasts/`)
 Tüm yayınlar (Video, Podcast, Makale vb.) `src/content/broadcasts/{en,tr}/*.md` dizininde Markdown olarak tutulur.
