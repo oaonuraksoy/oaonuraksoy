@@ -3,7 +3,7 @@ title: "Yapay Zeka Yerel Mimari: Basit Chatbot Sarmalayıcılarının Ötesine G
 description: "Yazılım geliştirmenin yeni çağının neden genel LLM arayüzleri yerine, otonom akıl yürütme motorları tarafından yönetilen deterministik durum makinelerine ait olduğu üzerine."
 pubDate: 2024-11-15
 lang: "tr"
-ref: "ai-native-architecture-paradigm"
+ref: "ai-native-architecture"
 tags: ["YapayZekaMimarisi", "SistemTasarimi", "OtonomAjanlar", "YazilimGelistirme"]
 thumbnail: "/images/broadcasts/ai-native-architecture.webp"
 ---

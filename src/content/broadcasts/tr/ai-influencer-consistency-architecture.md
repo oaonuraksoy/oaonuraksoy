@@ -3,11 +3,11 @@ title: "AI Influencer Kapatılma Krizleri: YPP 'Düşük Çaba' Banı, Meta Algo
 description: "Yapay zeka influencer hesaplarının %80'inin ilk 45 günde neden kapatıldığının teknik otopsisi: Akustik Slop spektrogram tespiti, PRNU sensör gürültüsü eksikliği, Video Selfie tuzağı ve FLUX.1 + ComfyUI tutarlılık mimarisi."
 pubDate: 2026-04-10
 lang: "tr"
-ref: "ai-influencer-account-bans-consistency-engineering"
+ref: "ai-influencer-consistency-architecture"
 featured: true
 tags: ["YapayZeka", "AIInfluencer", "ComfyUI", "LoRA", "AlgoritmikBan", "SistemMimarisi", "GoruntuIsleme"]
 duration: "PT18M40S"
-thumbnail: "/images/broadcasts/ai-influencer-consistency-engineering.webp"
+thumbnail: "/images/broadcasts/ai-influencer-consistency-architecture.webp"
 chapters:
   - time: "00:00"
     title: "Giriş: İlk 45 Günde Gelen Sessiz Algoritmik Ölüm"
@@ -39,7 +39,7 @@ downloads:
     hash: "sha256:03e10e4b5f3855f3a6d9e74684aa38cafdd0bc55a4a3238334d212f6296085f0"
 ---
 
-## 3. Haftada Gelen Sessiz Algoritmik İnfaz
+## İlk 45 Günde Gelen Sessiz Algoritmik Ölüm
 
 Sosyal medya ve dijital içerik sektöründe yapay zeka tarafından üretilen modeller (AI Influencer / Virtual Human) büyük bir ticari vaat gibi sunulsa da, sektörel veriler acı bir gerçeği işaret eder: **Yeni açılan yapay zeka influencer hesaplarının %82'si ilk 45 gün içerisinde ya doğrudan kapatılmakta (account suspension) ya da algoritmik görünürlükleri sıfıra indirilmektedir (shadowban).**
 
@@ -57,15 +57,15 @@ flowchart TD
         A2 -->|Liveness Check| T3["360 Derece Video Selfie Doğrulama Tuzağı"]
     end
 
-    subgraph CozumHatti ["2. Hackonomist Deterministik Boru Hattı"]
+    subgraph CozumHatti ["2. Deterministik Üretim Hattı"]
         M1["Akustik IR Modülasyonu"] --> S1["Oda Reverb + -32dB Analog Gürültü"]
-        M2["PRNU Enjeksiyonu"] --> S2["Sony A7IV Sensör Voltaj Gürültüsü Bindirme"]
+        M2["PRNU Enjeksiyonu"] --> S2["Deterministik CMOS Sensör Deseni"]
         M3["Cihaz Isınma Protokolü"] --> S3["Fiziksel SIM + 30 Günlük Donanım Telemetrisi"]
         M4["FLUX.1 + ComfyUI"] --> S4["LoRA Ağırlıkları + IP-Adapter FaceID + ControlNet"]
     end
 
     AlgoritmikTehditler --> CozumHatti
-    CozumHatti --> Prod["Kurşungeçirmez Sanal Varlık"]
+    CozumHatti --> Prod["Doğrulanmış Kararlı Sanal Varlık"]
 ```
 
 ---

@@ -18,12 +18,12 @@ export const GET: APIRoute = async () => {
       title: 'oaPOS Architecture and Terminal Overview'
     },
     {
-      page: 'https://onuraksoy.com.tr/projects/orvyna-builder/',
+      page: 'https://onuraksoy.com.tr/projects/orvyna-app-studio/',
       loc: 'https://onuraksoy.com.tr/images/avatar.webp',
       title: 'Orvyna App Studio Cloud Engine'
     },
     {
-      page: 'https://onuraksoy.com.tr/projects/ecommerce-image-enhancement-tool/',
+      page: 'https://onuraksoy.com.tr/projects/ecommerce-image-enhancer/',
       loc: 'https://onuraksoy.com.tr/images/avatar.webp',
       title: 'AI Product Image Enhancement Studio Pipeline'
     }

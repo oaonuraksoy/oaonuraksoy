@@ -3,7 +3,7 @@ title: "The AI-Native Architecture: Moving Beyond Simple Chatbot Wrappers"
 description: "Why the next era of software development belongs to deterministic state machines orchestrated by autonomous reasoning engines rather than generic LLM wrappers."
 pubDate: 2024-11-15
 lang: "en"
-ref: "ai-native-architecture-paradigm"
+ref: "ai-native-architecture"
 tags: ["AIArchitecture", "SystemDesign", "AutonomousAgents", "SoftwareDevelopment"]
 thumbnail: "/images/broadcasts/ai-native-architecture.webp"
 ---

@@ -3,7 +3,7 @@ title: "Yerel Öncelikli (Local-First) Yazılım Geliştirmenin Rönesansı"
 description: "Modern kurumsal araçların neden tamamen buluta bağımlı yapılardan yerel veri egemenliğine ve mikrosaniye seviyesinde masaüstü performansına döndüğünün analizi."
 pubDate: 2024-10-02
 lang: "tr"
-ref: "local-first-software-engineering"
+ref: "local-first-software"
 tags: ["YerelOncelikli", "MasaustuSistemleri", "DagitikSistemler", "DotNet"]
 thumbnail: "/images/broadcasts/local-first-software.webp"
 ---

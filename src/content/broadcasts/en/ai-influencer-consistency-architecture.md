@@ -3,11 +3,11 @@ title: "AI Influencer Account Bans: YPP 'Low-Effort' Strikes, Meta Detection Alg
 description: "A deep technical autopsy into why 82% of AI influencer accounts get terminated or shadowbanned within 45 days: Acoustic Slop spectrogram analysis, missing PRNU sensor noise, Video Selfie verification traps, and FLUX.1 + ComfyUI determinism."
 pubDate: 2026-04-10
 lang: "en"
-ref: "ai-influencer-account-bans-consistency-engineering"
+ref: "ai-influencer-consistency-architecture"
 featured: true
 tags: ["ArtificialIntelligence", "AIInfluencer", "ComfyUI", "LoRA", "AlgorithmicBans", "SystemsArchitecture", "ComputerVision"]
 duration: "PT18M40S"
-thumbnail: "/images/broadcasts/ai-influencer-consistency-engineering.webp"
+thumbnail: "/images/broadcasts/ai-influencer-consistency-architecture.webp"
 chapters:
   - time: "00:00"
     title: "Introduction: The 45-Day Algorithmic Death Spiral"
