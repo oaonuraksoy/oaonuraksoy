@@ -101,22 +101,35 @@ export const GET: APIRoute = async () => {
     }
   ];
 
+  // Group images by page URL
+  const groupedByPage = new Map<string, Array<{ loc: string; title: string }>>();
+  for (const img of images) {
+    if (!groupedByPage.has(img.page)) {
+      groupedByPage.set(img.page, []);
+    }
+    groupedByPage.get(img.page)!.push({ loc: img.loc, title: img.title });
+  }
+
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="https://onuraksoy.com.tr/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 `;
 
-  images.forEach((img) => {
+  for (const [page, imgList] of groupedByPage.entries()) {
     xml += `  <url>
-    <loc>${img.page}</loc>
-    <image:image>
+    <loc>${page}</loc>
+`;
+    for (const img of imgList) {
+      xml += `    <image:image>
       <image:loc>${img.loc}</image:loc>
       <image:title><![CDATA[${img.title}]]></image:title>
     </image:image>
-  </url>
 `;
-  });
+    }
+    xml += `  </url>
+`;
+  }
 
   xml += `</urlset>`;
 

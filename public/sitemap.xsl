@@ -16,6 +16,8 @@
         <title>
           <xsl:choose>
             <xsl:when test="sitemap:sitemapindex | sitemapindex">XML Sitemap Index | Onur Aksoy (Hackonomist)</xsl:when>
+            <xsl:when test="//image:image | //image">XML Image Sitemap | Onur Aksoy (Hackonomist)</xsl:when>
+            <xsl:when test="//video:video | //video">XML Video Sitemap | Onur Aksoy (Hackonomist)</xsl:when>
             <xsl:otherwise>XML Sitemap | Onur Aksoy (Hackonomist)</xsl:otherwise>
           </xsl:choose>
         </title>
@@ -257,6 +259,12 @@
                     <xsl:when test="sitemap:sitemapindex | sitemapindex">
                       XML <span>Sitemap Index</span>
                     </xsl:when>
+                    <xsl:when test="//image:image | //image">
+                      XML <span>Image Sitemap</span>
+                    </xsl:when>
+                    <xsl:when test="//video:video | //video">
+                      XML <span>Video Sitemap</span>
+                    </xsl:when>
                     <xsl:otherwise>
                       XML <span>Sitemap</span>
                     </xsl:otherwise>
@@ -274,11 +282,24 @@
 
             <div class="stats-grid">
               <div class="stat-card">
-                <div class="stat-label">Total Routes / Sitemaps</div>
+                <div class="stat-label">
+                  <xsl:choose>
+                    <xsl:when test="sitemap:sitemapindex | sitemapindex">Total Sitemaps</xsl:when>
+                    <xsl:when test="//image:image | //image">Total Images</xsl:when>
+                    <xsl:when test="//video:video | //video">Total Videos</xsl:when>
+                    <xsl:otherwise>Total Routes</xsl:otherwise>
+                  </xsl:choose>
+                </div>
                 <div class="stat-value">
                   <xsl:choose>
                     <xsl:when test="sitemap:sitemapindex | sitemapindex">
                       <xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap | sitemapindex/sitemap)"/>
+                    </xsl:when>
+                    <xsl:when test="//image:image | //image">
+                      <xsl:value-of select="count(//image:image | //image)"/>
+                    </xsl:when>
+                    <xsl:when test="//video:video | //video">
+                      <xsl:value-of select="count(//video:video | //video)"/>
                     </xsl:when>
                     <xsl:otherwise>
                       <xsl:value-of select="count(sitemap:urlset/sitemap:url | urlset/url)"/>
@@ -288,13 +309,33 @@
               </div>
 
               <div class="stat-card">
-                <div class="stat-label">Locales Supported</div>
-                <div class="stat-value">EN / TR</div>
+                <div class="stat-label">
+                  <xsl:choose>
+                    <xsl:when test="//image:image | //image">Covered Pages</xsl:when>
+                    <xsl:when test="//video:video | //video">Platform</xsl:when>
+                    <xsl:otherwise>Locales Supported</xsl:otherwise>
+                  </xsl:choose>
+                </div>
+                <div class="stat-value">
+                  <xsl:choose>
+                    <xsl:when test="//image:image | //image">
+                      <xsl:value-of select="count(sitemap:urlset/sitemap:url | urlset/url)"/>
+                    </xsl:when>
+                    <xsl:when test="//video:video | //video">YouTube</xsl:when>
+                    <xsl:otherwise>EN / TR</xsl:otherwise>
+                  </xsl:choose>
+                </div>
               </div>
 
               <div class="stat-card">
                 <div class="stat-label">Standard &amp; Schema</div>
-                <div class="stat-value" style="font-size: 18px; line-height: 28px;">Sitemaps.org 0.9</div>
+                <div class="stat-value" style="font-size: 18px; line-height: 28px;">
+                  <xsl:choose>
+                    <xsl:when test="//image:image | //image">Google Image 1.1</xsl:when>
+                    <xsl:when test="//video:video | //video">Google Video 1.1</xsl:when>
+                    <xsl:otherwise>Sitemaps.org 0.9</xsl:otherwise>
+                  </xsl:choose>
+                </div>
               </div>
             </div>
           </header>
@@ -338,52 +379,187 @@
 
               <!-- CASE 2: URLSET -->
               <xsl:if test="sitemap:urlset | urlset">
-                <table>
-                  <thead>
-                    <tr>
-                      <th class="index-cell">#</th>
-                      <th>URL Location</th>
-                      <th>Language Alternates (Hreflang)</th>
-                      <th>Last Modified</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <xsl:for-each select="sitemap:urlset/sitemap:url | urlset/url">
-                      <tr>
-                        <td class="index-cell"><xsl:value-of select="position()"/></td>
-                        <td>
-                          <a class="url-link" href="{sitemap:loc | loc}">
-                            <xsl:value-of select="sitemap:loc | loc"/>
-                          </a>
-                        </td>
-                        <td>
-                          <xsl:choose>
-                            <xsl:when test="xhtml:link[@rel='alternate']">
-                              <xsl:for-each select="xhtml:link[@rel='alternate']">
-                                <a class="badge badge-alt" href="{@href}" title="{@hreflang} version">
-                                  <xsl:value-of select="@hreflang"/>: <xsl:value-of select="@href"/>
-                                </a>
-                              </xsl:for-each>
-                            </xsl:when>
-                            <xsl:otherwise>
-                              <span class="text-muted">—</span>
-                            </xsl:otherwise>
-                          </xsl:choose>
-                        </td>
-                        <td>
-                          <xsl:choose>
-                            <xsl:when test="sitemap:lastmod | lastmod">
-                              <span class="text-muted"><xsl:value-of select="sitemap:lastmod | lastmod"/></span>
-                            </xsl:when>
-                            <xsl:otherwise>
-                              <span class="text-muted">—</span>
-                            </xsl:otherwise>
-                          </xsl:choose>
-                        </td>
-                      </tr>
-                    </xsl:for-each>
-                  </tbody>
-                </table>
+                <xsl:choose>
+                  <!-- CASE 2A: IMAGE SITEMAP -->
+                  <xsl:when test="//image:image | //image">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="index-cell">#</th>
+                          <th>Page URL</th>
+                          <th>Preview</th>
+                          <th>Image URL</th>
+                          <th>Image Title / Caption</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <xsl:for-each select="//image:image | //image">
+                          <tr>
+                            <td class="index-cell"><xsl:value-of select="position()"/></td>
+                            <td>
+                              <a class="url-link">
+                                <xsl:attribute name="href">
+                                  <xsl:value-of select="../sitemap:loc | ../loc"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="../sitemap:loc | ../loc"/>
+                              </a>
+                            </td>
+                            <td>
+                              <a target="_blank" rel="noopener">
+                                <xsl:attribute name="href">
+                                  <xsl:value-of select="image:loc | loc"/>
+                                </xsl:attribute>
+                                <img style="max-width: 80px; max-height: 50px; border-radius: 6px; border: 1px solid var(--border-color); object-fit: cover; background: #000; display: block;">
+                                  <xsl:attribute name="src">
+                                    <xsl:value-of select="image:loc | loc"/>
+                                  </xsl:attribute>
+                                  <xsl:attribute name="alt">
+                                    <xsl:value-of select="image:title | title"/>
+                                  </xsl:attribute>
+                                </img>
+                              </a>
+                            </td>
+                            <td>
+                              <a class="url-link" target="_blank" rel="noopener">
+                                <xsl:attribute name="href">
+                                  <xsl:value-of select="image:loc | loc"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="image:loc | loc"/>
+                              </a>
+                            </td>
+                            <td>
+                              <xsl:choose>
+                                <xsl:when test="image:title | title">
+                                  <xsl:value-of select="image:title | title"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <span class="text-muted">—</span>
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </td>
+                          </tr>
+                        </xsl:for-each>
+                      </tbody>
+                    </table>
+                  </xsl:when>
+
+                  <!-- CASE 2B: VIDEO SITEMAP -->
+                  <xsl:when test="//video:video | //video">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="index-cell">#</th>
+                          <th>Page URL</th>
+                          <th>Thumbnail</th>
+                          <th>Video Title &amp; Description</th>
+                          <th>Duration (sec)</th>
+                          <th>Embed Player</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <xsl:for-each select="//video:video | //video">
+                          <tr>
+                            <td class="index-cell"><xsl:value-of select="position()"/></td>
+                            <td>
+                              <a class="url-link">
+                                <xsl:attribute name="href">
+                                  <xsl:value-of select="../sitemap:loc | ../loc"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="../sitemap:loc | ../loc"/>
+                              </a>
+                            </td>
+                            <td>
+                              <a target="_blank" rel="noopener">
+                                <xsl:attribute name="href">
+                                  <xsl:value-of select="../sitemap:loc | ../loc"/>
+                                </xsl:attribute>
+                                <img style="max-width: 80px; max-height: 50px; border-radius: 6px; border: 1px solid var(--border-color); object-fit: cover; display: block;">
+                                  <xsl:attribute name="src">
+                                    <xsl:value-of select="video:thumbnail_loc | thumbnail_loc"/>
+                                  </xsl:attribute>
+                                  <xsl:attribute name="alt">
+                                    <xsl:value-of select="video:title | title"/>
+                                  </xsl:attribute>
+                                </img>
+                              </a>
+                            </td>
+                            <td>
+                              <div style="font-weight: 600; color: var(--gold-light); margin-bottom: 4px;">
+                                <xsl:value-of select="video:title | title"/>
+                              </div>
+                              <div class="text-muted" style="max-width: 440px; font-size: 11px; line-height: 1.4;">
+                                <xsl:value-of select="video:description | description"/>
+                              </div>
+                            </td>
+                            <td>
+                              <span class="badge badge-alt">
+                                <xsl:value-of select="video:duration | duration"/>s
+                              </span>
+                            </td>
+                            <td>
+                              <a class="url-link" target="_blank" rel="noopener">
+                                <xsl:attribute name="href">
+                                  <xsl:value-of select="video:player_loc | player_loc"/>
+                                </xsl:attribute>
+                                Embed Player ↗
+                              </a>
+                            </td>
+                          </tr>
+                        </xsl:for-each>
+                      </tbody>
+                    </table>
+                  </xsl:when>
+
+                  <!-- CASE 2C: STANDARD SITEMAP -->
+                  <xsl:otherwise>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="index-cell">#</th>
+                          <th>URL Location</th>
+                          <th>Language Alternates (Hreflang)</th>
+                          <th>Last Modified</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <xsl:for-each select="sitemap:urlset/sitemap:url | urlset/url">
+                          <tr>
+                            <td class="index-cell"><xsl:value-of select="position()"/></td>
+                            <td>
+                              <a class="url-link" href="{sitemap:loc | loc}">
+                                <xsl:value-of select="sitemap:loc | loc"/>
+                              </a>
+                            </td>
+                            <td>
+                              <xsl:choose>
+                                <xsl:when test="xhtml:link[@rel='alternate']">
+                                  <xsl:for-each select="xhtml:link[@rel='alternate']">
+                                    <a class="badge badge-alt" href="{@href}" title="{@hreflang} version">
+                                      <xsl:value-of select="@hreflang"/>: <xsl:value-of select="@href"/>
+                                    </a>
+                                  </xsl:for-each>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <span class="text-muted">—</span>
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </td>
+                            <td>
+                              <xsl:choose>
+                                <xsl:when test="sitemap:lastmod | lastmod">
+                                  <span class="text-muted"><xsl:value-of select="sitemap:lastmod | lastmod"/></span>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <span class="text-muted">—</span>
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </td>
+                          </tr>
+                        </xsl:for-each>
+                      </tbody>
+                    </table>
+                  </xsl:otherwise>
+                </xsl:choose>
               </xsl:if>
             </div>
           </div>
