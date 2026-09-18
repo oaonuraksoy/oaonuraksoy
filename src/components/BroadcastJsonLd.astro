@@ -19,6 +19,7 @@ interface Props {
   canonicalUrl: string;
   lang?: 'en' | 'tr';
   youtubeId?: string;
+  spotifyUrl?: string;
   duration?: string;
   chapters?: Chapter[];
   downloads?: DownloadItem[];
@@ -31,6 +32,7 @@ const {
   canonicalUrl,
   lang = 'en',
   youtubeId,
+  spotifyUrl,
   duration = 'PT15M00S',
   chapters = [],
   downloads = []
@@ -47,34 +49,115 @@ function parseTimeToSeconds(timeStr: string): number {
   return 0;
 }
 
+const homeUrl = lang === 'tr' ? 'https://onuraksoy.com.tr/tr/' : 'https://onuraksoy.com.tr/';
+const broadcastsUrl = lang === 'tr' ? 'https://onuraksoy.com.tr/tr/broadcasts/' : 'https://onuraksoy.com.tr/broadcasts/';
+const featuredImageUrl = youtubeId
+  ? `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`
+  : 'https://onuraksoy.com.tr/images/onur-aksoy.webp';
+
 const graph: any[] = [
+  // 1. WebSite Root Entity
+  {
+    '@type': 'WebSite',
+    '@id': 'https://onuraksoy.com.tr/#website',
+    'url': 'https://onuraksoy.com.tr',
+    'name': 'Onur Aksoy',
+    'alternateName': ['Onur Aksoy Portfolio', 'Hackonomist'],
+    'inLanguage': ['en-US', 'tr-TR'],
+    'publisher': {
+      '@id': 'https://onuraksoy.com.tr/#person'
+    }
+  },
+
+  // 2. Author / Creator Person Entity
+  {
+    '@type': 'Person',
+    '@id': 'https://onuraksoy.com.tr/#person',
+    'name': 'Onur Aksoy',
+    'alternateName': ['Hackonomist', 'hackonomist', 'OA'],
+    'jobTitle': 'AI-Native Developer & Multidisciplinary Creator',
+    'url': 'https://onuraksoy.com.tr',
+    'sameAs': [
+      'https://github.com/oaonuraksoy',
+      'https://youtube.com/@oaonuraksoy',
+      'https://linkedin.com/in/oaonuraksoy',
+      'https://x.com/oaonuraksoy',
+      'https://instagram.com/oaonuraksoy',
+      'https://t.me/oaonuraksoy',
+      'https://wa.me/905511817053',
+      'https://creators.spotify.com/pod/profile/oaonuraksoy/'
+    ]
+  },
+
+  // 3. WebPage Entity
+  {
+    '@type': 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    'url': canonicalUrl,
+    'name': title,
+    'description': description,
+    'isPartOf': {
+      '@id': 'https://onuraksoy.com.tr/#website'
+    },
+    'breadcrumb': {
+      '@id': `${canonicalUrl}#breadcrumb`
+    },
+    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US'
+  },
+
+  // 4. BreadcrumbList Entity (Google SERP breadcrumbs)
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl}#breadcrumb`,
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': lang === 'tr' ? 'Ana Sayfa' : 'Home',
+        'item': homeUrl
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': lang === 'tr' ? 'Yayınlar & Bilgi Kasası' : 'Broadcasts & Vault',
+        'item': broadcastsUrl
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': title,
+        'item': canonicalUrl
+      }
+    ]
+  },
+
+  // 5. TechArticle Entity
   {
     '@type': 'TechArticle',
     '@id': `${canonicalUrl}#article`,
     'isPartOf': {
-      '@type': 'WebSite',
-      '@id': 'https://onuraksoy.com.tr/#website'
+      '@id': `${canonicalUrl}#webpage`
     },
     'headline': title,
     'description': description,
     'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US',
-    'mainEntityOfPage': canonicalUrl,
+    'mainEntityOfPage': `${canonicalUrl}#webpage`,
     'datePublished': pubDate.toISOString(),
     'dateModified': pubDate.toISOString(),
+    'image': {
+      '@type': 'ImageObject',
+      'url': featuredImageUrl
+    },
     'author': {
-      '@type': 'Person',
-      '@id': 'https://onuraksoy.com.tr/#person',
-      'name': 'Onur Aksoy',
-      'alternateName': 'Hackonomist',
-      'url': 'https://onuraksoy.com.tr'
+      '@id': 'https://onuraksoy.com.tr/#person'
     },
     'publisher': {
-      '@type': 'Person',
       '@id': 'https://onuraksoy.com.tr/#person'
     }
   }
 ];
 
+// 6. VideoObject Entity with hasPart Key Moments (if video exists)
 if (youtubeId) {
   const clips = chapters.map((ch, idx) => {
     const startSec = ch.seconds ?? parseTimeToSeconds(ch.time);
@@ -102,7 +185,10 @@ if (youtubeId) {
     'duration': duration,
     'contentUrl': `https://www.youtube.com/watch?v=${youtubeId}`,
     'embedUrl': `https://www.youtube-nocookie.com/embed/${youtubeId}`,
-    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US'
+    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US',
+    'author': {
+      '@id': 'https://onuraksoy.com.tr/#person'
+    }
   };
 
   if (clips.length > 0) {
@@ -112,14 +198,31 @@ if (youtubeId) {
   graph.push(videoObject);
 }
 
-downloads.forEach((d) => {
+// 7. AudioObject Entity (if podcast exists)
+if (spotifyUrl) {
   graph.push({
-    '@type': 'DigitalDocument',
+    '@type': 'AudioObject',
+    '@id': `${canonicalUrl}#audio`,
+    'name': `${title} (Podcast Audio Edition)`,
+    'description': description,
+    'contentUrl': spotifyUrl,
+    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US',
+    'author': {
+      '@id': 'https://onuraksoy.com.tr/#person'
+    }
+  });
+}
+
+// 8. DigitalDocument / SoftwareSourceCode Entities (if downloads exist)
+downloads.forEach((d, idx) => {
+  const isCode = d.type.toLowerCase() === 'code' || d.type.toLowerCase() === 'sql' || d.type.toLowerCase() === 'ts';
+  graph.push({
+    '@type': isCode ? 'SoftwareSourceCode' : 'DigitalDocument',
+    '@id': `${canonicalUrl}#download-${idx}`,
     'name': d.name,
     'fileFormat': d.type,
     'url': d.driveUrl,
     'creator': {
-      '@type': 'Person',
       '@id': 'https://onuraksoy.com.tr/#person'
     }
   });

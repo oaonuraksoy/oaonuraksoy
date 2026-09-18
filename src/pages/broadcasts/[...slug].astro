@@ -30,9 +30,18 @@ const ogImage = item.data.youtubeId
   ? `https://i.ytimg.com/vi/${item.data.youtubeId}/maxresdefault.jpg`
   : 'https://onuraksoy.com.tr/images/onur-aksoy-og.jpg';
 const counterpartUrl = counterpartSlug ? `/tr/broadcasts/${counterpartSlug}/` : '/tr/broadcasts/';
+
+const hasVideo = !!item.data.youtubeId;
+const hasAudio = !!item.data.spotifyUrl;
+const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
 ---
 
-<BaseLayout lang="en" activeNav="broadcasts" counterpartUrl={counterpartUrl}>
+<BaseLayout
+  lang="en"
+  activeNav="broadcasts"
+  counterpartUrl={counterpartUrl}
+  disableDefaultJsonLd={true}
+>
   <SEO
     slot="head"
     title={`${item.data.title} — Onur Aksoy Broadcasts`}
@@ -50,13 +59,14 @@ const counterpartUrl = counterpartSlug ? `/tr/broadcasts/${counterpartSlug}/` : 
     canonicalUrl={canonicalUrl}
     lang="en"
     youtubeId={item.data.youtubeId}
+    spotifyUrl={item.data.spotifyUrl}
     duration={item.data.duration}
     chapters={item.data.chapters}
     downloads={item.data.downloads}
   />
 
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
-    <!-- Breadcrumb & Back -->
+    <!-- Breadcrumb Navigation -->
     <nav class="flex items-center gap-2 text-xs font-mono text-text-muted" aria-label="Breadcrumbs">
       <a href="/" class="hover:text-gold-tungsten transition-colors">Home</a>
       <span>/</span>
@@ -74,8 +84,8 @@ const counterpartUrl = counterpartSlug ? `/tr/broadcasts/${counterpartSlug}/` : 
         {item.data.duration && (
           <>
             <span>•</span>
-            <span class="px-2 py-0.5 rounded bg-obsidian-surface border border-obsidian-border">
-              {item.data.duration.replace('PT', '').toLowerCase()} Broadcast
+            <span class="px-2 py-0.5 rounded bg-obsidian-surface border border-obsidian-border text-gold-highlight">
+              {item.data.duration.replace('PT', '').toLowerCase()}
             </span>
           </>
         )}
@@ -109,11 +119,11 @@ const counterpartUrl = counterpartSlug ? `/tr/broadcasts/${counterpartSlug}/` : 
       </div>
     </header>
 
-    <!-- Video Player Façade with Chapters -->
-    {item.data.youtubeId && (
+    <!-- Case 1: Video Hero (if video is available) -->
+    {hasVideo && (
       <section aria-label="Video Player and Chapters">
         <LiteYouTube
-          youtubeId={item.data.youtubeId}
+          youtubeId={item.data.youtubeId!}
           title={item.data.title}
           chapters={item.data.chapters}
           lang="en"
@@ -121,16 +131,22 @@ const counterpartUrl = counterpartSlug ? `/tr/broadcasts/${counterpartSlug}/` : 
       </section>
     )}
 
-    <!-- Spotify Audio Stream Banner (if available) -->
-    {item.data.spotifyUrl && (
-      <section class="p-4 rounded-xl border border-emerald-900/40 bg-emerald-950/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3 text-emerald-400">
-          <svg class="w-6 h-6 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.306c-.215.353-.674.464-1.027.249-2.812-1.718-6.353-2.107-10.523-1.155-.403.092-.806-.157-.899-.56-.092-.403.157-.806.56-.899 4.568-1.044 8.508-.598 11.64 1.338.353.215.464.674.249 1.027zm1.47-3.267c-.27.441-.849.58-1.29.31-3.219-1.979-8.127-2.551-11.935-1.394-.497.151-1.024-.136-1.175-.633-.151-.497.136-1.024.633-1.175 4.354-1.321 9.771-.685 13.457 1.579.441.27.58.849.31 1.29zm.126-3.41c-3.86-2.292-10.222-2.503-13.9-1.386-.59.179-1.221-.161-1.4-.751-.179-.59.161-1.221.751-1.4 4.237-1.286 11.266-1.042 15.706 1.593.531.315.704 1.004.389 1.535-.315.531-1.004.704-1.535.389z"/>
-          </svg>
-          <div class="text-xs">
-            <div class="font-semibold text-text-primary">Listen as Podcast Episode</div>
-            <div class="text-text-muted">Available on Spotify for Creators & Apple Podcasts</div>
+    <!-- Case 2: Audio Hero / Banner -->
+    {hasAudio && (
+      <section class={`p-5 rounded-xl border ${hasVideo ? 'border-emerald-900/40 bg-emerald-950/20' : 'border-emerald-700/50 bg-emerald-950/30 p-6 shadow-xl'} flex flex-col sm:flex-row items-center justify-between gap-4`}>
+        <div class="flex items-center gap-3.5 text-emerald-400">
+          <div class="p-3 rounded-full bg-emerald-900/40 text-emerald-400 shrink-0">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.306c-.215.353-.674.464-1.027.249-2.812-1.718-6.353-2.107-10.523-1.155-.403.092-.806-.157-.899-.56-.092-.403.157-.806.56-.899 4.568-1.044 8.508-.598 11.64 1.338.353.215.464.674.249 1.027zm1.47-3.267c-.27.441-.849.58-1.29.31-3.219-1.979-8.127-2.551-11.935-1.394-.497.151-1.024-.136-1.175-.633-.151-.497.136-1.024.633-1.175 4.354-1.321 9.771-.685 13.457 1.579.441.27.58.849.31 1.29zm.126-3.41c-3.86-2.292-10.222-2.503-13.9-1.386-.59.179-1.221-.161-1.4-.751-.179-.59.161-1.221.751-1.4 4.237-1.286 11.266-1.042 15.706 1.593.531.315.704 1.004.389 1.535-.315.531-1.004.704-1.535.389z"/>
+            </svg>
+          </div>
+          <div class="space-y-0.5">
+            <h2 class="text-sm sm:text-base font-semibold text-text-primary">
+              {hasVideo ? 'Audio Edition Available' : 'Podcast Audio Broadcast'}
+            </h2>
+            <p class="text-xs text-text-muted">
+              Stream on Spotify for Creators, Apple Podcasts, or your favorite client.
+            </p>
           </div>
         </div>
 
@@ -138,22 +154,22 @@ const counterpartUrl = counterpartSlug ? `/tr/broadcasts/${counterpartSlug}/` : 
           href={item.data.spotifyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-obsidian-black font-semibold text-xs hover:bg-emerald-400 transition-colors shrink-0"
+          class="px-4 py-2.5 rounded-lg bg-emerald-500 text-obsidian-black font-semibold text-xs hover:bg-emerald-400 transition-colors shrink-0 shadow-lg shadow-emerald-500/20"
         >
-          Open in Spotify ↗
+          Stream on Spotify ↗
         </a>
       </section>
     )}
 
-    <!-- 20TB Google Drive Download Vault -->
-    {item.data.downloads && item.data.downloads.length > 0 && (
+    <!-- Case 3: 20TB Google Drive Download Vault -->
+    {hasDownloads && (
       <section aria-label="Project Download Vault">
         <DriveDownloadCard downloads={item.data.downloads} lang="en" />
       </section>
     )}
 
     <!-- Markdown Article & Deep Transcript Body -->
-    <article class="prose prose-invert prose-gold max-w-none pt-4 border-t border-obsidian-border/60">
+    <article class="prose prose-invert prose-gold max-w-none pt-6 border-t border-obsidian-border/60">
       <Content />
     </article>
   </main>

@@ -6,6 +6,19 @@ import { getCollection } from 'astro:content';
 const broadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
 broadcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
+// Featured broadcast (first one or featured: true)
+const featuredBroadcast = broadcasts.find((b) => b.data.featured) || broadcasts[0];
+const remainingBroadcasts = broadcasts.filter((b) => b.id !== featuredBroadcast?.id);
+
+// Extract all unique tags
+const allTags = Array.from(new Set(broadcasts.flatMap((b) => b.data.tags || [])));
+
+// Counts for format filters
+const countAll = broadcasts.length;
+const countVideo = broadcasts.filter((b) => !!b.data.youtubeId).length;
+const countAudio = broadcasts.filter((b) => !!b.data.spotifyUrl).length;
+const countVault = broadcasts.filter((b) => b.data.downloads && b.data.downloads.length > 0).length;
+
 const title = "Broadcasts & Technical Vault — Onur Aksoy";
 const description = "Architectural screencasts, technical deep dives, interactive video chapters, transcripts, and high-speed downloadable engineering assets from Onur Aksoy.";
 ---
@@ -34,16 +47,162 @@ const description = "Architectural screencasts, technical deep dives, interactiv
       </p>
     </section>
 
+    <!-- Spotlight Featured Broadcast (if available) -->
+    {featuredBroadcast && (
+      <section class="relative rounded-2xl border border-gold-tungsten/40 bg-gradient-to-br from-obsidian-surface via-obsidian-surface to-obsidian-black p-6 sm:p-8 shadow-2xl overflow-hidden group">
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Thumbnail Side -->
+          <div class="lg:col-span-6 relative aspect-video rounded-xl overflow-hidden border border-obsidian-border bg-obsidian-black">
+            <img
+              src={featuredBroadcast.data.youtubeId 
+                ? `https://i.ytimg.com/vi/${featuredBroadcast.data.youtubeId}/maxresdefault.jpg`
+                : featuredBroadcast.data.thumbnail || '/images/oa-logo.webp'}
+              alt={featuredBroadcast.data.title}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/90 via-transparent to-transparent"></div>
+
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-gold-tungsten text-obsidian-black text-[11px] font-mono font-bold tracking-wider uppercase shadow">
+              ★ Featured Spotlight
+            </div>
+
+            {featuredBroadcast.data.duration && (
+              <div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-obsidian-black/90 border border-obsidian-border text-xs font-mono text-gold-tungsten">
+                {featuredBroadcast.data.duration.replace('PT', '').toLowerCase()}
+              </div>
+            )}
+          </div>
+
+          <!-- Content Side -->
+          <div class="lg:col-span-6 space-y-4">
+            <div class="flex items-center gap-3 text-xs font-mono text-text-muted">
+              <time datetime={featuredBroadcast.data.pubDate.toISOString()} class="text-gold-tungsten">
+                {featuredBroadcast.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </time>
+              <span>•</span>
+              <span class="text-gold-highlight">Latest Release</span>
+              {featuredBroadcast.data.downloads && featuredBroadcast.data.downloads.length > 0 && (
+                <>
+                  <span>•</span>
+                  <span class="text-gold-tungsten">{featuredBroadcast.data.downloads.length} Vault Downloads</span>
+                </>
+              )}
+            </div>
+
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-text-primary group-hover:text-gold-highlight transition-colors">
+              <a href={`/broadcasts/${featuredBroadcast.id.replace(/^en\//, '')}/`}>
+                {featuredBroadcast.data.title}
+              </a>
+            </h2>
+
+            <p class="text-sm sm:text-base text-text-muted line-clamp-3 leading-relaxed">
+              {featuredBroadcast.data.description}
+            </p>
+
+            <div class="flex items-center gap-2 flex-wrap pt-2">
+              {featuredBroadcast.data.tags.map((tag) => (
+                <span class="text-xs font-mono text-text-muted px-2.5 py-0.5 rounded bg-obsidian-black border border-obsidian-border">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+
+            <div class="pt-4 flex items-center gap-4">
+              <a
+                href={`/broadcasts/${featuredBroadcast.id.replace(/^en\//, '')}/`}
+                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold text-xs hover:bg-gold-highlight transition-all duration-200 shadow-lg shadow-gold-tungsten/20"
+              >
+                <span>Explore Full Broadcast</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Category & Format Filtering Hub -->
+    <section class="space-y-6 pt-4 border-t border-obsidian-border/60">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <!-- Format Filter Tabs -->
+        <div class="flex items-center gap-2 flex-wrap" role="group" aria-label="Format filters">
+          <button
+            type="button"
+            class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gold-tungsten text-obsidian-black font-semibold shadow-sm"
+            data-filter="all"
+          >
+            All Broadcasts <span class="opacity-80">({countAll})</span>
+          </button>
+          <button
+            type="button"
+            class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
+            data-filter="video"
+          >
+            🎬 Screencasts <span class="opacity-80">({countVideo})</span>
+          </button>
+          <button
+            type="button"
+            class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
+            data-filter="audio"
+          >
+            🎙️ Podcasts <span class="opacity-80">({countAudio})</span>
+          </button>
+          <button
+            type="button"
+            class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
+            data-filter="vault"
+          >
+            📦 The Vault (Downloads) <span class="opacity-80">({countVault})</span>
+          </button>
+        </div>
+
+        <!-- Result Status Badge -->
+        <div class="text-xs font-mono text-text-muted" id="filter-status" aria-live="polite">
+          Showing <span id="visible-count">{broadcasts.length}</span> publications
+        </div>
+      </div>
+
+      <!-- Topic Tag Chips -->
+      {allTags.length > 0 && (
+        <div class="flex items-center gap-1.5 flex-wrap pt-1">
+          <span class="text-xs font-mono text-gold-tungsten mr-1">Topics:</span>
+          {allTags.map((tag) => (
+            <button
+              type="button"
+              class="tag-pill text-[11px] font-mono text-text-muted hover:text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors"
+              data-tag={tag.toLowerCase()}
+            >
+              #{tag}
+            </button>
+          ))}
+        </div>
+      )}
+    </section>
+
     <!-- Broadcasts Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8" id="broadcasts-grid">
       {broadcasts.map((item) => {
         const slug = item.id.replace(/^en\//, '');
         const thumbUrl = item.data.youtubeId 
           ? `https://i.ytimg.com/vi/${item.data.youtubeId}/maxresdefault.jpg`
           : item.data.thumbnail || '/images/oa-logo.webp';
 
+        const formats: string[] = ['all'];
+        if (item.data.youtubeId) formats.push('video');
+        if (item.data.spotifyUrl) formats.push('audio');
+        if (item.data.downloads && item.data.downloads.length > 0) formats.push('vault');
+
+        const tagsString = (item.data.tags || []).map((t) => t.toLowerCase()).join(' ');
+
         return (
-          <article class="group flex flex-col rounded-xl border border-obsidian-border bg-obsidian-surface hover:border-gold-tungsten/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-gold-tungsten/5">
+          <article
+            class="broadcast-card group flex flex-col rounded-xl border border-obsidian-border bg-obsidian-surface hover:border-gold-tungsten/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-gold-tungsten/5"
+            data-formats={formats.join(' ')}
+            data-tags={tagsString}
+          >
             <!-- Thumbnail & Video Badge -->
             <a href={`/broadcasts/${slug}/`} class="relative aspect-video overflow-hidden bg-obsidian-black block">
               <img
@@ -60,14 +219,26 @@ const description = "Architectural screencasts, technical deep dives, interactiv
                 </div>
               )}
 
-              {item.data.youtubeId && (
-                <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-red-600/90 text-white text-xs font-semibold flex items-center gap-1.5 shadow">
-                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                  <span>Video</span>
-                </div>
-              )}
+              <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                {item.data.youtubeId && (
+                  <span class="px-2 py-0.5 rounded-md bg-red-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                    <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <span>Video</span>
+                  </span>
+                )}
+                {item.data.spotifyUrl && (
+                  <span class="px-2 py-0.5 rounded-md bg-emerald-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                    <span>Podcast</span>
+                  </span>
+                )}
+                {item.data.downloads && item.data.downloads.length > 0 && (
+                  <span class="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
+                    <span>Vault</span>
+                  </span>
+                )}
+              </div>
             </a>
 
             <!-- Card Body -->
@@ -120,5 +291,107 @@ const description = "Architectural screencasts, technical deep dives, interactiv
         );
       })}
     </section>
+
+    <!-- Empty State for Filters -->
+    <div id="empty-state" class="hidden p-12 text-center rounded-xl border border-obsidian-border bg-obsidian-surface space-y-3">
+      <div class="text-gold-tungsten font-mono text-sm font-semibold">No publications found</div>
+      <p class="text-xs text-text-muted">There are no broadcasts matching your current filter selection.</p>
+      <button
+        type="button"
+        id="reset-filter-btn"
+        class="inline-block px-3.5 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight hover:bg-gold-tungsten hover:text-obsidian-black border border-gold-tungsten/30 text-xs font-mono font-semibold transition-all"
+      >
+        Reset Filters
+      </button>
+    </div>
   </main>
 </BaseLayout>
+
+<script>
+  // Instantaneous zero-dependency client-side filter
+  const filterTabs = document.querySelectorAll<HTMLButtonElement>('.filter-tab');
+  const tagPills = document.querySelectorAll<HTMLButtonElement>('.tag-pill');
+  const cards = document.querySelectorAll<HTMLElement>('.broadcast-card');
+  const visibleCountEl = document.getElementById('visible-count');
+  const emptyStateEl = document.getElementById('empty-state');
+  const resetBtn = document.getElementById('reset-filter-btn');
+
+  let currentFilter = 'all';
+  let currentTag = '';
+
+  function applyFilters() {
+    let visible = 0;
+
+    cards.forEach((card) => {
+      const formats = (card.getAttribute('data-formats') || '').split(' ');
+      const tags = (card.getAttribute('data-tags') || '').split(' ');
+
+      const formatMatches = currentFilter === 'all' || formats.includes(currentFilter);
+      const tagMatches = !currentTag || tags.includes(currentTag);
+
+      if (formatMatches && tagMatches) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    if (visibleCountEl) {
+      visibleCountEl.textContent = visible.toString();
+    }
+
+    if (emptyStateEl) {
+      if (visible === 0) {
+        emptyStateEl.classList.remove('hidden');
+      } else {
+        emptyStateEl.classList.add('hidden');
+      }
+    }
+  }
+
+  filterTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach((t) => {
+        t.className = 'filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary';
+      });
+      tab.className = 'filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gold-tungsten text-obsidian-black font-semibold shadow-sm';
+
+      currentFilter = tab.getAttribute('data-filter') || 'all';
+      applyFilters();
+    });
+  });
+
+  tagPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const clickedTag = pill.getAttribute('data-tag') || '';
+      if (currentTag === clickedTag) {
+        currentTag = '';
+        pill.classList.remove('bg-gold-tungsten', 'text-obsidian-black');
+        pill.classList.add('text-text-muted');
+      } else {
+        tagPills.forEach((p) => {
+          p.classList.remove('bg-gold-tungsten', 'text-obsidian-black');
+          p.classList.add('text-text-muted');
+        });
+        currentTag = clickedTag;
+        pill.classList.remove('text-text-muted');
+        pill.classList.add('bg-gold-tungsten', 'text-obsidian-black');
+      }
+      applyFilters();
+    });
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      currentFilter = 'all';
+      currentTag = '';
+      filterTabs[0]?.click();
+      tagPills.forEach((p) => {
+        p.classList.remove('bg-gold-tungsten', 'text-obsidian-black');
+        p.classList.add('text-text-muted');
+      });
+      applyFilters();
+    });
+  }
+</script>

@@ -19,6 +19,7 @@ interface Props {
   counterpartUrl?: string;
   schemaType?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article';
   faqs?: FAQItem[];
+  disableDefaultJsonLd?: boolean;
 }
 
 const {
@@ -29,7 +30,8 @@ const {
   activeNav = '',
   counterpartUrl,
   schemaType = 'Person',
-  faqs
+  faqs,
+  disableDefaultJsonLd = false
 } = Astro.props;
 ---
 
@@ -42,14 +44,17 @@ const {
       image={image}
       lang={lang}
     />
-    <JsonLd
-      type={schemaType}
-      title={title}
-      description={description}
-      image={image}
-      lang={lang}
-      faqs={faqs}
-    />
+    {!disableDefaultJsonLd && (
+      <JsonLd
+        type={schemaType}
+        title={title}
+        description={description}
+        image={image}
+        lang={lang}
+        faqs={faqs}
+      />
+    )}
+    <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col bg-obsidian-black selection:bg-gold-tungsten selection:text-obsidian-black">
     <!-- Accessibility Skip Link -->
