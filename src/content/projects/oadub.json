@@ -1,0 +1,128 @@
+{
+  "id": "oadub",
+  "slug": "oadub",
+  "order": 2,
+  "featured": true,
+  "accentColor": "#38BDF8",
+  "tags": [
+    "Gemini 3.5 Live",
+    "WebSocket API",
+    "Chrome Manifest V3",
+    "Offscreen Document",
+    "Web Audio API / PCM",
+    "Simultaneous Translation",
+    "Edge Add-ons"
+  ],
+  "links": {
+    "store": "https://microsoftedge.microsoft.com/addons/detail/oadub-gemini-live-sim%C3%BCl/cpnkpahbhcdbhhgacmnnobbieedaacgb",
+    "github": "https://github.com/oaonuraksoy/oaDub"
+  },
+  "metrics": {
+    "en": [
+      { "label": "Latency", "value": "< 400ms Bi-directional" },
+      { "label": "Audio Pipeline", "value": "16kHz PCM In → 24kHz Out" },
+      { "label": "Language Support", "value": "14+ Languages" },
+      { "label": "Privacy", "value": "100% Client Offline Key" }
+    ],
+    "tr": [
+      { "label": "İşlem Gecikmesi", "value": "< 400ms Çift Yönlü" },
+      { "label": "Ses Hattı", "value": "16kHz PCM Giriş → 24kHz Çıkış" },
+      { "label": "Dil Desteği", "value": "14+ Dil Desteği" },
+      { "label": "Gizlilik", "value": "%100 İstemci Yerel Anahtar" }
+    ]
+  },
+  "en": {
+    "title": "oaDub — Real-Time Multimodal AI Simultaneous Tab Dubbing Engine",
+    "description": "An advanced Chrome/Edge Manifest V3 extension streaming 16kHz raw PCM tab audio over bidirectional WebSockets to Google Gemini Live API, synthesizing instant 24kHz voice translation with zero server intermediaries.",
+    "role": "Lead Architect & AI Systems Engineer",
+    "period": "2025 — Present",
+    "status": "Production / Official Microsoft Edge Add-ons",
+    "executiveOverview": "Language barriers on global video platforms such as YouTube, Coursera, Twitch, and web conferencing platforms hinder continuous learning and technical mastery. Traditional subtitle extensions impose continuous cognitive load, whereas legacy AI dubbing platforms require minutes of batch post-processing before rendering an alternative video track.\n\n**oaDub** introduces an instant, real-time auditory translation paradigm. Built as a high-performance browser extension complying with the strict Chrome Manifest V3 lifecycle, oaDub captures live media tab audio, streams raw 16kHz Little-Endian PCM audio chunks across a low-latency bidirectional WebSocket directly to **Google Gemini 3.5 Live Multimodal API**, and receives streaming 24kHz PCM audio buffers. Through a client-side Web Audio API dual-channel mixer with background original volume ducking, oaDub delivers real-time simultaneous voice translation in under 400 milliseconds—all with zero intermediate servers and complete API key privacy.",
+    "mermaidTopology": "flowchart LR\n    subgraph Browser [\"Web Browser Environment (Manifest V3)\"]\n        subgraph Tab [\"Active Video Tab (YouTube / Coursera)\"]\n            Video[\"Media Stream / Tab Audio\"]\n        end\n        subgraph Offscreen [\"Manifest V3 Offscreen Document\"]\n            Capture[\"chrome.tabCapture API\"]\n            AudioCtx[\"Web Audio API Context\\n16kHz Downsampler\"]\n            PCM_Enc[\"Little-Endian PCM Encoder\"]\n            Capture --> AudioCtx --> PCM_Enc\n        end\n        subgraph ExtensionEngine [\"Extension Background & Audio Mixer\"]\n            Mixer[\"Dual-Channel Audio Mixer\\nOriginal Audio Ducking (-18dB)\"]\n            Speaker[\"🔊 Output Device (Speaker / Headset)\"]\n            Mixer --> Speaker\n        end\n    end\n    subgraph CloudAI [\"Google AI Multimodal Infrastructure\"]\n        GeminiLive[\"⚡ Gemini 3.5 Live API\\nBi-directional WebSocket Endpoint\"]\n        SpeechSynthesis[\"Streaming Speech-to-Speech\\n24kHz Audio Buffer Engine\"]\n        GeminiLive <--> SpeechSynthesis\n    end\n    Video --> Capture\n    PCM_Enc -- \"16kHz Mono PCM Frames (WebSocket)\" --> GeminiLive\n    SpeechSynthesis -- \"24kHz Synthesized PCM Stream\" --> Mixer\n    style Browser fill:#08090A,stroke:#38BDF8,stroke-width:1px,color:#EDEDED\n    style Offscreen fill:#0E131F,stroke:#0284C7,stroke-width:1px,color:#EDEDED\n    style ExtensionEngine fill:#14171D,stroke:#38BDF8,stroke-width:1px,color:#EDEDED\n    style CloudAI fill:#0B1120,stroke:#60A5FA,stroke-width:2px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Architectural Benchmark: oaDub Live Extension vs. Traditional Dubbing Tools",
+      "headers": ["Operational & Technical Metric", "Post-Processed Cloud Dubbing", "Standard Subtitle Extensions", "oaDub Live Gemini Engine"],
+      "rows": [
+        ["Translation Latency", "5 – 30 Minutes (Batch Render)", "1.5s – 3.0s (Text STT & Translate)", "< 400ms (Direct Live Audio Stream)"],
+        ["Audio Output", "Pre-rendered Replacement Video", "None (Text Only / Visual Distraction)", "Simultaneous 24kHz Natural Voice"],
+        ["Server Infrastructure", "Heavy GPU Cloud Render Farms", "Translation API Proxy Servers", "Zero-Server / Direct Client WebSocket"],
+        ["Privacy & Security", "Video Audio Uploaded to 3rd Party", "Token Logged on Remote Servers", "100% Client Offline Key (Zero Data Retention)"],
+        ["Browser Integration", "External Web Platform / Manual Upload", "Standard Content Script", "Manifest V3 Offscreen Document & Tab Capture"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Manifest V3 Offscreen Document & Web Audio Tab Capture Pipeline",
+        "content": "Modern Chrome extensions operate under Manifest V3 restrictions where background service workers lack DOM access and HTMLMediaElement lifecycle support. oaDub resolves this through an isolated Offscreen Document architecture. When enabled on any active video tab, `chrome.tabCapture` routes the raw media stream into a high-precision `AudioContext`, downsampling the multi-channel browser stream to a standardized 16,000 Hz 16-bit mono Little-Endian linear PCM stream ready for neural ingestion."
+      },
+      {
+        "title": "2. Low-Latency Bi-directional WebSocket & Gemini 3.5 Live Protocol",
+        "content": "Rather than relying on disjointed Speech-to-Text (STT) followed by Text Translation (MT) and Text-to-Speech (TTS), oaDub connects directly to the Google Gemini Live Multimodal WebSocket interface. Chunked binary PCM audio frames are streamed continuously, preserving prosody and intent. Gemini Live responds with a streaming sequence of 24,000 Hz raw PCM audio chunks, achieving end-to-end voice-to-voice simultaneous translation latency below 400 milliseconds."
+      },
+      {
+        "title": "3. Dual-Channel Dynamic Audio Mixing & Intelligent Volume Ducking",
+        "content": "To deliver an authentic simultaneous interpretation experience, oaDub implements an intelligent audio ducking algorithm via Web Audio API GainNodes. The original tab audio is maintained in the background at an attenuated level (-18dB) so the listener perceives natural ambient audio, while the synthesized translated voice is overlaid with pristine clarity. Dynamic circular jitter buffers smooth out variable network arrival times without introducing cumulative delay."
+      },
+      {
+        "title": "4. Zero-Server Privacy Architecture & Microsoft Edge Store Distribution",
+        "content": "User privacy is guaranteed by design: oaDub features zero intermediary backend servers, zero telemetry proxies, and zero third-party databases. The user's Google AI Studio API key is encrypted and stored exclusively inside `chrome.storage.local`. All WebSocket handshakes occur strictly between the user's browser client and Google's official Gemini endpoint. Officially certified and published on Microsoft Edge Add-ons with automated CI/CD release pipelines."
+      }
+    ],
+    "techStack": [
+      { "label": "Runtime & Platform", "value": "Chrome / Microsoft Edge Extension (Manifest V3)" },
+      { "label": "AI & Protocol", "value": "Google Gemini 3.5 Live API / Multimodal Bi-directional WebSocket" },
+      { "label": "Audio Ingestion", "value": "Web Audio API, AudioContext, Offscreen Document, 16kHz PCM Downsampling" },
+      { "label": "Output Synthesis", "value": "24kHz Low-Latency PCM Audio Stream & Dynamic Buffer Queues" },
+      { "label": "Security & Privacy", "value": "chrome.storage.local Client-Only API Key Encryption" },
+      { "label": "Distribution", "value": "Official Microsoft Edge Add-ons Store Certified" }
+    ],
+    "businessImpact": "By eliminating intermediate proxy servers and providing direct tab audio streaming, oaDub enables barrier-free real-time global media consumption for technical professionals, students, and researchers with zero operational infrastructure cost and complete data sovereignty."
+  },
+  "tr": {
+    "title": "oaDub — Gerçek Zamanlı Çok Modlu Yapay Zeka Eşzamanlı Sekme Dublajı Motoru",
+    "description": "Sekme sesini 16kHz ham PCM formatında Manifest V3 Offscreen üzerinden yakalayıp Google Gemini Live API'ye çift yönlü WebSocket ile akıtan ve 24kHz eşzamanlı dublaj üreten sıfır-sunucu Edge eklentisi.",
+    "role": "Baş Mimar & Yapay Zeka Sistem Mühendisi",
+    "period": "2025 — Günümüz",
+    "status": "Canlıda / Resmi Microsoft Edge Eklentisi",
+    "executiveOverview": "Küresel video platformlarında (YouTube, Coursera, Twitch, web konferansları) yabancı dildeki teknik ve eğitsel içerikleri takip etmek altyazı okuma zorunluluğu nedeniyle sürekli bir bilişsel yük yaratır; geleneksel yapay zeka dublaj araçları ise alternatif bir video kanalı render etmek için dakikalarca süren toplu işlem süreleri gerektirir.\n\n**oaDub**, bu engele son nesil çok modlu yapay zeka ile son veren anlık ve gerçek zamanlı bir eşzamanlı sesli dublaj motorudur. Chrome Manifest V3 kısıtlamalarına tam uyumlu olarak geliştirilen eklenti, tarayıcı sekmesindeki canlı medyayı yakalayarak 16kHz Little-Endian ham PCM formatında doğrudan **Google Gemini 3.5 Live Multimodal WebSocket API**'sine akıtır. Yapay zekadan anlık dönen 24kHz PCM ses akışı, istemci tarafındaki Web Audio API çift kanallı mikseri üzerinden orijinal sesi hafifçe kısarak (audio ducking) eşzamanlı yayınlar. Sistem, harici hiçbir ara sunucuya ihtiyaç duymadan 400 milisaniyenin altında gecikmeyle çalışırken, kullanıcı API anahtarını tamamen yerel `chrome.storage.local` alanında korur.",
+    "mermaidTopology": "flowchart LR\n    subgraph Browser [\"Tarayıcı Çalışma Zamanı (Manifest V3)\"]\n        subgraph Tab [\"Aktif Medya Sekmesi (YouTube / Coursera)\"]\n            Video[\"Medya Akışı / Sekme Sesi\"]\n        end\n        subgraph Offscreen [\"Manifest V3 Offscreen Belgesi\"]\n            Capture[\"chrome.tabCapture API\"]\n            AudioCtx[\"Web Audio API Context\\n16kHz Örnekleyici\"]\n            PCM_Enc[\"Little-Endian PCM Kodlayıcı\"]\n            Capture --> AudioCtx --> PCM_Enc\n        end\n        subgraph ExtensionEngine [\"Eklenti Arka Planı & Ses Mikseri\"]\n            Mixer[\"Çift Kanallı Ses Mikseri\\nOrijinal Ses Kısma (-18dB Ducking)\"]\n            Speaker[\"🔊 Çıkış Aygıtı (Hoparlör / Kulaklık)\"]\n            Mixer --> Speaker\n        end\n    end\n    subgraph CloudAI [\"Google Çok Modlu Yapay Zeka Altyapısı\"]\n        GeminiLive[\"⚡ Gemini 3.5 Live API\\nÇift Yönlü WebSocket Uç Noktası\"]\n        SpeechSynthesis[\"Akışkan Sesten Sese Dublaj\\n24kHz Ses Tampon Motoru\"]\n        GeminiLive <--> SpeechSynthesis\n    end\n    Video --> Capture\n    PCM_Enc -- \"16kHz Mono PCM Paketleri (WebSocket)\" --> GeminiLive\n    SpeechSynthesis -- \"24kHz Sentezlenmiş PCM Akışı\" --> Mixer\n    style Browser fill:#08090A,stroke:#38BDF8,stroke-width:1px,color:#EDEDED\n    style Offscreen fill:#0E131F,stroke:#0284C7,stroke-width:1px,color:#EDEDED\n    style ExtensionEngine fill:#14171D,stroke:#38BDF8,stroke-width:1px,color:#EDEDED\n    style CloudAI fill:#0B1120,stroke:#60A5FA,stroke-width:2px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari Karşılaştırma: oaDub Canlı Eklentisi ve Geleneksel Dublaj Araçları",
+      "headers": ["Operasyonel & Teknik Kriter", "İşlem Sonrası Bulut Dublajı", "Standart Altyazı Eklentileri", "oaDub Canlı Gemini Motoru"],
+      "rows": [
+        ["Çeviri Gecikmesi", "5 – 30 Dakika (Toplu Render)", "1.5s – 3.0s (Metin STT & Çeviri)", "< 400ms (Doğrudan Canlı Ses Akışı)"],
+        ["Ses Çıkışı", "Yeniden İşlenmiş Ayrı Video Dosyası", "Yok (Yalnızca Metin / Görsel Dikkat Dağınıklığı)", "Eşzamanlı 24kHz Doğal Yapay Zeka Sesi"],
+        ["Sunucu Altyapısı", "Ağır GPU Bulut Render Çiftlikleri", "Çeviri API Proxy Sunucuları", "Sıfır Sunucu / Doğrudan İstemci WebSocket"],
+        ["Gizlilik & Güvenlik", "Video/Ses Üçüncü Taraf Sunuculara Yüklenir", "API Anahtarı Uzak Sunucuda Saklanır", "%100 İstemci Yerel Anahtar (Sıfır Veri Saklama)"],
+        ["Tarayıcı Entegrasyonu", "Harici Web Sitesi / Manuel Yükleme", "Standart İçerik Betiği", "Manifest V3 Offscreen Document & Tab Capture"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Manifest V3 Offscreen Belgesi & Web Audio Sekme Yakalama Hattı",
+        "content": "Modern tarayıcı eklentileri, arka plan servis çalışanlarının DOM ve HTMLMediaElement erişimini kısıtlayan Manifest V3 altında çalışır. oaDub bu mimari engeli bağımsız bir Offscreen Document mimarisiyle çözer. Aktif sekmede başlatılan `chrome.tabCapture`, ham medya akışını yüksek hassasiyetli bir `AudioContext` içine aktarır; çok kanallı tarayıcı sesi 16.000 Hz 16-bit mono Little-Endian doğrusal PCM akışına dönüştürülerek yapay zeka modeline hazırlanır."
+      },
+      {
+        "title": "2. Düşük Gecikmeli Çift Yönlü WebSocket & Gemini 3.5 Live Protokolü",
+        "content": "Geleneksel Metne Dönüştürme (STT), Çeviri (MT) ve Sese Dönüştürme (TTS) basamaklarının yol açtığı gecikmeleri aşmak için oaDub doğrudan Google Gemini Live Multimodal WebSocket protokolüne bağlanır. Bölümlenmiş ikili PCM ses çerçeveleri tonlama ve duygu kaybı olmadan sürekli akıtılır. Gemini Live anlık 24.000 Hz ham PCM bloklarıyla yanıt verir ve uçtan uca ses çevirisi 400 milisaniyenin altında tamamlanır."
+      },
+      {
+        "title": "3. Çift Kanallı Dinamik Ses Mikseri & Akıllı Ses Kısma (Audio Ducking)",
+        "content": "Kullanıcıya profesyonel simültane tercüme deneyimi yaşatmak için Web Audio API GainNode altyapısıyla akıllı bir ses kısma (ducking) algoritması işletilir. Orijinal sekme sesi arka planda -18dB seviyesine çekilerek doğal ambiyans korunur, yapay zekanın ürettiği çeviri sesi ise kristal netliğinde öne çıkarılır. Dinamik döngüsel jitter tamponları ağdaki dalgalanmaları gecikme biriktirmeden yumuşatır."
+      },
+      {
+        "title": "4. Sıfır-Sunucu Gizlilik Mimarisi & Microsoft Edge Mağaza Dağıtımı",
+        "content": "Kullanıcı gizliliği tasarım gereği garanti altındadır: oaDub hiçbir ara sunucu, proxy veya üçüncü taraf telemetri veritabanı barındırmaz. Kullanıcının Google AI Studio API anahtarı şifrelenerek yalnızca `chrome.storage.local` üzerinde tutulur. Tüm WebSocket el sıkışmaları doğrudan kullanıcının tarayıcısı ile resmi Google Gemini uç noktası arasında gerçekleşir. Resmi Microsoft Edge Eklentiler mağazasında onaylı ve otomatik CI/CD hatlarıyla yayınlanmaktadır."
+      }
+    ],
+    "techStack": [
+      { "label": "Çalışma Zamanı & Platform", "value": "Chrome / Microsoft Edge Eklentisi (Manifest V3)" },
+      { "label": "Yapay Zeka & Protokol", "value": "Google Gemini 3.5 Live API / Çift Yönlü Multimodal WebSocket" },
+      { "label": "Ses Yakalama", "value": "Web Audio API, AudioContext, Offscreen Document, 16kHz PCM Örnekleme" },
+      { "label": "Çıkış Sentezi", "value": "24kHz Düşük Gecikmeli PCM Ses Akışı & Dinamik Tampon Kuyrukları" },
+      { "label": "Güvenlik & Gizlilik", "value": "chrome.storage.local İstemci-İçi API Anahtarı Şifreleme" },
+      { "label": "Dağıtım", "value": "Resmi Microsoft Edge Eklentiler Mağazası Sertifikalı" }
+    ],
+    "businessImpact": "Ara proxy sunucularını ve sunucu maliyetlerini ortadan kaldırarak doğrudan sekme içi ses akışı sunan oaDub, profesyoneller ve öğrenciler için dil bariyerini anında yıkan, sıfır altyapı giderine sahip ve tam veri egemenliği sağlayan bir model ortaya koymuştur."
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "last_node_id": 14,
+  "last_link_id": 22,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [40, 120],
+      "size": [315, 98],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [1], "shape": 3, "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [2], "shape": 3, "slot_index": 1},
+        {"name": "VAE", "type": "VAE", "links": [16], "shape": 3, "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "CheckpointLoaderSimple"},
+      "widgets_values": ["flux1-dev.sft"]
+    },
+    {
+      "id": 2,
+      "type": "LoraLoader",
+      "pos": [400, 120],
+      "size": [315, 126],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 1},
+        {"name": "clip", "type": "CLIP", "link": 2}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [3], "shape": 3, "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [4, 5], "shape": 3, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "LoraLoader"},
+      "widgets_values": ["flux_character_identity_v2.safetensors", 0.85, 0.85]
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [760, 60],
+      "size": [425, 180],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [{"name": "clip", "type": "CLIP", "link": 4}],
+      "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [6], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["editorial portrait of a 25yo woman, sharp natural skin texture, subtle freckles, studio tungsten rim light, realistic eye catchlights, raw photo, 8k, f/1.8"]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [760, 280],
+      "size": [425, 140],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [{"name": "clip", "type": "CLIP", "link": 5}],
+      "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [7], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["airbrushed, plastic skin, CGI, 3d render, cartoon, deformed iris, blurry, low resolution, extra fingers"]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [760, 460],
+      "size": [315, 106],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{"name": "LATENT", "type": "LATENT", "links": [8], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "EmptyLatentImage"},
+      "widgets_values": [1024, 1024, 1]
+    },
+    {
+      "id": 6,
+      "type": "ControlNetLoader",
+      "pos": [400, 320],
+      "size": [315, 58],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{"name": "CONTROL_NET", "type": "CONTROL_NET", "links": [9], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "ControlNetLoader"},
+      "widgets_values": ["flux_controlnet_dwpose.safetensors"]
+    },
+    {
+      "id": 7,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [1240, 60],
+      "size": [315, 186],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {"name": "positive", "type": "CONDITIONING", "link": 6},
+        {"name": "negative", "type": "CONDITIONING", "link": 7},
+        {"name": "control_net", "type": "CONTROL_NET", "link": 9}
+      ],
+      "outputs": [
+        {"name": "positive", "type": "CONDITIONING", "links": [10], "shape": 3, "slot_index": 0},
+        {"name": "negative", "type": "CONDITIONING", "links": [11], "shape": 3, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "ControlNetApplyAdvanced"},
+      "widgets_values": [0.75, 0.0, 0.85]
+    },
+    {
+      "id": 8,
+      "type": "IPAdapterModelLoader",
+      "pos": [400, 420],
+      "size": [315, 58],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{"name": "IPADAPTER", "type": "IPADAPTER", "links": [12], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "IPAdapterModelLoader"},
+      "widgets_values": ["ip-adapter-faceid-plusv2_flux.bin"]
+    },
+    {
+      "id": 9,
+      "type": "IPAdapterApplyFaceID",
+      "pos": [1240, 300],
+      "size": [315, 166],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 3},
+        {"name": "ipadapter", "type": "IPADAPTER", "link": 12}
+      ],
+      "outputs": [{"name": "MODEL", "type": "MODEL", "links": [13], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "IPAdapterApplyFaceID"},
+      "widgets_values": [0.65, 0.0, 1.0]
+    },
+    {
+      "id": 10,
+      "type": "KSampler",
+      "pos": [1620, 120],
+      "size": [315, 262],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 13},
+        {"name": "positive", "type": "CONDITIONING", "link": 10},
+        {"name": "negative", "type": "CONDITIONING", "link": 11},
+        {"name": "latent_image", "type": "LATENT", "link": 8}
+      ],
+      "outputs": [{"name": "LATENT", "type": "LATENT", "links": [14], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "KSampler"},
+      "widgets_values": [4281749102, "randomize", 28, 3.5, "euler_ancestral", "simple", 1.0]
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [1980, 120],
+      "size": [210, 46],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 14},
+        {"name": "vae", "type": "VAE", "link": 16}
+      ],
+      "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [17], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "VAEDecode"}
+    },
+    {
+      "id": 12,
+      "type": "FaceDetailer",
+      "pos": [2240, 120],
+      "size": [350, 420],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 17},
+        {"name": "model", "type": "MODEL", "link": 13},
+        {"name": "clip", "type": "CLIP", "link": 4},
+        {"name": "vae", "type": "VAE", "link": 16}
+      ],
+      "outputs": [{"name": "image", "type": "IMAGE", "links": [18], "shape": 3, "slot_index": 0}],
+      "properties": {"Node name for S&R": "FaceDetailer"},
+      "widgets_values": [true, true, 768, 0.35, "bbox/yolov8n-face.pt", 0.5, 10, "euler_ancestral", "simple"]
+    },
+    {
+      "id": 13,
+      "type": "SaveImage",
+      "pos": [2640, 120],
+      "size": [315, 270],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [{"name": "images", "type": "IMAGE", "link": 18}],
+      "outputs": [],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["AI_Influencer_Production/Hardened_Render"]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0, "MODEL"],
+    [2, 1, 1, 2, 1, "CLIP"],
+    [3, 2, 0, 9, 0, "MODEL"],
+    [4, 2, 1, 3, 0, "CLIP"],
+    [5, 2, 1, 4, 0, "CLIP"],
+    [6, 3, 0, 7, 0, "CONDITIONING"],
+    [7, 4, 0, 7, 1, "CONDITIONING"],
+    [8, 5, 0, 10, 3, "LATENT"],
+    [9, 6, 0, 7, 2, "CONTROL_NET"],
+    [10, 7, 0, 10, 1, "CONDITIONING"],
+    [11, 7, 1, 10, 2, "CONDITIONING"],
+    [12, 8, 0, 9, 1, "IPADAPTER"],
+    [13, 9, 0, 10, 0, "MODEL"],
+    [14, 10, 0, 11, 0, "LATENT"],
+    [16, 1, 2, 11, 1, "VAE"],
+    [17, 11, 0, 12, 0, "IMAGE"],
+    [18, 12, 0, 13, 0, "IMAGE"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "title": "FLUX.1 + LoRA + ControlNet DWPose + IP-Adapter FaceID Production Consistency Pipeline",
+    "author": "Onur Aksoy (Hackonomist)",
+    "version": "2.4.0",
+    "target_platform": "ComfyUI"
+  },
+  "version": 0.4
+}

@@ -1,0 +1,129 @@
+{
+  "id": "10sec",
+  "slug": "10sec",
+  "order": 3,
+  "featured": true,
+  "accentColor": "#F59E0B",
+  "tags": [
+    "FFmpeg WebAssembly",
+    "Web Worker",
+    "Client-Side Video Transcoding",
+    "Manifest V3",
+    "Timeline Trimmer",
+    "Zero-Server Privacy",
+    "JSZip Archive"
+  ],
+  "links": {
+    "live": "https://oaonuraksoy.github.io/10SeC/",
+    "github": "https://github.com/oaonuraksoy/10SeC",
+    "demo": "https://oaonuraksoy.github.io/10SeC/"
+  },
+  "metrics": {
+    "en": [
+      { "label": "Processing Mode", "value": "100% Client-Side WASM" },
+      { "label": "Clip Segmentation", "value": "9.5s Precision Chunking" },
+      { "label": "Privacy Standard", "value": "Zero Cloud Upload" },
+      { "label": "Export Pipeline", "value": "Instant In-Memory ZIP" }
+    ],
+    "tr": [
+      { "label": "İşleme Modu", "value": "%100 İstemci Taraflı WASM" },
+      { "label": "Klip Segmentasyonu", "value": "9.5s Hassas Dilimleme" },
+      { "label": "Gizlilik Standardı", "value": "Sıfır Bulut Yüklemesi" },
+      { "label": "Dışa Aktarma", "value": "Anlık Bellek-İçi ZIP" }
+    ]
+  },
+  "en": {
+    "title": "10SeC — In-Browser Video Splitter & Timeline Trimmer Engine",
+    "description": "Client-side FFmpeg WebAssembly and Web Worker multi-threaded video segmentation extension and web app that automatically chunks long videos into 9.5s clips for WhatsApp, Instagram, TikTok with zero server upload.",
+    "role": "Creator & Media Systems Developer",
+    "period": "2026 — Present",
+    "status": "Production / Open Source",
+    "executiveOverview": "Social media storytelling and instant messaging platforms (such as WhatsApp Status, Instagram Stories, TikTok, and YouTube Shorts) have transformed digital communication. However, strict time restrictions—specifically the unforgiving 10-second and 30-second thresholds—consistently frustrate creators. Traditional cloud-based video slicers demand long, bandwidth-heavy uploads, introduce severe privacy risks with personal recordings, and frequently monetize basic chunking behind subscription paywalls or watermarks. Conversely, professional desktop non-linear editors (NLEs) introduce excessive friction, complex timeline setups, and steep learning curves.\n\n**10SeC** reimagines video processing as an instant, zero-cost, private client-side utility. Built upon cutting-edge **FFmpeg WebAssembly (WASM)** compiled via the Emscripten toolchain, 10SeC executes industrial-grade video demuxing, trimming, and segmentation entirely within the client's browser environment. Isolated in multi-threaded Web Workers powered by `SharedArrayBuffer` and modern browser security headers (COOP/COEP), 10SeC ingests media into an in-memory virtual filesystem (MEMFS), calculates keyframe-aligned 9.5-second segment boundaries, and delivers lossless, split-second output. Equipped with an interactive dual-handle slider timeline trimmer and instant in-memory `JSZip` batch archive packaging, 10SeC provides creators with absolute data sovereignty, instantaneous workflow execution, and zero reliance on remote server infrastructure.",
+    "mermaidTopology": "flowchart TD\n    subgraph Client [\"Client Browser Runtime (Zero-Server Architecture)\"]\n        subgraph UI [\"Interactive UI & Timeline Layer\"]\n            Upload[\"Video Input (Drag & Drop / File Picker)\"]\n            Timeline[\"Dual-Handle Precision Timeline Trimmer\"]\n            Upload --> Timeline\n        end\n        subgraph WorkerEnv [\"Dedicated Web Worker Pool\"]\n            Controller[\"Worker Controller & Message Queue\"]\n            WASM[\"FFmpeg WebAssembly Core (ffmpeg.wasm)\"]\n            MEMFS[\"In-Memory Virtual File System (MEMFS)\"]\n            Controller --> MEMFS\n            MEMFS --> WASM\n        end\n        subgraph ExportLayer [\"Packaging & Export Pipeline\"]\n            Slicer[\"9.5s Micro-Clip Slicer (-c copy / seek)\"]\n            ZipEngine[\"JSZip In-Memory Archive Builder\"]\n            Download[\"Single-Click ZIP / Direct Segment Blobs\"]\n            Slicer --> ZipEngine --> Download\n        end\n    end\n    Timeline -- \"Trim Range & Blob Stream\" --> Controller\n    WASM -- \"Segmented MP4 Chunks\" --> Slicer\n    style Client fill:#08090A,stroke:#F59E0B,stroke-width:1px,color:#EDEDED\n    style UI fill:#14171D,stroke:#C58A3A,stroke-width:1px,color:#EDEDED\n    style WorkerEnv fill:#0E131F,stroke:#F59E0B,stroke-width:1px,color:#EDEDED\n    style ExportLayer fill:#14171D,stroke:#C58A3A,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Architectural & Operational Benchmark: 10SeC vs. Cloud Slicers vs. Desktop NLEs",
+      "headers": ["Operational Metric", "Cloud Video Slicers (Clideo, Kapwing)", "Desktop Heavy NLEs (Premiere, DaVinci)", "10SeC In-Browser WASM Engine"],
+      "rows": [
+        ["Server Infrastructure Cost", "$$$ Heavy Ingestion & GPU Transcoding", "$0 (Local Software License)", "$0 (Zero Cloud Compute / Bandwidth)"],
+        ["User Data Privacy", "High Risk: Video uploaded to 3rd party cloud", "100% Private (Local SSD Storage)", "100% Client-Side Private (Never leaves RAM)"],
+        ["Setup & Installation", "Browser-based (Requires slow upload)", "Heavy 4GB - 12GB installation + licensing", "Instant Zero-Install Web / Extension"],
+        ["Time-to-First-Cut", "Delayed by upload & cloud queue (2-5 min)", "Slow (Project setup, timeline import)", "Instant (< 2 seconds via MEMFS)"],
+        ["Export & Multi-Clip Packaging", "Paywalled or rate-limited cloud zip", "Manual export markers / separate renders", "Automated 9.5s Slicing & Instant JSZip"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. FFmpeg WebAssembly Compilation & Web Worker Concurrency",
+        "content": "Transcoding multimedia in a browser without browser freeze necessitates offloading computationally intensive assembly instructions from the main UI thread. 10SeC compiles standard C/C++ FFmpeg libraries directly into portable WebAssembly bytecode (`ffmpeg.wasm`) via the Emscripten toolchain. By executing inside dedicated Web Workers with `SharedArrayBuffer` memory allocations, video demuxing, decoding, and slicing occur in parallel threads. This ensures that the primary browser thread retains a flawless 60 FPS refresh rate even while processing gigabyte-scale high-bitrate video streams."
+      },
+      {
+        "title": "2. Non-Destructive 9.5s Micro-Segmentation & Keyframe Slicing Engine",
+        "content": "Social platforms like WhatsApp Status, Instagram Stories, and TikTok impose strict duration boundaries, where videos slightly exceeding 10 seconds get abruptly truncated or rejected. 10SeC employs an automated 9.5-second segmentation algorithm configured with optimal safety buffers. Utilizing FFmpeg stream copy (`-c copy`) flags whenever possible, the engine performs slice operations at keyframe boundaries without expensive re-encoding passes, achieving near-instantaneous slicing speeds while preserving source video and audio fidelity."
+      },
+      {
+        "title": "3. Interactive Dual-Handle Timeline Trimmer & Canvas Waveform Scrubbing",
+        "content": "To grant creators complete narrative control, 10SeC features a custom-built, hardware-accelerated dual-handle timeline slider. Built using HTML5 Canvas and CSS touch/drag geometry, users can visually pinch or expand the active selection window. Frame-accurate video preview is achieved through synchronized HTMLMediaElement timeline scrubbing, allowing users to define start and end timestamps down to millisecond precision before batch chunking commences."
+      },
+      {
+        "title": "4. Zero-Server Memory Virtual FS & JSZip Archive Packaging",
+        "content": "Conventional online converters force users to upload gigabytes of sensitive personal video recordings to unknown remote server farms. 10SeC operates on a strict zero-server privacy standard. Videos are read directly into browser RAM via Web File API and stored temporarily in the Emscripten in-memory virtual file system (`MEMFS`). After segmentation, video chunks are immediately assembled into a single compressed `.zip` archive using `JSZip` and delivered to the user as an ephemeral `blob:` download URL, leaving zero traces on disk or network."
+      }
+    ],
+    "techStack": [
+      { "label": "Core Engine & Transcoding", "value": "FFmpeg WebAssembly (ffmpeg.wasm) via Emscripten" },
+      { "label": "Concurrency & Execution", "value": "Dedicated Web Workers (Multi-threaded SharedArrayBuffer)" },
+      { "label": "Client Security & Isolation", "value": "Cross-Origin-Opener-Policy (COOP) & Embedder-Policy (COEP)" },
+      { "label": "Timeline & User Interface", "value": "Custom Dual-Handle Canvas & CSS Timeline Trimmer" },
+      { "label": "Packaging & Archival", "value": "JSZip In-Memory Compression & Direct Stream Blob Saver" },
+      { "label": "Distribution & Deployment", "value": "GitHub Pages PWA & Manifest V3 Browser Extension" }
+    ],
+    "businessImpact": "By performing entire video transcoding and segmenting operations locally inside the user's browser, 10SeC completely eradicates server compute and bandwidth expenditures ($0 cloud operating costs) while providing unconditional data confidentiality and eliminating upload wait times for creators across WhatsApp, Instagram Stories, and TikTok."
+  },
+  "tr": {
+    "title": "10SeC — Tarayıcı İçi Video Bölücü & Zaman Çizelgesi Kırpma Motoru",
+    "description": "Sunucuya yükleme yapmadan, FFmpeg WebAssembly ve Web Worker çoklu iş parçacığıyla videoları WhatsApp, Instagram ve TikTok için 9.5 saniyelik parçalara bölen tarayıcı içi video motoru ve eklenti.",
+    "role": "Yaratıcı & Medya Sistemleri Geliştiricisi",
+    "period": "2026 — Günümüz",
+    "status": "Canlıda / Açık Kaynak",
+    "executiveOverview": "WhatsApp Durum, Instagram Hikayeler, TikTok ve YouTube Shorts gibi anlık mesajlaşma ve sosyal medya platformları, video içerik tüketiminde katı süre sınırları (özellikle 10 saniye ve 30 saniye eşikleri) uygulamaktadır. Bu sınırlamalar, kullanıcıların uzun videoları manuel olarak bölmesini zorunlu kılarken; geleneksel bulut tabanlı video dönüştürme araçları kullanıcıları devasa video yükleme sürelerine, veri gizliliği risklerine ve filigranlı/ücretli abonelik tuzaklarına mahkûm etmektedir. Masaüstü profesyonel kurgu yazılımları ise basit bir hikaye paylaşımı için aşırı karmaşık ve hantal kalmaktadır.\n\n**10SeC**, video dilimleme ve kırpma deneyimini sıfır maliyetli, tamamen gizli ve anlık bir tarayıcı içi hizmete dönüştürür. Emscripten ile derlenmiş son nesil **FFmpeg WebAssembly (WASM)** teknolojisi üzerine inşa edilen 10SeC, endüstriyel kalitede video ayrıştırma ve segmentasyon işlemlerini doğrudan kullanıcının cihazında, tarayıcı çalışma zamanında gerçekleştirir. Modern güvenlik başlıkları (COOP/COEP) ve `SharedArrayBuffer` destekli çoklu iş parçacıklı Web Worker mimarisiyle ana arayüzü dondurmadan çalışan sistem, yüklenen videoları bellek içi sanal dosya sistemine (MEMFS) aktarır ve 9.5 saniyelik hassas anahtar kare sınırlarında kayıpsız dilimler. Çift kollu interaktif zaman çizelgesi kırpıcısı ve anlık bellek içi `JSZip` arşivleme altyapısıyla 10SeC; tam veri egemenliği, sıfır sunucu maliyeti ve eşsiz bir hız sunar.",
+    "mermaidTopology": "flowchart TD\n    subgraph Client [\"İstemci Tarayıcı Çalışma Zamanı (Sıfır-Sunucu Mimarisi)\"]\n        subgraph UI [\"Etkileşimli Arayüz & Zaman Çizelgesi Katmanı\"]\n            Upload[\"Video Girişi (Sürükle-Bırak / Dosya Seçici)\"]\n            Timeline[\"Çift Kollu Hassas Zaman Çizelgesi Kırpıcı\"]\n            Upload --> Timeline\n        end\n        subgraph WorkerEnv [\"Özel Web Worker Havuzu\"]\n            Controller[\"Worker Denetleyicisi & Mesaj Kuyruğu\"]\n            WASM[\"FFmpeg WebAssembly Çekirdeği (ffmpeg.wasm)\"]\n            MEMFS[\"Bellek İçi Sanal Dosya Sistemi (MEMFS)\"]\n            Controller --> MEMFS\n            MEMFS --> WASM\n        end\n        subgraph ExportLayer [\"Paketleme & Dışa Aktarma Hattı\"]\n            Slicer[\"9.5s Hassas Dilimleyici (-c copy / seek)\"]\n            ZipEngine[\"JSZip Bellek İçi Arşiv Üretici\"]\n            Download[\"Tek Tıkla ZIP / Doğrudan Parça İndirme\"]\n            Slicer --> ZipEngine --> Download\n        end\n    end\n    Timeline -- \"Kırpma Aralığı & Blob Akışı\" --> Controller\n    WASM -- \"Bölümlenmiş MP4 Klipleri\" --> Slicer\n    style Client fill:#08090A,stroke:#F59E0B,stroke-width:1px,color:#EDEDED\n    style UI fill:#14171D,stroke:#C58A3A,stroke-width:1px,color:#EDEDED\n    style WorkerEnv fill:#0E131F,stroke:#F59E0B,stroke-width:1px,color:#EDEDED\n    style ExportLayer fill:#14171D,stroke:#C58A3A,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari & Operasyonel Karşılaştırma: 10SeC, Bulut Servisleri ve Masaüstü Kurgu Yazılımları",
+      "headers": ["Operasyonel Kriter", "Bulut Video Kırpıcılar (Clideo, Kapwing)", "Masaüstü Ağır NLE (Premiere, DaVinci)", "10SeC Tarayıcı İçi WASM Motoru"],
+      "rows": [
+        ["Sunucu Altyapı Maliyeti", "$$$ Yüksek Yükleme & GPU Bulut Maliyeti", "$0 (Yerel Lisans)", "$0 (Sıfır Bulut Hesaplama ve Bant Genişliği)"],
+        ["Kullanıcı Veri Gizliliği", "Yüksek Risk: Video 3. parti buluta yüklenir", "%100 Gizli (Yerel SSD Depolama)", "%100 İstemci Taraflı Gizli (RAM dışına çıkmaz)"],
+        ["Kurulum & Hazırlık", "Tarayıcı tabanlı (Yavaş upload gerektirir)", "Ağır 4GB - 12GB kurulum ve lisanslama", "Anında Sıfır Kurulum Web / Eklenti"],
+        ["İlk Kırpmaya Ulaşma Süresi", "Yükleme ve bulut kuyruğu ile gecikmeli (2-5 dk)", "Yavaş (Proje oluşturma, timeline import)", "Anlık (< 2 saniye MEMFS ile)"],
+        ["Dışa Aktarma & Paketleme", "Ödeme duvarı veya sınırlı bulut ZIP", "Manuel export işaretleyicileri / ayrı render", "Otomatik 9.5s Dilimleme ve Anlık JSZip"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. FFmpeg WebAssembly Derlemesi & Web Worker Eşzamanlılık Mimarisi",
+        "content": "Tarayıcı arayüzünü kilitlemeden multimedya işlemek, yoğun işlemci gücü gerektiren bayt kodlarının ana UI iş parçacığından (main thread) izole edilmesini zorunlu kılar. 10SeC, standart C/C++ FFmpeg kütüphanelerini Emscripten derleyici zinciri aracılığıyla taşınabilir WebAssembly (`ffmpeg.wasm`) bayt koduna derler. `SharedArrayBuffer` bellek tahsisine sahip özel Web Worker'lar içerisinde çalıştırılan motor; video ayrıştırma (demuxing), kod çözme ve dilimleme işlemlerini arka planda paralel işler. Böylece kullanıcı devasa boyutlardaki yüksek bit hızlı videoları işlerken bile ana tarayıcı arayüzü kesintisiz 60 FPS akıcılığını korur."
+      },
+      {
+        "title": "2. Kayıpsız 9.5s Hassas Dilimleme & Anahtar Kare (Keyframe) Motoru",
+        "content": "WhatsApp Durum, Instagram Hikayeler ve TikTok gibi sosyal ağlar katı süre sınırları uygular; 10 saniyeyi aşan videolar sıklıkla yarıda kesilir veya reddedilir. 10SeC, ideal güvenlik payını koruyan otomatik bir 9.5 saniyelik hassas segmentasyon algoritması kullanır. Mümkün olan senaryolarda FFmpeg akış kopyalama (`-c copy`) bayraklarını devreye sokarak, pahalı yeniden kodlama (re-encode) adımlarına gerek kalmadan doğrudan anahtar kare (I-frame) sınırlarında dilimleme yapar; bu sayede hem kaynak görüntü kalitesi %100 korunur hem de parçalama saniyeler içinde tamamlanır."
+      },
+      {
+        "title": "3. Çift Kollu İnteraktif Zaman Çizelgesi & Canvas Tabanlı Önizleme",
+        "content": "İçerik üreticilerine tam kurgu kontrolü sağlamak amacıyla 10SeC, sıfırdan geliştirilmiş donanım hızlandırmalı çift kollu bir zaman çizelgesi kırpıcısına sahiptir. HTML5 Canvas ve CSS sürükleme geometrisi üzerine kurulan arayüz, başlangıç ve bitiş noktalarının milisaniye hassasiyetiyle seçilmesini sağlar. Senkronize HTMLMediaElement önizlemesiyle birleştirilen bu yapı, kullanıcıların ham videoyu parçalamadan önce istenmeyen kısımları ayıklamasını ve yalnızca istedikleri aralığı kliplere dönüştürmesini mümkün kılar."
+      },
+      {
+        "title": "4. Sıfır-Sunucu Bellek İçi Sanal Dosya Sistemi (MEMFS) & JSZip Paketleme",
+        "content": "Geleneksel web video dönüştürücüleri, kullanıcıları gigabaytlarca özel video kaydını üçüncü taraf uzak sunuculara yüklemeye zorlar. 10SeC ise katı bir sıfır-sunucu gizlilik standardıyla çalışır. Yüklenen videolar Web File API ile doğrudan tarayıcı RAM'ine alınır ve Emscripten sanal dosya sistemi (`MEMFS`) içinde geçici olarak tutulur. Bölünen tüm video parçaları `JSZip` ile bellek içinde anında tek bir sıkıştırılmış `.zip` arşivine dönüştürülür ve geçici `blob:` indirme bağlantısıyla kullanıcıya teslim edilir; geride hiçbir ağ veya sunucu izi kalmaz."
+      }
+    ],
+    "techStack": [
+      { "label": "Çekirdek Motor & Kodlama", "value": "Emscripten tabanlı FFmpeg WebAssembly (ffmpeg.wasm)" },
+      { "label": "Eşzamanlılık & İş Parçacığı", "value": "Özel Web Worker Mimarisi (SharedArrayBuffer Çoklu İş Parçacığı)" },
+      { "label": "İstemci Güvenliği & İzolasyon", "value": "Cross-Origin-Opener-Policy (COOP) & Embedder-Policy (COEP)" },
+      { "label": "Zaman Çizelgesi & Arayüz", "value": "Özel Çift Kollu Canvas ve CSS Zaman Çizelgesi Kırpıcı" },
+      { "label": "Paketleme & Arşivleme", "value": "JSZip Bellek İçi Sıkıştırma ve Doğrudan Blob Akış Kaydedici" },
+      { "label": "Dağıtım & Mimari", "value": "GitHub Pages PWA ve Manifest V3 Tarayıcı Eklentisi" }
+    ],
+    "businessImpact": "Tüm video dönüştürme ve segmentasyon süreçlerini doğrudan kullanıcının tarayıcısında yerel olarak işleterek, 10SeC bulut sunucu ve bant genişliği maliyetlerini tamamen sıfırlar ($0 altyapı maliyeti). Kullanıcıların özel videolarının gizliliğini %100 korurken, WhatsApp, Instagram Stories ve TikTok için yükleme bekleme sürelerini tamamen ortadan kaldırır."
+  }
+}

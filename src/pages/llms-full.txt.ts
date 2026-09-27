@@ -1,0 +1,118 @@
+import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
+import { getAllProjects } from '../utils/projects';
+
+export const GET: APIRoute = async () => {
+  const projectsEn = await getAllProjects('en');
+  const broadcastsEn = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
+
+  let body = `# Onur Aksoy — Complete Architectural & Technical Digest
+> Domain: https://onuraksoy.com.tr
+> Identity: AI-Native Developer & Multidisciplinary Creator
+> Contact: dev@onuraksoy.com.tr
+> Base: Ankara, Turkey (UTC+3)
+
+---
+
+## 1. Professional Overview & Philosophy
+Onur Aksoy architects and develops high-reliability digital systems, rejecting fragile wrapper architectures in favor of mathematically deterministic state machines, real-time multimodal streaming, low-level Rust systems engineering, and verified multi-tiered autonomous agent orchestration.
+
+Key Technical Principles:
+1. Determinism over Hallucination: Critical business logic and financial transactions must execute against strictly typed contracts and transactional databases.
+2. Local-First Sovereignty: Software must remain 100% functional during cloud or ISP disruptions. Primary ledgers live locally with peer LAN synchronization.
+3. Zero-JS & Lightweight Footprints: Web applications and containers should incur minimal runtime bloat and deliver sub-millisecond interaction speeds.
+4. Real-Time Multimodal Audio Streaming: Low-latency voice translation and media intelligence pipelines utilizing bidirectional WebSockets (Google Gemini Live), browser-native tab audio capture (Manifest V3 Offscreen Documents), and zero intermediate servers for total client privacy.
+5. Rust Systems Architecture & Low-Level Network Safety: Zero-copy packet capture (libpcap), asynchronous state machines, and lock-free concurrency for non-intrusive network sniffing (passive SIP signaling correlation and real-time G.711 RTP stereo WAV synthesis) with sub-25MB memory footprints.
+6. Client-Side High-Performance Media Processing: Zero-server multimedia segmentation and non-destructive trimming leveraging multi-threaded FFmpeg WebAssembly (WASM), in-memory virtual file systems (MEMFS), and Web Workers for 100% private in-browser computation.
+
+---
+
+## 2. Production Projects
+
+`;
+
+  for (const p of projectsEn) {
+    body += `### Project: ${p.title}\n`;
+    body += `- Slug: ${p.slug}\n`;
+    body += `- Canonical URL: https://onuraksoy.com.tr/projects/${p.slug}/\n`;
+    body += `- Role: ${p.role}\n`;
+    body += `- Period: ${p.period}\n`;
+    body += `- Status: ${p.status}\n`;
+    body += `- Summary: ${p.description}\n`;
+    if (p.links?.store) {
+      const isEdge = p.links.store.includes('microsoftedge.microsoft.com');
+      body += `- ${isEdge ? 'Microsoft Edge Add-ons' : 'Microsoft Store'}: ${p.links.store}\n`;
+    }
+    if (p.links?.live) body += `- Live URL: ${p.links.live}\n`;
+    if (p.links?.demo && p.links.demo !== p.links.live) body += `- Demo URL: ${p.links.demo}\n`;
+    if (p.links?.tool) body += `- Studio Tool: ${p.links.tool}\n`;
+    if (p.links?.github) body += `- GitHub: ${p.links.github}\n`;
+    if (p.tags && p.tags.length > 0) body += `- Technologies: ${p.tags.join(', ')}\n`;
+    if (p.metrics && p.metrics.length > 0) {
+      body += `- Key Metrics:\n`;
+      p.metrics.forEach((m) => {
+        body += `  * ${m.label}: ${m.value}\n`;
+      });
+    }
+    body += `\n#### Project Overview\n${p.executiveOverview}\n\n`;
+
+    if (p.benchmarks) {
+      body += `#### ${p.benchmarks.title}\n`;
+      body += `| ${p.benchmarks.headers.join(' | ')} |\n`;
+      body += `| ${p.benchmarks.headers.map(() => '---').join(' | ')} |\n`;
+      p.benchmarks.rows.forEach((row) => {
+        body += `| ${row.join(' | ')} |\n`;
+      });
+      body += `\n`;
+    }
+
+    if (p.sections && p.sections.length > 0) {
+      body += `#### Technical Architecture & Deep-Dive\n`;
+      p.sections.forEach((s) => {
+        body += `##### ${s.title}\n${s.content}\n\n`;
+      });
+    }
+
+    if (p.techStack && p.techStack.length > 0) {
+      body += `#### Technical Stack Breakdown\n`;
+      p.techStack.forEach((t) => {
+        body += `- **${t.label}:** ${t.value}\n`;
+      });
+      body += `\n`;
+    }
+
+    if (p.businessImpact) {
+      body += `#### Business Impact & Quantifiable Outcomes\n${p.businessImpact}\n\n`;
+    }
+
+    body += `---\n\n`;
+  }
+
+  body += `## 3. Technical Broadcasts, Deep Dives & Articles\n\n`;
+
+  for (const b of broadcastsEn) {
+    body += `### Publication: ${b.data.title}\n`;
+    body += `- Date: ${b.data.pubDate.toISOString().split('T')[0]}\n`;
+    body += `- Summary: ${b.data.description}\n`;
+    if (b.data.youtubeId) body += `- Video: https://www.youtube.com/watch?v=${b.data.youtubeId}\n`;
+    if (b.data.spotifyUrl) body += `- Podcast: ${b.data.spotifyUrl}\n`;
+    body += `\n${b.body}\n\n---\n\n`;
+  }
+
+  body += `## 4. Channels & Coordinates\n`;
+  body += `- Email: [dev@onuraksoy.com.tr](mailto:dev@onuraksoy.com.tr)\n`;
+  body += `- [GitHub](https://github.com/oaonuraksoy): Developer profile and open source codebases\n`;
+  body += `- [YouTube](https://youtube.com/@oaonuraksoy): Screencasts, architectural deep dives, and tutorials\n`;
+  body += `- [LinkedIn](https://linkedin.com/in/oaonuraksoy): Professional history and industry background\n`;
+  body += `- [X / Twitter](https://x.com/oaonuraksoy): Real-time technical thoughts and project updates\n`;
+  body += `- [Telegram](https://t.me/oaonuraksoy): Direct communications and updates\n`;
+  body += `- [WhatsApp](https://wa.me/905511817053): Commercial advisory contact\n`;
+  body += `- [Spotify](https://creators.spotify.com/pod/profile/oaonuraksoy/): Tech podcast episodes and audio streams\n`;
+
+  return new Response(body, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=86400'
+    }
+  });
+};
