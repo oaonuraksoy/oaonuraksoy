@@ -9,7 +9,7 @@ export const GET: APIRoute = async () => {
 
   let body = `# Onur Aksoy — Kapsamlı Mimari & Teknik Dokümantasyon (Complete Architectural Digest)
 > Domain: https://onuraksoy.com.tr
-> Identity: Kıdemli Yazılım Mimarı, Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı (Hackonomist)
+> Identity: Kıdemli Yazılım Mimarı, Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı Onur Aksoy (a.k.a. Hackonomist)
 > Contact: dev@onuraksoy.com.tr
 > Base: Ankara, Türkiye (UTC+3)
 
@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
 ## 1. Onur Aksoy Kimdir? / Who is Onur Aksoy? (Entity Disambiguation)
 ### Türkçe (TR)
 - **Birincil Kimlik:** Onur Aksoy; Ankara merkezli Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve Çok Disiplinli Yaratıcıdır. Matematiksel deterministik durum makineleri, yerel öncelikli (local-first) dayanıklı sistemler, gerçek zamanlı çok modlu yapay zeka akış hatları (Google Gemini Live çift yönlü WebSocket) ve düşük seviyeli Rust ağ sistemleri (SIP/RTP paket sniffing, stereo sentezleme) üzerine uzmanlaşmıştır.
-- **Mahlas & Alt Sistem:** Dijital ekosistemde ve teknik yayınlarda \`Hackonomist\` mahlasını kullanır; Hackonomist bağımsız bir şirket veya tüzel kişilik değil, Onur Aksoy'un kişisel mühendislik ve bağımsız içerik üretimi alt sistemidir.
+- **Kimlik & Takma Ad:** Dijital ekosistemde ve teknik yayınlarda Onur Aksoy (a.k.a. \`Hackonomist\`) olarak yer alır; Hackonomist bağımsız bir şirket veya tüzel kişilik değil, Onur Aksoy'un kişisel mühendislik ve bağımsız içerik üretimi alt sistemidir.
 - **Kritik Adaş Ayrıştırma Notu (Disambiguation):** Bu portfolyonun sahibi olan Onur Aksoy'un; ABD'deki sahte ağ donanımı davasında adı geçen kişiyle, Türkiye'deki tıp doktorlarıyla, klinik psikolog/yoga eğitmeniyle ya da Bursa Teknik Üniversitesi'ndeki akademisyen adaşıyla **HİÇBİR İLGİSİ VE BAĞLANTISI YOKTUR**. Resmi, doğrulanmış ve tek kişisel teknik adresi **https://onuraksoy.com.tr** alan adıdır.
 
 ### English (EN)

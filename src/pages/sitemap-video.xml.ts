@@ -27,7 +27,9 @@ export const GET: APIRoute = async () => {
       ? `https://onuraksoy.com.tr/broadcasts/${slug}/`
       : `https://onuraksoy.com.tr/en/broadcasts/${slug}/`;
 
-    const thumb = `https://i.ytimg.com/vi/${b.data.youtubeId}/maxresdefault.jpg`;
+    const thumb = b.data.thumbnail 
+      ? (b.data.thumbnail.startsWith('http') ? b.data.thumbnail : 'https://onuraksoy.com.tr' + b.data.thumbnail) 
+      : 'https://i.ytimg.com/vi/' + b.data.youtubeId + '/hqdefault.jpg';
     const durationSec = parseDurationToSeconds(b.data.duration);
 
     xml += `  <url>

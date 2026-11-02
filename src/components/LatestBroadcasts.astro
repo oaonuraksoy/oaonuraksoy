@@ -17,9 +17,11 @@ const remainingBroadcasts = broadcasts.slice(1);
 const spotlightSlug = spotlight ? spotlight.id.replace(/^(en|tr)\//, '') : '';
 const spotlightUrl = isTr ? `/broadcasts/${spotlightSlug}/` : `/en/broadcasts/${spotlightSlug}/`;
 const spotlightThumb = spotlight
-  ? (spotlight.data.youtubeId
-      ? `https://i.ytimg.com/vi/${spotlight.data.youtubeId}/maxresdefault.jpg`
-      : spotlight.data.thumbnail || '/images/oa-logo.webp')
+  ? (spotlight.data.thumbnail
+      ? spotlight.data.thumbnail
+      : (spotlight.data.youtubeId
+          ? `https://i.ytimg.com/vi/${spotlight.data.youtubeId}/hqdefault.jpg`
+          : '/images/oa-logo.webp'))
   : '';
 
 const spotlightDate = spotlight

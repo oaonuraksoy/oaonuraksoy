@@ -24,6 +24,14 @@ export const GET: APIRoute = async () => {
     'local-first-software'
   ];
 
+  const youtubeBroadcasts = [
+    { slug: 'vaultwarden-kurulumu', img: 'https://i.ytimg.com/vi/OMLQdKx_T08/maxresdefault.jpg' },
+    { slug: 'n8n-docker-plesk-kurulumu', img: 'https://i.ytimg.com/vi/VsdZFJN8ezI/hqdefault.jpg' },
+    { slug: 'oateklif-ucretsiz-teklif-olusturucu', img: 'https://i.ytimg.com/vi/z4a_HeZ8hyQ/maxresdefault.jpg' },
+    { slug: 'det-domain-takip-scripti', img: 'https://i.ytimg.com/vi/OAQLR3ZAfEY/maxresdefault.jpg' },
+    { slug: 'csharp-ileti-merkezi-sms-api', img: 'https://i.ytimg.com/vi/q-UZsK0krAk/maxresdefault.jpg' }
+  ];
+
   const pagesWithImages: Array<{ page: string; images: string[] }> = [
     // 1. Homepage TR (Root)
     {
@@ -55,7 +63,7 @@ export const GET: APIRoute = async () => {
     }
   ];
 
-  // 5. Broadcasts TR & EN
+  // 5. Broadcasts TR & EN (Original & YouTube)
   for (const slug of broadcastSlugs) {
     const img = `https://onuraksoy.com.tr/images/broadcasts/${slug}.webp`;
     pagesWithImages.push({
@@ -65,6 +73,17 @@ export const GET: APIRoute = async () => {
     pagesWithImages.push({
       page: `https://onuraksoy.com.tr/en/broadcasts/${slug}/`,
       images: [img]
+    });
+  }
+
+  for (const b of youtubeBroadcasts) {
+    pagesWithImages.push({
+      page: `https://onuraksoy.com.tr/broadcasts/${b.slug}/`,
+      images: [b.img]
+    });
+    pagesWithImages.push({
+      page: `https://onuraksoy.com.tr/en/broadcasts/${b.slug}/`,
+      images: [b.img]
     });
   }
 

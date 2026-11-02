@@ -54,10 +54,10 @@ function parseTimeToSeconds(timeStr: string): number {
 const isTr = lang === 'tr';
 const homeUrl = isTr ? 'https://onuraksoy.com.tr/' : 'https://onuraksoy.com.tr/en/';
 const broadcastsUrl = isTr ? 'https://onuraksoy.com.tr/broadcasts/' : 'https://onuraksoy.com.tr/en/broadcasts/';
-const featuredImageUrl = youtubeId
-  ? `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`
-  : thumbnail
-    ? (thumbnail.startsWith('http') ? thumbnail : `https://onuraksoy.com.tr${thumbnail}`)
+const featuredImageUrl = thumbnail
+  ? (thumbnail.startsWith('http') ? thumbnail : `https://onuraksoy.com.tr${thumbnail}`)
+  : youtubeId
+    ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
     : 'https://onuraksoy.com.tr/images/onur-aksoy.webp';
 
 const graph: any[] = [

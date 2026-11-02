@@ -98,7 +98,7 @@ export const GET: APIRoute = async () => {
   <channel>
     <title>Onur Aksoy — Mimari Yayınlar, Projeler ve Sistemler</title>
     <link>https://onuraksoy.com.tr</link>
-    <description>Onur Aksoy (Hackonomist) resmi teknik yayın, proje ve sistem mimarisi akışı.</description>
+    <description>Onur Aksoy (a.k.a. Hackonomist) resmi teknik yayın, proje ve sistem mimarisi akışı.</description>
     <language>tr-TR</language>
     <lastBuildDate>${nowRfc822}</lastBuildDate>
     <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
