@@ -2,26 +2,26 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAllProjects } from '../../utils/projects';
 
-const projects = await getAllProjects('en');
+const projects = await getAllProjects('tr');
 ---
 
 <BaseLayout
-  title="Flagship Projects & Architecture Case Studies — Onur Aksoy"
-  description="Explore production-certified desktop applications, local-first distributed systems, and generative AI media pipelines developed by Onur Aksoy."
-  lang="en"
+  title="Amiral Gemisi Projeler & Mimari Vaka Analizleri — Onur Aksoy"
+  description="Onur Aksoy tarafından geliştirilen resmi mağaza onaylı masaüstü yazılımları, yerel öncelikli dağıtık sistemler ve üretken yapay zeka araçları."
+  lang="tr"
   activeNav="projects"
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
     <!-- Header -->
     <div class="mb-14 max-w-2xl">
       <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-        Project Index
+        Proje İndeksi
       </span>
       <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
-        Projects & System Case Studies
+        Projeler & Sistem Vaka Analizleri
       </h1>
       <p class="text-base text-text-muted leading-relaxed">
-        Production-certified desktop platforms, browser-native containerization engines, and generative AI pipelines built with high-availability, local-first principles.
+        Resmi mağaza sertifikalı masaüstü platformları, tarayıcı-yerel konteynerleştirme motorları ve yüksek erişilebilirlikli üretken yapay zeka iş akışları.
       </p>
     </div>
 
@@ -61,7 +61,7 @@ const projects = await getAllProjects('en');
                   class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                 >
                   {project.links.store.includes('microsoftedge') || project.links.store.includes('addons')
-                    ? 'Edge Add-on ↗'
+                    ? 'Edge Eklentisi ↗'
                     : 'Microsoft Store ↗'}
                 </a>
               )}
@@ -72,7 +72,7 @@ const projects = await getAllProjects('en');
                   rel="noopener noreferrer"
                   class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                 >
-                  Live Platform ↗
+                  Canlı Platform ↗
                 </a>
               )}
               {project.links?.tool && (
@@ -82,7 +82,7 @@ const projects = await getAllProjects('en');
                   rel="noopener noreferrer"
                   class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                 >
-                  Launch Tool ↗
+                  Aracı Başlat ↗
                 </a>
               )}
               {project.links?.github && (
@@ -128,7 +128,7 @@ const projects = await getAllProjects('en');
               href={`/projects/${project.slug}/`}
               class="text-sm font-bold text-gold-tungsten hover:text-gold-highlight flex items-center gap-1.5 transition-colors"
             >
-              Deep-Dive Technical Case Study &rarr;
+              Derinlemesine Teknik Vaka Analizi &rarr;
             </a>
           </div>
         </article>

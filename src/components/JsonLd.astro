@@ -23,43 +23,68 @@ const siteUrl = 'https://onuraksoy.com.tr';
 
 const {
   type = 'Person',
-  title = 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
-  description = 'Personal portfolio and technical case studies of Onur Aksoy. Pioneering deterministic AI architectures, local-first software, and high-performance digital tools.',
+  title = 'Onur Aksoy — Yazılım Mimarı & Yapay Zeka Yerel Geliştirici',
+  description = "Onur Aksoy'un resmi web sitesi, yazılım mimarisi portfolyosu ve vaka analizleri. Yapay zeka yerel sistemler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar.",
   url,
   image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
   datePublished,
-  lang = 'en',
+  lang = 'tr',
   faqs
 } = Astro.props;
 
 const pathname = Astro.url ? Astro.url.pathname : '/';
 const resolvedUrl = url || new URL(pathname, siteUrl).href;
-const isTr = lang === 'tr' || pathname.startsWith('/tr');
-const homeUrl = isTr ? `${siteUrl}/tr/` : `${siteUrl}/`;
+const isTr = lang === 'tr' && !pathname.startsWith('/en');
+const homeUrl = isTr ? 'https://onuraksoy.com.tr/' : 'https://onuraksoy.com.tr/en/';
+const isHome = pathname === '/' || pathname === '/en/' || pathname === '/en';
+const isProfilePage = isHome || pathname === '/about/' || pathname === '/about' || pathname === '/en/about/' || pathname === '/en/about';
 
 const resolvedImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : '/' + image}`;
 
-// 1. Person Entity
+// 1. Person Entity (Google Rich Results Authority)
 const personSchema: any = {
   '@type': 'Person',
-  '@id': `${siteUrl}/#person`,
+  '@id': 'https://onuraksoy.com.tr/#person',
   name: 'Onur Aksoy',
-  alternateName: ['Hackonomist', 'hackonomist', 'OA', 'Onur Aksoy (Hackonomist)'],
   givenName: 'Onur',
   familyName: 'Aksoy',
-  jobTitle: 'AI-Native Developer & Multidisciplinary Creator',
-  description: isTr 
-    ? 'Onur Aksoy (a.k.a. Hackonomist); yapay zeka yerel mimariler, yerel öncelikli (local-first) masaüstü yazılımları, dijital büyüme ve hackonomik otomasyon sistemleri üreten kıdemli geliştirici ve yaratıcıdır.' 
-    : 'Onur Aksoy (a.k.a. Hackonomist) is an AI-native systems architect, local-first software developer, and multidisciplinary creator building resilient tools, deterministic agentic systems, and digital growth infrastructure.',
-  url: siteUrl,
-  image: {
-    '@type': 'ImageObject',
-    '@id': `${siteUrl}/#primaryimage`,
-    url: `${siteUrl}/images/onur-aksoy.webp`,
-    caption: 'Onur Aksoy',
-    inLanguage: isTr ? 'tr-TR' : 'en-US'
+  alternateName: ['Hackonomist', 'oaonuraksoy'],
+  jobTitle: isTr ? 'Kıdemli Yazılım Mimarı & Yapay Zeka Yerel Geliştirici' : 'Senior Systems Architect & AI-Native Developer',
+  disambiguatingDescription: isTr 
+    ? 'Ankara merkezli Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve dijital ürün yaratıcısı Onur Aksoy (dijital ekosistemdeki mahlası: Hackonomist). oaPOS, oaDub, 10SeC, Orvyna App Studio ve oa_sip_recorder sistemlerinin mimarıdır.' 
+    : 'Ankara-based Senior Systems Architect, AI-Native Developer, and multidisciplinary creator Onur Aksoy (operating under the subsystem moniker Hackonomist). Architect of oaPOS, oaDub, 10SeC, Orvyna App Studio, and oa_sip_recorder.',
+  url: 'https://onuraksoy.com.tr/',
+  mainEntityOfPage: {
+    '@id': `${resolvedUrl}#webpage`
   },
+  image: [
+    'https://onuraksoy.com.tr/images/onur-aksoy-1x1.webp',
+    'https://onuraksoy.com.tr/images/onur-aksoy-4x3.webp',
+    'https://onuraksoy.com.tr/images/onur-aksoy-16x9.webp',
+    {
+      '@type': 'ImageObject',
+      '@id': 'https://onuraksoy.com.tr/#primaryimage',
+      url: 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
+      contentUrl: 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
+      width: 937,
+      height: 1679,
+      caption: isTr ? 'Onur Aksoy — Kıdemli Yazılım Mimarı ve Yapay Zeka Geliştiricisi' : 'Onur Aksoy — Senior Systems Architect & AI-Native Developer'
+    }
+  ],
   email: 'mailto:dev@onuraksoy.com.tr',
+  nationality: {
+    '@type': 'Country',
+    name: 'Turkey'
+  },
+  knowsLanguage: ['tr-TR', 'en-US'],
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: isTr ? 'Yazılım Mimarı & Yapay Zeka Geliştiricisi' : 'Systems Architect & AI-Native Developer',
+    occupationLocation: {
+      '@type': 'City',
+      name: 'Ankara'
+    }
+  },
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Ankara',
@@ -73,7 +98,9 @@ const personSchema: any = {
     'https://instagram.com/oaonuraksoy',
     'https://t.me/oaonuraksoy',
     'https://wa.me/905511817053',
-    'https://creators.spotify.com/pod/profile/oaonuraksoy/'
+    'https://creators.spotify.com/pod/profile/oaonuraksoy/',
+    'https://apps.microsoft.com/detail/9nblggh4nns1',
+    'https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd'
   ],
   knowsAbout: [
     'Artificial Intelligence Architecture',
@@ -98,9 +125,9 @@ const websiteSchema: any = {
   '@id': `${siteUrl}/#website`,
   url: siteUrl,
   name: 'Onur Aksoy',
-  alternateName: ['Onur Aksoy Portfolio', 'OA Portfolyo'],
+  alternateName: ['Onur Aksoy Portfolio', 'OA Portfolyo', 'Hackonomist'],
   description: description,
-  inLanguage: ['en-US', 'tr-TR'],
+  inLanguage: ['tr-TR', 'en-US'],
   primaryImageOfPage: {
     '@id': `${siteUrl}/#primaryimage`
   },
@@ -123,8 +150,8 @@ const imageSchema: any = {
   '@id': `${siteUrl}/#primaryimage`,
   name: title,
   caption: isTr 
-    ? 'Onur Aksoy — Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı' 
-    : 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
+    ? 'Onur Aksoy — Kıdemli Yazılım Mimarı ve Yapay Zeka Geliştiricisi' 
+    : 'Onur Aksoy — Senior Systems Architect & AI-Native Developer',
   contentUrl: resolvedImageUrl,
   url: resolvedImageUrl,
   width: resolvedImageUrl.includes('onur-aksoy.webp') ? 937 : 1200,
@@ -140,9 +167,8 @@ const imageSchema: any = {
   inLanguage: isTr ? 'tr-TR' : 'en-US'
 };
 
-// 4. BreadcrumbList & WebPage
-const isHome = pathname === '/' || pathname === '/tr/' || pathname === '/tr';
-const rawSegments = (isTr ? pathname.replace(/^\/tr(\/|$)/, '') : pathname).split('/').filter(Boolean);
+// 4. BreadcrumbList
+const rawSegments = pathname.replace(/^\/en(\/|$)/, '/').split('/').filter(Boolean);
 
 let projectData: any = null;
 if (rawSegments[0] === 'projects' && rawSegments[1]) {
@@ -167,7 +193,20 @@ const sectionLabels: Record<string, { en: string; tr: string }> = {
 };
 
 let breadcrumbSchema: any = null;
-if (!isHome) {
+if (isHome) {
+  breadcrumbSchema = {
+    '@type': 'BreadcrumbList',
+    '@id': `${resolvedUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: isTr ? 'Onur Aksoy' : 'Onur Aksoy (EN)',
+        item: homeUrl
+      }
+    ]
+  };
+} else {
   const itemListElement: any[] = [
     {
       '@type': 'ListItem',
@@ -207,24 +246,51 @@ if (!isHome) {
   };
 }
 
-// 5. WebPage Entity
-const webpageSchema: any = {
+// 5. WebPage / ProfilePage Entity
+const webpageSchema: any = isProfilePage ? {
+  '@type': 'ProfilePage',
+  '@id': `${resolvedUrl}#webpage`,
+  url: resolvedUrl,
+  name: title,
+  description: description,
+  dateCreated: '2024-01-15T00:00:00+03:00',
+  dateModified: new Date().toISOString(),
+  mainEntity: {
+    '@id': 'https://onuraksoy.com.tr/#person'
+  },
+  about: {
+    '@id': 'https://onuraksoy.com.tr/#person'
+  },
+  primaryImageOfPage: {
+    '@id': 'https://onuraksoy.com.tr/#primaryimage'
+  },
+  isPartOf: {
+    '@id': `${siteUrl}/#website`
+  },
+  breadcrumb: {
+    '@id': `${resolvedUrl}#breadcrumb`
+  },
+  inLanguage: isTr ? 'tr-TR' : 'en-US'
+} : {
   '@type': 'WebPage',
   '@id': `${resolvedUrl}#webpage`,
   url: resolvedUrl,
   name: title,
   description: description,
+  about: {
+    '@id': 'https://onuraksoy.com.tr/#person'
+  },
+  primaryImageOfPage: {
+    '@id': 'https://onuraksoy.com.tr/#primaryimage'
+  },
   isPartOf: {
     '@id': `${siteUrl}/#website`
   },
+  breadcrumb: {
+    '@id': `${resolvedUrl}#breadcrumb`
+  },
   inLanguage: isTr ? 'tr-TR' : 'en-US'
 };
-
-if (breadcrumbSchema) {
-  webpageSchema.breadcrumb = {
-    '@id': `${resolvedUrl}#breadcrumb`
-  };
-}
 
 // 6. Custom Schema (SoftwareApplication or Article)
 let customSchema: any = null;
@@ -252,6 +318,12 @@ if (type === 'SoftwareApplication') {
     operatingSystem: 'Windows, Web, Multiplatform',
     author: {
       '@id': `${siteUrl}/#person`
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock'
     },
     ...(repoUrl ? { codeRepository: repoUrl } : {}),
     ...(storeUrl ? { installUrl: storeUrl } : {}),

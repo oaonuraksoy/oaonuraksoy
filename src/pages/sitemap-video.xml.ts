@@ -24,8 +24,8 @@ export const GET: APIRoute = async () => {
     const isTr = b.data.lang === 'tr';
     const slug = isTr ? b.id.replace(/^tr\//, '') : b.id.replace(/^en\//, '');
     const canonical = isTr 
-      ? `https://onuraksoy.com.tr/tr/broadcasts/${slug}/`
-      : `https://onuraksoy.com.tr/broadcasts/${slug}/`;
+      ? `https://onuraksoy.com.tr/broadcasts/${slug}/`
+      : `https://onuraksoy.com.tr/en/broadcasts/${slug}/`;
 
     const thumb = `https://i.ytimg.com/vi/${b.data.youtubeId}/maxresdefault.jpg`;
     const durationSec = parseDurationToSeconds(b.data.duration);

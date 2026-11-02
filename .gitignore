@@ -19,6 +19,7 @@ OA_LOGO_SET/
 
 # Internal AI & Orchestration Docs (Must be kept private/local)
 agents/
+context/
 decisions/
 docs/
 plans/

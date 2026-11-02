@@ -7,8 +7,8 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://onuraksoy.com.tr',
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'tr'],
+    defaultLocale: 'tr',
+    locales: ['tr', 'en'],
     routing: {
       prefixDefaultLocale: false
     }
@@ -19,11 +19,15 @@ export default defineConfig({
     }),
     sitemap({
       i18n: {
-        defaultLocale: 'en',
+        defaultLocale: 'tr',
         locales: {
-          en: 'en',
-          tr: 'tr'
+          tr: 'tr',
+          en: 'en'
         }
+      },
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
       }
     }),
     mdx()

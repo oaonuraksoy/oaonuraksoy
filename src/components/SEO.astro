@@ -11,11 +11,11 @@ interface Props {
 const siteUrl = 'https://onuraksoy.com.tr';
 
 const {
-  title = 'Onur Aksoy — AI-Native Developer & Multidisciplinary Creator',
-  description = 'Personal technical portfolio of Onur Aksoy. Architecting resilient desktop software, local-first systems, and deterministic AI applications.',
+  title = 'Onur Aksoy — Yazılım Mimarı & Yapay Zeka Yerel Geliştirici',
+  description = "Onur Aksoy'un resmi web sitesi, yazılım mimarisi portfolyosu ve vaka analizleri. Yapay zeka yerel sistemler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar.",
   image = `${siteUrl}/images/onur-aksoy.webp`,
   canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://onuraksoy.com.tr').href,
-  lang = 'en',
+  lang = 'tr',
   type = 'website'
 } = Astro.props;
 
@@ -24,16 +24,20 @@ const pathname = Astro.url.pathname;
 let enPath = pathname;
 let trPath = pathname;
 
-if (pathname.startsWith('/tr')) {
-  trPath = pathname;
-  enPath = pathname.replace(/^\/tr(\/|$)/, '$1') || '/';
-} else {
+if (pathname.startsWith('/en')) {
   enPath = pathname;
-  trPath = pathname === '/' ? '/tr/' : `/tr${pathname.endsWith('/') ? pathname : pathname + '/'}`;
+  trPath = pathname.replace(/^\/en(\/|$)/, '/') || '/';
+} else {
+  trPath = pathname;
+  enPath = pathname === '/' || pathname === '' ? '/en/' : `/en${pathname.endsWith('/') ? pathname : pathname + '/'}`;
 }
 
 const enUrl = new URL(enPath, siteUrl).href;
 const trUrl = new URL(trPath, siteUrl).href;
+
+const keywords = lang === 'tr'
+  ? 'Onur Aksoy, Onur Aksoy kimdir, Yazılım Mimarı, Yapay Zeka Geliştirici, AI-Native Geliştirici, Sistem Mimarı, Ankara Yazılım, oaPOS, oaDub, 10SeC, Orvyna, Hackonomist'
+  : 'Onur Aksoy, Who is Onur Aksoy, Systems Architect, AI-Native Developer, Software Architect, Local-First Software, oaPOS, oaDub, 10SeC, Orvyna, Hackonomist';
 ---
 
 <!-- Global Metadata -->
@@ -44,19 +48,23 @@ const trUrl = new URL(trPath, siteUrl).href;
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <meta name="generator" content={Astro.generator} />
 
+<!-- Robots & Search Engine Crawlers -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content="Onur Aksoy (Hackonomist)" />
-<meta name="keywords" content="Onur Aksoy, Hackonomist, AI-Native Developer, Software Architect, oaPOS, Orvyna, Local-First, Desktop Systems, Ankara Developer, Generative AI" />
+<meta name="keywords" content={keywords} />
 <meta name="theme-color" content="#08090A" />
 
 <!-- Canonical & Hreflang -->
 <link rel="canonical" href={canonicalUrl} />
-<link rel="alternate" hreflang="en" href={enUrl} />
 <link rel="alternate" hreflang="tr" href={trUrl} />
-<link rel="alternate" hreflang="x-default" href={enUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="x-default" href={trUrl} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -64,6 +72,10 @@ const trUrl = new URL(trPath, siteUrl).href;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={image} />
+<meta property="og:image:type" content="image/webp" />
+<meta property="og:image:width" content={image.includes('onur-aksoy.webp') ? '937' : '1200'} />
+<meta property="og:image:height" content={image.includes('onur-aksoy.webp') ? '1679' : '630'} />
+<meta property="og:image:alt" content={title} />
 <meta property="og:site_name" content="Onur Aksoy" />
 <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
 <meta property="og:locale:alternate" content={lang === 'tr' ? 'en_US' : 'tr_TR'} />
@@ -74,6 +86,7 @@ const trUrl = new URL(trPath, siteUrl).href;
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={title} />
 <meta name="twitter:site" content="@oaonuraksoy" />
 <meta name="twitter:creator" content="@oaonuraksoy" />
 
@@ -87,3 +100,5 @@ const trUrl = new URL(trPath, siteUrl).href;
 <link rel="me" href="https://x.com/oaonuraksoy" />
 <link rel="me" href="https://linkedin.com/in/oaonuraksoy" />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="Onur Aksoy — Sistem Mimarisi & Yayınlar RSS" href="https://onuraksoy.com.tr/rss.xml" />
+<link rel="hub" href="https://pubsubhubbub.appspot.com/" />

@@ -3,7 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getAllProjects, renderMarkdown } from '../../../utils/projects';
 
 export async function getStaticPaths() {
-  const projects = await getAllProjects('tr');
+  const projects = await getAllProjects('en');
   return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project }
@@ -14,9 +14,9 @@ const { project } = Astro.props;
 ---
 
 <BaseLayout
-  title={`${project.title} — Vaka Analizi | Onur Aksoy`}
+  title={`${project.title} — Case Study by Onur Aksoy`}
   description={project.description}
-  lang="tr"
+  lang="en"
   activeNav="projects"
   schemaType="SoftwareApplication"
 >
@@ -24,10 +24,10 @@ const { project } = Astro.props;
     <!-- Breadcrumb & Back Link -->
     <div class="mb-8">
       <a
-        href="/tr/projects/"
+        href="/en/projects/"
         class="inline-flex items-center gap-2 text-xs font-mono text-gold-tungsten hover:text-gold-highlight transition-colors"
       >
-        &larr; Projeler İndeksine Geri Dön
+        &larr; Back to Projects Index
       </a>
     </div>
 
@@ -85,8 +85,8 @@ const { project } = Astro.props;
               class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
             >
               {project.links.store.includes('microsoftedge') || project.links.store.includes('addons')
-                ? 'Microsoft Edge Eklentisi ↗'
-                : 'Microsoft Store Onaylı ↗'}
+                ? 'Microsoft Edge Add-on ↗'
+                : 'Microsoft Store Certified ↗'}
             </a>
           )}
           {project.links?.live && (
@@ -96,7 +96,7 @@ const { project } = Astro.props;
               rel="noopener noreferrer"
               class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
             >
-              Uygulamayı Aç ↗
+              Launch Live App ↗
             </a>
           )}
           {project.links?.tool && (
@@ -106,7 +106,7 @@ const { project } = Astro.props;
               rel="noopener noreferrer"
               class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
             >
-              Stüdyoyu Başlat ↗
+              Open Studio Tool ↗
             </a>
           )}
           {project.links?.github && (
@@ -127,7 +127,7 @@ const { project } = Astro.props;
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-text-primary mb-4 pb-2 border-b border-obsidian-border flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
-        Projeye Genel Bakış
+        Project Overview
       </h2>
       <div class="prose prose-invert max-w-none text-text-muted leading-relaxed" set:html={renderMarkdown(project.executiveOverview)} />
     </section>
@@ -136,8 +136,8 @@ const { project } = Astro.props;
     {project.mermaidTopology && (
       <div class="mermaid-wrapper my-10 p-6 sm:p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border overflow-x-auto">
         <div class="text-xs font-mono text-gold-tungsten uppercase tracking-wider mb-4 flex items-center justify-between">
-          <span>Sistem Mimarisi Topolojisi</span>
-          <span class="text-[11px] text-text-dim lowercase">vektörel mimari diyagramı</span>
+          <span>System Architecture Topology</span>
+          <span class="text-[11px] text-text-dim lowercase">interactive vector diagram</span>
         </div>
         <pre class="mermaid">{project.mermaidTopology}</pre>
       </div>
@@ -186,7 +186,7 @@ const { project } = Astro.props;
       <section class="my-12">
         <h2 class="text-2xl font-bold text-text-primary mb-6 pb-2 border-b border-obsidian-border flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
-          Teknik Derinlemesine İnceleme
+          Technical Deep-Dive
         </h2>
         <div class="space-y-6">
           {project.sections.map((sec) => (
@@ -206,7 +206,7 @@ const { project } = Astro.props;
       <section class="my-12">
         <h2 class="text-2xl font-bold text-text-primary mb-6 pb-2 border-b border-obsidian-border flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
-          Teknoloji Yığını
+          Technical Stack
         </h2>
         <div class="overflow-hidden rounded-xl border border-obsidian-border bg-obsidian-surface/60">
           <dl class="divide-y divide-obsidian-border/50">
@@ -226,7 +226,7 @@ const { project } = Astro.props;
       <section class="my-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-obsidian-surface to-obsidian-black border border-gold-tungsten/30 shadow-xl">
         <h2 class="text-xl font-bold text-gold-highlight mb-3 flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
-          Sağlanan Katma Değer & İş Etkisi
+          Business Impact & Outcomes
         </h2>
         <p class="text-sm sm:text-base text-text-muted leading-relaxed">
           {project.businessImpact}
@@ -238,17 +238,17 @@ const { project } = Astro.props;
     <div class="mt-20 p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col sm:flex-row items-center justify-between gap-6">
       <div>
         <h3 class="text-lg font-bold text-text-primary">
-          Benzer bir sistem mimarisine mi ihtiyacınız var?
+          Interested in a similar system architecture?
         </h3>
         <p class="text-sm text-text-muted mt-1">
-          Teknik danışmanlık, özel yazılım geliştirme veya sistem denetimi için doğrudan iletişime geçebilirsiniz.
+          Reach out directly to discuss technical consulting, bespoke implementation, or system audits.
         </p>
       </div>
       <a
-        href="/tr/contact/"
+        href="/en/contact/"
         class="flex-shrink-0 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black text-xs font-bold hover:bg-gold-highlight transition-all"
       >
-        Projeyi Konuşalım &rarr;
+        Discuss Project &rarr;
       </a>
     </div>
   </article>

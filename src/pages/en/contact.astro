@@ -3,67 +3,67 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const directChannels = [
   {
-    name: 'Birincil E-Posta',
+    name: 'Primary Email',
     handle: 'dev@onuraksoy.com.tr',
     href: 'mailto:dev@onuraksoy.com.tr',
-    desc: 'Resmi teklifler, mimari danışmanlık ve proje işbirlikleri için.'
+    desc: 'For formal inquiries, architectural reviews, and contract proposals.'
   },
   {
-    name: 'Telegram Kanalı',
+    name: 'Telegram Messenger',
     handle: '@oaonuraksoy',
     href: 'https://t.me/oaonuraksoy',
-    desc: 'Hızlı ve şifreli doğrudan mesajlaşma.'
+    desc: 'Encrypted direct messaging for rapid communication.'
   },
   {
-    name: 'WhatsApp Hattı',
+    name: 'WhatsApp Direct',
     handle: '+90 551 181 70 53',
     href: 'https://wa.me/905511817053',
-    desc: 'Öncelikli görüşmeler ve proje senkronizasyonları için anlık iletişim.'
+    desc: 'Instant messaging for ongoing project syncs and priority calls.'
   },
   {
-    name: 'LinkedIn Profili',
+    name: 'LinkedIn Network',
     handle: 'in/oaonuraksoy',
     href: 'https://linkedin.com/in/oaonuraksoy',
-    desc: 'Profesyonel geçmiş, referanslar ve kurumsal ağ.'
+    desc: 'Professional credentials, recommendations, and enterprise network.'
   },
   {
-    name: 'GitHub Depoları',
+    name: 'GitHub Profile',
     handle: 'github.com/oaonuraksoy',
     href: 'https://github.com/oaonuraksoy',
-    desc: 'Açık kaynak katkıları, teknik depolar ve mimari örnekler.'
+    desc: 'Open-source contributions, repositories, and architectural code.'
   },
   {
     name: 'X (Twitter)',
     handle: '@oaonuraksoy',
     href: 'https://x.com/oaonuraksoy',
-    desc: 'Halka açık paylaşımlar, teknoloji analizleri ve mimari notlar.'
+    desc: 'Public broadcasts, architectural thoughts, and technology analysis.'
   }
 ];
 
 const faqs = [
   {
-    question: "Yazılım mimarisi ve teknik danışmanlık süreçleriniz nasıl işliyor?",
-    answer: "İş birliklerimizi üç temel modelde yürütüyoruz: (1) Sabit kapsamlı teknik denetim (audit) ve mimari analiz sprinti, (2) Uçtan uca özel sistem geliştirme (.NET/WPF masaüstü, yerel öncelikli POS altyapıları, web2app paketleme), ve (3) Büyüyen mühendislik ekipleri için dönemsel sistem mimarlığı danışmanlığı. Süreç, net teknik gereksinimlerin ve metriklerin belirlendiği keşif görüşmesiyle başlar."
+    question: "What engagement models do you support for architecture advisory?",
+    answer: "I work across three primary engagement formats: (1) Fixed-scope architectural sprint or technical audit, (2) End-to-end bespoke system engineering (.NET/WPF desktop, local-first architectures, or web2app delivery), and (3) Fractional systems advisory / retainer for growing engineering teams. Every collaboration begins with a concise technical discovery session to define hard constraints, SLAs, and deliverables."
   },
   {
-    question: "Mevcut sistemlere yerel öncelikli (local-first) masaüstü altyapısı entegre edilebilir mi?",
-    answer: "Evet. İster eski kurumsal sistemleri modernize ediyor olun ister sıfırdan inşa edin; gömülü SQLite/PostgreSQL depolama, ham TCP/IP yerel ağ (LAN) soket senkronizasyonu ve sıfır bulut bağımlılığı sunan yerel öncelikli mimariler tasarlıyorum. İnternet kesintilerinde bile sistem sıfır gecikmeyle çalışmaya devam eder ve ağ sağlandığında deterministik biçimde senkronize olur."
+    question: "Can you build offline-first and local desktop systems for existing infrastructure?",
+    answer: "Yes. Whether modernizing legacy enterprise systems or building from scratch, I engineer local-first architectures with embedded SQLite/PostgreSQL storage, raw TCP/IP LAN socket synchronization, and zero cloud lock-in. Your operations continue uninterrupted even during full internet outages, synchronizing reliably when connectivity is present."
   },
   {
-    question: "Yapay zeka ve deterministik ajan sistemleri denetimi ne kadar sürer?",
-    answer: "Büyük dil modeli (LLM) pipeline'ları ve otonom ajan sistemlerine yönelik kapsamlı mimari denetimler genellikle 3 ila 7 iş günü sürer; gecikme darboğazlarını, token maliyetlerini ve halüsinasyon koruma açıklarını detaylandıran uygulanabilir bir rapor sunulur. Özel deterministik ajan pipeline uygulamaları ise entegrasyon kapsamına bağlı olarak 2 ila 4 hafta arasında tamamlanır."
+    question: "What is your typical turnaround for deterministic AI pipeline audits?",
+    answer: "Comprehensive architectural audits of LLM pipelines and autonomous agent systems typically take 3 to 7 business days, resulting in an actionable zero-trust remediation report detailing latency bottlenecks, token wastage, and deterministic guardrail gaps. Custom agentic pipeline implementations generally span 2 to 4 weeks depending on tool interfaces and verification criteria."
   },
   {
-    question: "Acil bir proje veya danışmanlık için nasıl hızlı bağlantı kurabilirim?",
-    answer: "Teknik gereksinimlerinizi, sistem darboğazlarınızı ve hedeflerinizi özetleyen bir mesajı dev@onuraksoy.com.tr adresine iletebilirsiniz. Anlık ve öncelikli iletişim için Telegram (@oaonuraksoy) veya WhatsApp (+90 551 181 70 53) üzerinden doğrudan mesaj gönderebilirsiniz. Tüm taleplere 24 saat içinde dönüş sağlanır."
+    question: "How do we initiate a high-priority technical consultation?",
+    answer: "The fastest transmission route is sending an email to dev@onuraksoy.com.tr outlining your system specs, current architectural challenges, and target milestones. For immediate encrypted syncs, reach out via Telegram (@oaonuraksoy) or WhatsApp (+90 551 181 70 53). All inquiries are triaged within 24 hours."
   }
 ];
 ---
 
 <BaseLayout
-  title="İletişim & Doğrudan Bağlantı — Onur Aksoy"
-  description="Onur Aksoy ile doğrudan iletişim kanalları. Kritik yazılım projeleri, yapay zeka sistem mimarileri ve masaüstü yazılım işbirlikleri."
-  lang="tr"
+  title="Initiate Contact & Transmission — Onur Aksoy"
+  description="Direct contact hub and transmission channels for Onur Aksoy. Available for high-impact contracts, AI architecture consulting, and desktop systems development."
+  lang="en"
   activeNav="contact"
   faqs={faqs}
 >
@@ -71,13 +71,13 @@ const faqs = [
     <!-- Header -->
     <div class="mb-14 max-w-2xl">
       <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-        Doğrudan İletişim Hattı
+        Direct Dispatch Hub
       </span>
       <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
-        Bağlantı Kurun
+        Initiate Transmission
       </h1>
       <p class="text-base text-text-muted leading-relaxed">
-        Yüksek dirençli mimariler, deterministik yapay zeka pipeline'ları ve kesintisiz masaüstü yazılımları inşa etmek isteyen kurucular ve ürün ekipleriyle çalışıyorum.
+        I engage with select founders, product teams, and enterprises seeking resilient architectures, deterministic AI pipelines, and zero-downtime desktop applications.
       </p>
     </div>
 
@@ -86,13 +86,13 @@ const faqs = [
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
           <span class="text-xs font-mono uppercase tracking-wider text-gold-highlight font-semibold">
-            Merkezi İletişim Geçidi
+            Central Communications Gateway
           </span>
           <div class="mt-2 text-2xl sm:text-3xl font-mono font-bold text-text-primary">
             dev@onuraksoy.com.tr
           </div>
           <p class="text-xs text-text-muted mt-2">
-            Günlük kontrol edilir • Standart yanıt süresi &lt; 24 saat
+            PGP / S/MIME compatible • Monitored daily • Standard response latency &lt; 24h
           </p>
         </div>
 
@@ -100,7 +100,7 @@ const faqs = [
           href="mailto:dev@onuraksoy.com.tr"
           class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold text-sm hover:bg-gold-highlight transition-all shadow-md"
         >
-          E-Posta Gönder &rarr;
+          Send Email &rarr;
         </a>
       </div>
     </div>
@@ -135,35 +135,35 @@ const faqs = [
     <!-- Advisory Protocols -->
     <div class="p-8 rounded-2xl bg-obsidian-surface/60 border border-obsidian-border">
       <h3 class="text-lg font-bold text-text-primary mb-3">
-        Çalışma Alanları & Kapsam
+        Engagement Models & Scope
       </h3>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-text-muted pt-2">
         <div>
-          <strong class="text-text-primary block mb-1">1. Özel Masaüstü Sistemleri</strong>
-          .NET/WPF ile yerel ağ soket senkronizasyonlu, sıfır bulut bağımlı yüksek hızlı çözümler.
+          <strong class="text-text-primary block mb-1">1. Bespoke Systems</strong>
+          Architecting custom Windows desktop (.NET/WPF) or local-first software with LAN socket sync.
         </div>
         <div>
-          <strong class="text-text-primary block mb-1">2. Yapay Zeka Ajan Mimarisi</strong>
-          Katı doğrulama döngüleriyle donatılmış, halüsinasyonsuz otonom iş akışı orkestrasyonu.
+          <strong class="text-text-primary block mb-1">2. AI-Native Pipelines</strong>
+          Implementing multi-layered autonomous agent frameworks with deterministic audit guards.
         </div>
         <div>
-          <strong class="text-text-primary block mb-1">3. Mimari Denetim (Audit)</strong>
-          Mevcut kod tabanlarının bellek, gecikme ve güvenlik kırılganlıkları açısından sıfır-güven incelemesi.
+          <strong class="text-text-primary block mb-1">3. Architectural Auditing</strong>
+          Zero-trust review of existing codebases for memory leaks, latency bottlenecks, and resilience.
         </div>
       </div>
     </div>
 
-    <!-- Sıkça Sorulan Sorular -->
+    <!-- Frequently Asked Questions -->
     <div class="mt-16 pt-12 border-t border-obsidian-border">
       <div class="mb-8">
         <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-          İletişim & Danışmanlık SSS
+          Transmission & Engagement FAQ
         </span>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-1">
-          Sıkça Sorulan Sorular
+          Frequently Addressed Inquiries
         </h2>
         <p class="text-sm text-text-muted mt-1">
-          İş birliği modelleri, yerel öncelikli sistemler ve yapay zeka mimarisi süreçlerine dair doğrudan yanıtlar.
+          Direct, deterministic answers on consulting frameworks, local-first architectures, and AI system audits.
         </p>
       </div>
 

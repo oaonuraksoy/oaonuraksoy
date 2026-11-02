@@ -3,41 +3,61 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getFeaturedProjects } from '../utils/projects';
 import LatestBroadcasts from '../components/LatestBroadcasts.astro';
 
-const featuredProjects = await getFeaturedProjects('en');
+const featuredProjects = await getFeaturedProjects('tr');
 
 const competencies = [
   {
-    title: 'AI-Native & Real-Time Multimodal',
-    badge: 'Deterministic Workflows',
-    desc: 'Engineering bi-directional multimodal AI streams with Gemini 3.5 Live, Web Audio PCM synthesis, and deterministic agent loops operating over strict context graphs.',
-    tags: ['Gemini 3.5 Live WebSocket', 'Tab Audio PCM', 'Deterministic Agent Loops']
+    title: 'Yapay Zeka Yerel & Gerçek Zamanlı Çok Modlu Sistemler',
+    badge: 'Deterministik İş Akışları',
+    desc: 'Gemini 3.5 Live çift yönlü ses akışları, Web Audio PCM sentezi ve bağlam grafiklerini sıfır regresyonla yöneten deterministik yapay zeka ajan döngüleri.',
+    tags: ['Gemini 3.5 Live WebSocket', 'Sekme Sesi PCM', 'Deterministik Ajan Döngüleri']
   },
   {
-    title: 'Systems & Local-First Desktop',
-    badge: 'Sub-10ms Latency',
-    desc: 'High-concurrency Rust network packet sniffers (pcap) for real-time VoIP synthesis and .NET 8 / WPF desktop architectures with LAN socket synchronization.',
-    tags: ['Rust 1.70+', 'pcap VoIP Sniffing', '.NET 8 / WPF', 'LAN Sockets']
+    title: 'Sistem Programlama & Yerel Öncelikli Masaüstü',
+    badge: '10ms Altı Gecikme',
+    desc: 'Canlı VoIP paket dinleme (pcap) yapan yüksek eşzamanlı Rust sistemleri ve yerel ağ soketleri üzerinde çalışan .NET 8 / WPF masaüstü mimarileri.',
+    tags: ['Rust 1.70+', 'pcap VoIP Paket Dinleme', '.NET 8 / WPF', 'LAN Soketleri']
   },
   {
-    title: 'Progressive Web & Store Delivery',
-    badge: 'Zero-Bloat Shells',
-    desc: 'Transforming web platforms into certified native store apps and browser extensions with sub-150KB shell footprints, offline caching, and cross-platform distribution.',
+    title: 'İlerici Web & Mağaza Dağıtım Motorları',
+    badge: 'Hafif Kabuk Motoru',
+    desc: 'Web platformlarını 150 KB altı hafif kabuklarla resmi mağaza sertifikalı (Edge Add-ons, TWA) yerel uygulamalara dönüştüren modern dağıtım mimarileri.',
     tags: ['Astro 7', 'TypeScript', 'TestFlight & Google Play TWA']
   },
   {
-    title: 'Generative Visual Synthesis',
-    badge: 'Commercial Studio Quality',
-    desc: 'End-to-end computer vision and diffusion pipelines for e-commerce visual enhancements with sub-pixel edge fidelity and natural shadow physics.',
-    tags: ['Diffusion Models', 'Sub-pixel Alpha Matting', 'Google Flow']
+    title: 'Üretken Görsel Sentez & AI Stüdyo',
+    badge: 'Ticari Stüdyo Standardı',
+    desc: 'E-ticaret pazaryerleri için alt-piksel kenar doğruluğu ve fotogerçekçi ışık fiziği sağlayan uçtan uca difüzyon ve görsel iyileştirme pipeline\'ları.',
+    tags: ['Difüzyon Modelleri', 'Alt-Piksel Alfa Maskeleme', 'Google Flow']
+  }
+];
+
+const homeFaqs = [
+  {
+    question: "Onur Aksoy kimdir ve hangi alanlarda uzmanlaşmıştır?",
+    answer: "Onur Aksoy; Ankara merkezli Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve çok disiplinli dijital ürün yaratıcısıdır (dijital ekosistemdeki mahlasıyla Hackonomist). Deterministik yapay zeka orkestrasyonu, yerel öncelikli Windows masaüstü sistemleri, resmi mağaza sertifikalı mobil/web kabukları ve yüksek performanslı dijital araçlar (oaPOS, oaDub, 10SeC, Orvyna App Studio, oa_sip_recorder) geliştirmektedir."
+  },
+  {
+    question: "Onur Aksoy tarafından geliştirilen amiral gemisi yazılım ve sistemler nelerdir?",
+    answer: "Öne çıkan amiral gemisi sistemler şunlardır: oaPOS (yerel ağ soket senkronizasyonlu çevrimdışı öncelikli masaüstü POS ve stok sistemi), oaDub (Gemini 3.5 Live WebSocket ile gerçek zamanlı yapay zeka dublaj eklentisi), 10SeC (Microsoft Store sertifikalı yüksek hızlı video kırpıcı), Orvyna App Studio (otomatik Apple TestFlight ve Google Play TWA paketleme stüdyosu) ve oa_sip_recorder (Rust ile yazılmış pasif VoIP paket dinleme motoru)."
+  },
+  {
+    question: "Yerel öncelikli (Local-First) ve deterministik yapay zeka mimarisi ne anlama gelir?",
+    answer: "Yerel öncelikli mimari, sistemlerin harici bulut bağımlılığı olmadan yerel ağ (LAN) ham TCP/IP soketleri ve gömülü veritabanları üzerinde 10ms altı gecikmeyle kesintisiz çalışmasını ifade eder. Deterministik yapay zeka ise, otonom dil modeli ajanlarının katı durum makineleri, tip güvenliği ve çok katmanlı denetim kapılarıyla halüsinasyonsuz ve öngörülebilir çıktılar üretmesini sağlar."
+  },
+  {
+    question: "Hackonomist mahlası ve alt sistemi neyi ifade eder?",
+    answer: "Hackonomist, Onur Aksoy'un tescilli profesyonel mahlası ve alt sistem kimliğidir. Sistem mühendisliği ('hacking', otomasyon, deterministik yazılım mimarisi) ile büyüme ekonomisini ('economics', pazar dinamikleri, dönüşüm optimizasyonu ve birim ekonomisi) tek bir ürün geliştirme vizyonunda birleştirir. Dijital arama dizinlerinde ve yapay zeka bilgi grafiklerinde 'Hackonomist' münhasıran Onur Aksoy'u temsil eder."
   }
 ];
 ---
 
 <BaseLayout
-  title="Onur Aksoy — AI-Native Developer & Multidisciplinary Creator"
-  description="Personal technical portfolio and architecture case studies of Onur Aksoy. Specializing in AI-native architecture, local-first desktop software, and high-performance digital tools."
-  lang="en"
+  title="Onur Aksoy — Yazılım Mimarı & Yapay Zeka Yerel Geliştirici"
+  description="Onur Aksoy'un resmi web sitesi, sistem mimarisi portfolyosu ve teknik vaka analizleri. Yapay zeka yerel (AI-Native) mimariler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar."
+  lang="tr"
   activeNav=""
+  faqs={homeFaqs}
 >
   <!-- Hero Section -->
   <section class="relative pt-12 sm:pt-20 pb-16 overflow-hidden">
@@ -49,17 +69,20 @@ const competencies = [
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-surface border border-obsidian-border mb-6">
             <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
             <span class="text-xs font-mono text-text-muted">
-              Ankara, TR • Available for Strategic Contracts
+              Ankara, TR • Seçkin Girişimler ve Danışmanlık İçin Açık
             </span>
           </div>
 
-          <!-- Main Headline -->
+          <!-- Main Headline: Net Onur Aksoy Varlık Odaklı -->
           <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1] mb-6">
-            Architecting <span class="gold-gradient-text">AI-Native</span> & Resilient Systems.
+            <span class="block text-gold-highlight mb-2">Onur Aksoy</span>
+            <span class="text-2xl sm:text-4xl block font-bold text-text-primary leading-tight">
+              <span class="gold-gradient-text">Yapay Zeka Yerel</span> & Dayanıklı Sistem Mimarisi.
+            </span>
           </h1>
 
           <p class="text-lg text-text-muted max-w-2xl leading-relaxed mb-8">
-            I am <strong class="text-text-primary font-semibold">Onur Aksoy</strong> <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30 ml-1">a.k.a. Hackonomist</span> — an AI-Native Developer and Multidisciplinary Creator. I specialize in bridging deterministic system design with adaptive intelligence, building production-certified desktop applications, local-first distributed architectures, and generative media engines.
+            Ben <strong class="text-text-primary font-semibold">Onur Aksoy</strong> — dijital ekosistemdeki mahlasıyla <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30">Hackonomist</span> — Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve Çok Disiplinli Yaratıcıyım. Deterministik sistem tasarımı ile uyarlanabilir zekayı buluşturarak; üretim onaylı masaüstü yazılımları, yerel öncelikli dağıtık mimariler ve üretken medya motorları inşa ediyorum.
           </p>
 
           <!-- Primary CTAs -->
@@ -68,34 +91,36 @@ const competencies = [
               href="#projects"
               class="px-6 py-3 rounded-lg font-semibold text-sm bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight shadow-lg shadow-gold-tungsten/20 transition-all duration-200"
             >
-              Explore Case Studies
+              Vaka Analizlerini İncele
             </a>
             <a
               href="/about/"
               class="px-6 py-3 rounded-lg font-semibold text-sm bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 text-text-primary transition-all duration-200"
             >
-              Architectural Philosophy
+              Mimari Felsefem
             </a>
             <a
               href="/contact/"
               class="px-6 py-3 rounded-lg font-semibold text-sm text-gold-highlight hover:text-text-primary transition-colors"
             >
-              Initiate Contact &rarr;
+              İletişime Geç &rarr;
             </a>
           </div>
         </div>
 
-        <!-- Right: Portrait Frame with Gold Accents -->
+        <!-- Right: Renkli Portre Çerçevesi -->
         <div class="relative w-64 sm:w-72 md:w-80 aspect-[4/5] flex-shrink-0">
           <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-gold-dark via-gold-tungsten to-gold-highlight opacity-30 blur-lg transition duration-500 group-hover:opacity-60"></div>
           <div class="relative w-full h-full rounded-2xl overflow-hidden border border-gold-tungsten/40 bg-obsidian-surface shadow-2xl">
             <img
               src="/images/onur-aksoy.webp"
-              alt="Onur Aksoy — AI-Native Developer"
-              class="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 scale-100 hover:scale-105"
-              width="320"
-              height="400"
+              alt="Onur Aksoy — Kıdemli Yazılım Mimarı ve Yapay Zeka Geliştiricisi"
+              class="w-full h-full object-cover object-top scale-100 hover:scale-105 transition-all duration-700"
+              width="937"
+              height="1679"
+              fetchpriority="high"
               loading="eager"
+              decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/70 via-transparent to-transparent pointer-events-none"></div>
             <div class="absolute bottom-3 left-3 right-3 text-center">
@@ -109,18 +134,18 @@ const competencies = [
     </div>
   </section>
 
-  <!-- Competency Matrix (4 Pillars) -->
+  <!-- Yetkinlik Matrisi (4 Temel Sütun) -->
   <section class="py-16 border-t border-obsidian-border/70 bg-obsidian-surface/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="mb-12 text-center max-w-2xl mx-auto">
         <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-          Core Capabilities
+          Temel Yetkinlikler
         </span>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-2">
-          Technical Capabilities & Architectural Matrix
+          Teknik Yetkinlik & Mimari Matrisi
         </h2>
         <p class="text-sm text-text-muted mt-2">
-          Balanced disciplines spanning low-latency desktop infrastructure, generative media, and deterministic agent orchestration.
+          Düşük gecikmeli masaüstü altyapısı, üretken medya sistemleri ve deterministik yapay zeka ajan orkestrasyonu.
         </p>
       </div>
 
@@ -153,23 +178,23 @@ const competencies = [
     </div>
   </section>
 
-  <!-- Bento Grid Project Showcase -->
+  <!-- Bento Grid Öne Çıkan Projeler -->
   <section id="projects" class="py-20 border-t border-obsidian-border">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
         <div>
           <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-            Production Implementations
+            Canlı Sistemler
           </span>
           <h2 class="text-3xl font-extrabold tracking-tight text-text-primary mt-1">
-            Featured Systems & Applications
+            Öne Çıkan Amiral Gemisi Projeler
           </h2>
         </div>
         <a
           href="/projects/"
           class="text-sm font-semibold text-gold-highlight hover:text-text-primary flex items-center gap-1 transition-colors"
         >
-          View Full Project Index &rarr;
+          Tüm Proje İndeksini Gör &rarr;
         </a>
       </div>
 
@@ -241,7 +266,7 @@ const competencies = [
                     href={`/projects/${project.slug}/`}
                     class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight uppercase tracking-wider flex items-center gap-1.5 transition-colors"
                   >
-                    Read Architectural Case Study &rarr;
+                    Mimari Vaka Analizini Oku &rarr;
                   </a>
 
                   <div class="flex flex-wrap items-center gap-2 text-xs">
@@ -253,7 +278,7 @@ const competencies = [
                         class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                       >
                         {project.links.store.includes('microsoftedge') || project.links.store.includes('addons')
-                          ? 'Edge Add-on ↗'
+                          ? 'Edge Eklentisi ↗'
                           : 'Microsoft Store ↗'}
                       </a>
                     )}
@@ -264,7 +289,7 @@ const competencies = [
                         rel="noopener noreferrer"
                         class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                       >
-                        Launch App ↗
+                        Uygulamayı Aç ↗
                       </a>
                     )}
                     {project.links?.tool && (
@@ -274,7 +299,7 @@ const competencies = [
                         rel="noopener noreferrer"
                         class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                       >
-                        Launch Studio ↗
+                        Stüdyoyu Başlat ↗
                       </a>
                     )}
                     {project.links?.github && (
@@ -297,24 +322,57 @@ const competencies = [
     </div>
   </section>
 
-  <!-- Latest Technical Broadcasts & Deep Dives -->
-  <LatestBroadcasts lang="en" limit={5} />
+  <!-- En Son Teknik Yayınlar & Mimari Analizler -->
+  <LatestBroadcasts lang="tr" limit={5} />
 
-  <!-- Contact & Direct Access Hub -->
+  <!-- Onur Aksoy Kimdir? & Sıkça Sorulan Sorular (GEO/SGE Otorite Bölümü) -->
+  <section id="faq" class="py-20 border-t border-obsidian-border bg-obsidian-surface/30">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 text-center">
+        <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+          Varlık Otoritesi & Sıkça Sorulan Sorular
+        </span>
+        <h2 class="text-3xl font-extrabold tracking-tight text-text-primary mt-2">
+          Onur Aksoy Kimdir? & Sistem Mimarisi SSS
+        </h2>
+        <p class="text-sm text-text-muted mt-2 max-w-xl mx-auto">
+          Onur Aksoy'un yazılım mühendisliği arka planı, amiral gemisi sistemleri ve deterministik mimari felsefesi hakkında doğrudan yanıtlar.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {homeFaqs.map((faq) => (
+          <details class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+            <summary class="flex items-center justify-between font-bold text-text-primary cursor-pointer list-none text-base group-open:text-gold-highlight transition-colors">
+              <span>{faq.question}</span>
+              <span class="ml-4 text-xs font-mono px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border text-gold-tungsten group-open:rotate-45 transition-transform duration-200">
+                +
+              </span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-obsidian-border/50 text-sm text-text-muted leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- İletişim & Doğrudan Erişim Bölümü -->
   <section class="py-20 border-t border-obsidian-border bg-obsidian-surface/40">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
       <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-        Direct Transmission
+        Doğrudan İletişim Hattı
       </span>
       <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
-        Ready to build mission-critical systems?
+        Kritik sistemleri birlikte tasarlayalım.
       </h2>
       <p class="text-sm sm:text-base text-text-muted leading-relaxed mb-8 max-w-xl mx-auto">
-        Whether you are planning a distributed desktop application, transitioning into an AI-native agent pipeline, or requiring architectural advisory in Ankara or globally.
+        Dağıtık bir masaüstü uygulaması geliştirmek, iş akışlarınızı yapay zeka yerel ajanlara taşımak veya mimari danışmanlık almak için doğrudan ulaşabilirsiniz.
       </p>
 
       <div class="p-8 rounded-2xl bg-obsidian-surface border border-gold-tungsten/30 shadow-2xl inline-block max-w-lg w-full">
-        <div class="text-xs font-mono text-gold-highlight mb-2">PRIMARY DISPATCH ADDRESS</div>
+        <div class="text-xs font-mono text-gold-highlight mb-2">BİRİNCİL İLETİŞİM E-POSTASI</div>
         <a
           href="mailto:dev@onuraksoy.com.tr"
           class="text-xl sm:text-2xl font-mono font-bold text-text-primary hover:text-gold-highlight transition-colors break-all"

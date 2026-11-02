@@ -3,7 +3,7 @@ interface Props {
   lang?: 'en' | 'tr';
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang = 'tr' } = Astro.props;
 const currentYear = new Date().getFullYear();
 
 const socialLinks = [
@@ -111,6 +111,8 @@ const socialLinks = [
         <a href="/robots.txt" class="text-text-muted hover:text-gold-highlight font-mono transition-colors">robots.txt</a>
         <span>•</span>
         <a href="/sitemap-index.xml" class="text-text-muted hover:text-gold-highlight font-mono transition-colors">sitemap</a>
+        <span>•</span>
+        <a href="/rss.xml" class="text-text-muted hover:text-gold-highlight font-mono transition-colors">rss.xml</a>
       </div>
     </div>
   </div>

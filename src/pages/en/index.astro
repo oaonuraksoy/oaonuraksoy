@@ -3,41 +3,61 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getFeaturedProjects } from '../../utils/projects';
 import LatestBroadcasts from '../../components/LatestBroadcasts.astro';
 
-const featuredProjects = await getFeaturedProjects('tr');
+const featuredProjects = await getFeaturedProjects('en');
 
 const competencies = [
   {
-    title: 'Yapay Zeka Yerel & Gerçek Zamanlı Çok Modlu Sistemler',
-    badge: 'Deterministik İş Akışları',
-    desc: 'Gemini 3.5 Live çift yönlü ses akışları, Web Audio PCM sentezi ve bağlam grafiklerini sıfır regresyonla yöneten deterministik yapay zeka ajan döngüleri.',
-    tags: ['Gemini 3.5 Live WebSocket', 'Sekme Sesi PCM', 'Deterministik Ajan Döngüleri']
+    title: 'AI-Native & Real-Time Multimodal',
+    badge: 'Deterministic Workflows',
+    desc: 'Engineering bi-directional multimodal AI streams with Gemini 3.5 Live, Web Audio PCM synthesis, and deterministic agent loops operating over strict context graphs.',
+    tags: ['Gemini 3.5 Live WebSocket', 'Tab Audio PCM', 'Deterministic Agent Loops']
   },
   {
-    title: 'Sistem Programlama & Yerel Öncelikli Masaüstü',
-    badge: '10ms Altı Gecikme',
-    desc: 'Canlı VoIP paket dinleme (pcap) yapan yüksek eşzamanlı Rust sistemleri ve yerel ağ soketleri üzerinde çalışan .NET 8 / WPF masaüstü mimarileri.',
-    tags: ['Rust 1.70+', 'pcap VoIP Paket Dinleme', '.NET 8 / WPF', 'LAN Soketleri']
+    title: 'Systems & Local-First Desktop',
+    badge: 'Sub-10ms Latency',
+    desc: 'High-concurrency Rust network packet sniffers (pcap) for real-time VoIP synthesis and .NET 8 / WPF desktop architectures with LAN socket synchronization.',
+    tags: ['Rust 1.70+', 'pcap VoIP Sniffing', '.NET 8 / WPF', 'LAN Sockets']
   },
   {
-    title: 'İlerici Web & Mağaza Dağıtım Motorları',
-    badge: 'Hafif Kabuk Motoru',
-    desc: 'Web platformlarını 150 KB altı hafif kabuklarla resmi mağaza sertifikalı (Edge Add-ons, TWA) yerel uygulamalara dönüştüren modern dağıtım mimarileri.',
+    title: 'Progressive Web & Store Delivery',
+    badge: 'Zero-Bloat Shells',
+    desc: 'Transforming web platforms into certified native store apps and browser extensions with sub-150KB shell footprints, offline caching, and cross-platform distribution.',
     tags: ['Astro 7', 'TypeScript', 'TestFlight & Google Play TWA']
   },
   {
-    title: 'Üretken Görsel Sentez & AI Stüdyo',
-    badge: 'Ticari Stüdyo Standardı',
-    desc: 'E-ticaret pazaryerleri için alt-piksel kenar doğruluğu ve fotogerçekçi ışık fiziği sağlayan uçtan uca difüzyon ve görsel iyileştirme pipeline\'ları.',
-    tags: ['Difüzyon Modelleri', 'Alt-Piksel Alfa Maskeleme', 'Google Flow']
+    title: 'Generative Visual Synthesis',
+    badge: 'Commercial Studio Quality',
+    desc: 'End-to-end computer vision and diffusion pipelines for e-commerce visual enhancements with sub-pixel edge fidelity and natural shadow physics.',
+    tags: ['Diffusion Models', 'Sub-pixel Alpha Matting', 'Google Flow']
+  }
+];
+
+const homeFaqs = [
+  {
+    question: "Who is Onur Aksoy and what are his core domains of expertise?",
+    answer: "Onur Aksoy is an Ankara-based Senior Systems Architect, AI-Native Developer, and multidisciplinary digital creator (operating under the subsystem moniker Hackonomist). He specializes in deterministic AI orchestration, local-first Windows desktop systems, certified app store packaging, and high-performance digital tools including oaPOS, oaDub, 10SeC, Orvyna App Studio, and oa_sip_recorder."
+  },
+  {
+    question: "What are the flagship software products and systems engineered by Onur Aksoy?",
+    answer: "Flagship systems include oaPOS (an offline-first POS and inventory desktop platform with LAN socket sync), oaDub (a real-time AI dubbing extension powered by Gemini 3.5 Live WebSocket), 10SeC (a fast video cutter on the Microsoft Store), Orvyna App Studio (an automated web2app packager for TestFlight and TWA), and oa_sip_recorder (a passive VoIP packet capture engine written in Rust)."
+  },
+  {
+    question: "What does local-first architecture and deterministic AI design mean in practice?",
+    answer: "Local-first architecture ensures that software operates completely independently of external cloud servers, running peer-to-peer over local area network (LAN) raw TCP/IP sockets with sub-10ms latency. Deterministic AI design guarantees that autonomous agent workflows enforce strict typing, state machine validation, and multi-agent audit loops without hallucination."
+  },
+  {
+    question: "What does the moniker Hackonomist represent?",
+    answer: "Hackonomist is the established professional moniker and subsystem identity of Onur Aksoy. It represents the synthesis of system hacking (software engineering, automation, deterministic state machines) and economics (growth engineering, unit economics, conversion optimization). In global search engines and AI knowledge graphs, 'Hackonomist' refers exclusively to Onur Aksoy."
   }
 ];
 ---
 
 <BaseLayout
-  title="Onur Aksoy — Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı"
-  description="Onur Aksoy'un teknik portfolyosu ve vaka analizleri. Yapay zeka yerel mimariler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar."
-  lang="tr"
+  title="Onur Aksoy — Systems Architect & AI-Native Developer"
+  description="Personal technical portfolio and architecture case studies of Onur Aksoy. Specializing in AI-native architecture, local-first desktop software, and high-performance digital tools."
+  lang="en"
   activeNav=""
+  faqs={homeFaqs}
 >
   <!-- Hero Section -->
   <section class="relative pt-12 sm:pt-20 pb-16 overflow-hidden">
@@ -49,17 +69,20 @@ const competencies = [
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-surface border border-obsidian-border mb-6">
             <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
             <span class="text-xs font-mono text-text-muted">
-              Ankara, TR • Seçkin Girişimler ve Danışmanlık İçin Açık
+              Ankara, TR • Available for Strategic Contracts
             </span>
           </div>
 
-          <!-- Main Headline -->
+          <!-- Main Headline: Distinct Onur Aksoy Entity Focus -->
           <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1] mb-6">
-            <span class="gold-gradient-text">Yapay Zeka Yerel</span> & Dayanıklı Sistemler.
+            <span class="block text-gold-highlight mb-2">Onur Aksoy</span>
+            <span class="text-2xl sm:text-4xl block font-bold text-text-primary leading-tight">
+              Architecting <span class="gold-gradient-text">AI-Native</span> & Resilient Systems.
+            </span>
           </h1>
 
           <p class="text-lg text-text-muted max-w-2xl leading-relaxed mb-8">
-            Ben <strong class="text-text-primary font-semibold">Onur Aksoy</strong> <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30 ml-1">a.k.a. Hackonomist</span> — Yapay Zeka Yerel (AI-Native) Geliştirici ve Çok Disiplinli Yaratıcıyım. Deterministik sistem tasarımı ile uyarlanabilir zekayı buluşturarak; üretim onaylı masaüstü yazılımları, yerel öncelikli dağıtık mimariler ve üretken medya motorları inşa ediyorum.
+            I am <strong class="text-text-primary font-semibold">Onur Aksoy</strong> — operating in the digital ecosystem under the subsystem moniker <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30">Hackonomist</span> — a Senior Systems Architect, AI-Native Developer, and Multidisciplinary Creator. I specialize in bridging deterministic system design with adaptive intelligence, building production-certified desktop applications, local-first distributed architectures, and generative media engines.
           </p>
 
           <!-- Primary CTAs -->
@@ -68,34 +91,36 @@ const competencies = [
               href="#projects"
               class="px-6 py-3 rounded-lg font-semibold text-sm bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight shadow-lg shadow-gold-tungsten/20 transition-all duration-200"
             >
-              Vaka Analizlerini İncele
+              Explore Case Studies
             </a>
             <a
-              href="/tr/about/"
+              href="/en/about/"
               class="px-6 py-3 rounded-lg font-semibold text-sm bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 text-text-primary transition-all duration-200"
             >
-              Mimari Felsefem
+              Architectural Philosophy
             </a>
             <a
-              href="/tr/contact/"
+              href="/en/contact/"
               class="px-6 py-3 rounded-lg font-semibold text-sm text-gold-highlight hover:text-text-primary transition-colors"
             >
-              İletişime Geç &rarr;
+              Initiate Contact &rarr;
             </a>
           </div>
         </div>
 
-        <!-- Right: Portrait Frame with Gold Accents -->
+        <!-- Right: Color Portrait Frame with Gold Accents -->
         <div class="relative w-64 sm:w-72 md:w-80 aspect-[4/5] flex-shrink-0">
           <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-gold-dark via-gold-tungsten to-gold-highlight opacity-30 blur-lg transition duration-500 group-hover:opacity-60"></div>
           <div class="relative w-full h-full rounded-2xl overflow-hidden border border-gold-tungsten/40 bg-obsidian-surface shadow-2xl">
             <img
               src="/images/onur-aksoy.webp"
-              alt="Onur Aksoy — AI-Native Developer"
-              class="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 scale-100 hover:scale-105"
-              width="320"
-              height="400"
+              alt="Onur Aksoy — Senior Systems Architect and AI-Native Developer"
+              class="w-full h-full object-cover object-top scale-100 hover:scale-105 transition-all duration-700"
+              width="937"
+              height="1679"
+              fetchpriority="high"
               loading="eager"
+              decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/70 via-transparent to-transparent pointer-events-none"></div>
             <div class="absolute bottom-3 left-3 right-3 text-center">
@@ -114,13 +139,13 @@ const competencies = [
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="mb-12 text-center max-w-2xl mx-auto">
         <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-          Temel Yetkinlikler
+          Core Capabilities
         </span>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-2">
-          Teknik Yetkinlik & Mimari Matrisi
+          Technical Capabilities & Architectural Matrix
         </h2>
         <p class="text-sm text-text-muted mt-2">
-          Düşük gecikmeli masaüstü altyapısı, üretken medya sistemleri ve deterministik yapay zeka ajan orkestrasyonu.
+          Balanced disciplines spanning low-latency desktop infrastructure, generative media, and deterministic agent orchestration.
         </p>
       </div>
 
@@ -159,17 +184,17 @@ const competencies = [
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
         <div>
           <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-            Canlı Sistemler
+            Production Implementations
           </span>
           <h2 class="text-3xl font-extrabold tracking-tight text-text-primary mt-1">
-            Öne Çıkan Amiral Gemisi Projeler
+            Featured Systems & Applications
           </h2>
         </div>
         <a
-          href="/tr/projects/"
+          href="/en/projects/"
           class="text-sm font-semibold text-gold-highlight hover:text-text-primary flex items-center gap-1 transition-colors"
         >
-          Tüm Proje İndeksini Gör &rarr;
+          View Full Project Index &rarr;
         </a>
       </div>
 
@@ -201,7 +226,7 @@ const competencies = [
 
                 <!-- Title & Description -->
                 <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3 leading-snug">
-                  <a href={`/tr/projects/${project.slug}/`} class="hover:text-gold-highlight transition-colors">
+                  <a href={`/en/projects/${project.slug}/`} class="hover:text-gold-highlight transition-colors">
                     {project.title}
                   </a>
                 </h3>
@@ -238,10 +263,10 @@ const competencies = [
                 <!-- Action Links -->
                 <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-obsidian-border/60">
                   <a
-                    href={`/tr/projects/${project.slug}/`}
+                    href={`/en/projects/${project.slug}/`}
                     class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight uppercase tracking-wider flex items-center gap-1.5 transition-colors"
                   >
-                    Mimari Vaka Analizini Oku &rarr;
+                    Read Architectural Case Study &rarr;
                   </a>
 
                   <div class="flex flex-wrap items-center gap-2 text-xs">
@@ -253,7 +278,7 @@ const competencies = [
                         class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                       >
                         {project.links.store.includes('microsoftedge') || project.links.store.includes('addons')
-                          ? 'Edge Eklentisi ↗'
+                          ? 'Edge Add-on ↗'
                           : 'Microsoft Store ↗'}
                       </a>
                     )}
@@ -264,7 +289,7 @@ const competencies = [
                         rel="noopener noreferrer"
                         class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                       >
-                        Uygulamayı Aç ↗
+                        Launch App ↗
                       </a>
                     )}
                     {project.links?.tool && (
@@ -274,7 +299,7 @@ const competencies = [
                         rel="noopener noreferrer"
                         class="px-3 py-1 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
                       >
-                        Stüdyoyu Başlat ↗
+                        Launch Studio ↗
                       </a>
                     )}
                     {project.links?.github && (
@@ -297,24 +322,57 @@ const competencies = [
     </div>
   </section>
 
-  <!-- En Son Teknik Yayınlar & Mimari Analizler -->
-  <LatestBroadcasts lang="tr" limit={5} />
+  <!-- Latest Technical Broadcasts & Deep Dives -->
+  <LatestBroadcasts lang="en" limit={5} />
+
+  <!-- Generative Knowledge & Architectural FAQ Section -->
+  <section id="faq" class="py-20 border-t border-obsidian-border bg-obsidian-surface/30">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 text-center">
+        <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
+          Entity Authority & Inquiries
+        </span>
+        <h2 class="text-3xl font-extrabold tracking-tight text-text-primary mt-2">
+          Who is Onur Aksoy? & Systems Architecture FAQ
+        </h2>
+        <p class="text-sm text-text-muted mt-2 max-w-xl mx-auto">
+          Direct, deterministic insights into Onur Aksoy's software engineering background, flagship tools, and architectural philosophy.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {homeFaqs.map((faq) => (
+          <details class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+            <summary class="flex items-center justify-between font-bold text-text-primary cursor-pointer list-none text-base group-open:text-gold-highlight transition-colors">
+              <span>{faq.question}</span>
+              <span class="ml-4 text-xs font-mono px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border text-gold-tungsten group-open:rotate-45 transition-transform duration-200">
+                +
+              </span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-obsidian-border/50 text-sm text-text-muted leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- Contact & Direct Access Hub -->
   <section class="py-20 border-t border-obsidian-border bg-obsidian-surface/40">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
       <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-        Doğrudan İletişim Hattı
+        Direct Transmission
       </span>
       <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary mt-2 mb-4">
-        Kritik sistemleri birlikte tasarlayalım.
+        Ready to build mission-critical systems?
       </h2>
       <p class="text-sm sm:text-base text-text-muted leading-relaxed mb-8 max-w-xl mx-auto">
-        Dağıtık bir masaüstü uygulaması geliştirmek, iş akışlarınızı yapay zeka yerel ajanlara taşımak veya mimari danışmanlık almak için doğrudan ulaşabilirsiniz.
+        Whether you are planning a distributed desktop application, transitioning into an AI-native agent pipeline, or requiring architectural advisory in Ankara or globally.
       </p>
 
       <div class="p-8 rounded-2xl bg-obsidian-surface border border-gold-tungsten/30 shadow-2xl inline-block max-w-lg w-full">
-        <div class="text-xs font-mono text-gold-highlight mb-2">BİRİNCİL İLETİŞİM E-POSTASI</div>
+        <div class="text-xs font-mono text-gold-highlight mb-2">PRIMARY DISPATCH ADDRESS</div>
         <a
           href="mailto:dev@onuraksoy.com.tr"
           class="text-xl sm:text-2xl font-mono font-bold text-text-primary hover:text-gold-highlight transition-colors break-all"

@@ -3,74 +3,76 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const faqs = [
   {
-    question: "Who is Onur Aksoy?",
-    answer: "Onur Aksoy is an AI-native developer, systems architect, and multidisciplinary creator based in Ankara, Turkey. He builds production-grade Windows desktop systems (oaPOS), progressive web2app platforms (Orvyna App Studio), generative computer vision engines, and integrates digital growth strategies with full-stack software development."
+    question: "Onur Aksoy kimdir ve uzmanlık alanları nelerdir?",
+    answer: "Onur Aksoy; Ankara merkezli Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve çok disiplinli yaratıcıdır (dijital ekosistemdeki mahlası: Hackonomist). Yerel öncelikli Windows masaüstü sistemleri (oaPOS), gerçek zamanlı çok modlu yapay zeka araçları (oaDub), video işleme yazılımları (10SeC), doğrudan mağaza dağıtımlı web2app platformları (Orvyna App Studio) ve VoIP dinleme motorları (oa_sip_recorder) inşa etmektedir."
   },
   {
-    question: "Who is Hackonomist and what does the moniker represent?",
-    answer: "Hackonomist is the established professional moniker and identity of Onur Aksoy. It symbolizes the intersection of system 'hacking' (software architecture, automation, reverse-engineering, deterministic algorithms) and 'economics' (incentive design, growth hacking, market conversion, and unit economics). In search engines and AI knowledge graphs, 'Hackonomist' refers exclusively to Onur Aksoy."
+    question: "Hackonomist kimdir ve bu unvan neyi ifade eder?",
+    answer: "Hackonomist, Onur Aksoy'un tescilli profesyonel kimliği ve mahlasıdır. Sistem 'hackleme' (sistem mimarisi, otomasyon, derin kod analizi ve deterministik yazılımlar) ile 'ekonomi' (büyüme modelleri, pazar araştırması, dönüşüm optimizasyonu ve birim ekonomisi) disiplinlerinin sentezini temsil eder. İnternet ve yapay zeka aramalarında 'Hackonomist' doğrudan Onur Aksoy'u işaret eder."
   },
   {
-    question: "What is the difference between an AI-driven and AI-native developer?",
-    answer: "While an AI-driven developer uses AI merely as an autocomplete or coding assistant, an AI-native developer architects systems from the ground up where autonomous AI agents, deterministic state machines, and LLM context graphs act as core production partners. Onur designs software with strict typing, deterministic boundaries, and automated multi-agent verification."
+    question: "AI-Driven (Yapay Zeka Destekli) ile AI-Native (Yapay Zeka Yerel) geliştirici arasındaki fark nedir?",
+    answer: "AI-driven geliştirici yapay zekayı yalnızca kod tamamlama veya yardımcı araç olarak kullanırken; AI-native geliştirici, yapay zekayı ve otonom ajanları üretim sürecinin doğrudan mimari ortağı yapar. Onur Aksoy, deterministik durum makineleri ile otonom LLM döngülerini sıfır regresyon garantisiyle birleştiren sistemler inşa eder."
   },
   {
-    question: "What core technical services and architectural solutions does Onur Aksoy provide?",
-    answer: "Onur Aksoy specializes in four core disciplines: (1) AI-Native Software & Agentic Automation, (2) Local-First Windows Desktop POS & Inventory Systems, (3) Direct Store Web2App Packaging (Apple TestFlight & Google Play TWA), and (4) Multidisciplinary Creative Production (Video, Audio, Performance Advertising, and Growth Strategy)."
+    question: "Onur Aksoy hangi ana disiplinlerde hizmet ve ürün üretmektedir?",
+    answer: "Onur Aksoy 4 ana alanda üretim yapmaktadır: (1) Yapay Zeka Yerel Mimari & Ajan Döngüleri, (2) Yerel Öncelikli Windows Masaüstü POS ve Stok Yönetimi (HOST/CLIENT LAN), (3) Doğrudan Mağaza Dağıtımlı Web2App Mimarileri (Apple TestFlight & Google Play TWA), (4) İçerik, Video Prodüksiyonu, Performans Reklamcılığı ve Veri Odaklı Büyüme Stratejisi."
   },
   {
-    question: "How does the oaPOS HOST/CLIENT architecture maintain offline resilience?",
-    answer: "oaPOS uses a local-first peer architecture connecting multiple POS and barcode terminals over local area network (LAN) raw TCP/IP sockets without relying on external cloud servers or internet connectivity. Data synchronizes across devices with sub-10ms latency directly on modern embedded SQLite and distributed PostgreSQL / NoSQL datastores."
+    question: "oaPOS HOST/CLIENT yerel ağ mimarisi internet olmadan nasıl çalışır?",
+    answer: "oaPOS, aynı yerel ağdaki birden fazla terminal ve cihazı bulut sunucularına ihtiyaç duymadan doğrudan ham LAN soketleri üzerinden haberleştirir. 10ms altı işlem gecikmesiyle gömülü SQLite ve dağıtık veritabanlarında tam çevrimdışı iş sürekliliği sağlar."
   },
   {
-    question: "What is Orvyna App Studio?",
-    answer: "Orvyna App Studio is an automated web2app compilation platform created by Onur Aksoy. It inspects responsive web applications, extracts metadata and icons, and delivers direct Apple TestFlight / App Store Connect delivery and Google Play TWA/AAB packages with sub-150KB shell footprints in under 3 seconds."
+    question: "Orvyna App Studio nedir?",
+    answer: "Orvyna App Studio, duyarlı web sitelerini saniyeler içinde doğrudan Apple TestFlight / App Store Connect dağıtımına ve Google Play TWA/AAB paketlerine dönüştüren, 150 KB altı hafif kabuklar üreten bulut tabanlı bir web2app üretim stüdyosudur."
   },
   {
-    question: "How does Onur Aksoy bridge marketing, video production, and software development?",
-    answer: "Rather than treating code, content, and marketing as isolated silos, Onur unites them into a single product-focused workflow: from market research and conversion-optimized software architecture to studio video shooting, creative ad campaigns, and SEO/GEO generative search discovery."
+    question: "Yazılım geliştirme ile sosyal medya, video ve pazarlama nasıl tek çatı altında birleşiyor?",
+    answer: "Onur Aksoy, yazılımı pazarlamadan ve içerik üretiminden bağımsız görmez; pazar araştırmasından mimariye, video çekiminden reklam yönetimine ve GEO/SEO yapay zeka görünürlüğüne kadar tüm süreci tek bir ürün odaklı iş akışında yürütür."
   },
   {
-    question: "How can clients hire or collaborate with Onur Aksoy?",
-    answer: "Onur Aksoy is available for strategic consulting, high-impact software development, and enterprise architecture advisory. Clients can reach him directly at dev@onuraksoy.com.tr, or via Telegram (@oaonuraksoy) and WhatsApp (+905511817053)."
+    question: "Onur Aksoy ile nasıl iletişime geçebilir veya danışmanlık alabilirim?",
+    answer: "Doğrudan dev@onuraksoy.com.tr e-posta adresi üzerinden, Telegram'da @oaonuraksoy veya WhatsApp (+905511817053) üzerinden iletişime geçebilirsiniz."
   }
 ];
 ---
 
 <BaseLayout
-  title="About Onur Aksoy — AI-Native Developer & Multidisciplinary Creator"
-  description="Editorial biography, architectural convictions, and background of Onur Aksoy. Pioneering deterministic AI systems and local-first software development."
-  lang="en"
+  title="Hakkımda — Onur Aksoy | Yazılım Mimarı & Yapay Zeka Yerel Geliştirici"
+  description="Onur Aksoy'un editoryal biyografisi, mimari felsefesi ve teknik prensipleri. Deterministik yapay zeka sistemleri ve yerel öncelikli yazılım mimarisi."
+  lang="tr"
   activeNav="about"
   schemaType="Person"
   faqs={faqs}
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
-    <!-- Header with Portrait -->
+    <!-- Header with Color Portrait -->
     <div class="flex flex-col md:flex-row items-center md:items-start gap-8 pb-12 border-b border-obsidian-border mb-12">
       <div class="relative w-44 sm:w-52 aspect-[4/5] rounded-2xl overflow-hidden border border-gold-tungsten/40 shadow-xl flex-shrink-0 bg-obsidian-surface">
         <img
           src="/images/onur-aksoy.webp"
-          alt="Onur Aksoy Portrait"
-          class="w-full h-full object-cover object-top"
-          width="208"
-          height="260"
+          alt="Onur Aksoy Portresi"
+          class="w-full h-full object-cover object-top scale-100 hover:scale-105 transition-all duration-700"
+          width="937"
+          height="1679"
+          fetchpriority="high"
           loading="eager"
+          decoding="async"
         />
       </div>
 
       <div>
         <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-          Biography & Manifesto
+          Biyografi & Manifest
         </span>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary mt-1 mb-3">
           Onur Aksoy
         </h1>
         <p class="text-base text-gold-highlight font-medium mb-4">
-          AI-Native Developer & Multidisciplinary Creator
+          Kıdemli Yazılım Mimarı & Yapay Zeka Yerel Geliştirici
         </p>
         <p class="text-sm text-text-muted leading-relaxed max-w-xl">
-          Based in Ankara, Turkey, operating at the intersection of high-availability desktop software development, deterministic artificial intelligence architectures, and multidisciplinary digital design.
+          Ankara merkezli çalışan; yüksek erişilebilirlikli masaüstü yazılımları, deterministik yapay zeka sistemleri ve çok disiplinli dijital tasarımın kesişim noktasında bağımsız ürünler inşa eden kıdemli geliştirici.
         </p>
       </div>
     </div>
@@ -80,72 +82,72 @@ const faqs = [
       <div>
         <h2 class="text-xl font-bold text-text-primary mb-4 flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
-          The Philosophy: Determinism Over Hallucination
+          Felsefe: Halüsinasyona Karşı Determinizm
         </h2>
         <p class="mb-4">
-          The dominant trend in artificial intelligence software often favors flashy conversational wrappers that mask erratic non-deterministic failures behind polite apologies. My approach is strictly rooted in architectural discipline:
+          Yapay zeka ekosistemindeki yaygın eğilim, rastgele hataları kibar özürlerin ardına gizleyen süslü sohbet kutuları inşa etmek üzerine yoğunlaşmıştır. Benim sistem yaklaşımım ise katı bir kesinlik disiplinine dayanır:
         </p>
         <p class="p-4 rounded-xl bg-obsidian-surface border-l-2 border-gold-tungsten text-sm text-text-primary italic">
-          "State machines must remain mathematically deterministic, schemas must be strictly enforced, and generative AI agents must operate under multi-layered audit loops."
+          "İş durumu makineleri matematiksel olarak deterministik kalmalı, veri sözleşmeleri tavizsiz denetlenmeli ve üretken yapay zeka ajanları çok katmanlı doğrulama döngülerinde çalıştırılmalıdır."
         </p>
       </div>
 
       <div>
         <h2 class="text-xl font-bold text-text-primary mb-4 flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
-          Local-First Software Sovereignty
+          Yerel Öncelikli (Local-First) Yazılım Egemenliği
         </h2>
         <p class="mb-4">
-          In an era where every utility demands a monthly cloud subscription and risks operational shutdown whenever network connections glitch, I build systems that prioritize local data sovereignty.
+          Her basit aracın aylık bulut kirası talep ettiği ve internet hattı titrediğinde işletmelerin kilitlendiği bir dönemde; yerel veri egemenliğini ve kullanıcı sahipliğini önceleyen sistemler tasarlıyorum.
         </p>
         <p>
-          Whether building enterprise point-of-sale platforms like <strong class="text-text-primary">oaPOS</strong> with local socket LAN synchronization, or crafting lightweight containerized web wrappers with <strong class="text-text-primary">Orvyna App Studio</strong>, the goal remains the same: microsecond performance, zero operational rents, and continuous autonomy.
+          İster <strong class="text-text-primary">oaPOS</strong> gibi yerel ağ soketleriyle çalışan kurumsal masaüstü sistemleri, ister <strong class="text-text-primary">Orvyna App Studio</strong> gibi tarayıcıda çalışan hafif konteyner kabukları olsun; temel hedef değişmez: mikrosaniye işlem hızı, sıfır gereksiz sunucu maliyeti ve kesintisiz operasyonel bağımsızlık.
         </p>
       </div>
 
       <!-- Core Technical Arsenal -->
       <div class="pt-6 border-t border-obsidian-border">
         <h2 class="text-xl font-bold text-text-primary mb-6">
-          Technical Arsenal & Core Stack
+          Teknik Cephane & Çekirdek Yığın
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
           <div class="p-4 rounded-xl bg-obsidian-surface border border-obsidian-border">
-            <span class="text-gold-highlight font-bold block mb-2">Systems & Desktop</span>
+            <span class="text-gold-highlight font-bold block mb-2">Sistemler & Masaüstü</span>
             <ul class="space-y-1 text-text-muted">
               <li>• .NET 8 / C# / WPF / XAML</li>
-              <li>• SQLite / Embedded Databases</li>
-              <li>• Asynchronous TCP/IP LAN Sockets</li>
-              <li>• ESC/POS Thermal Printing Engines</li>
+              <li>• SQLite / Gömülü Veritabanları</li>
+              <li>• Asenkron TCP/IP Yerel Ağ Soketleri</li>
+              <li>• ESC/POS Termal Yazıcı Komut Motorları</li>
             </ul>
           </div>
 
           <div class="p-4 rounded-xl bg-obsidian-surface border border-obsidian-border">
-            <span class="text-gold-highlight font-bold block mb-2">AI & Generative Pipelines</span>
+            <span class="text-gold-highlight font-bold block mb-2">Yapay Zeka & Üretken Pipeline</span>
             <ul class="space-y-1 text-text-muted">
-              <li>• Autonomous Subagent Orchestration</li>
-              <li>• Latent Diffusion & Inpainting Pipelines</li>
-              <li>• Sub-pixel Edge Alpha Matting</li>
-              <li>• Schema.org & GEO Knowledge Engines</li>
+              <li>• Otonom Alt Ajan Orkestrasyonu</li>
+              <li>• Latent Difüzyon & Inpainting Motorları</li>
+              <li>• Alt-Piksel Kenar Alfa Maskeleme</li>
+              <li>• Schema.org & GEO Bilgi Grafikleri</li>
             </ul>
           </div>
 
           <div class="p-4 rounded-xl bg-obsidian-surface border border-obsidian-border">
-            <span class="text-gold-highlight font-bold block mb-2">Modern Web & Containers</span>
+            <span class="text-gold-highlight font-bold block mb-2">Modern Web & Konteynerler</span>
             <ul class="space-y-1 text-text-muted">
-              <li>• Astro 7 / Content Layer / Zero-JS</li>
-              <li>• TypeScript / Vite / Web Components</li>
-              <li>• Store Web2App (TestFlight & TWA)</li>
-              <li>• Workbox Caching Architectures</li>
+              <li>• Astro 7 / İçerik Katmanı / Zero-JS</li>
+              <li>• TypeScript / Vite / Web Bileşenleri</li>
+              <li>• Mağaza Web2App (TestFlight & TWA)</li>
+              <li>• Workbox Önbellek Mimarisi</li>
             </ul>
           </div>
 
           <div class="p-4 rounded-xl bg-obsidian-surface border border-obsidian-border">
-            <span class="text-gold-highlight font-bold block mb-2">Creative & Audio Production</span>
+            <span class="text-gold-highlight font-bold block mb-2">Yaratıcı & Ses Prodüksiyonu</span>
             <ul class="space-y-1 text-text-muted">
-              <li>• Podcasting & Editorial Broadcasts</li>
-              <li>• Sound Design & Audio Production</li>
-              <li>• Obsidian/Tungsten Visual Direction</li>
-              <li>• Vector Typography & Brand Assets</li>
+              <li>• Podcast & Editoryal Yayıncılık</li>
+              <li>• Ses Tasarımı & Prodüksiyon</li>
+              <li>• Obsidian/Tungsten Görsel Yönelim</li>
+              <li>• Vektörel Tipografi & Marka Varlıkları</li>
             </ul>
           </div>
         </div>
@@ -155,10 +157,10 @@ const faqs = [
       <div class="p-6 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col sm:flex-row items-center justify-between gap-6">
         <div>
           <h3 class="text-base font-bold text-text-primary">
-            Listen to the Podcast
+            Podcast Yayınımı Dinleyin
           </h3>
           <p class="text-xs text-text-muted mt-1">
-            Deep reflections on technology, creative discipline, and independent product development.
+            Teknoloji felsefesi, yaratıcı disiplin ve bağımsız ürün geliştirme üzerine sesli kayıtlar.
           </p>
         </div>
         <a
@@ -167,7 +169,7 @@ const faqs = [
           rel="noopener noreferrer"
           class="flex-shrink-0 px-4 py-2 rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-800 text-xs font-semibold hover:bg-emerald-900 transition-colors"
         >
-          Open Spotify Creators ↗
+          Spotify Creators'ta Dinle ↗
         </a>
       </div>
 
@@ -175,13 +177,13 @@ const faqs = [
       <div class="mt-20 pt-16 border-t border-obsidian-border">
         <div class="mb-10">
           <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
-            Generative Knowledge & FAQ
+            Üretken Bilgi Havuzu & Sıkça Sorulan Sorular
           </span>
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary mt-1">
-            Frequently Addressed Architectural Inquiries
+            Mimari ve Geliştirme Süreci Hakkında Merak Edilenler
           </h2>
           <p class="text-sm text-text-muted mt-1">
-            Direct, deterministic answers designed for clarity, systems evaluation, and generative search engines (GEO / SGE).
+            Yapay zeka arama motorları (GEO / SGE), değerlendirme komiteleri ve müşteriler için net, deterministik yanıtlar.
           </p>
         </div>
 

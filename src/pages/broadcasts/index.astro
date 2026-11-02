@@ -2,12 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const broadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
+const broadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'tr');
 broadcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 // Featured broadcast (first one or featured: true)
 const featuredBroadcast = broadcasts.find((b) => b.data.featured) || broadcasts[0];
-const remainingBroadcasts = broadcasts.filter((b) => b.id !== featuredBroadcast?.id);
 
 // Extract all unique tags
 const allTags = Array.from(new Set(broadcasts.flatMap((b) => b.data.tags || [])));
@@ -19,28 +18,28 @@ const countAudio = broadcasts.filter((b) => !!b.data.spotifyUrl).length;
 const countVault = broadcasts.filter((b) => b.data.downloads && b.data.downloads.length > 0).length;
 const countArticle = broadcasts.filter((b) => !b.data.youtubeId && !b.data.spotifyUrl).length;
 
-const title = "Broadcasts & Technical Vault — Onur Aksoy";
-const description = "Architectural screencasts, technical deep dives, interactive video chapters, transcripts, and downloadable vault assets from Onur Aksoy.";
+const title = "Yayınlar & Bilgi Kasası — Onur Aksoy";
+const description = "Teknik ekran kayıtları, derin mimari transkriptler, interaktif zaman damgalı bölümler ve yüksek hızlı mimari kaynaklar.";
 ---
 
-<BaseLayout lang="en" activeNav="broadcasts" title={title} description={description}>
+<BaseLayout lang="tr" activeNav="broadcasts" title={title} description={description}>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
     <!-- Hero Header -->
     <section class="space-y-4 max-w-3xl">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-obsidian-border text-xs font-mono text-gold-tungsten">
         <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-        <span>Broadcasts & Knowledge Vault</span>
+        <span>Yayınlar & Bilgi Kasası</span>
       </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text-primary">
-        Technical Screencasts, Deep Transcripts & Downloadable Assets.
+        Teknik Yayınlar, Derin Transkriptler & İndirilebilir Kaynaklar.
       </h1>
       <p class="text-base sm:text-lg text-text-muted leading-relaxed">
-        Direct-to-the-metal architectural breakdowns. Every broadcast pairs deep video analysis with full text transcripts, timestamped chapters, and direct Google Drive downloads for source repositories and schemas.
+        Doğrudan makineye ve koda inen mimari incelemeler. Her yayın; YouTube video analizini, tam metin transkriptleri, saniye bazlı bölümleri ve doğrudan indirilebilir kaynak kod ve şemaları barındırır.
       </p>
     </section>
 
-    <!-- Spotlight Featured Broadcast (if available) -->
+    <!-- Spotlight Öne Çıkan Yayın Vitrini -->
     {featuredBroadcast && (
       <section class="relative rounded-2xl border border-gold-tungsten/40 bg-gradient-to-br from-obsidian-surface via-obsidian-surface to-obsidian-black p-6 sm:p-8 shadow-2xl overflow-hidden group">
         <div class="absolute -right-20 -top-20 w-80 h-80 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -59,7 +58,7 @@ const description = "Architectural screencasts, technical deep dives, interactiv
             <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/90 via-transparent to-transparent"></div>
 
             <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-gold-tungsten text-obsidian-black text-[11px] font-mono font-bold tracking-wider uppercase shadow">
-              ★ Featured Spotlight
+              ★ Öne Çıkan Yayın
             </div>
 
             {featuredBroadcast.data.duration && (
@@ -73,20 +72,20 @@ const description = "Architectural screencasts, technical deep dives, interactiv
           <div class="lg:col-span-6 space-y-4">
             <div class="flex items-center gap-3 text-xs font-mono text-text-muted">
               <time datetime={featuredBroadcast.data.pubDate.toISOString()} class="text-gold-tungsten">
-                {featuredBroadcast.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                {featuredBroadcast.data.pubDate.toLocaleDateString('tr-TR', { year: 'numeric', month: 'short', day: 'numeric' })}
               </time>
               <span>•</span>
-              <span class="text-gold-highlight">Latest Release</span>
+              <span class="text-gold-highlight">Son Çıkan</span>
               {featuredBroadcast.data.downloads && featuredBroadcast.data.downloads.length > 0 && (
                 <>
                   <span>•</span>
-                  <span class="text-gold-tungsten">{featuredBroadcast.data.downloads.length} Vault Downloads</span>
+                  <span class="text-gold-tungsten">{featuredBroadcast.data.downloads.length} Kasa İndirmesi</span>
                 </>
               )}
             </div>
 
             <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-text-primary group-hover:text-gold-highlight transition-colors">
-              <a href={`/broadcasts/${featuredBroadcast.id.replace(/^en\//, '')}/`}>
+              <a href={`/broadcasts/${featuredBroadcast.id.replace(/^tr\//, '')}/`}>
                 {featuredBroadcast.data.title}
               </a>
             </h2>
@@ -105,10 +104,10 @@ const description = "Architectural screencasts, technical deep dives, interactiv
 
             <div class="pt-4 flex items-center gap-4">
               <a
-                href={`/broadcasts/${featuredBroadcast.id.replace(/^en\//, '')}/`}
+                href={`/broadcasts/${featuredBroadcast.id.replace(/^tr\//, '')}/`}
                 class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold text-xs hover:bg-gold-highlight transition-all duration-200 shadow-lg shadow-gold-tungsten/20"
               >
-                <span>Explore Full Broadcast</span>
+                <span>Tüm Yayını İncele</span>
                 <span>→</span>
               </a>
             </div>
@@ -117,58 +116,58 @@ const description = "Architectural screencasts, technical deep dives, interactiv
       </section>
     )}
 
-    <!-- Category & Format Filtering Hub -->
+    <!-- Kategori & Format Filtreleme Merkezi -->
     <section class="space-y-6 pt-4 border-t border-obsidian-border/60">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <!-- Format Filter Tabs -->
-        <div class="flex items-center gap-2 flex-wrap" role="group" aria-label="Format filters">
+        <!-- Format Filtre Sekmeleri -->
+        <div class="flex items-center gap-2 flex-wrap" role="group" aria-label="Format filtreleri">
           <button
             type="button"
             class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gold-tungsten text-obsidian-black font-semibold shadow-sm"
             data-filter="all"
           >
-            All Broadcasts <span class="opacity-80">({countAll})</span>
+            Tüm Yayınlar <span class="opacity-80">({countAll})</span>
           </button>
           <button
             type="button"
             class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
             data-filter="video"
           >
-            🎬 Screencasts <span class="opacity-80">({countVideo})</span>
+            🎬 Screencast & Video <span class="opacity-80">({countVideo})</span>
           </button>
           <button
             type="button"
             class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
             data-filter="audio"
           >
-            🎙️ Podcasts <span class="opacity-80">({countAudio})</span>
+            🎙️ Podcast & Ses <span class="opacity-80">({countAudio})</span>
           </button>
           <button
             type="button"
             class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
             data-filter="vault"
           >
-            📦 The Vault (Downloads) <span class="opacity-80">({countVault})</span>
+            📦 Bilgi Kasası (İndirmeler) <span class="opacity-80">({countVault})</span>
           </button>
           <button
             type="button"
             class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary"
             data-filter="article"
           >
-            📄 Articles <span class="opacity-80">({countArticle})</span>
+            📄 Makaleler <span class="opacity-80">({countArticle})</span>
           </button>
         </div>
 
-        <!-- Result Status Badge -->
+        <!-- Sonuç Durumu -->
         <div class="text-xs font-mono text-text-muted" id="filter-status" aria-live="polite">
-          Showing <span id="visible-count">{broadcasts.length}</span> publications
+          Toplam <span id="visible-count">{broadcasts.length}</span> yayın listeleniyor
         </div>
       </div>
 
-      <!-- Topic Tag Chips -->
+      <!-- Konu Etiketleri -->
       {allTags.length > 0 && (
         <div class="flex items-center gap-1.5 flex-wrap pt-1">
-          <span class="text-xs font-mono text-gold-tungsten mr-1">Topics:</span>
+          <span class="text-xs font-mono text-gold-tungsten mr-1">Konular:</span>
           {allTags.map((tag) => (
             <button
               type="button"
@@ -182,10 +181,10 @@ const description = "Architectural screencasts, technical deep dives, interactiv
       )}
     </section>
 
-    <!-- Broadcasts Grid -->
+    <!-- Yayınlar Grid Listesi -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-8" id="broadcasts-grid">
       {broadcasts.map((item) => {
-        const slug = item.id.replace(/^en\//, '');
+        const slug = item.id.replace(/^tr\//, '');
         const thumbUrl = item.data.youtubeId 
           ? `https://i.ytimg.com/vi/${item.data.youtubeId}/maxresdefault.jpg`
           : item.data.thumbnail || '/images/oa-logo.webp';
@@ -204,7 +203,7 @@ const description = "Architectural screencasts, technical deep dives, interactiv
             data-formats={formats.join(' ')}
             data-tags={tagsString}
           >
-            <!-- Thumbnail & Video Badge -->
+            <!-- Thumbnail & Video Rozeti -->
             <a href={`/broadcasts/${slug}/`} class="relative aspect-video overflow-hidden bg-obsidian-black block">
               <img
                 src={thumbUrl}
@@ -236,12 +235,12 @@ const description = "Architectural screencasts, technical deep dives, interactiv
                 )}
                 {item.data.downloads && item.data.downloads.length > 0 && (
                   <span class="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
-                    <span>Vault</span>
+                    <span>Kasa</span>
                   </span>
                 )}
                 {!item.data.youtubeId && !item.data.spotifyUrl && (
                   <span class="px-2 py-0.5 rounded-md bg-blue-600/90 text-white text-[10px] font-semibold flex items-center gap-1 shadow">
-                    <span>Article</span>
+                    <span>Makale</span>
                   </span>
                 )}
               </div>
@@ -252,14 +251,14 @@ const description = "Architectural screencasts, technical deep dives, interactiv
               <div class="space-y-2.5">
                 <div class="flex items-center gap-3 text-xs text-text-muted font-mono">
                   <time datetime={item.data.pubDate.toISOString()}>
-                    {item.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    {item.data.pubDate.toLocaleDateString('tr-TR', { year: 'numeric', month: 'short', day: 'numeric' })}
                   </time>
                   <span>•</span>
-                  <span>{item.data.chapters?.length || 0} Key Moments</span>
+                  <span>{item.data.chapters?.length || 0} Bölüm</span>
                   {item.data.downloads && item.data.downloads.length > 0 && (
                     <>
                       <span>•</span>
-                      <span class="text-gold-tungsten">{item.data.downloads.length} Vault Downloads</span>
+                      <span class="text-gold-tungsten">{item.data.downloads.length} Kasa İndirmesi</span>
                     </>
                   )}
                 </div>
@@ -288,7 +287,7 @@ const description = "Architectural screencasts, technical deep dives, interactiv
                   href={`/broadcasts/${slug}/`}
                   class="text-xs font-semibold text-gold-tungsten group-hover:text-gold-highlight flex items-center gap-1 transition-colors"
                 >
-                  <span>Explore Broadcast</span>
+                  <span>Yayını İncele</span>
                   <span>→</span>
                 </a>
               </div>
@@ -298,23 +297,23 @@ const description = "Architectural screencasts, technical deep dives, interactiv
       })}
     </section>
 
-    <!-- Empty State for Filters -->
+    <!-- Boş Durum (Filtre Sonucu Bulunamadığında) -->
     <div id="empty-state" class="hidden p-12 text-center rounded-xl border border-obsidian-border bg-obsidian-surface space-y-3">
-      <div class="text-gold-tungsten font-mono text-sm font-semibold">No publications found</div>
-      <p class="text-xs text-text-muted">There are no broadcasts matching your current filter selection.</p>
+      <div class="text-gold-tungsten font-mono text-sm font-semibold">Yayın Bulunamadı</div>
+      <p class="text-xs text-text-muted">Seçtiğiniz formata veya etikete uygun yayın henüz bulunmuyor.</p>
       <button
         type="button"
         id="reset-filter-btn"
         class="inline-block px-3.5 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight hover:bg-gold-tungsten hover:text-obsidian-black border border-gold-tungsten/30 text-xs font-mono font-semibold transition-all"
       >
-        Reset Filters
+        Filtreleri Sıfırla
       </button>
     </div>
   </main>
 </BaseLayout>
 
 <script>
-  // Instantaneous zero-dependency client-side filter
+  // Sıfır bağımlılıklı anlık filtreleme motoru
   const filterTabs = document.querySelectorAll<HTMLButtonElement>('.filter-tab');
   const tagPills = document.querySelectorAll<HTMLButtonElement>('.tag-pill');
   const cards = document.querySelectorAll<HTMLElement>('.broadcast-card');

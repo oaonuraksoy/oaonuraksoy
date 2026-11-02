@@ -31,7 +31,7 @@ const {
   description,
   pubDate,
   canonicalUrl,
-  lang = 'en',
+  lang = 'tr',
   youtubeId,
   spotifyUrl,
   duration = 'PT15M00S',
@@ -51,8 +51,9 @@ function parseTimeToSeconds(timeStr: string): number {
   return 0;
 }
 
-const homeUrl = lang === 'tr' ? 'https://onuraksoy.com.tr/tr/' : 'https://onuraksoy.com.tr/';
-const broadcastsUrl = lang === 'tr' ? 'https://onuraksoy.com.tr/tr/broadcasts/' : 'https://onuraksoy.com.tr/broadcasts/';
+const isTr = lang === 'tr';
+const homeUrl = isTr ? 'https://onuraksoy.com.tr/' : 'https://onuraksoy.com.tr/en/';
+const broadcastsUrl = isTr ? 'https://onuraksoy.com.tr/broadcasts/' : 'https://onuraksoy.com.tr/en/broadcasts/';
 const featuredImageUrl = youtubeId
   ? `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`
   : thumbnail
@@ -66,8 +67,8 @@ const graph: any[] = [
     '@id': 'https://onuraksoy.com.tr/#website',
     'url': 'https://onuraksoy.com.tr',
     'name': 'Onur Aksoy',
-    'alternateName': ['Onur Aksoy Portfolio', 'Hackonomist'],
-    'inLanguage': ['en-US', 'tr-TR'],
+    'alternateName': ['Onur Aksoy Portfolio', 'Hackonomist', 'OA Portfolyo'],
+    'inLanguage': ['tr-TR', 'en-US'],
     'publisher': {
       '@id': 'https://onuraksoy.com.tr/#person'
     },
@@ -86,18 +87,20 @@ const graph: any[] = [
     '@type': 'Person',
     '@id': 'https://onuraksoy.com.tr/#person',
     'name': 'Onur Aksoy',
-    'alternateName': ['Hackonomist', 'hackonomist', 'OA'],
-    'jobTitle': 'AI-Native Developer & Multidisciplinary Creator',
-    'url': 'https://onuraksoy.com.tr',
+    'alternateName': ['Hackonomist', 'oaonuraksoy'],
+    'jobTitle': isTr ? 'Kıdemli Yazılım Mimarı & Yapay Zeka Yerel Geliştirici' : 'Senior Systems Architect & AI-Native Developer',
+    'url': 'https://onuraksoy.com.tr/',
     'sameAs': [
       'https://github.com/oaonuraksoy',
-      'https://youtube.com/@oaonuraksoy',
-      'https://linkedin.com/in/oaonuraksoy',
       'https://x.com/oaonuraksoy',
+      'https://linkedin.com/in/oaonuraksoy',
+      'https://youtube.com/@oaonuraksoy',
       'https://instagram.com/oaonuraksoy',
       'https://t.me/oaonuraksoy',
       'https://wa.me/905511817053',
-      'https://creators.spotify.com/pod/profile/oaonuraksoy/'
+      'https://creators.spotify.com/pod/profile/oaonuraksoy/',
+      'https://apps.microsoft.com/detail/9nblggh4nns1',
+      'https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd'
     ]
   },
 
@@ -114,7 +117,7 @@ const graph: any[] = [
     'breadcrumb': {
       '@id': `${canonicalUrl}#breadcrumb`
     },
-    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US'
+    'inLanguage': isTr ? 'tr-TR' : 'en-US'
   },
 
   // 4. BreadcrumbList Entity (Google SERP breadcrumbs)
@@ -125,13 +128,13 @@ const graph: any[] = [
       {
         '@type': 'ListItem',
         'position': 1,
-        'name': lang === 'tr' ? 'Ana Sayfa' : 'Home',
+        'name': isTr ? 'Ana Sayfa' : 'Home',
         'item': homeUrl
       },
       {
         '@type': 'ListItem',
         'position': 2,
-        'name': lang === 'tr' ? 'Yayınlar & Bilgi Kasası' : 'Broadcasts & Vault',
+        'name': isTr ? 'Yayınlar & Bilgi Kasası' : 'Broadcasts & Vault',
         'item': broadcastsUrl
       },
       {
@@ -152,7 +155,7 @@ const graph: any[] = [
     },
     'headline': title,
     'description': description,
-    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US',
+    'inLanguage': isTr ? 'tr-TR' : 'en-US',
     'mainEntityOfPage': `${canonicalUrl}#webpage`,
     'datePublished': pubDate.toISOString(),
     'dateModified': pubDate.toISOString(),
@@ -197,7 +200,7 @@ if (youtubeId) {
     'duration': duration,
     'contentUrl': `https://www.youtube.com/watch?v=${youtubeId}`,
     'embedUrl': `https://www.youtube-nocookie.com/embed/${youtubeId}`,
-    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US',
+    'inLanguage': isTr ? 'tr-TR' : 'en-US',
     'author': {
       '@id': 'https://onuraksoy.com.tr/#person'
     }
@@ -215,10 +218,10 @@ if (spotifyUrl) {
   graph.push({
     '@type': 'AudioObject',
     '@id': `${canonicalUrl}#audio`,
-    'name': `${title} (Podcast Audio Edition)`,
+    'name': `${title} (${isTr ? 'Podcast Sesli Yayını' : 'Podcast Audio Edition'})`,
     'description': description,
     'contentUrl': spotifyUrl,
-    'inLanguage': lang === 'tr' ? 'tr-TR' : 'en-US',
+    'inLanguage': isTr ? 'tr-TR' : 'en-US',
     'author': {
       '@id': 'https://onuraksoy.com.tr/#person'
     }

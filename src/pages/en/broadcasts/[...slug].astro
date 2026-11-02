@@ -6,13 +6,13 @@ import BroadcastJsonLd from '../../../components/BroadcastJsonLd.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const trBroadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'tr');
   const enBroadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'en');
+  const trBroadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'tr');
 
-  return trBroadcasts.map((item) => {
-    const slug = item.id.replace(/^tr\//, '');
-    const enCounterpart = enBroadcasts.find((en) => en.data.ref === item.data.ref);
-    const counterpartSlug = enCounterpart ? enCounterpart.id.replace(/^en\//, '') : null;
+  return enBroadcasts.map((item) => {
+    const slug = item.id.replace(/^en\//, '');
+    const trCounterpart = trBroadcasts.find((tr) => tr.data.ref === item.data.ref);
+    const counterpartSlug = trCounterpart ? trCounterpart.id.replace(/^tr\//, '') : null;
 
     return {
       params: { slug },
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 const { item, counterpartSlug } = Astro.props;
 const { Content } = await render(item);
 
-const canonicalUrl = `https://onuraksoy.com.tr/tr/broadcasts/${Astro.params.slug}/`;
+const canonicalUrl = `https://onuraksoy.com.tr/en/broadcasts/${Astro.params.slug}/`;
 const ogImage = item.data.youtubeId
   ? `https://i.ytimg.com/vi/${item.data.youtubeId}/maxresdefault.jpg`
   : item.data.thumbnail
@@ -38,10 +38,10 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
 ---
 
 <BaseLayout
-  title={`${item.data.title} — Onur Aksoy Yayınlar`}
+  title={`${item.data.title} — Onur Aksoy Broadcasts`}
   description={item.data.description}
   image={ogImage}
-  lang="tr"
+  lang="en"
   activeNav="broadcasts"
   counterpartUrl={counterpartUrl}
   disableDefaultJsonLd={true}
@@ -53,7 +53,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
     description={item.data.description}
     pubDate={item.data.pubDate}
     canonicalUrl={canonicalUrl}
-    lang="tr"
+    lang="en"
     youtubeId={item.data.youtubeId}
     spotifyUrl={item.data.spotifyUrl}
     duration={item.data.duration}
@@ -63,20 +63,20 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
   />
 
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
-    <!-- Breadcrumb Navigasyonu -->
-    <nav class="flex items-center gap-2 text-xs font-mono text-text-muted" aria-label="Sayfa haritası">
-      <a href="/tr/" class="hover:text-gold-tungsten transition-colors">Ana Sayfa</a>
+    <!-- Breadcrumb Navigation -->
+    <nav class="flex items-center gap-2 text-xs font-mono text-text-muted" aria-label="Breadcrumbs">
+      <a href="/en/" class="hover:text-gold-tungsten transition-colors">Home</a>
       <span>/</span>
-      <a href="/tr/broadcasts/" class="hover:text-gold-tungsten transition-colors">Yayınlar</a>
+      <a href="/en/broadcasts/" class="hover:text-gold-tungsten transition-colors">Broadcasts</a>
       <span>/</span>
       <span class="text-gold-tungsten truncate">{item.data.title}</span>
     </nav>
 
-    <!-- Başlık & Meta Bilgileri -->
+    <!-- Header Section -->
     <header class="space-y-4">
       <div class="flex items-center gap-3 flex-wrap text-xs font-mono text-text-muted">
         <time datetime={item.data.pubDate.toISOString()} class="text-gold-tungsten">
-          {item.data.pubDate.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}
+          {item.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
         {item.data.duration && (
           <>
@@ -93,7 +93,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
               href={`/broadcasts/${counterpartSlug}/`}
               class="text-xs font-mono text-gold-tungsten hover:text-gold-highlight underline decoration-gold-tungsten/40 underline-offset-4 transition-colors"
             >
-              Read in English ↗
+              Türkçe versiyonunu oku ↗
             </a>
           </>
         )}
@@ -116,21 +116,21 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
       </div>
     </header>
 
-    <!-- Durum 1: Video Hero (Varsa) -->
+    <!-- Case 1: Video Hero (if video is available) -->
     {hasVideo && (
-      <section aria-label="Video Oynatıcı ve Bölümler">
+      <section aria-label="Video Player and Chapters">
         <LiteYouTube
           youtubeId={item.data.youtubeId!}
           title={item.data.title}
           chapters={item.data.chapters}
-          lang="tr"
+          lang="en"
         />
       </section>
     )}
 
-    <!-- Durum 1.5: Kapak Görseli Hero (Video yoksa ve kapak görseli varsa) -->
+    <!-- Case 1.5: Editorial Article Cover / Hero Image (if no video and thumbnail exists) -->
     {!hasVideo && item.data.thumbnail && (
-      <section class="relative aspect-video rounded-2xl overflow-hidden border border-obsidian-border bg-obsidian-black shadow-2xl group" aria-label="Kapak Görseli">
+      <section class="relative aspect-video rounded-2xl overflow-hidden border border-obsidian-border bg-obsidian-black shadow-2xl group" aria-label="Cover Image">
         <img
           src={item.data.thumbnail}
           alt={item.data.title}
@@ -141,7 +141,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
       </section>
     )}
 
-    <!-- Durum 2: Ses / Podcast Hero (Varsa) -->
+    <!-- Case 2: Audio Hero / Banner -->
     {hasAudio && (
       <section class={`p-5 rounded-xl border ${hasVideo ? 'border-emerald-900/40 bg-emerald-950/20' : 'border-emerald-700/50 bg-emerald-950/30 p-6 shadow-xl'} flex flex-col sm:flex-row items-center justify-between gap-4`}>
         <div class="flex items-center gap-3.5 text-emerald-400">
@@ -152,10 +152,10 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
           </div>
           <div class="space-y-0.5">
             <h2 class="text-sm sm:text-base font-semibold text-text-primary">
-              {hasVideo ? 'Sesli Podcast Bölümü Yayında' : 'Podcast Sesli Yayın'}
+              {hasVideo ? 'Audio Edition Available' : 'Podcast Audio Broadcast'}
             </h2>
             <p class="text-xs text-text-muted">
-              Spotify for Creators, Apple Podcasts veya podcast uygulamanızdan dinleyin.
+              Stream on Spotify for Creators, Apple Podcasts, or your favorite client.
             </p>
           </div>
         </div>
@@ -166,41 +166,41 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
           rel="noopener noreferrer"
           class="px-4 py-2.5 rounded-lg bg-emerald-500 text-obsidian-black font-semibold text-xs hover:bg-emerald-400 transition-colors shrink-0 shadow-lg shadow-emerald-500/20"
         >
-          Spotify'da Dinle ↗
+          Stream on Spotify ↗
         </a>
       </section>
     )}
 
-    <!-- Durum 3: 20TB Google Drive İndirme Kasası (Varsa) -->
+    <!-- Case 3: 20TB Google Drive Download Vault -->
     {hasDownloads && (
-      <section aria-label="Proje İndirme Kasası">
-        <DriveDownloadCard downloads={item.data.downloads} lang="tr" />
+      <section aria-label="Project Download Vault">
+        <DriveDownloadCard downloads={item.data.downloads} lang="en" />
       </section>
     )}
 
-    <!-- Üst Seviye Sistem Mimarisi Topolojisi (Frontmatter içinde tanımlıysa) -->
+    <!-- Top-Level System Architecture Topology (if provided in frontmatter) -->
     {item.data.mermaidTopology && (
       <div class="mermaid-wrapper my-10 p-6 sm:p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border overflow-x-auto shadow-2xl">
         <div class="text-xs font-mono text-gold-tungsten uppercase tracking-wider mb-4 flex items-center justify-between border-b border-obsidian-border/60 pb-3">
           <span class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
-            <span>Sistem Mimarisi Topolojisi</span>
+            <span>System Architecture Topology</span>
           </span>
-          <span class="text-[11px] text-text-muted lowercase font-mono">vektörel mimari diyagramı</span>
+          <span class="text-[11px] text-text-muted lowercase font-mono">interactive vector diagram</span>
         </div>
         <pre class="mermaid">{item.data.mermaidTopology}</pre>
       </div>
     )}
 
-    <!-- Markdown Makale & Transkript Gövdesi -->
+    <!-- Markdown Article & Deep Transcript Body -->
     <article class="prose prose-invert prose-gold max-w-none pt-6 border-t border-obsidian-border/60">
       <Content />
     </article>
   </main>
 
-  <!-- İstemci Taraflı Vektörel Mermaid Topoloji İşleyicisi -->
+  <!-- Client-side Interactive Vector Mermaid Topology Renderer -->
   <script is:inline>
-    // 1. Markdown içerisindeki "mermaid" kod bloklarını tespit et ve topoloji kartına dönüştür
+    // 1. Process any markdown code blocks with language "mermaid"
     const rawMermaidBlocks = document.querySelectorAll('pre[data-language="mermaid"], pre.mermaid');
     
     rawMermaidBlocks.forEach((el) => {
@@ -219,9 +219,9 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
       header.innerHTML = `
         <span class="flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
-          <span>Sistem Mimarisi Topolojisi</span>
+          <span>System Architecture Topology</span>
         </span>
-        <span class="text-[11px] text-text-muted lowercase font-mono">vektörel mimari diyagramı</span>
+        <span class="text-[11px] text-text-muted lowercase font-mono">interactive vector diagram</span>
       `;
       
       wrapper.appendChild(header);
@@ -232,7 +232,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
       }
     });
 
-    // 2. Tüm .mermaid öğelerini derle ve render et
+    // 2. Initialize and render all .mermaid elements
     const mermaidNodes = document.querySelectorAll('.mermaid');
     if (mermaidNodes.length > 0) {
       import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs').then((m) => {
