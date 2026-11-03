@@ -10,9 +10,10 @@ interface Props {
   title: string;
   chapters?: Chapter[];
   lang?: 'en' | 'tr';
+  poster?: string;
 }
 
-const { youtubeId, title, chapters = [], lang = 'en' } = Astro.props;
+const { youtubeId, title, chapters = [], lang = 'en', poster } = Astro.props;
 
 // Convert "MM:SS" or "HH:MM:SS" to seconds
 function parseTimeToSeconds(timeStr: string): number {
@@ -30,7 +31,11 @@ const enrichedChapters = chapters.map((ch) => ({
   seconds: ch.seconds ?? parseTimeToSeconds(ch.time)
 }));
 
-const thumbUrl = `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`;
+const thumbUrl = poster
+  ? poster
+  : (youtubeId === 'VsdZFJN8ezI'
+      ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
+      : `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`);
 const ytWatchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
 ---
 

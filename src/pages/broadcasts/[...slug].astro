@@ -60,6 +60,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
     thumbnail={item.data.thumbnail}
     chapters={item.data.chapters}
     downloads={item.data.downloads}
+    faqs={item.data.faqs}
   />
 
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
@@ -124,6 +125,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
           title={item.data.title}
           chapters={item.data.chapters}
           lang="tr"
+          poster={item.data.thumbnail}
         />
       </section>
     )}
@@ -196,6 +198,91 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
     <article class="prose prose-invert prose-gold max-w-none pt-6 border-t border-obsidian-border/60">
       <Content />
     </article>
+
+    <!-- Sıkça Sorulan Teknik Sorular (FAQ / SGE) -->
+    {item.data.faqs && item.data.faqs.length > 0 && (
+      <section class="mt-14 pt-10 border-t border-obsidian-border" aria-label="Sıkça Sorulan Sorular">
+        <div class="mb-6">
+          <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold">
+            SSS & Teknik Ayrıştırma
+          </span>
+          <h2 class="text-xl sm:text-2xl font-bold text-text-primary mt-1">
+            Sıkça Sorulan Teknik Sorular
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          {item.data.faqs.map((faq) => (
+            <details class="group rounded-xl border border-obsidian-border bg-obsidian-surface p-5 transition-all duration-200 hover:border-gold-tungsten/40 open:border-gold-tungsten/60 open:bg-obsidian-surface/90">
+              <summary class="flex cursor-pointer items-center justify-between font-semibold text-text-primary text-sm sm:text-base select-none">
+                <span>{faq.question}</span>
+                <span class="ml-4 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-obsidian-border text-gold-tungsten group-open:rotate-180 transition-transform duration-200">
+                  ↓
+                </span>
+              </summary>
+              <p class="mt-3 text-sm text-text-muted leading-relaxed pt-2 border-t border-obsidian-border/50">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Yazar Otorite Kartı (Author Authority Card) -->
+    <section class="mt-12 p-6 sm:p-8 rounded-2xl border border-gold-tungsten/30 bg-gradient-to-br from-obsidian-surface via-obsidian-black to-obsidian-surface shadow-2xl relative overflow-hidden" aria-label="Yazar Hakkında">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 relative z-10">
+        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-gold-tungsten/50 shadow-xl shrink-0">
+          <img
+            src="/images/onur-aksoy-1x1.webp"
+            alt="Onur Aksoy (a.k.a. Hackonomist)"
+            class="w-full h-full object-cover"
+            width="112"
+            height="112"
+            loading="lazy"
+          />
+        </div>
+        <div class="space-y-3 text-center sm:text-left flex-1">
+          <div class="space-y-1">
+            <div class="text-xs font-mono uppercase tracking-wider text-gold-tungsten font-semibold">
+              Yazar & Sistem Mimarı
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-text-primary">
+              Onur Aksoy <span class="text-sm font-normal text-gold-highlight font-mono">(a.k.a. Hackonomist)</span>
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+            Ankara merkezli Kıdemli Yazılım Mimarı ve Yapay Zeka Yerel Geliştirici. Deterministik yapay zeka durum makineleri, yerel öncelikli (local-first) dağıtık mimariler, Rust ağ dinleyicileri ve yüksek performanslı medya işleme sistemleri inşa eder.
+          </p>
+          <div class="flex items-center justify-center sm:justify-start gap-3 pt-2 text-xs font-mono">
+            <a
+              href="https://github.com/oaonuraksoy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-text-muted hover:text-gold-highlight transition-colors underline decoration-gold-tungsten/40 underline-offset-4"
+            >
+              GitHub ↗
+            </a>
+            <span>•</span>
+            <a
+              href="https://youtube.com/@oaonuraksoy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-text-muted hover:text-gold-highlight transition-colors underline decoration-gold-tungsten/40 underline-offset-4"
+            >
+              YouTube ↗
+            </a>
+            <span>•</span>
+            <a
+              href="/broadcasts/"
+              class="text-gold-tungsten hover:text-gold-highlight transition-colors font-semibold"
+            >
+              Tüm Yayınlar & Kasa ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- İstemci Taraflı Vektörel Mermaid Topoloji İşleyicisi -->

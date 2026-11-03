@@ -87,7 +87,11 @@ const broadcasts = defineCollection({
       driveUrl: z.string(),
       hash: z.string().optional()
     })).default([]),
-    mermaidTopology: z.string().optional()
+    mermaidTopology: z.string().optional(),
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string()
+    })).default([])
   })
 });
 

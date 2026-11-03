@@ -24,6 +24,7 @@ interface Props {
   thumbnail?: string;
   chapters?: Chapter[];
   downloads?: DownloadItem[];
+  faqs?: { question: string; answer: string }[];
 }
 
 const {
@@ -37,7 +38,8 @@ const {
   duration = 'PT15M00S',
   thumbnail,
   chapters = [],
-  downloads = []
+  downloads = [],
+  faqs = []
 } = Astro.props;
 
 // Convert "MM:SS" or "HH:MM:SS" to seconds
@@ -89,7 +91,16 @@ const graph: any[] = [
     'name': 'Onur Aksoy',
     'alternateName': ['Hackonomist', 'oaonuraksoy'],
     'jobTitle': isTr ? 'Kıdemli Yazılım Mimarı & Yapay Zeka Yerel Geliştirici' : 'Senior Systems Architect & AI-Native Developer',
+    'disambiguatingDescription': isTr 
+      ? 'Ankara merkezli Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve dijital ürün yaratıcısı Onur Aksoy (a.k.a. Hackonomist). oaPOS, oaDub, 10SeC, Orvyna App Studio ve oa_sip_recorder sistemlerinin mimarıdır.' 
+      : 'Ankara-based Senior Systems Architect, AI-Native Developer, and multidisciplinary creator Onur Aksoy (a.k.a. Hackonomist). Architect of oaPOS, oaDub, 10SeC, Orvyna App Studio, and oa_sip_recorder.',
     'url': 'https://onuraksoy.com.tr/',
+    'image': [
+      'https://onuraksoy.com.tr/images/onur-aksoy-1x1.webp',
+      'https://onuraksoy.com.tr/images/onur-aksoy-4x3.webp',
+      'https://onuraksoy.com.tr/images/onur-aksoy-16x9.webp',
+      'https://onuraksoy.com.tr/images/onur-aksoy.webp'
+    ],
     'sameAs': [
       'https://github.com/oaonuraksoy',
       'https://x.com/oaonuraksoy',
@@ -187,15 +198,18 @@ if (youtubeId) {
     };
   });
 
+  const thumbList = [featuredImageUrl];
+  if (youtubeId !== 'VsdZFJN8ezI') {
+    thumbList.push(`https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`);
+  }
+  thumbList.push(`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`);
+
   const videoObject: any = {
     '@type': 'VideoObject',
     '@id': `${canonicalUrl}#video`,
     'name': title,
     'description': description,
-    'thumbnailUrl': [
-      `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`,
-      `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
-    ],
+    'thumbnailUrl': thumbList,
     'uploadDate': pubDate.toISOString(),
     'duration': duration,
     'contentUrl': `https://www.youtube.com/watch?v=${youtubeId}`,
@@ -242,6 +256,22 @@ downloads.forEach((d, idx) => {
     }
   });
 });
+
+// 9. FAQPage Entity (if FAQs exist for SGE / Rich Results)
+if (faqs && faqs.length > 0) {
+  graph.push({
+    '@type': 'FAQPage',
+    '@id': `${canonicalUrl}#faq`,
+    'mainEntity': faqs.map((f) => ({
+      '@type': 'Question',
+      'name': f.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': f.answer
+      }
+    }))
+  });
+}
 
 const schemaData = {
   '@context': 'https://schema.org',

@@ -8,7 +8,7 @@ featured: true
 tags: ["Vaultwarden", "Bitwarden", "Docker", "Plesk", "SiberGuvenlik", "SelfHosted", "Linux"]
 youtubeId: "OMLQdKx_T08"
 duration: "PT4M48S"
-thumbnail: "https://i.ytimg.com/vi/OMLQdKx_T08/maxresdefault.jpg"
+thumbnail: "/images/broadcasts/vaultwarden-kurulumu.webp"
 chapters:
   - time: "00:00"
     title: "Giriş: Neden Vaultwarden?"
@@ -23,52 +23,93 @@ chapters:
   - time: "03:24"
     title: "Canlı TOTP 2FA Testi"
 downloads:
+  - name: "Plesk Nginx Vaultwarden Konfigürasyonu"
+    size: "2.8 KB"
+    type: "conf"
+    driveUrl: "/vault/vaultwarden/plesk-nginx-vaultwarden.conf"
+    hash: "sha256:709847a47632a75d2eb34802568d80e2917a6a289388b73839ef51bf005e3df5"
   - name: "oaVaultWardenInstaller (GitHub)"
     size: "Bash Script"
     type: "sh"
     driveUrl: "https://github.com/oaonuraksoy/oaVaultWardenInstaller"
+faqs:
+  - question: "Resmi Bitwarden sunucusu varken neden Vaultwarden tercih edilmeli?"
+    answer: "Resmi Bitwarden sunucusu kurumsal .NET ve MSSQL yığını kullandığı için en az 2-4 GB RAM gerektirir. Rust ile yazılan Vaultwarden ise aynı Bitwarden API'sini sadece 25-40 MB RAM tüketimiyle eksiksiz sunar. Ayrıca resmi Bitwarden'da ücretli olan TOTP 2FA kod üretimi, şifreli dosya depolama ve organizasyon paylaşımı Vaultwarden'da tamamen ücretsiz ve sınırsızdır."
+  - question: "Vaultwarden kurulumunda WebSocket yönlendirmesi neden zorunludur?"
+    answer: "Bitwarden tarayıcı eklentisi veya mobil uygulamada yeni bir şifre eklendiğinde veya güncellendiğinde, diğer cihazların anında güncellenmesi için WebSocket (/notifications/hub) bağlantısı şarttır. WebSocket yönlendirilmezse istemciler sadece manuel eşitleme (sync) yapıldığında veya oturum kapatılıp açıldığında güncellenir."
+  - question: "Kurulum tamamlandıktan sonra halka açık yeni kullanıcı kaydı nasıl engellenir?"
+    answer: "Kendi ana hesabınızı oluşturduktan sonra sunucunuzun yetkisiz kayıtlarla dolmasını önlemek için Docker ortam değişkenlerinde SIGNUPS_ALLOWED=false ayarı yapılmalıdır. oaVaultWardenInstaller betiği ilk hesap kurulumundan sonra bu korumayı otomatik devreye alır."
+  - question: "Vaultwarden veritabanı yedeği nasıl alınır?"
+    answer: "Vaultwarden varsayılan olarak /data/db.sqlite3 dosyasını SQLite WAL modunda tutar. Yedek almak için sqlite3 /data/db.sqlite3 '.backup /backup/vault.db' komutuyla canlı kilitlenme olmadan tutarlı bir kopya alabilir veya /opt/vaultwarden/data dizinini şifreli depolamaya rsync/borg ile arşivleyebilirsiniz."
 ---
 
-## Neden Parolalarınızı Üçüncü Parti Bulutlara Bırakasınız?
+## Kendi Sunucumda Şifre Egemenliği: Neden Vaultwarden?
 
-Günümüzde şifre yöneticileri lüks değil, dijital varlık güvenliğinin temel omurgasıdır. Ancak LastPass gibi merkezi servislerin yaşadığı veri ihlalleri veya ticari şifre yöneticilerinin değişen abonelik modelleri, bireysel ve kurumsal kullanıcıları haklı olarak yerel öncelikli (self-hosted) alternatiflere yöneltiyor.
+Yıllarca kendi sunucularımda, ajans operasyonlarımda ve bağımsız dijital ürünlerimde yüzlerce sunucu anahtarını, veri tabanı şifresini, müşteri API token'ını ve ödeme ağ geçidi kimliklerini yönetirken bir şeyi çok net anladım: **Master parolanızı ve kritik iki adımlı doğrulama (TOTP) tohumlarınızı üçüncü parti ticari bulutlara emanet etmek, tüm dijital altyapınızı başkasının insafına bırakmaktır.**
 
-Resmi Bitwarden sunucu altyapısı kurumsal MSSQL ve .NET yığını kullandığı için minimum 2-4 GB RAM gerektirirken; Rust ile baştan yazılan **Vaultwarden**, aynı Bitwarden istemci API'sini yalnızca **25-40 MB RAM** tüketimiyle eksiksiz sunar. Üstelik resmi Bitwarden'da ücretli olan dahili TOTP iki adımlı doğrulama (2FA), şifreli dosya eki depolama ve organizasyon paylaşımı Vaultwarden'da tamamen ücretsiz ve sınırsızdır.
+LastPass'in yaşadığı yıkıcı veri sızıntılarını veya ticari şifre yöneticilerinin bir gecede fiyat modellerini değiştirip özellik kısıtlamalarını hepimiz gördük. Ancak resmi Bitwarden sunucusunu kendi VDS'inize kurmaya kalktığınızda karşınıza ağır bir kurumsal .NET mimarisi, MSSQL veritabanı konteynerleri ve minimum 3-4 GB bellek tüketimi çıkıyor.
 
-Bu videoda; kendi geliştirdiğim açık kaynaklı `oaVaultWardenInstaller` betiğiyle, Plesk veya bağımsız bir Ubuntu VDS üzerinde tek bir komutla Vaultwarden'ı nasıl ayağa kaldırdığımızı adım adım inceliyoruz.
+Tam bu noktada devreye Rust ile baştan yazılan **Vaultwarden** giriyor. Kendi üretim sunucularımda test ettiğimde gördüm ki; resmi Bitwarden API sözleşmesini %100 uygularken sunucu belleğinden yalnızca **25 ila 40 megabayt** tüketiyor. Üstelik resmi Bitwarden'da yıllık 10-40$ abonelik ücretiyle satılan **dahili TOTP kod üretimi (Google Authenticator yerine geçen 30 saniyelik 2FA kodları)**, şifreli ek dosya yükleme ve organizasyon içi parola paylaşımı Vaultwarden üzerinde tamamen limitsiz ve ücretsiz.
+
+Bu rehberde; Plesk kontrol paneli kurulu veya standart bir Ubuntu Linux sunucuda, tek komutla çalışan açık kaynaklı kurulum sihirbazım `oaVaultWardenInstaller` ile Vaultwarden'ı nasıl ayağa kaldırdığımızı uçtan uca anlatıyorum.
 
 ```mermaid
-flowchart LR
-    Client["Bitwarden İstemcisi<br/>(Chrome / iOS / Android)"] -->|SSL Port 443| Nginx["Plesk / Nginx<br/>Ters Proxy (SSL)"]
-    Nginx -->|HTTP :8000| VW["Vaultwarden Konteyneri<br/>(Rust API - ~30MB RAM)"]
-    Nginx -->|WebSocket :3012| WS["Canlı Bildirimler<br/>(/notifications/hub)"]
-    VW --> DB[("Şifrelenmiş Kasa<br/>(SQLite / WAL Modu)")]
+flowchart TD
+    Client["Bitwarden Resmi İstemcisi<br/>(Chrome / Firefox / iOS / Android)"] -->|HTTPS 443 / SSL| Nginx["Plesk Nginx Ters Proxy<br/>(HSTS, HTTP/2, Let's Encrypt)"]
+    Nginx -->|HTTP :8000| Core["Vaultwarden Çekirdeği<br/>(Rust Rocket/Actix - ~30MB RAM)"]
+    Nginx -->|WebSocket :3012| Push["Gerçek Zamanlı Bildirim Hub'ı<br/>(/notifications/hub)"]
+    Core --> SQLite[("Kasa Veritabanı<br/>(/data/db.sqlite3 - WAL Modu)")]
+    Core --> AdminPanel["/admin Arayüzü<br/>(Argon2id Korumalı)"]
 ```
 
 ---
 
-## 1. Tek Komutla Otomatik Kurulum Sihirbazı
+## Mimari Kıyaslama: Resmi Bitwarden vs. Vaultwarden
 
-Kurulum sürecini standartlaştırmak ve hata payını sıfıra indirmek için açık kaynaklı `oaVaultWardenInstaller` betiğini hazırladım. Betik sunucunuzda Docker ve Docker Compose bağımlılıklarını kontrol eder, güvenli dizin yapısını oluşturur ve interaktif bir sihirbazla gerekli parametreleri toplar:
+Aşağıdaki tablo, kendi üretim ortamlarımda yaptığım gerçek kaynak tüketimi ve özellik kıyaslamasını gösterir:
+
+| Karşılaştırma Kriteri | Resmi Bitwarden Sunucusu (SaaS / Docker) | Vaultwarden (Rust Self-Hosted) |
+|---|---|---|
+| **Yazılım Yığını** | C# .NET Core + MSSQL Server + NodeJS | Rust (Rocket/Actix) + SQLite / PostgreSQL |
+| **RAM Tüketimi** | ~2.5 GB – 4.0 GB RAM | **25 MB – 40 MB RAM** |
+| **Konteyner Sayısı** | 10–12 adet Docker konteyneri | **Tek bir hafif Docker konteyneri** |
+| **Dahili TOTP (2FA) Kodları** | Ücretli Premium plan ($10/yıl veya $40/kullanıcı) | **Tamamen Ücretsiz ve Sınırsız** |
+| **Şifreli Ek Dosya Depolama** | 1 GB ile sınırlı (ek kota ücretli) | **Sunucu diskiniz kadar sınırsız** |
+| **Yedekleme Kolaylığı** | MSSQL backup + birden çok hacim | **Tek bir SQLite (.sqlite3) dosyasını kopyalamak yeterli** |
+
+---
+
+## 1. Tek Komutla Otomatik Kurulum: `oaVaultWardenInstaller`
+
+Kurulum esnasında Docker parametreleri, port çakışmaları ve çevre değişkenleriyle tek tek uğraşmamak için hazırladığım açık kaynaklı `oaVaultWardenInstaller` kabuk betiğini sunucunuzda çalıştırmanız yeterli:
 
 ```bash
-# Kurulum betiğini doğrudan GitHub üzerinden çalıştırın
+# Kurulum sihirbazını sunucunuzda doğrudan başlatın
 wget -qO- https://raw.githubusercontent.com/oaonuraksoy/oaVaultWardenInstaller/main/install.sh | bash
 ```
 
-Sihirbaz şu parametreleri güvenli şekilde yapılandırır:
-1. **Çalışma Dizini:** Kasa verilerinin tutulacağı `/opt/vaultwarden/data` kalıcı Docker hacmi.
-2. **Kasa Alan Adı:** `vault.sizin-domaininiz.com` şeklinde FQDN tanımlaması.
-3. **Argon2id Admin Token:** Yönetici paneline (`/admin`) yetkisiz erişimi engellemek için SHA256 yerine modern Argon2id algoritmasıyla türetilen karmaşık erişim anahtarı.
-4. **Kayıt Politikası:** Sunucunuzun yetkisiz kullanıcı kayıtlarına maruz kalmaması için ilk hesap açılışından sonra `SIGNUPS_ALLOWED=false` kuralı otomatik devreye alınır.
+Bu sihirbaz arka planda şu kritik adımları deterministik olarak icra eder:
+1. Docker motorunun varlığını kontrol eder, eksikse resmi repodan kurar.
+2. `/opt/vaultwarden/data` kalıcı hacmini oluşturur ve doğru dosya izinlerini (`chmod 700`) ayarlar.
+3. Kasa yönetimi için modern **Argon2id** tabanlı karmaşık bir Admin Token türetir.
+4. Vaultwarden imajını (`vaultwarden/server:latest`) çekerek yerel `127.0.0.1:8000` (HTTP) ve `127.0.0.1:3012` (WebSocket) portlarına bağlar.
+
+```bash
+# Konteyner durumunu kontrol etmek için:
+docker ps --filter "name=vaultwarden"
+```
 
 ---
 
-## 2. Plesk Nginx Ters Proxy ve WebSocket Entegrasyonu
+## 2. Plesk ve Nginx Ters Proxy Yapılandırması
 
-Bitwarden istemcilerinin kasadaki parola değişikliklerini anında tarayıcıya yansıtabilmesi için WebSocket bağlantısının (`/notifications/hub`) Nginx ters proxy katmanında doğru yönlendirilmesi şarttır. Plesk üzerinde ilgili alt alan adının **Ek Nginx Yönergeleri** bölümüne şu yapılandırma eklenir:
+Vaultwarden doğrudan internete açılmamalıdır; önünde Let's Encrypt SSL sertifikasıyla korunan bir Nginx ters proxy katmanı bulunmalıdır. Plesk'te `vault.alanadiniz.com` alt alan adını açtıktan sonra **Apache & Nginx Ayarları > Ek Nginx Yönergeleri** alanına indirilebilir kasada paylaştığım şu konfigürasyonu yapıştırın:
 
 ```nginx
+# Client gövde boyutu (Büyük şifreli ekler için 128MB)
+client_max_body_size 128M;
+
+# 1. Ana Vaultwarden API ve Web Arayüzü
 location / {
     proxy_pass http://127.0.0.1:8000;
     proxy_set_header Host $host;
@@ -77,28 +118,53 @@ location / {
     proxy_set_header X-Forwarded-Proto $scheme;
 }
 
+# 2. Canlı Eşitleme İçin WebSocket Hub (Olmazsa olmaz!)
 location /notifications/hub {
     proxy_pass http://127.0.0.1:3012;
+    proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 3600s;
+    proxy_send_timeout 3600s;
 }
 
 location /notifications/hub/negotiate {
     proxy_pass http://127.0.0.1:8000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
 }
 ```
 
-Bu yapılandırma tamamlandığında, `Let's Encrypt` SSL sertifikası üzerinden uçtan uca şifrelenmiş (E2EE) HTTPS tüneli aktifleşir.
+---
+
+## 3. Canlı TOTP 2FA ve Eklenti Entegrasyon Testi
+
+Kurulum tamamlandığında resmi Bitwarden tarayıcı eklentisini (Chrome, Firefox, Brave veya Edge) açın:
+1. Oturum açma ekranının sol üst köşesindeki dişli çark (**Ayarlar**) simgesine tıklayın.
+2. **Özel Ortam (Self-hosted)** kutucuğuna kendi sunucu adresinizi yazın: `https://vault.alanadiniz.com`.
+3. Yeni bir hesap oluşturun ve kasanıza giriş yapın.
+4. Yeni bir giriş eklerken **Doğrulayıcı Anahtarı (TOTP)** alanına gizli anahtarı yapıştırın.
+
+Artık web sitelerine giriş yaparken Bitwarden eklentisi hem kullanıcı adı ve şifrenizi otomatik dolduracak, hem de 30 saniyelik 2FA doğrulama kodunu anında panoya kopyalayacaktır.
 
 ---
 
-## 3. Canlı TOTP 2FA ve İstemci Eşitleme Testi
+## Sık Karşılaşılan Hatalar ve Çözümleri (Troubleshooting)
 
-Kurulumun ardından resmi Bitwarden masaüstü uygulaması veya tarayıcı eklentisinde **Ayarlar > Özel Ortam (Self-hosted)** seçeneği işaretlenerek kendi sunucu adresiniz girilir (`https://vault.sizin-domaininiz.com`).
+Kendi kurulumlarımda ve topluluktan gelen sorularda en sık rastlanan 3 senaryo ve çözümleri:
 
-Videoda canlı olarak test ettiğimiz gibi:
-- Yeni bir hesap oluşturulduğunda, dahili **Doğrulayıcı Anahtarı (TOTP)** alanına gizli anahtar (secret key) yapıştırılır.
-- Vaultwarden, harici Google Authenticator veya Authy uygulamasına ihtiyaç duymadan 30 saniyelik 6 haneli 2FA kodlarını kasanız içinde otomatik üretir.
-- Tarayıcıda bir siteye giriş yaparken Bitwarden eklentisi hem kullanıcı adı/şifreyi doldurur hem de üretilen TOTP kodunu panoya kopyalayarak tek tıkla oturum açmanızı sağlar.
+1. **"Websocket connection failed" / Kasa anlık eşitlenmiyor:**
+   - *Sebep:* Nginx ters proxy üzerinde `/notifications/hub` bloğunun eksik olması veya `3012` portunun Docker konteyneri içinde dinlenmemesi.
+   - *Çözüm:* Docker başlatma parametresinde `-p 127.0.0.1:3012:3012` ve ortam değişkenlerinde `WEBSOCKET_ENABLED=true` bulunduğundan emin olun.
+2. **Kayıt olduktan sonra yabancıların hesap açması riski:**
+   - *Çözüm:* İlk hesabınızı açtıktan sonra `/opt/vaultwarden/` dizinindeki ortam dosyasında veya docker run komutunda `SIGNUPS_ALLOWED=false` tanımlayın ve konteyneri yeniden başlatın (`docker restart vaultwarden`).
+3. **Yönetici paneline (`/admin`) erişememe veya şifre hatası:**
+   - *Çözüm:* `ADMIN_TOKEN` karma değerini doğrudan string olarak değil, argon2 ile hash'lenmiş biçimde tanımlayın. Token'ı kaybettiyseniz konteyner içine girmeden `docker exec -it vaultwarden /vaultwarden hash` komutuyla yeni bir hash üretebilirsiniz.
 
-GitHub reposundaki betiği inceleyerek kendi altyapınıza dakikalar içinde entegre edebilirsiniz.
+Bu yayındaki yapılandırma dosyalarını yukarıdaki **The Vault** indirme kutusundan edinebilir, GitHub üzerindeki installer depoma yıldız vererek katkıda bulunabilirsiniz.

@@ -179,9 +179,28 @@ const spotlightDate = spotlight
                 day: 'numeric'
               });
 
+              const itemThumb = item.data.thumbnail
+                ? item.data.thumbnail
+                : (item.data.youtubeId
+                    ? (item.data.youtubeId === 'VsdZFJN8ezI'
+                        ? `https://i.ytimg.com/vi/${item.data.youtubeId}/hqdefault.jpg`
+                        : `https://i.ytimg.com/vi/${item.data.youtubeId}/maxresdefault.jpg`)
+                    : '/images/oa-logo.webp');
+
               return (
                 <article class="card-noir rounded-2xl p-6 flex flex-col justify-between group">
                   <div>
+                    <!-- 16:9 Cover Thumbnail -->
+                    <a href={url} class="block relative aspect-video rounded-xl overflow-hidden border border-obsidian-border bg-obsidian-black mb-4 group-hover:border-gold-tungsten/50 transition-colors">
+                      <img
+                        src={itemThumb}
+                        alt={item.data.title}
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-85 group-hover:opacity-100"
+                        loading="lazy"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/80 via-transparent to-transparent"></div>
+                    </a>
+
                     <!-- Format Rozetleri & Tarih -->
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                       <time datetime={item.data.pubDate.toISOString()} class="text-xs font-mono text-gold-tungsten">
