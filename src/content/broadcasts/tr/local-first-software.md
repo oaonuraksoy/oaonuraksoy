@@ -1,6 +1,8 @@
 ---
 title: "Yerel Öncelikli (Local-First) Mühendislik Rönesansı: Egemen Veri, 10ms Altı Gecikme ve Sıfır Bulut Bağımlılığı"
 description: "Kritik perakende, ERP ve masaüstü yazılımlarının neden çok kiracılı bulut merkeziyetçiliğini terk ettiğinin analizi: Gömülü depolama (SQLite/WAL), eşler arası LAN ikili senkronizasyon, donanım hızlandırmalı arayüz ve sıfır kesintili çevrimdışı dayanıklılık."
+seoTitle: "Yerel Öncelikli (Local-First) Yazılım"
+seoDescription: "Perakende, ERP ve masaüstü yazılımları neden buluttan yerel önceliğe dönüyor: gömülü SQLite, LAN senkronizasyonu ve çevrimdışı dayanıklılık."
 pubDate: 2024-10-02
 lang: "tr"
 ref: "local-first-software"

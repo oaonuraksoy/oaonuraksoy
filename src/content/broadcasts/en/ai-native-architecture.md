@@ -1,6 +1,8 @@
 ---
 title: "The AI-Native Architecture Paradigm: Moving Beyond Fragile Chatbot Wrappers"
 description: "A technical dissection of why naive LLM wrappers collapse in mission-critical production: Deterministic state machines, tiered multi-model orchestration, context budgeting, and dual-layer adversarial auditing."
+seoTitle: "The AI-Native Architecture Paradigm"
+seoDescription: "Beyond fragile chatbot wrappers: AI-native software architecture built on deterministic state machines, agent orchestration and audit gates."
 pubDate: 2024-11-15
 lang: "en"
 ref: "ai-native-architecture"

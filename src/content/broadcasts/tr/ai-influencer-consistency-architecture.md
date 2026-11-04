@@ -1,6 +1,8 @@
 ---
 title: "AI Influencer Kapatılma Krizleri: YPP 'Düşük Çaba' Banı, Meta Algoritmaları ve Tutarlılık Mimarisi"
 description: "Yapay zeka influencer hesaplarının %80'inin ilk 45 günde neden kapatıldığının teknik otopsisi: Akustik Slop spektrogram tespiti, PRNU sensör gürültüsü eksikliği, Video Selfie tuzağı ve FLUX.1 + ComfyUI tutarlılık mimarisi."
+seoTitle: "AI Influencer Kapatmaları ve Tutarlılık"
+seoDescription: "YouTube YPP düşük çaba yaptırımları ve Meta tespit algoritmaları karşısında AI influencer hesaplarını koruyan karakter tutarlılığı mimarisi."
 pubDate: 2026-04-10
 lang: "tr"
 ref: "ai-influencer-consistency-architecture"

@@ -1,170 +1,88 @@
 /**
- * scripts/ping-search-engines.mjs
- * 
- * 1. Google WebSub (PubSubHubbub) Ping: Notifies Google of real-time RSS updates.
- * 2. IndexNow Protocol Ping: Notifies Bing, ChatGPT/OAI-SearchBot, Yandex, DuckDuckGo of updated URLs.
+ * scripts/ping-search-engines.mjs — Değişen URL'leri arama motorlarına bildirir (AGENTS.md §7.3).
+ *
+ *  1. IndexNow (api.indexnow.org) → Bing, Yandex, Seznam, Naver, Yep ve IndexNow tüketen AI arama
+ *     motorlarına (ör. ChatGPT Search/Bing altyapısı) TEK istekle dağıtılır.
+ *  2. WebSub (pubsubhubbub.appspot.com) → /rss.xml değiştiyse Google ve akış okuyucularına bildirim.
+ *
+ * Google'ın sitemap "ping" uç noktası 2023'te kapatıldı; Google Indexing API yalnızca
+ * JobPosting/BroadcastEvent içindir — bu yüzden Google tarafı sitemap lastmod + WebSub ile beslenir.
+ *
+ * Kullanım:
+ *   node scripts/ping-search-engines.mjs --since <git-ref>   # yalnızca o commit'ten beri değişen sayfalar
+ *   node scripts/ping-search-engines.mjs --all               # tüm sayfalar (yalnızca büyük yapısal değişiklikte)
+ *   ... --dry-run                                            # gönderim yapmadan listeyi yazdırır
+ *
+ * CI (.github/workflows/deploy.yml) deploy başarıyla bittikten sonra `--since <önceki commit>` ile çalıştırır.
  */
+import { execSync } from 'node:child_process';
+import { getRouteSources, routesForChangedFiles } from '../src/utils/content-dates.mjs';
+import { SITE_URL } from '../src/data/identity.mjs';
 
 const KEY = 'd8a9f2e4c1b7460395e2a1c8f0b3d7e9';
-const HOST = 'onuraksoy.com.tr';
-const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
+const HOST = new URL(SITE_URL).host;
+const args = process.argv.slice(2);
+const DRY = args.includes('--dry-run');
+const ALL = args.includes('--all');
+const sinceIdx = args.indexOf('--since');
+const SINCE = sinceIdx >= 0 ? args[sinceIdx + 1] : null;
 
-const urlList = [
-  // Core Pages (TR Root)
-  `https://${HOST}/`,
-  `https://${HOST}/ankara-kurumsal-web-tasarim/`,
-  `https://${HOST}/ankara-web-yazilim/`,
-  `https://${HOST}/about/`,
-  `https://${HOST}/projects/`,
-  `https://${HOST}/broadcasts/`,
-  `https://${HOST}/contact/`,
+// Tüm sayfaları etkileyen paylaşılan kaynaklar (şablon, kimlik, SEO bileşenleri)
+const SITEWIDE = [/^src\/layouts\//, /^src\/components\/(SEO|JsonLd|BroadcastJsonLd|Header|Footer)\.astro$/, /^src\/data\//, /^src\/utils\/schema\.mjs$/];
+const FEED_SOURCES = [/^src\/content\//, /^src\/pages\/rss\.xml\.ts$/];
 
-  // Core Pages (EN)
-  `https://${HOST}/en/`,
-  `https://${HOST}/en/ankara-b2b-web-architecture/`,
-  `https://${HOST}/en/ankara-custom-software-architecture/`,
-  `https://${HOST}/en/about/`,
-  `https://${HOST}/en/projects/`,
-  `https://${HOST}/en/broadcasts/`,
-  `https://${HOST}/en/contact/`,
-
-  // Projects (TR & EN)
-  `https://${HOST}/projects/oapos/`,
-  `https://${HOST}/projects/oadub/`,
-  `https://${HOST}/projects/10sec/`,
-  `https://${HOST}/projects/orvyna-app-studio/`,
-  `https://${HOST}/projects/oa-sip-recorder/`,
-  `https://${HOST}/projects/ecommerce-image-enhancer/`,
-  `https://${HOST}/projects/seo-lens/`,
-  `https://${HOST}/en/projects/oapos/`,
-  `https://${HOST}/en/projects/oadub/`,
-  `https://${HOST}/en/projects/10sec/`,
-  `https://${HOST}/en/projects/orvyna-app-studio/`,
-  `https://${HOST}/en/projects/oa-sip-recorder/`,
-  `https://${HOST}/en/projects/ecommerce-image-enhancer/`,
-  `https://${HOST}/en/projects/seo-lens/`,
-
-  // Broadcasts (TR & EN)
-  `https://${HOST}/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/`,
-  `https://${HOST}/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/`,
-  `https://${HOST}/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/`,
-  `https://${HOST}/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/`,
-  `https://${HOST}/broadcasts/ai-influencer-consistency-architecture/`,
-  `https://${HOST}/broadcasts/ai-native-architecture/`,
-  `https://${HOST}/broadcasts/local-first-software/`,
-  `https://${HOST}/broadcasts/vaultwarden-kurulumu/`,
-  `https://${HOST}/broadcasts/n8n-docker-plesk-kurulumu/`,
-  `https://${HOST}/broadcasts/oateklif-ucretsiz-teklif-olusturucu/`,
-  `https://${HOST}/broadcasts/det-domain-takip-scripti/`,
-  `https://${HOST}/broadcasts/csharp-ileti-merkezi-sms-api/`,
-  `https://${HOST}/en/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/`,
-  `https://${HOST}/en/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/`,
-  `https://${HOST}/en/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/`,
-  `https://${HOST}/en/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/`,
-  `https://${HOST}/en/broadcasts/ai-influencer-consistency-architecture/`,
-  `https://${HOST}/en/broadcasts/ai-native-architecture/`,
-  `https://${HOST}/en/broadcasts/local-first-software/`,
-  `https://${HOST}/en/broadcasts/vaultwarden-kurulumu/`,
-  `https://${HOST}/en/broadcasts/n8n-docker-plesk-kurulumu/`,
-  `https://${HOST}/en/broadcasts/oateklif-ucretsiz-teklif-olusturucu/`,
-  `https://${HOST}/en/broadcasts/det-domain-takip-scripti/`,
-  `https://${HOST}/en/broadcasts/csharp-ileti-merkezi-sms-api/`,
-
-  // Feeds & Machine Discovery
-  `https://${HOST}/rss.xml`,
-  `https://${HOST}/sitemap-index.xml`,
-  `https://${HOST}/sitemap-0.xml`,
-  `https://${HOST}/sitemap-video.xml`,
-  `https://${HOST}/sitemap-images.xml`,
-  `https://${HOST}/llms.txt`,
-  `https://${HOST}/llms-full.txt`,
-  `https://${HOST}/robots.txt`,
-
-  // Multi-ratio Portraits & Cover Images
-  `https://${HOST}/images/onur-aksoy.webp`,
-  `https://${HOST}/images/onur-aksoy-1x1.webp`,
-  `https://${HOST}/images/onur-aksoy-4x3.webp`,
-  `https://${HOST}/images/onur-aksoy-16x9.webp`,
-  `https://${HOST}/images/onur-aksoy-og.webp`,
-  `https://${HOST}/images/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi.webp`,
-  `https://${HOST}/images/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti.webp`,
-  `https://${HOST}/images/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026.webp`,
-  `https://${HOST}/images/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js.webp`,
-  `https://${HOST}/images/services/ankara-kurumsal-web-tasarim.webp`,
-  `https://${HOST}/images/services/ankara-web-yazilim.webp`
-];
-
-async function pingWebSub() {
-  console.log('📡 [1/2] Pinging Google WebSub Hub (pubsubhubbub.appspot.com)...');
-  const hubUrl = 'https://pubsubhubbub.appspot.com/';
-  const targets = [
-    `https://${HOST}/rss.xml`,
-    `https://${HOST}/`
-  ];
-
-  for (const target of targets) {
-    try {
-      const body = new URLSearchParams({
-        'hub.mode': 'publish',
-        'hub.url': target
-      });
-
-      const res = await fetch(hubUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: body.toString()
-      });
-
-      console.log(`  -> WebSub ping for ${target}: status ${res.status} (${res.statusText || 'OK'})`);
-    } catch (err) {
-      console.warn(`  ⚠️ WebSub ping failed for ${target}: ${err.message}`);
-    }
+function changedFiles(ref) {
+  if (!ref || /^0+$/.test(ref)) return null;
+  try {
+    return execSync(`git diff --name-only ${ref} HEAD`, { stdio: ['ignore', 'pipe', 'ignore'] }).toString().split('\n').filter(Boolean);
+  } catch {
+    console.warn(`⚠️  ${ref} ile karşılaştırılamadı (sığ klon veya geçersiz ref).`);
+    return null;
   }
 }
 
-async function pingIndexNow() {
-  console.log('\n🚀 [2/2] Pinging IndexNow Endpoints (Bing, ChatGPT/OAI-SearchBot, Yandex)...');
-  const payload = {
-    host: HOST,
-    key: KEY,
-    keyLocation: KEY_LOCATION,
-    urlList
-  };
-
-  const endpoints = [
-    { name: 'IndexNow Shared API (Bing / ChatGPT / DuckDuckGo)', url: 'https://api.indexnow.org/indexnow' },
-    { name: 'Bing IndexNow Direct', url: 'https://www.bing.com/indexnow' },
-    { name: 'Yandex IndexNow Direct', url: 'https://yandex.com/indexnow' }
-  ];
-
-  for (const ep of endpoints) {
-    try {
-      const res = await fetch(ep.url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      console.log(`  -> ${ep.name}: status ${res.status} (${res.statusText || 'OK'})`);
-    } catch (err) {
-      console.warn(`  ⚠️ ${ep.name} failed: ${err.message}`);
-    }
+let routes = [];
+let feedChanged = false;
+if (ALL) {
+  routes = [...getRouteSources().keys()];
+  feedChanged = true;
+} else {
+  const files = changedFiles(SINCE);
+  if (!files) {
+    console.log('ℹ️  Karşılaştırılacak commit yok; bildirim atlandı. Tümü için --all kullanın.');
+    process.exit(0);
   }
+  routes = files.some((f) => SITEWIDE.some((re) => re.test(f))) ? [...getRouteSources().keys()] : routesForChangedFiles(files);
+  feedChanged = files.some((f) => FEED_SOURCES.some((re) => re.test(f)));
 }
 
-async function main() {
-  console.log(`=== Real-Time Search Engine Notification (WebSub + IndexNow) ===`);
-  console.log(`Total URLs to submit: ${urlList.length}`);
-  await pingWebSub();
-  await pingIndexNow();
-  console.log('\n✅ Search engine notification process finished.');
+const urlList = routes.map((r) => `${SITE_URL}${r}`).sort();
+console.log(`=== Arama motoru bildirimi (IndexNow + WebSub) — ${urlList.length} URL${DRY ? ' [DRY RUN]' : ''} ===`);
+urlList.forEach((u) => console.log('  • ' + u));
+
+async function indexNow() {
+  if (!urlList.length) return console.log('IndexNow: değişen sayfa yok, atlandı.');
+  if (DRY) return;
+  const res = await fetch('https://api.indexnow.org/indexnow', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body: JSON.stringify({ host: HOST, key: KEY, keyLocation: `${SITE_URL}/${KEY}.txt`, urlList })
+  });
+  console.log(`IndexNow: HTTP ${res.status} ${res.statusText}`);
+  if (res.status >= 400) process.exitCode = 1;
 }
 
-main().catch((err) => {
-  console.error('Fatal error in ping-search-engines:', err);
-  process.exit(1);
-});
+async function webSub() {
+  if (!feedChanged) return console.log('WebSub: akış değişmedi, atlandı.');
+  if (DRY) return;
+  const res = await fetch('https://pubsubhubbub.appspot.com/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ 'hub.mode': 'publish', 'hub.url': `${SITE_URL}/rss.xml` }).toString()
+  });
+  console.log(`WebSub (rss.xml): HTTP ${res.status} ${res.statusText}`);
+  if (res.status >= 400) process.exitCode = 1;
+}
+
+await indexNow();
+await webSub();

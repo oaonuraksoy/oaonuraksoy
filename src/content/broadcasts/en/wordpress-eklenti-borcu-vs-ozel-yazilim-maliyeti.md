@@ -1,6 +1,8 @@
 ---
 title: "WordPress Plugin Debt vs. Custom Code: The Hidden Annual Server and Ad Spend Loss in B2B Enterprises"
 description: "A financial and systems autopsy into why 'cheap and fast' WordPress deployments drain thousands of dollars from enterprise balance sheets: Recurring plugin licensing, over-provisioned origin servers, collapsed Google Ads Quality Scores, and a 3-year Total Cost of Ownership (TCO) breakdown."
+seoTitle: "WordPress Plugin Debt vs Custom Code (TCO)"
+seoDescription: "The annual server, maintenance and ad-spend cost of WordPress plugin debt in B2B companies compared with the total cost of custom architecture."
 pubDate: 2026-11-02
 lang: "en"
 ref: "wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti"

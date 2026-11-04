@@ -1,13 +1,15 @@
 ---
 title: "Profesyonel Teklif Gönderin: Ücretsiz PDF Teklif Oluşturucu (oaTeklif)"
 description: "Freelancerlar, ajanslar ve KOBİ'ler için bulut aboneliği gerektirmeyen, tamamen yerel çalışan ücretsiz masaüstü kurumsal teklif hazırlama yazılımı. Dinamik hizmet kalemleri, otomatik KDV hesabı ve tek tıkla vektörel PDF çıktısı."
+seoTitle: "oaTeklif: Ücretsiz PDF Teklif Oluşturucu"
+seoDescription: "oaTeklif ile profesyonel PDF fiyat teklifleri hazırlayın: ücretsiz ve açık kaynak masaüstü teklif oluşturucunun kurulumu ve kullanımı."
 pubDate: 2025-06-26
 lang: "tr"
 ref: "oateklif-ucretsiz-teklif-olusturucu"
 featured: false
 tags: ["oaTeklif", "MasaustuYazilim", "DotNet", "CSharp", "AcikKaynak", "PDF", "Verimlilik"]
 youtubeId: "z4a_HeZ8hyQ"
-duration: "PT1M"
+duration: "PT59S"
 thumbnail: "/images/broadcasts/oateklif-ucretsiz-teklif-olusturucu.webp"
 chapters:
   - time: "00:00"

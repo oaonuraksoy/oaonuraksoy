@@ -22,56 +22,16 @@ const countArticle = broadcasts.filter((b) => !b.data.youtubeId && !b.data.spoti
 const title = "Broadcasts & Technical Vault — Onur Aksoy";
 const description = "Architectural screencasts, technical deep dives, interactive video chapters, transcripts, and downloadable vault assets from Onur Aksoy.";
 
-const canonicalUrl = 'https://onuraksoy.com.tr/en/broadcasts/';
-const collectionJsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'CollectionPage',
-      '@id': `${canonicalUrl}#collection`,
-      url: canonicalUrl,
-      name: title,
-      description: description,
-      isPartOf: {
-        '@id': 'https://onuraksoy.com.tr/#website'
-      },
-      about: {
-        '@id': 'https://onuraksoy.com.tr/#person'
-      },
-      inLanguage: 'en-US',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${canonicalUrl}?q={search_term_string}`
-        },
-        'query-input': 'required name=search_term_string'
-      },
-      mainEntity: {
-        '@id': `${canonicalUrl}#itemlist`
-      }
-    },
-    {
-      '@type': 'ItemList',
-      '@id': `${canonicalUrl}#itemlist`,
-      name: 'Broadcasts & Technical Vault Catalog',
-      numberOfItems: broadcasts.length,
-      itemListElement: broadcasts.map((b, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        name: b.data.title,
-        description: b.data.description,
-        url: `https://onuraksoy.com.tr/en/broadcasts/${b.id.replace(/^en\//, '')}/`
-      }))
-    }
-  ]
+// CollectionPage + ItemList, BaseLayout → JsonLd üzerinden TEK @graph içinde üretilir.
+const itemList = {
+  name: 'Broadcasts & Technical Vault Catalog',
+  items: broadcasts.map((b) => ({ name: b.data.title, url: `https://onuraksoy.com.tr/en/broadcasts/${b.id.replace(/^(tr|en)\//, '')}/` }))
 };
 ---
 
-<BaseLayout lang="en" activeNav="broadcasts" title={title} description={description}>
-  <script type="application/ld+json" set:html={JSON.stringify(collectionJsonLd)} />
+<BaseLayout itemList={itemList} lang="en" activeNav="broadcasts" title={title} description={description}>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
     <!-- Hero Header -->
     <section class="space-y-4 max-w-3xl">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-obsidian-border text-xs font-mono text-gold-tungsten">
@@ -434,7 +394,7 @@ const collectionJsonLd = {
         Reset Filters
       </button>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <script>

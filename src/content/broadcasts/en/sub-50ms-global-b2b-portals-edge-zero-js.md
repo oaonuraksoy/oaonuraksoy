@@ -1,6 +1,8 @@
 ---
 title: "Designing Sub-50ms Global B2B Portals with Edge Caching and Zero-JS Frontends"
 description: "A comprehensive systems architecture manual for engineering global B2B export portals that render under 50 milliseconds worldwide: Astro static compilation, Zero-JS frontend discipline, Cloudflare Tiered Cache topologies, and 100/100 Core Web Vitals."
+seoTitle: "Sub-50ms Global B2B Portals: Edge & Zero-JS"
+seoDescription: "How to build B2B export portals that load in under 50 ms worldwide: Astro static builds, Zero-JS frontends and Cloudflare edge caching."
 pubDate: 2026-11-04
 lang: "en"
 ref: "sub-50ms-global-b2b-portals-edge-zero-js"

@@ -1,318 +1,157 @@
 ---
-interface Chapter {
-  time: string;
-  seconds?: number;
-  title: string;
-}
+/**
+ * BroadcastJsonLd.astro — Yayın detay sayfaları için TEK @graph (AGENTS.md §7.1).
+ * Person / WebSite düğümleri src/utils/schema.mjs'den gelir (kimlik verisi kopyalanmaz).
+ * VideoObject alanları gerçek YouTube verisiyle (süre, yükleme tarihi) birebir eşleşmelidir.
+ */
+import { PERSON_ID, WEBSITE_ID } from '../data/identity.mjs';
+import { lastModified } from '../utils/content-dates.mjs';
+import {
+  personNode, personImageNode, websiteNode, primaryImageNode,
+  breadcrumbNode, faqNode, graphJson, inLanguage
+} from '../utils/schema.mjs';
 
-interface DownloadItem {
-  name: string;
-  size: string;
-  type: string;
-  driveUrl: string;
-}
+interface Chapter { time: string; seconds?: number; title: string; }
+interface DownloadItem { name: string; size: string; type: string; driveUrl: string; }
 
 interface Props {
   title: string;
   description: string;
   pubDate: Date;
   canonicalUrl: string;
+  image: string;
   lang?: 'en' | 'tr';
+  tags?: string[];
   youtubeId?: string;
   spotifyUrl?: string;
   duration?: string;
-  thumbnail?: string;
   chapters?: Chapter[];
   downloads?: DownloadItem[];
   faqs?: { question: string; answer: string }[];
 }
 
 const {
-  title,
-  description,
-  pubDate,
-  canonicalUrl,
-  lang = 'tr',
-  youtubeId,
-  spotifyUrl,
-  duration = 'PT15M00S',
-  thumbnail,
-  chapters = [],
-  downloads = [],
-  faqs = []
+  title, description, pubDate, canonicalUrl, image,
+  lang = 'tr', tags = [], youtubeId, spotifyUrl, duration,
+  chapters = [], downloads = [], faqs = []
 } = Astro.props;
-
-// Convert "MM:SS" or "HH:MM:SS" to seconds
-function parseTimeToSeconds(timeStr: string): number {
-  const parts = timeStr.split(':').map(Number);
-  if (parts.length === 2) {
-    return parts[0] * 60 + parts[1];
-  } else if (parts.length === 3) {
-    return parts[0] * 3600 + parts[1] * 60 + parts[2];
-  }
-  return 0;
-}
 
 const isTr = lang === 'tr';
 const homeUrl = isTr ? 'https://onuraksoy.com.tr/' : 'https://onuraksoy.com.tr/en/';
-const broadcastsUrl = isTr ? 'https://onuraksoy.com.tr/broadcasts/' : 'https://onuraksoy.com.tr/en/broadcasts/';
-const featuredImageUrl = thumbnail
-  ? (thumbnail.startsWith('http') ? thumbnail : `https://onuraksoy.com.tr${thumbnail}`)
-  : youtubeId
-    ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
-    : 'https://onuraksoy.com.tr/images/onur-aksoy.webp';
+const broadcastsUrl = `${homeUrl}broadcasts/`;
+const published = pubDate.toISOString();
+const modifiedRaw = lastModified(new URL(canonicalUrl).pathname);
+// dateModified yayın tarihinden önce olamaz
+const modified = modifiedRaw && Date.parse(modifiedRaw) > pubDate.getTime() ? modifiedRaw : published;
 
-const graph: any[] = [
-  // 1. WebSite Root Entity
-  {
-    '@type': 'WebSite',
-    '@id': 'https://onuraksoy.com.tr/#website',
-    'url': 'https://onuraksoy.com.tr',
-    'name': 'Onur Aksoy',
-    'alternateName': ['Onur Aksoy Portfolio', 'Hackonomist', 'OA Portfolyo'],
-    'inLanguage': ['tr-TR', 'en-US'],
-    'publisher': {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    },
-    'potentialAction': {
-      '@type': 'SearchAction',
-      'target': {
-        '@type': 'EntryPoint',
-        'urlTemplate': 'https://www.google.com/search?q=site:onuraksoy.com.tr+{search_term_string}'
-      },
-      'query-input': 'required name=search_term_string'
-    }
-  },
+const toSeconds = (t: string) => t.split(':').map(Number).reduce((acc, n) => acc * 60 + n, 0);
+const isoToSeconds = (iso?: string) => {
+  const m = iso?.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  return m ? (+(m[1] || 0)) * 3600 + (+(m[2] || 0)) * 60 + (+(m[3] || 0)) : undefined;
+};
 
-  // 2. Author / Creator Person Entity
-  {
-    '@type': 'Person',
-    '@id': 'https://onuraksoy.com.tr/#person',
-    'name': 'Onur Aksoy',
-    'alternateName': ['Onur Aksoy (a.k.a. Hackonomist)', 'Hackonomist', 'oaonuraksoy', 'oaAKSOY', 'OaOnurAKSOY', 'hackonomist'],
-    'identifier': [
-      {
-        '@type': 'PropertyValue',
-        propertyID: 'Wikidata',
-        value: 'Q141993579',
-        url: 'https://www.wikidata.org/wiki/Q141993579'
-      },
-      {
-        '@type': 'PropertyValue',
-        propertyID: 'ORCID',
-        value: '0009-0001-4481-1759',
-        url: 'https://orcid.org/0009-0001-4481-1759'
-      },
-      {
-        '@type': 'PropertyValue',
-        propertyID: 'Crunchbase',
-        value: 'onur-aksoy-1c4f',
-        url: 'https://www.crunchbase.com/person/onur-aksoy-1c4f'
-      }
-    ],
-    'jobTitle': isTr ? 'Yazılım Geliştirici & Sistem Mimarı' : 'Software Developer, Digital Strategist & Systems Architect',
-    'disambiguatingDescription': isTr 
-      ? 'Ankara merkezli Yazılım Geliştirici & Sistem Mimarı Onur Aksoy (a.k.a. Hackonomist). oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio ve oa_sip_recorder sistemlerinin mimarıdır.' 
-      : 'Ankara-based Software Developer, Digital Strategist & Systems Architect Onur Aksoy (a.k.a. Hackonomist). Architect of oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio, and oa_sip_recorder.',
-    'url': 'https://onuraksoy.com.tr/',
-    'image': [
-      'https://onuraksoy.com.tr/images/onur-aksoy-1x1.webp',
-      'https://onuraksoy.com.tr/images/onur-aksoy-4x3.webp',
-      'https://onuraksoy.com.tr/images/onur-aksoy-16x9.webp',
-      'https://onuraksoy.com.tr/images/onur-aksoy.webp'
-    ],
-    'sameAs': [
-      'https://www.wikidata.org/wiki/Q141993579',
-      'https://orcid.org/0009-0001-4481-1759',
-      'https://www.crunchbase.com/person/onur-aksoy-1c4f',
-      'https://github.com/oaonuraksoy',
-      'https://www.linkedin.com/in/oaonuraksoy/',
-      'https://www.youtube.com/@oaonuraksoy',
-      'https://x.com/oaonuraksoy',
-      'https://www.instagram.com/oaonuraksoy/',
-      'https://www.tiktok.com/@oaonuraksoy',
-      'https://www.facebook.com/oaAKSOY/',
-      'https://huggingface.co/hackonomist',
-      'https://dev.to/oaonuraksoy',
-      'https://medium.com/@oaonuraksoy',
-      'https://substack.com/@oaonuraksoy',
-      'https://www.reddit.com/user/oaonuraksoy/',
-      'https://www.quora.com/profile/Onur-Aksoy-39',
-      'https://open.spotify.com/show/3FSqxgXs900CueJqIJwUQA',
-      'https://play.google.com/store/apps/dev?id=7416640262739590935',
-      'https://apps.apple.com/tr/developer/onur-aksoy/id1803848736',
-      'https://apps.microsoft.com/detail/9nblggh4nns1',
-      'https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd',
-      'https://microsoftedge.microsoft.com/addons/detail/seo-lens-technical-seo-/anfhafomoldobnodlcbdjepneccjlnib',
-      'https://microsoftedge.microsoft.com/addons/detail/10sec-%E2%80%94-video-par%C3%A7alay%C4%B1c%C4%B1/eooacplpamongbimoibjkmgnbjmcbdjk',
-      'https://github.com/oaonuraksoy/seo-lens',
-      'https://t.me/oaonuraksoy',
-      'https://wa.me/905511817053'
-    ]
-  },
-
-  // 3. WebPage Entity
+const graph: Record<string, any>[] = [
+  personNode(lang),
+  personImageNode(),
+  websiteNode(),
   {
     '@type': 'WebPage',
     '@id': `${canonicalUrl}#webpage`,
-    'url': canonicalUrl,
-    'name': title,
-    'description': description,
-    'isPartOf': {
-      '@id': 'https://onuraksoy.com.tr/#website'
-    },
-    'breadcrumb': {
-      '@id': `${canonicalUrl}#breadcrumb`
-    },
-    'inLanguage': isTr ? 'tr-TR' : 'en-US'
+    url: canonicalUrl,
+    name: title,
+    description,
+    inLanguage: inLanguage(lang),
+    isPartOf: { '@id': WEBSITE_ID },
+    primaryImageOfPage: { '@id': `${canonicalUrl}#primaryimage` },
+    breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` },
+    mainEntity: { '@id': `${canonicalUrl}#article` },
+    datePublished: published,
+    dateModified: modified
   },
-
-  // 4. BreadcrumbList Entity (Google SERP breadcrumbs)
-  {
-    '@type': 'BreadcrumbList',
-    '@id': `${canonicalUrl}#breadcrumb`,
-    'itemListElement': [
-      {
-        '@type': 'ListItem',
-        'position': 1,
-        'name': isTr ? 'Ana Sayfa' : 'Home',
-        'item': homeUrl
-      },
-      {
-        '@type': 'ListItem',
-        'position': 2,
-        'name': isTr ? 'Yayınlar & Bilgi Kasası' : 'Broadcasts & Vault',
-        'item': broadcastsUrl
-      },
-      {
-        '@type': 'ListItem',
-        'position': 3,
-        'name': title,
-        'item': canonicalUrl
-      }
-    ]
-  },
-
-  // 5. TechArticle Entity
+  primaryImageNode(canonicalUrl, image, title),
+  breadcrumbNode(canonicalUrl, [
+    { name: isTr ? 'Ana Sayfa' : 'Home', url: homeUrl },
+    { name: isTr ? 'Yayınlar & Bilgi Kasası' : 'Broadcasts & Vault', url: broadcastsUrl },
+    { name: title, url: canonicalUrl }
+  ]),
   {
     '@type': 'TechArticle',
     '@id': `${canonicalUrl}#article`,
-    'isPartOf': {
-      '@id': `${canonicalUrl}#webpage`
-    },
-    'headline': title,
-    'description': description,
-    'inLanguage': isTr ? 'tr-TR' : 'en-US',
-    'mainEntityOfPage': `${canonicalUrl}#webpage`,
-    'datePublished': pubDate.toISOString(),
-    'dateModified': pubDate.toISOString(),
-    'image': {
-      '@type': 'ImageObject',
-      'url': featuredImageUrl
-    },
-    'author': {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    },
-    'publisher': {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    }
+    headline: title,
+    description,
+    url: canonicalUrl,
+    inLanguage: inLanguage(lang),
+    mainEntityOfPage: { '@id': `${canonicalUrl}#webpage` },
+    isPartOf: { '@id': `${canonicalUrl}#webpage` },
+    image: { '@id': `${canonicalUrl}#primaryimage` },
+    datePublished: published,
+    dateModified: modified,
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': PERSON_ID },
+    ...(tags.length ? { keywords: tags.join(', ') } : {}),
+    ...(youtubeId ? { video: { '@id': `${canonicalUrl}#video` } } : {}),
+    ...(spotifyUrl ? { audio: { '@id': `${canonicalUrl}#audio` } } : {})
   }
 ];
 
-// 6. VideoObject Entity with hasPart Key Moments (if video exists)
 if (youtubeId) {
+  const totalSec = isoToSeconds(duration);
   const clips = chapters.map((ch, idx) => {
-    const startSec = ch.seconds ?? parseTimeToSeconds(ch.time);
-    const nextChapter = chapters[idx + 1];
-    const endSec = nextChapter ? (nextChapter.seconds ?? parseTimeToSeconds(nextChapter.time)) : startSec + 180;
+    const start = ch.seconds ?? toSeconds(ch.time);
+    const next = chapters[idx + 1];
+    const end = next ? (next.seconds ?? toSeconds(next.time)) : totalSec;
     return {
       '@type': 'Clip',
-      'name': ch.title,
-      'startOffset': startSec,
-      'endOffset': endSec,
-      'url': `https://www.youtube.com/watch?v=${youtubeId}&t=${startSec}s`
+      name: ch.title,
+      startOffset: start,
+      ...(end && end > start ? { endOffset: end } : {}),
+      url: `https://www.youtube.com/watch?v=${youtubeId}&t=${start}s`
     };
   });
-
-  const thumbList = [featuredImageUrl];
-  if (youtubeId !== 'VsdZFJN8ezI') {
-    thumbList.push(`https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`);
-  }
-  thumbList.push(`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`);
-
-  const videoObject: any = {
+  graph.push({
     '@type': 'VideoObject',
     '@id': `${canonicalUrl}#video`,
-    'name': title,
-    'description': description,
-    'thumbnailUrl': thumbList,
-    'uploadDate': pubDate.toISOString(),
-    'duration': duration,
-    'contentUrl': `https://www.youtube.com/watch?v=${youtubeId}`,
-    'embedUrl': `https://www.youtube-nocookie.com/embed/${youtubeId}`,
-    'inLanguage': isTr ? 'tr-TR' : 'en-US',
-    'author': {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    }
-  };
-
-  if (clips.length > 0) {
-    videoObject.hasPart = clips;
-  }
-
-  graph.push(videoObject);
+    name: title,
+    description,
+    thumbnailUrl: [image, `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`],
+    uploadDate: published,
+    ...(duration ? { duration } : {}),
+    contentUrl: `https://www.youtube.com/watch?v=${youtubeId}`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeId}`,
+    inLanguage: inLanguage(lang),
+    author: { '@id': PERSON_ID },
+    ...(clips.length ? { hasPart: clips } : {})
+  });
 }
 
-// 7. AudioObject Entity (if podcast exists)
 if (spotifyUrl) {
   graph.push({
     '@type': 'AudioObject',
     '@id': `${canonicalUrl}#audio`,
-    'name': `${title} (${isTr ? 'Podcast Sesli Yayını' : 'Podcast Audio Edition'})`,
-    'description': description,
-    'contentUrl': spotifyUrl,
-    'inLanguage': isTr ? 'tr-TR' : 'en-US',
-    'author': {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    }
+    name: `${title} (${isTr ? 'Podcast' : 'Podcast Edition'})`,
+    description,
+    contentUrl: spotifyUrl,
+    inLanguage: inLanguage(lang),
+    author: { '@id': PERSON_ID }
   });
 }
 
-// 8. DigitalDocument / SoftwareSourceCode Entities (if downloads exist)
 downloads.forEach((d, idx) => {
-  const isCode = d.type.toLowerCase() === 'code' || d.type.toLowerCase() === 'sql' || d.type.toLowerCase() === 'ts';
+  const isCode = ['code', 'sql', 'ts', 'js', 'sh'].includes(d.type.toLowerCase());
   graph.push({
     '@type': isCode ? 'SoftwareSourceCode' : 'DigitalDocument',
     '@id': `${canonicalUrl}#download-${idx}`,
-    'name': d.name,
-    'fileFormat': d.type,
-    'url': d.driveUrl,
-    'creator': {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    }
+    name: d.name,
+    encodingFormat: d.type,
+    url: d.driveUrl.startsWith('/') ? `https://onuraksoy.com.tr${d.driveUrl}` : d.driveUrl,
+    creator: { '@id': PERSON_ID },
+    isPartOf: { '@id': `${canonicalUrl}#article` }
   });
 });
 
-// 9. FAQPage Entity (if FAQs exist for SGE / Rich Results)
-if (faqs && faqs.length > 0) {
-  graph.push({
-    '@type': 'FAQPage',
-    '@id': `${canonicalUrl}#faq`,
-    'mainEntity': faqs.map((f) => ({
-      '@type': 'Question',
-      'name': f.question,
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': f.answer
-      }
-    }))
-  });
-}
+if (faqs.length > 0) graph.push(faqNode(canonicalUrl, faqs));
 
-const schemaData = {
-  '@context': 'https://schema.org',
-  '@graph': graph
-};
+const json = graphJson(graph);
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+<script type="application/ld+json" set:html={json} />

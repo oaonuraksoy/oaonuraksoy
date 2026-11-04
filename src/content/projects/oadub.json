@@ -17,6 +17,7 @@
     "store": "https://microsoftedge.microsoft.com/addons/detail/oadub-gemini-live-sim%C3%BCl/cpnkpahbhcdbhhgacmnnobbieedaacgb",
     "github": "https://github.com/oaonuraksoy/oaDub"
   },
+  "schema": { "applicationCategory": "BrowserApplication", "operatingSystem": "Microsoft Edge (Windows, macOS, Linux)", "price": "0", "priceCurrency": "USD" },
   "metrics": {
     "en": [
       { "label": "Latency", "value": "< 400ms Bi-directional" },
@@ -33,6 +34,8 @@
   },
   "en": {
     "title": "oaDub — Real-Time Multimodal AI Simultaneous Tab Dubbing Engine",
+    "seoTitle": "oaDub: Real-Time AI Tab Dubbing Extension",
+    "seoDescription": "oaDub is a Microsoft Edge extension that dubs browser tab audio in real time using the Gemini Live API over WebSockets. Architecture study.",
     "description": "An advanced Chrome/Edge Manifest V3 extension streaming 16kHz raw PCM tab audio over bidirectional WebSockets to Google Gemini Live API, synthesizing instant 24kHz voice translation with zero server intermediaries.",
     "role": "Lead Architect & AI Systems Developer",
     "period": "2025 — Present",
@@ -80,6 +83,8 @@
   },
   "tr": {
     "title": "oaDub — Gerçek Zamanlı Çok Modlu Yapay Zeka Eşzamanlı Sekme Dublajı Motoru",
+    "seoTitle": "oaDub: Gerçek Zamanlı AI Sekme Dublajı",
+    "seoDescription": "oaDub, Gemini Live API ve WebSocket ile tarayıcı sekmesindeki sesi gerçek zamanlı çeviren Microsoft Edge eklentisi. Mimari ve gecikme analizi.",
     "description": "Sekme sesini 16kHz ham PCM formatında Manifest V3 Offscreen üzerinden yakalayıp Google Gemini Live API'ye çift yönlü WebSocket ile akıtan ve 24kHz eşzamanlı dublaj üreten sıfır-sunucu Edge eklentisi.",
     "role": "Baş Mimar & Yapay Zeka Sistem Kurucusu",
     "period": "2025 — Günümüz",

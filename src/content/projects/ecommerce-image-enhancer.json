@@ -9,6 +9,7 @@
     "tool": "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc",
     "demo": "https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc"
   },
+  "schema": { "applicationCategory": "DesignApplication", "operatingSystem": "Web", "price": "0", "priceCurrency": "USD" },
   "metrics": {
     "en": [
       { "label": "Production Turnaround", "value": "10x Faster" },
@@ -25,6 +26,8 @@
   },
   "en": {
     "title": "E-Commerce Image Enhancement Tool — AI-Powered Product Visual Studio",
+    "seoTitle": "E-Commerce Image Enhancer (AI Studio)",
+    "seoDescription": "A Google Flow based AI studio that re-renders raw product photos with studio lighting and realistic backgrounds using diffusion models.",
     "description": "A generative AI pipeline and visual enhancement workbench that automates background replacement, lighting harmonization, and edge fidelity preservation for marketplace-ready product assets.",
     "role": "AI Workflow Architect & Frontend Developer",
     "period": "2024 — Present",
@@ -66,6 +69,8 @@
   },
   "tr": {
     "title": "E-Commerce Image Enhancement Tool — Yapay Zeka Destekli Ürün Görsel Stüdyosu",
+    "seoTitle": "E-Ticaret Ürün Görseli İyileştirme (AI)",
+    "seoDescription": "Ham ürün fotoğraflarını difüzyon modelleriyle stüdyo ışığı ve gerçekçi arka planlarla yeniden üreten, Google Flow tabanlı yapay zeka görsel stüdyosu.",
     "description": "Pazaryeri standartlarında ürün görselleri üretmek için arka plan kaldırma, ışık uyumlandırma ve ürün kenar sadakatini otomatikleştiren üretken yapay zeka ve görsel geliştirme çalışma alanı.",
     "role": "Yapay Zeka İş Akışı Mimarı & Frontend Geliştirici",
     "period": "2024 — Günümüz",

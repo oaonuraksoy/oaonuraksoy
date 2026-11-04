@@ -1,6 +1,8 @@
 ---
 title: "The Local-First Engineering Renaissance: Sovereign Data, Sub-10ms Latencies & Zero Cloud Dependency"
 description: "Why mission-critical retail, ERP, and desktop software are abandoning multi-tenant cloud centralization: Local-first persistence (SQLite/WAL), peer-to-peer LAN binary synchronization, hardware-accelerated rendering, and zero-downtime offline resilience."
+seoTitle: "The Local-First Software Renaissance"
+seoDescription: "Why retail, ERP and desktop software is moving from cloud-first to local-first: embedded SQLite storage, LAN sync and offline resilience."
 pubDate: 2024-10-02
 lang: "en"
 ref: "local-first-software"

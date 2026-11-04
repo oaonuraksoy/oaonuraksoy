@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
 import JsonLd from '../components/JsonLd.astro';
+import { DEFAULT_OG_IMAGE } from '../data/identity.mjs';
 import '../styles/global.css';
 
 interface FAQItem {
@@ -11,26 +12,39 @@ interface FAQItem {
 }
 
 interface Props {
+  /** <title> — en fazla 60 karakter hedeflenir (scripts/check-seo.mjs denetler) */
   title?: string;
+  /** meta description — 110–160 karakter */
   description?: string;
+  /** Sayfanın görünen adı (H1); JSON-LD ad alanı için kullanılır */
+  name?: string;
   image?: string;
   lang?: 'en' | 'tr';
   activeNav?: string;
   counterpartUrl?: string;
   schemaType?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article' | 'Service';
   faqs?: FAQItem[];
+  itemList?: { name: string; items: { name: string; url: string; description?: string }[] };
+  serviceType?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  article?: { publishedTime: string; tags?: string[] };
   disableDefaultJsonLd?: boolean;
 }
 
 const {
-  title = 'Onur Aksoy — Yazılım Mimarı & Yapay Zeka Yerel Geliştirici',
-  description = "Onur Aksoy'un resmi web sitesi, yazılım mimarisi portfolyosu ve vaka analizleri. Yapay zeka yerel sistemler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar.",
-  image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
+  title = 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı',
+  description = "Onur Aksoy (Hackonomist) — Ankara merkezli Yazılım Geliştirici & Sistem Mimarı. AI-native mimariler, local-first masaüstü yazılımları ve B2B web sistemleri.",
+  name,
+  image = DEFAULT_OG_IMAGE,
   lang = 'tr',
   activeNav = '',
   counterpartUrl,
   schemaType = 'Person',
   faqs,
+  itemList,
+  serviceType,
+  ogType = 'website',
+  article,
   disableDefaultJsonLd = false
 } = Astro.props;
 ---
@@ -44,15 +58,20 @@ const {
       image={image}
       lang={lang}
       counterpartUrl={counterpartUrl}
+      type={ogType}
+      article={article}
     />
     {!disableDefaultJsonLd && (
       <JsonLd
         type={schemaType}
         title={title}
+        name={name}
         description={description}
         image={image}
         lang={lang}
         faqs={faqs}
+        itemList={itemList}
+        serviceType={serviceType}
       />
     )}
     <slot name="head" />

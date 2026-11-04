@@ -6,9 +6,9 @@ export const GET: APIRoute = async () => {
 
   // Convert ISO duration "PT24M15S" to seconds
   function parseDurationToSeconds(duration?: string): number {
-    if (!duration) return 900;
+    if (!duration) return 0;
     const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-    if (!match) return 900;
+    if (!match) return 0;
     const hours = parseInt(match[1] || '0', 10);
     const minutes = parseInt(match[2] || '0', 10);
     const seconds = parseInt(match[3] || '0', 10);
@@ -39,7 +39,7 @@ export const GET: APIRoute = async () => {
       <video:title><![CDATA[${b.data.title}]]></video:title>
       <video:description><![CDATA[${b.data.description}]]></video:description>
       <video:player_loc>https://www.youtube-nocookie.com/embed/${b.data.youtubeId}</video:player_loc>
-      <video:duration>${durationSec}</video:duration>
+${durationSec > 0 ? `      <video:duration>${durationSec}</video:duration>` : ''}
       <video:publication_date>${b.data.pubDate.toISOString()}</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:uploader info="https://onuraksoy.com.tr">Onur Aksoy</video:uploader>

@@ -1,13 +1,15 @@
 ---
 title: "Free Open-Source Domain Expiry Tracker (DET) Script: WHOIS & Cron Job Setup"
 description: "An automated self-hosted PHP/MySQL domain monitoring script that queries authoritative WHOIS registries over raw sockets, calculates renewal windows, and sends expiration alerts without recurring SaaS fees."
+seoTitle: "DET: Free Domain Expiry Tracker Script"
+seoDescription: "Never miss an expiring domain: a setup guide for DET, an open-source domain expiry tracker script built on raw WHOIS lookups and cron jobs."
 pubDate: 2023-04-22
 lang: "en"
 ref: "det-domain-takip-scripti"
 featured: false
 tags: ["DomainMonitoring", "WHOIS", "PHP", "MySQL", "CronJob", "OpenSource", "SysAdmin"]
 youtubeId: "OAQLR3ZAfEY"
-duration: "PT14M55S"
+duration: "PT14M54S"
 thumbnail: "/images/broadcasts/det-domain-takip-scripti.webp"
 chapters:
   - time: "00:00"

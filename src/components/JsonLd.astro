@@ -1,565 +1,236 @@
 ---
+/**
+ * JsonLd.astro — Sayfa başına TEK @graph üretir (AGENTS.md §7.1).
+ * Site geneli düğümler (Person, WebSite, kişi görseli) src/utils/schema.mjs üzerinden
+ * src/data/identity.mjs'den beslenir; burada kimlik verisi elle yazılmaz.
+ */
 import { getProjectBySlug } from '../utils/projects';
+import { SITE_URL, PERSON_ID, WEBSITE_ID } from '../data/identity.mjs';
+import { lastModified, firstPublished } from '../utils/content-dates.mjs';
+import {
+  personNode, personImageNode, websiteNode, primaryImageNode,
+  breadcrumbNode, faqNode, graphJson, inLanguage
+} from '../utils/schema.mjs';
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+interface FAQItem { question: string; answer: string; }
+interface ListEntry { name: string; url: string; description?: string; }
 
 interface Props {
   type?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article' | 'Service';
   title?: string;
+  /** Sayfanın/varlığın görünen adı (H1). Verilmezse title kullanılır. */
+  name?: string;
   description?: string;
   url?: string;
-  image?: string;
-  datePublished?: string;
+  image: string;
   lang?: 'en' | 'tr';
   faqs?: FAQItem[];
-  codeRepository?: string;
-  installUrl?: string;
+  itemList?: { name: string; items: ListEntry[] };
+  serviceType?: string;
 }
-
-const siteUrl = 'https://onuraksoy.com.tr';
 
 const {
   type = 'Person',
-  title = 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı',
-  description = "Onur Aksoy'un resmi web sitesi, sistem geliştirme portfolyosu ve vaka analizleri. Yapay zeka yerel sistemler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar.",
+  title = 'Onur Aksoy',
+  name,
+  description = '',
   url,
-  image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
-  datePublished,
+  image,
   lang = 'tr',
-  faqs
+  faqs,
+  itemList,
+  serviceType
 } = Astro.props;
 
-const pathname = Astro.url ? Astro.url.pathname : '/';
-const resolvedUrl = url || new URL(pathname, siteUrl).href;
-const isTr = lang === 'tr' && !pathname.startsWith('/en');
-const homeUrl = isTr ? 'https://onuraksoy.com.tr/' : 'https://onuraksoy.com.tr/en/';
-const isHome = pathname === '/' || pathname === '/en/' || pathname === '/en';
-const isProfilePage = isHome || pathname === '/about/' || pathname === '/about' || pathname === '/en/about/' || pathname === '/en/about';
-const cleanPath = pathname.replace(/\/$/, '');
-const isCollectionPage = cleanPath === '/broadcasts' || cleanPath === '/en/broadcasts' || cleanPath === '/projects' || cleanPath === '/en/projects';
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const pageUrl = url || new URL(pathname, SITE_URL).href;
+const isTr = lang === 'tr';
+const homeUrl = isTr ? `${SITE_URL}/` : `${SITE_URL}/en/`;
+const isHome = pathname === '/' || pathname === '/en/';
+const bare = pathname.replace(/^\/en(\/|$)/, '/');
+const isProfilePage = isHome || bare === '/about/';
+// Varlık adı: verilen H1 adı, yoksa <title>'dan marka eki ayıklanmış hali
+const pageName = name || title.replace(/\s+[|—]\s+Onur Aksoy.*$/, '');
 
-const resolvedImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : '/' + image}`;
+const dateModified = lastModified(pathname);
+const datePublished = firstPublished(pathname);
 
-// 1. Person Entity (Google Rich Results Authority)
-const personSchema: any = {
-  '@type': 'Person',
-  '@id': 'https://onuraksoy.com.tr/#person',
-  name: 'Onur Aksoy',
-  givenName: 'Onur',
-  familyName: 'Aksoy',
-  alternateName: ['Onur Aksoy (a.k.a. Hackonomist)', 'Hackonomist', 'oaonuraksoy', 'oaAKSOY', 'OaOnurAKSOY', 'hackonomist'],
-  identifier: [
-    {
-      '@type': 'PropertyValue',
-      propertyID: 'Wikidata',
-      value: 'Q141993579',
-      url: 'https://www.wikidata.org/wiki/Q141993579'
-    },
-    {
-      '@type': 'PropertyValue',
-      propertyID: 'ORCID',
-      value: '0009-0001-4481-1759',
-      url: 'https://orcid.org/0009-0001-4481-1759'
-    },
-    {
-      '@type': 'PropertyValue',
-      propertyID: 'Crunchbase',
-      value: 'onur-aksoy-1c4f',
-      url: 'https://www.crunchbase.com/person/onur-aksoy-1c4f'
-    }
-  ],
-  jobTitle: isTr ? 'Yazılım Geliştirici & Sistem Mimarı' : 'Software Developer, Digital Strategist & Systems Architect',
-  disambiguatingDescription: isTr 
-    ? 'Ankara merkezli Yazılım Geliştirici & Sistem Mimarı Onur Aksoy (a.k.a. Hackonomist). oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio ve oa_sip_recorder sistemlerinin mimarıdır.' 
-    : 'Ankara-based Software Developer, Digital Strategist & Systems Architect Onur Aksoy (a.k.a. Hackonomist). Architect of oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio, and oa_sip_recorder.',
-  url: 'https://onuraksoy.com.tr/',
-  mainEntityOfPage: {
-    '@id': `${resolvedUrl}#webpage`
-  },
-  image: [
-    'https://onuraksoy.com.tr/images/onur-aksoy-1x1.webp',
-    'https://onuraksoy.com.tr/images/onur-aksoy-4x3.webp',
-    'https://onuraksoy.com.tr/images/onur-aksoy-16x9.webp',
-    {
-      '@type': 'ImageObject',
-      '@id': 'https://onuraksoy.com.tr/#primaryimage',
-      url: 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
-      contentUrl: 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
-      width: 937,
-      height: 1679,
-      caption: isTr ? 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı' : 'Onur Aksoy — Software Developer, Digital Strategist & Systems Architect'
-    }
-  ],
-  email: 'mailto:dev@onuraksoy.com.tr',
-  nationality: {
-    '@type': 'Country',
-    name: 'Turkey'
-  },
-  knowsLanguage: ['tr-TR', 'en-US'],
-  hasOccupation: {
-    '@type': 'Occupation',
-    name: isTr ? 'Yazılım Geliştirici & Sistem Mimarı' : 'Software Developer, Digital Strategist & Systems Architect',
-    occupationLocation: {
-      '@type': 'City',
-      name: 'Ankara'
-    }
-  },
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Ankara',
-    addressCountry: 'TR'
-  },
-  sameAs: [
-    'https://www.wikidata.org/wiki/Q141993579',
-    'https://orcid.org/0009-0001-4481-1759',
-    'https://www.crunchbase.com/person/onur-aksoy-1c4f',
-    'https://github.com/oaonuraksoy',
-    'https://www.linkedin.com/in/oaonuraksoy/',
-    'https://www.youtube.com/@oaonuraksoy',
-    'https://x.com/oaonuraksoy',
-    'https://www.instagram.com/oaonuraksoy/',
-    'https://www.tiktok.com/@oaonuraksoy',
-    'https://www.facebook.com/oaAKSOY/',
-    'https://huggingface.co/hackonomist',
-    'https://dev.to/oaonuraksoy',
-    'https://medium.com/@oaonuraksoy',
-    'https://substack.com/@oaonuraksoy',
-    'https://www.reddit.com/user/oaonuraksoy/',
-    'https://www.quora.com/profile/Onur-Aksoy-39',
-    'https://open.spotify.com/show/3FSqxgXs900CueJqIJwUQA',
-    'https://play.google.com/store/apps/dev?id=7416640262739590935',
-    'https://apps.apple.com/tr/developer/onur-aksoy/id1803848736',
-    'https://apps.microsoft.com/detail/9nblggh4nns1',
-    'https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd',
-    'https://microsoftedge.microsoft.com/addons/detail/seo-lens-technical-seo-/anfhafomoldobnodlcbdjepneccjlnib',
-    'https://microsoftedge.microsoft.com/addons/detail/10sec-%E2%80%94-video-par%C3%A7alay%C4%B1c%C4%B1/eooacplpamongbimoibjkmgnbjmcbdjk',
-    'https://github.com/oaonuraksoy/seo-lens',
-    'https://t.me/oaonuraksoy',
-    'https://wa.me/905511817053'
-  ],
-  knowsAbout: [
-    'Artificial Intelligence Architecture',
-    'Deterministic Agent Orchestration',
-    'Local-First Software',
-    'Real-Time Multimodal AI (Gemini Live WebSocket)',
-    'Chrome Extension Architecture (Manifest V3)',
-    'Rust Systems & Network Programming',
-    'Passive VoIP & Packet Sniffing (SIP/RTP/pcap)',
-    'Client-Side Media Processing (FFmpeg WebAssembly)',
-    'Astro 7 & Static Web',
-    '.NET & WPF Desktop Systems',
-    'Distributed LAN Sockets',
-    'TypeScript & Web Components',
-    'Generative Diffusion Models'
-  ]
+const segments = bare.split('/').filter(Boolean);
+const project = segments[0] === 'projects' && segments[1]
+  ? await getProjectBySlug(segments[1], isTr ? 'tr' : 'en')
+  : undefined;
+
+// ── Breadcrumb (ana sayfa hariç) ─────────────────────────────────────────────
+const sectionLabels: Record<string, { tr: string; en: string }> = {
+  projects: { tr: 'Projeler', en: 'Projects' },
+  broadcasts: { tr: 'Yayınlar & Bilgi Kasası', en: 'Broadcasts & Vault' },
+  about: { tr: 'Hakkımda', en: 'About' },
+  contact: { tr: 'İletişim', en: 'Contact' }
 };
-
-// 2. WebSite Entity with Google SearchAction
-const broadcastsSearchUrl = isTr 
-  ? 'https://onuraksoy.com.tr/broadcasts/?q={search_term_string}' 
-  : 'https://onuraksoy.com.tr/en/broadcasts/?q={search_term_string}';
-const projectsSearchUrl = isTr 
-  ? 'https://onuraksoy.com.tr/projects/?q={search_term_string}' 
-  : 'https://onuraksoy.com.tr/en/projects/?q={search_term_string}';
-
-const websiteSchema: any = {
-  '@type': 'WebSite',
-  '@id': `${siteUrl}/#website`,
-  url: siteUrl,
-  name: 'Onur Aksoy',
-  alternateName: ['Onur Aksoy Portfolio', 'OA Portfolyo', 'Hackonomist'],
-  description: description,
-  inLanguage: ['tr-TR', 'en-US'],
-  primaryImageOfPage: {
-    '@id': `${siteUrl}/#primaryimage`
-  },
-  publisher: {
-    '@id': `${siteUrl}/#person`
-  },
-  potentialAction: [
-    {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: broadcastsSearchUrl
-      },
-      'query-input': 'required name=search_term_string'
-    },
-    {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: projectsSearchUrl
-      },
-      'query-input': 'required name=search_term_string'
-    }
-  ]
-};
-
-// 3. Primary ImageObject
-const imageSchema: any = {
-  '@type': 'ImageObject',
-  '@id': `${siteUrl}/#primaryimage`,
-  name: title,
-  caption: isTr 
-    ? 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı' 
-    : 'Onur Aksoy — Software Developer, Digital Strategist & Systems Architect',
-  contentUrl: resolvedImageUrl,
-  url: resolvedImageUrl,
-  width: resolvedImageUrl.includes('onur-aksoy.webp') ? 937 : 1200,
-  height: resolvedImageUrl.includes('onur-aksoy.webp') ? 1679 : 630,
-  encodingFormat: 'image/webp',
-  representativeOfPage: true,
-  author: {
-    '@id': `${siteUrl}/#person`
-  },
-  creator: {
-    '@id': `${siteUrl}/#person`
-  },
-  inLanguage: isTr ? 'tr-TR' : 'en-US'
-};
-
-// 4. BreadcrumbList
-const rawSegments = pathname.replace(/^\/en(\/|$)/, '/').split('/').filter(Boolean);
-
-let projectData: any = null;
-if (rawSegments[0] === 'projects' && rawSegments[1]) {
-  try {
-    projectData = await getProjectBySlug(rawSegments[1], isTr ? 'tr' : 'en');
-  } catch {
-    projectData = null;
+let breadcrumb: Record<string, any> | null = null;
+if (!isHome) {
+  const crumbs = [{ name: isTr ? 'Ana Sayfa' : 'Home', url: homeUrl }];
+  const first = segments[0];
+  if (segments.length === 1) {
+    crumbs.push({ name: sectionLabels[first]?.[lang] || pageName, url: pageUrl });
+  } else {
+    crumbs.push({ name: sectionLabels[first]?.[lang] || first, url: `${homeUrl}${first}/` });
+    crumbs.push({ name: project ? project.title.split(/\s+—\s+/)[0] : pageName, url: pageUrl });
   }
+  breadcrumb = breadcrumbNode(pageUrl, crumbs);
 }
 
-const sectionLabels: Record<string, { en: string; tr: string }> = {
-  projects: { en: 'Projects', tr: 'Projeler' },
-  broadcasts: { en: 'Broadcasts & Technical Vault', tr: 'Yayınlar & Bilgi Kasası' },
-  about: { en: 'About & Philosophy', tr: 'Hakkında & Felsefe' },
-  contact: { en: 'Contact', tr: 'İletişim' },
-  oapos: { en: 'oaPOS', tr: 'oaPOS' },
-  oadub: { en: 'oaDub — Real-Time AI Dubbing', tr: 'oaDub — Gerçek Zamanlı Yapay Zeka Dublaj' },
-  'seo-lens': { en: 'SEO Lens — Technical SEO & Schema Inspector', tr: 'SEO Lens — Teknik SEO & Schema Denetleyicisi' },
-  'orvyna-app-studio': { en: 'Orvyna App Studio', tr: 'Orvyna App Studio' },
-  'oa-sip-recorder': { en: 'OA SIP — Passive VoIP Recorder', tr: 'OA SIP — Pasif VoIP Kaydedici' },
-  'ecommerce-image-enhancer': { en: 'E-Commerce Image Enhancer', tr: 'E-Ticaret Görsel Geliştirici' },
-  '10sec': { en: '10SeC — Video Splitter & Trimmer', tr: '10SeC — Video Bölücü & Kırpıcı' },
-  'ankara-kurumsal-web-tasarim': { en: 'Ankara Corporate Web Design & B2B Architecture', tr: 'Ankara Kurumsal Web Tasarım & B2B Mimari' },
-  'ankara-b2b-web-architecture': { en: 'Ankara Corporate Web Design & B2B Architecture', tr: 'Ankara Kurumsal Web Tasarım & B2B Mimari' },
-  'ankara-web-yazilim': { en: 'Ankara Custom Web Software & Systems Architecture', tr: 'Ankara Web Yazılım & Özel Sistem Mimarisi' },
-  'ankara-custom-software-architecture': { en: 'Ankara Custom Web Software & Systems Architecture', tr: 'Ankara Web Yazılım & Özel Sistem Mimarisi' }
-};
-
-let breadcrumbSchema: any = null;
-if (isHome) {
-  breadcrumbSchema = {
-    '@type': 'BreadcrumbList',
-    '@id': `${resolvedUrl}#breadcrumb`,
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: isTr ? 'Onur Aksoy' : 'Onur Aksoy (EN)',
-        item: homeUrl
-      }
-    ]
-  };
-} else {
-  const itemListElement: any[] = [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: isTr ? 'Ana Sayfa' : 'Home',
-      item: homeUrl
-    }
-  ];
-
-  if (rawSegments.length >= 1) {
-    const seg1 = rawSegments[0];
-    const seg1Name = sectionLabels[seg1]?.[isTr ? 'tr' : 'en'] || (rawSegments.length === 1 ? title : seg1.charAt(0).toUpperCase() + seg1.slice(1));
-    const seg1Url = `${homeUrl}${seg1}/`;
-    itemListElement.push({
-      '@type': 'ListItem',
-      position: 2,
-      name: seg1Name,
-      item: seg1Url
-    });
-  }
-
-  if (rawSegments.length >= 2) {
-    const seg2 = rawSegments[1];
-    const seg2Name = sectionLabels[seg2]?.[isTr ? 'tr' : 'en'] || title || seg2;
-    itemListElement.push({
-      '@type': 'ListItem',
-      position: 3,
-      name: seg2Name,
-      item: resolvedUrl
-    });
-  }
-
-  breadcrumbSchema = {
-    '@type': 'BreadcrumbList',
-    '@id': `${resolvedUrl}#breadcrumb`,
-    itemListElement: itemListElement
-  };
-}
-
-// 5. WebPage / ProfilePage / CollectionPage Entity
-const pageType = isProfilePage ? 'ProfilePage' : (isCollectionPage ? 'CollectionPage' : 'WebPage');
-
-const webpageSchema: any = {
+// ── WebPage / ProfilePage / CollectionPage ──────────────────────────────────
+const pageType = isProfilePage ? 'ProfilePage' : itemList ? 'CollectionPage' : 'WebPage';
+const webpage: Record<string, any> = {
   '@type': pageType,
-  '@id': `${resolvedUrl}#webpage`,
-  url: resolvedUrl,
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
   name: title,
-  description: description,
-  dateCreated: '2024-01-15T00:00:00+03:00',
-  dateModified: new Date().toISOString(),
-  about: {
-    '@id': 'https://onuraksoy.com.tr/#person'
-  },
-  primaryImageOfPage: {
-    '@id': 'https://onuraksoy.com.tr/#primaryimage'
-  },
-  isPartOf: {
-    '@id': `${siteUrl}/#website`
-  },
-  breadcrumb: {
-    '@id': `${resolvedUrl}#breadcrumb`
-  },
-  inLanguage: isTr ? 'tr-TR' : 'en-US'
+  description,
+  inLanguage: inLanguage(lang),
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': PERSON_ID },
+  primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
+  ...(breadcrumb ? { breadcrumb: { '@id': `${pageUrl}#breadcrumb` } } : {}),
+  ...(datePublished ? { datePublished } : {}),
+  ...(dateModified ? { dateModified } : {})
 };
+if (isProfilePage) webpage.mainEntity = { '@id': PERSON_ID };
 
-if (isProfilePage) {
-  webpageSchema.mainEntity = {
-    '@id': 'https://onuraksoy.com.tr/#person'
-  };
+const graph: Record<string, any>[] = [
+  personNode(lang),
+  personImageNode(),
+  websiteNode(),
+  webpage,
+  primaryImageNode(pageUrl, image, pageName)
+];
+if (breadcrumb) graph.push(breadcrumb);
+
+// ── CollectionPage → ItemList ────────────────────────────────────────────────
+if (itemList) {
+  webpage.mainEntity = { '@id': `${pageUrl}#itemlist` };
+  graph.push({
+    '@type': 'ItemList',
+    '@id': `${pageUrl}#itemlist`,
+    name: itemList.name,
+    numberOfItems: itemList.items.length,
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    itemListElement: itemList.items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: it.url,
+      name: it.name
+    }))
+  });
 }
 
-// 6. Custom Schema (SoftwareApplication or Article)
-let customSchema: any = null;
-if (type === 'SoftwareApplication') {
-  const repoUrl = Astro.props.codeRepository || projectData?.links?.github;
-  const storeUrl = Astro.props.installUrl || projectData?.links?.store;
-  const sameAsLinks: string[] = [];
-  if (repoUrl) sameAsLinks.push(repoUrl);
-  if (storeUrl) sameAsLinks.push(storeUrl);
-  if (projectData?.links?.live) sameAsLinks.push(projectData.links.live);
-  if (projectData?.links?.tool) sameAsLinks.push(projectData.links.tool);
-  if (projectData?.links?.demo && !sameAsLinks.includes(projectData.links.demo)) sameAsLinks.push(projectData.links.demo);
-
-  customSchema = {
+// ── SoftwareApplication (proje detay sayfaları) ──────────────────────────────
+if (type === 'SoftwareApplication' && project) {
+  const s = project.schema;
+  const projectName = project.title.split(/\s+—\s+/)[0];
+  const sameAs = [project.links?.store, project.links?.github, project.links?.live, project.links?.tool]
+    .filter((u, i, arr): u is string => !!u && arr.indexOf(u) === i);
+  webpage.mainEntity = { '@id': `${pageUrl}#software` };
+  graph.push({
     '@type': 'SoftwareApplication',
-    '@id': `${resolvedUrl}#software`,
-    name: title,
-    description: description,
-    url: resolvedUrl,
-    image: {
-      '@type': 'ImageObject',
-      url: resolvedImageUrl
-    },
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Windows, Web, Multiplatform',
-    author: {
-      '@id': `${siteUrl}/#person`
-    },
+    '@id': `${pageUrl}#software`,
+    name: projectName,
+    alternateName: project.title,
+    description: project.description,
+    url: pageUrl,
+    mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+    image: { '@id': `${pageUrl}#primaryimage` },
+    applicationCategory: s?.applicationCategory || 'BusinessApplication',
+    operatingSystem: s?.operatingSystem || 'Web',
+    isAccessibleForFree: (s?.price ?? '0') === '0',
     offers: {
       '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock'
+      price: s?.price ?? '0',
+      priceCurrency: s?.priceCurrency ?? 'USD',
+      availability: 'https://schema.org/InStock',
+      ...(project.links?.store ? { url: project.links.store } : {})
     },
-    ...(repoUrl ? { codeRepository: repoUrl } : {}),
-    ...(storeUrl ? { installUrl: storeUrl } : {}),
-    ...(sameAsLinks.length > 0 ? { sameAs: sameAsLinks } : {})
-  };
-} else if (type === 'Article') {
-  customSchema = {
-    '@type': 'TechArticle',
-    '@id': `${resolvedUrl}#article`,
-    isPartOf: {
-      '@id': `${resolvedUrl}#webpage`
-    },
-    headline: title,
-    description: description,
-    url: resolvedUrl,
-    image: {
-      '@type': 'ImageObject',
-      url: resolvedImageUrl
-    },
-    datePublished: datePublished,
-    author: {
-      '@id': `${siteUrl}/#person`
-    },
-    publisher: {
-      '@id': `${siteUrl}/#person`
-    },
-    inLanguage: isTr ? 'tr-TR' : 'en-US'
-  };
+    ...(project.links?.store ? { installUrl: project.links.store } : {}),
+    keywords: project.tags.join(', '),
+    author: { '@id': PERSON_ID },
+    creator: { '@id': PERSON_ID },
+    inLanguage: inLanguage(lang),
+    ...(sameAs.length ? { sameAs } : {})
+  });
+  if (project.links?.github) {
+    graph.push({
+      '@type': 'SoftwareSourceCode',
+      '@id': `${pageUrl}#source`,
+      name: `${projectName} — source code`,
+      codeRepository: project.links.github,
+      author: { '@id': PERSON_ID },
+      targetProduct: { '@id': `${pageUrl}#software` }
+    });
+  }
 }
 
-// 6b. Service & ProfessionalService Schema (type === 'Service')
-let professionalServiceSchema: any = null;
-let serviceSchema: any = null;
-
+// ── Service + ProfessionalService (kurumsal B2B sayfaları) ───────────────────
 if (type === 'Service') {
-  const areaServedList = [
-    { '@type': 'AdministrativeArea', name: 'Ankara' },
-    { '@type': 'AdministrativeArea', name: 'OSTİM OSB' },
-    { '@type': 'AdministrativeArea', name: 'İvedik OSB' },
-    { '@type': 'AdministrativeArea', name: 'Başkent OSB' },
-    { '@type': 'AdministrativeArea', name: 'Sincan ASO 1. & 2. OSB' },
-    { '@type': 'Country', name: 'Türkiye' },
-    { '@type': 'Place', name: 'Worldwide' }
+  const areaServed = [
+    { '@type': 'City', name: 'Ankara' },
+    { '@type': 'Place', name: 'OSTİM Organize Sanayi Bölgesi' },
+    { '@type': 'Place', name: 'İvedik Organize Sanayi Bölgesi' },
+    { '@type': 'Place', name: 'Başkent Organize Sanayi Bölgesi' },
+    { '@type': 'Place', name: 'Ankara Sanayi Odası 1. ve 2. Organize Sanayi Bölgesi (Sincan)' },
+    { '@type': 'Country', name: 'Türkiye' }
   ];
+  const offers = isTr
+    ? [
+        ['Kurumsal Web Tasarım & B2B İhracat Mimarisi', 'Astro statik derleme, Zero-JS ön yüz ve Cloudflare edge altyapısıyla B2B sanayi ihracat portalları.'],
+        ['Özel Web Yazılım & ERP / API Entegrasyonu', 'TypeScript, Rust ve .NET 8 ile özel iş mantığı, stok/ERP ve donanım entegrasyon sistemleri.'],
+        ['Sistem Mimarisi Danışmanlığı & Güvenlik Denetimi', 'Doğrudan Onur Aksoy tarafından yürütülen mimari planlama, teknik borç temizliği ve güvenlik uyumu.']
+      ]
+    : [
+        ['Corporate Web Design & B2B Export Architecture', 'B2B industrial export portals built with Astro static builds, Zero-JS frontends and Cloudflare edge infrastructure.'],
+        ['Custom Web Software & ERP / API Integration', 'Custom business logic, inventory/ERP and hardware integration systems built with TypeScript, Rust and .NET 8.'],
+        ['Systems Architecture Advisory & Security Audit', 'Architecture planning, technical debt removal and security compliance led directly by Onur Aksoy.']
+      ];
 
-  professionalServiceSchema = {
+  graph.push({
     '@type': 'ProfessionalService',
-    '@id': `${resolvedUrl}#professionalservice`,
-    name: title,
-    description: description,
-    url: resolvedUrl,
-    image: resolvedImageUrl,
-    founder: {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    },
-    priceRange: '$$$',
-    telephone: '+905511817053',
+    '@id': `${SITE_URL}/#business`,
+    name: 'Onur Aksoy (Hackonomist)',
+    url: `${SITE_URL}/`,
+    image: `${SITE_URL}/images/og/onur-aksoy-og.jpg`,
+    founder: { '@id': PERSON_ID },
     email: 'dev@onuraksoy.com.tr',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Ankara',
-      addressRegion: 'Ankara',
-      addressCountry: 'TR'
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 39.9334,
-      longitude: 32.8597
-    },
-    areaServed: areaServedList
-  };
-
-  serviceSchema = {
+    telephone: '+905511817053',
+    address: { '@type': 'PostalAddress', addressLocality: 'Ankara', addressRegion: 'Ankara', addressCountry: 'TR' },
+    areaServed
+  });
+  graph.push({
     '@type': 'Service',
-    '@id': `${resolvedUrl}#service`,
-    name: title,
-    description: description,
-    url: resolvedUrl,
-    provider: {
-      '@id': 'https://onuraksoy.com.tr/#person'
-    },
-    serviceType: isTr
-      ? 'Kurumsal Web Tasarım, B2B İhracat Portalı ve Özel Sistem Mimarisi'
-      : 'Corporate Web Design, B2B Export Portals & Custom Systems Architecture',
-    areaServed: areaServedList,
+    '@id': `${pageUrl}#service`,
+    name: pageName,
+    description,
+    url: pageUrl,
+    serviceType: serviceType || pageName,
+    provider: { '@id': `${SITE_URL}/#business` },
+    brand: { '@id': PERSON_ID },
+    areaServed,
+    availableLanguage: ['tr', 'en'],
+    mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: isTr ? 'Kurumsal Mimari ve Mühendislik Hizmetleri' : 'Enterprise Architecture & Engineering Services',
-      itemListElement: isTr
-        ? [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Kurumsal Web Tasarım & B2B İhracat Mimarisi',
-                description: 'Astro 7 Zero-JS, 50ms altı küresel CDN ve Cloudflare Edge altyapısıyla B2B sanayi ihracat portalları.'
-              }
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Özel Web Yazılım & ERP / API Entegrasyonu',
-                description: 'TypeScript, Rust ve .NET 8 yığınıyla özel iş mantığı, stok/ERP ve donanım entegrasyon sistemleri.'
-              }
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Doğrudan Sistem Mimarı Danışmanlığı & Güvenlik Denetimi',
-                description: 'Aracısız, doğrudan Onur Aksoy tarafından yürütülen mimari planlama, teknik borç temizliği ve siber güvenlik uyumu.'
-              }
-            }
-          ]
-        : [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Corporate Web Design & B2B Export Architecture',
-                description: 'Sub-50ms global CDN and Cloudflare Edge powered B2B industrial export portals with Astro 7 Zero-JS.'
-              }
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Custom Web Software & ERP / API Integration',
-                description: 'Custom business logic, inventory/ERP and hardware integration systems built on TypeScript, Rust, and .NET 8.'
-              }
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Direct Systems Architect Advisory & Security Audit',
-                description: 'Direct architectural planning, technical debt elimination, and cybersecurity audit led directly by Onur Aksoy.'
-              }
-            }
-          ]
+      name: isTr ? 'Kurumsal Mimari Hizmetleri' : 'Enterprise Architecture Services',
+      itemListElement: offers.map(([n, d]) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: n, description: d, provider: { '@id': `${SITE_URL}/#business` } }
+      }))
     }
-  };
+  });
+  webpage.mainEntity = { '@id': `${pageUrl}#service` };
 }
 
-// 7. FAQ Schema
-let faqSchema: any = null;
-if (faqs && faqs.length > 0) {
-  faqSchema = {
-    '@type': 'FAQPage',
-    '@id': `${resolvedUrl}#faq`,
-    mainEntity: faqs.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer
-      }
-    }))
-  };
-}
+if (faqs && faqs.length > 0) graph.push(faqNode(pageUrl, faqs));
 
-// Assemble Single @graph Array
-const graph: any[] = [
-  personSchema,
-  websiteSchema,
-  imageSchema,
-  webpageSchema
-];
-
-if (breadcrumbSchema) {
-  graph.push(breadcrumbSchema);
-}
-if (customSchema) {
-  graph.push(customSchema);
-}
-if (professionalServiceSchema) {
-  graph.push(professionalServiceSchema);
-}
-if (serviceSchema) {
-  graph.push(serviceSchema);
-}
-if (faqSchema) {
-  graph.push(faqSchema);
-}
-
-const schemaData = {
-  '@context': 'https://schema.org',
-  '@graph': graph
-};
+const json = graphJson(graph);
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+<script type="application/ld+json" set:html={json} />

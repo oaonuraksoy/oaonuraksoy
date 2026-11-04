@@ -1,6 +1,8 @@
 ---
 title: "Ankara Sanayi ve OSB Firmaları İçin Web Mimarisi Rehberi: Yurt Dışı Alıcıya Güven Veren 5 Teknik Kriter"
 description: "OSTİM, İvedik, Sincan ASO ve Başkent OSB'deki ihracatçı sanayi kuruluşları için küresel satın almacılarda anında güven inşa eden web mimarisi rehberi: 50ms altı edge erişimi, çoklu dil hreflang disiplini, CAD/GTIP veri sözleşmeleri ve sıfır eklenti yükü."
+seoTitle: "Ankara OSB Sanayi Firmaları İçin Web Mimarisi"
+seoDescription: "OSTİM, İvedik ve Başkent OSB'deki ihracatçı sanayi firmaları için yurt dışındaki alıcıya güven veren 5 teknik web mimarisi kriteri."
 pubDate: 2026-11-01
 lang: "tr"
 ref: "ankara-osb-sanayi-b2b-ihracat-web-mimarisi"

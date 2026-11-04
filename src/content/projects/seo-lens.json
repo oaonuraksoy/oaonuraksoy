@@ -18,6 +18,7 @@
     "github": "https://github.com/oaonuraksoy/seo-lens",
     "live": "https://oaonuraksoy.github.io/seo-lens/"
   },
+  "schema": { "applicationCategory": "DeveloperApplication", "operatingSystem": "Microsoft Edge (Windows, macOS, Linux)", "price": "0", "priceCurrency": "USD" },
   "metrics": {
     "en": [
       { "label": "Audit Speed", "value": "Sub-50ms Client DOM Execution" },
@@ -34,6 +35,8 @@
   },
   "en": {
     "title": "SEO Lens — Technical SEO, Schema.org Validator & Social Preview Inspector",
+    "seoTitle": "SEO Lens: Technical SEO & Schema Inspector",
+    "seoDescription": "SEO Lens — Technical SEO & Schema Inspector is an official Microsoft Edge add-on that audits Schema.org, meta tags and social share previews.",
     "description": "A zero-dependency, privacy-first Microsoft Edge Manifest V3 extension providing instant on-page SEO audits, Google SERP pixel calculations, deep Schema.org (@graph JSON-LD & Microdata) structural validation, and 4-way live social card simulations.",
     "role": "Lead Systems Architect & Core Developer",
     "period": "2026 — Present",
@@ -83,6 +86,8 @@
   },
   "tr": {
     "title": "SEO Lens — Teknik SEO, Schema.org Doğrulayıcı & Sosyal Paylaşım Denetçisi",
+    "seoTitle": "SEO Lens: Teknik SEO ve Schema Denetleyicisi",
+    "seoDescription": "SEO Lens — Technical SEO & Schema Inspector: Schema.org, meta etiketleri ve sosyal paylaşım kartlarını denetleyen resmi Microsoft Edge eklentisi.",
     "description": "Sayfa içi SEO metriklerini, Google SERP piksel genişliklerini, derinlemesine Schema.org (@graph JSON-LD ve Microdata) yapılandırılmış verilerini anlık denetleyen ve 4'lü canlı sosyal paylaşım kartı simülasyonu sunan sıfır bağımlılıklı Microsoft Edge eklentisi.",
     "role": "Baş Sistem Mimarı & Çekirdek Geliştirici",
     "period": "2026 — Günümüz",

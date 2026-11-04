@@ -1,6 +1,8 @@
 ---
 title: ".NET C# İleti Merkezi SMS API Kullanımı: Tekli, Toplu SMS ve OTP Rehberi"
 description: ".NET C# projelerinize İleti Merkezi SMS ağ geçidini entegre etmek için geliştirdiğim açık kaynaklı sınıf kütüphanesi. Tekli SMS, toplu mesaj gönderimi, dinamik OTP şifre doğrulama ve anlık bakiye sorgulama rehberi."
+seoTitle: "C# İleti Merkezi SMS API: Toplu SMS ve OTP"
+seoDescription: ".NET C# ile İleti Merkezi SMS API kullanımı: tekli ve toplu SMS, OTP doğrulama kodları ve bakiye sorgulama için açık kaynak sınıf kütüphanesi."
 pubDate: 2022-09-23
 lang: "tr"
 ref: "csharp-ileti-merkezi-sms-api"

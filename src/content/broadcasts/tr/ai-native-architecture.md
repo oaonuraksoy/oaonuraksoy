@@ -1,6 +1,8 @@
 ---
 title: "Yapay Zeka Yerel Mimari Paradigması: Kırılgan Chatbot Sarmalayıcılarının Ötesine Geçmek"
 description: "Basit LLM arayüzlerinin kurumsal üretimde neden çöktüğünün teknik otopsisi: Deterministik durum makineleri, katmanlı çoklu model orkestrasyonu, bağlam bütçeleme ve çift kademeli hasmane denetim."
+seoTitle: "Yapay Zeka Yerel (AI-Native) Mimari"
+seoDescription: "Kırılgan chatbot sarmalayıcılarının ötesinde: deterministik durum makineleri, ajan orkestrasyonu ve denetim katmanlarıyla AI-native yazılım mimarisi."
 pubDate: 2024-11-15
 lang: "tr"
 ref: "ai-native-architecture"

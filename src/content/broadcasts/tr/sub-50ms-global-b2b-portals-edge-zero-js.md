@@ -1,6 +1,8 @@
 ---
 title: "50ms Altı Küresel B2B Portallar Tasarlamak: Edge Önbellekleme ve Zero-JS Ön Yüz Mimarisi"
 description: "Dünya genelinde 50 milisaniyenin altında açılan küresel B2B ihracat portalları için eksiksiz sistem mühendisliği rehberi: Astro statik derleme, Zero-JS ön yüz felsefesi, Cloudflare Tiered Cache önbellekleme ve 100/100 Core Web Vitals mimarisi."
+seoTitle: "50ms Altı B2B Portallar: Edge ve Zero-JS"
+seoDescription: "Dünya genelinde 50 ms altında açılan B2B ihracat portalları için Astro statik derleme, Zero-JS ön yüz ve Cloudflare edge önbellekleme rehberi."
 pubDate: 2026-11-04
 lang: "tr"
 ref: "sub-50ms-global-b2b-portals-edge-zero-js"

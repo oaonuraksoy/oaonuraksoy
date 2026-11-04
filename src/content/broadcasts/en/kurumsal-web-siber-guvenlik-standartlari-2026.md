@@ -1,6 +1,8 @@
 ---
 title: "2026 Enterprise Web Cybersecurity Standards: What IT & Procurement Teams Must Audit"
 description: "A definitive technical security audit manual for enterprise IT, DevOps, and procurement departments: Enforcing HSTS Preload, strict Content Security Policy (CSP), SSG isolation for zero attack surface, Permissions-Policy hardware defenses, and Cloudflare Edge VIP AI WAF rule sets."
+seoTitle: "Enterprise Web Security Standards 2026"
+seoDescription: "A 2026 enterprise web security checklist for IT and procurement teams: HSTS, Content Security Policy, security headers and GDPR compliance."
 pubDate: 2026-11-03
 lang: "en"
 ref: "kurumsal-web-siber-guvenlik-standartlari-2026"

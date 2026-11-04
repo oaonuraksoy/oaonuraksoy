@@ -10,6 +10,7 @@
     "demo": "https://oaonuraksoy.github.io/orvyna-builder/",
     "github": "https://github.com/oaonuraksoy/orvyna-builder"
   },
+  "schema": { "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "price": "0", "priceCurrency": "USD" },
   "metrics": {
     "en": [
       { "label": "iOS Pipeline", "value": "App Store Connect & TestFlight" },
@@ -26,6 +27,8 @@
   },
   "en": {
     "title": "Orvyna App Studio — Cloud Web2App Architecture & Native Store Delivery Engine",
+    "seoTitle": "Orvyna App Studio: Cloud Web2App Builder",
+    "seoDescription": "Orvyna App Studio turns web apps into iOS and Android store packages and ships them to TestFlight and Google Play. Web2App architecture study.",
     "description": "An automated cloud compilation studio transforming responsive web applications into native-feel store-ready containers with direct Apple TestFlight / App Store Connect delivery and Google Play TWA AAB packaging.",
     "role": "Creator & Full-Stack Platform Developer",
     "period": "2024 — Present",
@@ -69,6 +72,8 @@
   },
   "tr": {
     "title": "Orvyna App Studio — Bulut Web2App Mimarisi & Yerel Mağaza Dağıtım Motoru",
+    "seoTitle": "Orvyna App Studio: Bulut Web2App Mimarisi",
+    "seoDescription": "Orvyna App Studio, web uygulamalarını iOS ve Android mağaza paketlerine dönüştürüp TestFlight ve Google Play'e dağıtan bulut Web2App mimarisi.",
     "description": "Duyarlı web uygulamalarını saniyeler içinde doğrudan Apple TestFlight / App Store Connect dağıtımına ve Google Play TWA AAB paketlerine dönüştüren bulut tabanlı yerel kabuk motoru.",
     "role": "Kurucu & Full-Stack Platform Geliştirici",
     "period": "2024 — Günümüz",

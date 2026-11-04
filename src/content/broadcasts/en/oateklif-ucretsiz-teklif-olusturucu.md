@@ -1,13 +1,15 @@
 ---
 title: "Create Professional PDF Quotes for Free: oaTeklif Open-Source Desktop App"
 description: "A sovereign, local-first Windows desktop utility for freelancers, agencies, and SMEs to generate polished corporate PDF proposals without monthly SaaS subscriptions. Dynamic line items, automated tax math, and instant vector PDF rendering."
+seoTitle: "oaTeklif: Free Open-Source PDF Quote Maker"
+seoDescription: "Create professional PDF price quotes for free with oaTeklif, an open-source desktop quote generator. A short setup and usage walkthrough."
 pubDate: 2025-06-26
 lang: "en"
 ref: "oateklif-ucretsiz-teklif-olusturucu"
 featured: false
 tags: ["oaTeklif", "DesktopApp", "DotNet", "CSharp", "OpenSource", "PDF", "Productivity"]
 youtubeId: "z4a_HeZ8hyQ"
-duration: "PT1M"
+duration: "PT59S"
 thumbnail: "/images/broadcasts/oateklif-ucretsiz-teklif-olusturucu.webp"
 chapters:
   - time: "00:00"

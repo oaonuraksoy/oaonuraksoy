@@ -1,7 +1,10 @@
 ---
 title: "Ücretsiz Bitwarden Premium Özellikleri: Tek Komutla Vaultwarden Kurulumu (VDS & Plesk)"
 description: "Şifrelerinizi ve TOTP 2FA kodlarınızı üçüncü parti bulutlara emanet etmeden, kendi sunucunuzda Bitwarden Premium özelliklerini sıfır maliyetle nasıl çalıştırırsınız? Docker, Plesk Nginx Reverse Proxy ve oaVaultWardenInstaller ile uçtan uca mimari rehberi."
+seoTitle: "Vaultwarden Kurulumu: Docker ve Plesk"
+seoDescription: "Bitwarden Premium özelliklerini kendi sunucunuzda ücretsiz çalıştırın: oaVaultWardenInstaller, Docker ve Plesk Nginx ters vekil ile kurulum."
 pubDate: 2026-08-20
+updatedDate: 2026-11-05
 lang: "tr"
 ref: "vaultwarden-kurulumu"
 featured: false
@@ -84,8 +87,15 @@ Aşağıdaki tablo, kendi üretim ortamlarımda yaptığım gerçek kaynak tüke
 Kurulum esnasında Docker parametreleri, port çakışmaları ve çevre değişkenleriyle tek tek uğraşmamak için hazırladığım açık kaynaklı `oaVaultWardenInstaller` kabuk betiğini sunucunuzda çalıştırmanız yeterli:
 
 ```bash
-# Kurulum sihirbazını sunucunuzda doğrudan başlatın
-wget -qO- https://raw.githubusercontent.com/oaonuraksoy/oaVaultWardenInstaller/main/install.sh | bash
+# Debian 11/12 veya Ubuntu 20.04+ sunucular için
+curl -fsSL https://raw.githubusercontent.com/oaonuraksoy/oaVaultWardenInstaller/main/install-vaultwarden-debian.sh -o install-vaultwarden-debian.sh \
+  && chmod +x install-vaultwarden-debian.sh \
+  && sudo ./install-vaultwarden-debian.sh
+
+# AlmaLinux 8, Rocky Linux 8 veya RHEL 8 sunucular için
+curl -fsSL https://raw.githubusercontent.com/oaonuraksoy/oaVaultWardenInstaller/main/install-vaultwarden-almalinux8.sh -o install-vaultwarden-almalinux8.sh \
+  && chmod +x install-vaultwarden-almalinux8.sh \
+  && sudo ./install-vaultwarden-almalinux8.sh
 ```
 
 Bu sihirbaz arka planda şu kritik adımları deterministik olarak icra eder:

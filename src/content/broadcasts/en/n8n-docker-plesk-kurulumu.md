@@ -1,6 +1,8 @@
 ---
 title: "Stop Paying for Zapier: Self-Hosted n8n Setup with Docker on Plesk VPS"
 description: "Why pay per-task fees for workflow automations when you can host your own unmetered automation engine? A complete DevOps guide to deploying n8n via Docker and Plesk Nginx Reverse Proxy with full privacy and local AI support."
+seoTitle: "Self-Hosted n8n with Docker on Plesk VPS"
+seoDescription: "Automate workflows without paying for Zapier: a step-by-step, self-hosted n8n setup with Docker and a reverse proxy on a Plesk-managed VPS."
 pubDate: 2025-04-04
 lang: "en"
 ref: "n8n-docker-plesk-kurulumu"

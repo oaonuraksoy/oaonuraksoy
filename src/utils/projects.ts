@@ -33,6 +33,15 @@ export interface ProjectLocalizedContent {
   sections: ProjectSection[];
   techStack: TechStackItem[];
   businessImpact?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+}
+
+export interface ProjectSchemaMeta {
+  applicationCategory: string;
+  operatingSystem: string;
+  price: string;
+  priceCurrency: string;
 }
 
 export interface ProjectRaw {
@@ -71,6 +80,7 @@ export interface ProjectLocalized {
     demo?: string;
     github?: string;
   };
+  schema?: ProjectSchemaMeta;
   metrics: ProjectMetric[];
   lang: 'en' | 'tr';
   title: string;
@@ -84,6 +94,8 @@ export interface ProjectLocalized {
   sections: ProjectSection[];
   techStack: TechStackItem[];
   businessImpact?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export async function getAllProjects(lang: 'en' | 'tr' = 'en'): Promise<ProjectLocalized[]> {
@@ -101,6 +113,7 @@ export async function getAllProjects(lang: 'en' | 'tr' = 'en'): Promise<ProjectL
         accentColor: p.accentColor,
         tags: p.tags,
         links: p.links,
+        schema: p.schema,
         metrics,
         lang,
         title: loc.title,
@@ -113,7 +126,9 @@ export async function getAllProjects(lang: 'en' | 'tr' = 'en'): Promise<ProjectL
         benchmarks: loc.benchmarks,
         sections: loc.sections,
         techStack: loc.techStack,
-        businessImpact: loc.businessImpact
+        businessImpact: loc.businessImpact,
+        seoTitle: loc.seoTitle,
+        seoDescription: loc.seoDescription
       };
     })
     .sort((a, b) => a.order - b.order);

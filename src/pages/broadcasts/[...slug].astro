@@ -4,6 +4,7 @@ import LiteYouTube from '../../components/LiteYouTube.astro';
 import DriveDownloadCard from '../../components/DriveDownloadCard.astro';
 import BroadcastJsonLd from '../../components/BroadcastJsonLd.astro';
 import { getCollection, render } from 'astro:content';
+import { DEFAULT_OG_IMAGE } from '../../data/identity.mjs';
 
 export async function getStaticPaths() {
   const trBroadcasts = await getCollection('broadcasts', ({ data }) => data.lang === 'tr');
@@ -25,11 +26,15 @@ const { item, counterpartSlug } = Astro.props;
 const { Content } = await render(item);
 
 const canonicalUrl = `https://onuraksoy.com.tr/broadcasts/${Astro.params.slug}/`;
-const ogImage = item.data.thumbnail
+// Sayfa görseli: kapak (WebP) → YouTube küçük resmi → varsayılan marka görseli.
+// og:image için SEO.astro otomatik olarak 1200×630 JPG sürümünü (public/images/og/) seçer.
+const pageImage = item.data.thumbnail
   ? (item.data.thumbnail.startsWith('http') ? item.data.thumbnail : `https://onuraksoy.com.tr${item.data.thumbnail}`)
   : item.data.youtubeId
     ? `https://i.ytimg.com/vi/${item.data.youtubeId}/hqdefault.jpg`
-    : 'https://onuraksoy.com.tr/images/onur-aksoy.webp';
+    : DEFAULT_OG_IMAGE;
+const seoTitle = item.data.seoTitle ? `${item.data.seoTitle} | Onur Aksoy` : `${item.data.title} — Onur Aksoy`;
+const seoDescription = item.data.seoDescription ?? item.data.description;
 const counterpartUrl = counterpartSlug ? `/en/broadcasts/${counterpartSlug}/` : '/en/broadcasts/';
 
 const hasVideo = !!item.data.youtubeId;
@@ -38,9 +43,11 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
 ---
 
 <BaseLayout
-  title={`${item.data.title} — Onur Aksoy Yayınlar`}
-  description={item.data.description}
-  image={ogImage}
+  title={seoTitle}
+  description={seoDescription}
+  image={pageImage}
+  ogType="article"
+  article={{ publishedTime: item.data.pubDate.toISOString(), tags: item.data.tags }}
   lang="tr"
   activeNav="broadcasts"
   counterpartUrl={counterpartUrl}
@@ -57,13 +64,14 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
     youtubeId={item.data.youtubeId}
     spotifyUrl={item.data.spotifyUrl}
     duration={item.data.duration}
-    thumbnail={item.data.thumbnail}
+    image={pageImage}
+    tags={item.data.tags}
     chapters={item.data.chapters}
     downloads={item.data.downloads}
     faqs={item.data.faqs}
   />
 
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
     <!-- Breadcrumb Navigasyonu -->
     <nav class="flex items-center gap-2 text-xs font-mono text-text-muted" aria-label="Sayfa haritası">
       <a href="/" class="hover:text-gold-tungsten transition-colors">Ana Sayfa</a>
@@ -252,7 +260,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
             </h3>
           </div>
           <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
-            Ankara merkezli Kıdemli Yazılım Mimarı ve Yapay Zeka Yerel Geliştirici. Deterministik yapay zeka durum makineleri, yerel öncelikli (local-first) dağıtık mimariler, Rust ağ dinleyicileri ve yüksek performanslı medya işleme sistemleri inşa eder.
+            Ankara merkezli Yazılım Geliştirici, Dijital Dönüşüm Uzmanı & Sistem Mimarı. Deterministik yapay zeka durum makineleri, yerel öncelikli (local-first) dağıtık mimariler, Rust ağ dinleyicileri ve yüksek performanslı medya işleme sistemleri inşa eder.
           </p>
           <div class="flex items-center justify-center sm:justify-start gap-3 pt-2 text-xs font-mono">
             <a
@@ -283,7 +291,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
         </div>
       </div>
     </section>
-  </main>
+  </div>
 
   <!-- İstemci Taraflı Vektörel Mermaid Topoloji İşleyicisi -->
   <script is:inline>

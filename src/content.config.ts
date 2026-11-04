@@ -33,7 +33,11 @@ const localizedContentSchema = z.object({
   benchmarks: benchmarkTableSchema,
   sections: z.array(sectionItemSchema),
   techStack: z.array(techStackItemSchema),
-  businessImpact: z.string().optional()
+  businessImpact: z.string().optional(),
+  // <title> için kısa SEO başlığı (marka eki ' | Onur Aksoy' otomatik eklenir; toplam ≤ 60 karakter)
+  seoTitle: z.string().max(47).optional(),
+  // meta description (110–160 karakter)
+  seoDescription: z.string().min(110).max(160).optional()
 });
 
 const projects = defineCollection({
@@ -52,6 +56,13 @@ const projects = defineCollection({
       demo: z.string().url().optional(),
       tool: z.string().url().optional()
     }).optional(),
+    // SoftwareApplication JSON-LD alanları (gerçek mağaza/platform verisi)
+    schema: z.object({
+      applicationCategory: z.string(),
+      operatingSystem: z.string(),
+      price: z.string().default('0'),
+      priceCurrency: z.string().default('USD')
+    }).optional(),
     metrics: z.object({
       en: z.array(metricItemSchema),
       tr: z.array(metricItemSchema)
@@ -66,7 +77,12 @@ const broadcasts = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    // <title> için kısa SEO başlığı (marka eki otomatik; toplam ≤ 60 karakter) ve meta description
+    seoTitle: z.string().max(47).optional(),
+    seoDescription: z.string().min(110).max(160).optional(),
     pubDate: z.coerce.date(),
+    // İçerik gerçekten güncellendiğinde (yalnızca SEO/meta düzeltmesi değil) eklenir → dateModified / lastmod
+    updatedDate: z.coerce.date().optional(),
     lang: z.enum(['en', 'tr']).default('en'),
     ref: z.string(),
     featured: z.boolean().default(false),

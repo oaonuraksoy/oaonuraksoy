@@ -1,6 +1,8 @@
 ---
 title: "Zapier'e Para Ödemeyin: Plesk Sunucuda Docker ile Ücretsiz n8n Kurulumu"
 description: "İş süreçlerinizi ve yapay zeka otomasyonlarınızı Zapier veya Make gibi pahalı SaaS platformlarına adım başı ödeme yapmadan kendi sunucunuzda nasıl çalıştırırsınız? Plesk üzerinde Docker ile sınırsız n8n kurulumu ve ters proxy mimarisi."
+seoTitle: "n8n Kurulumu: Plesk Sunucuda Docker ile"
+seoDescription: "Zapier'e ödeme yapmadan iş akışı otomasyonu: Plesk yönetimli sunucuda Docker ile ücretsiz, kendi barındırdığınız n8n kurulumu adım adım."
 pubDate: 2025-04-04
 lang: "tr"
 ref: "n8n-docker-plesk-kurulumu"

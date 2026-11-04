@@ -14,8 +14,10 @@ const { project } = Astro.props;
 ---
 
 <BaseLayout
-  title={`${project.title} — Case Study by Onur Aksoy`}
-  description={project.description}
+  title={project.seoTitle ? `${project.seoTitle} | Onur Aksoy` : `${project.title} — Onur Aksoy`}
+  description={project.seoDescription ?? project.description}
+  name={project.title}
+  image={`https://onuraksoy.com.tr/images/og/projects/${project.slug}-en.jpg`}
   lang="en"
   activeNav="projects"
   schemaType="SoftwareApplication"

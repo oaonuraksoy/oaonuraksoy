@@ -1,13 +1,15 @@
 ---
 title: "Ücretsiz Alan Adı Takip Scripti: Süresi Dolan Domainleri Kaçırmayın (DET Kurulumu)"
 description: "Takip etmek istediğiniz jenerik veya kritik alan adlarının bitiş tarihlerini otomatik sorgulayan, süresi yaklaşan domainleri e-posta ve bildirimlerle haber veren açık kaynaklı PHP/MySQL alan adı takip scripti (DET)."
+seoTitle: "DET: Ücretsiz Alan Adı Süre Takip Scripti"
+seoDescription: "Süresi dolan alan adlarını kaçırmayın: WHOIS sorgusu ve cron görevleriyle çalışan açık kaynak DET (Domain Expiry Tracker) scriptinin kurulumu."
 pubDate: 2023-04-22
 lang: "tr"
 ref: "det-domain-takip-scripti"
 featured: false
 tags: ["DomainTakip", "WHOIS", "PHP", "MySQL", "CronJob", "AcikKaynak", "SistemYonetimi"]
 youtubeId: "OAQLR3ZAfEY"
-duration: "PT14M55S"
+duration: "PT14M54S"
 thumbnail: "/images/broadcasts/det-domain-takip-scripti.webp"
 chapters:
   - time: "00:00"

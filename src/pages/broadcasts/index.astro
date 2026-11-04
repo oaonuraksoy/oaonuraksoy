@@ -21,56 +21,16 @@ const countArticle = broadcasts.filter((b) => !b.data.youtubeId && !b.data.spoti
 const title = "Yayınlar & Bilgi Kasası — Onur Aksoy";
 const description = "Teknik ekran kayıtları, derin mimari transkriptler, interaktif zaman damgalı bölümler ve yüksek hızlı mimari kaynaklar.";
 
-const canonicalUrl = 'https://onuraksoy.com.tr/broadcasts/';
-const collectionJsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'CollectionPage',
-      '@id': `${canonicalUrl}#collection`,
-      url: canonicalUrl,
-      name: title,
-      description: description,
-      isPartOf: {
-        '@id': 'https://onuraksoy.com.tr/#website'
-      },
-      about: {
-        '@id': 'https://onuraksoy.com.tr/#person'
-      },
-      inLanguage: 'tr-TR',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${canonicalUrl}?q={search_term_string}`
-        },
-        'query-input': 'required name=search_term_string'
-      },
-      mainEntity: {
-        '@id': `${canonicalUrl}#itemlist`
-      }
-    },
-    {
-      '@type': 'ItemList',
-      '@id': `${canonicalUrl}#itemlist`,
-      name: 'Yayınlar & Bilgi Kasası Kataloğu',
-      numberOfItems: broadcasts.length,
-      itemListElement: broadcasts.map((b, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        name: b.data.title,
-        description: b.data.description,
-        url: `https://onuraksoy.com.tr/broadcasts/${b.id.replace(/^tr\//, '')}/`
-      }))
-    }
-  ]
+// CollectionPage + ItemList, BaseLayout → JsonLd üzerinden TEK @graph içinde üretilir.
+const itemList = {
+  name: 'Yayınlar & Bilgi Kasası Kataloğu',
+  items: broadcasts.map((b) => ({ name: b.data.title, url: `https://onuraksoy.com.tr/broadcasts/${b.id.replace(/^(tr|en)\//, '')}/` }))
 };
 ---
 
-<BaseLayout lang="tr" activeNav="broadcasts" title={title} description={description}>
-  <script type="application/ld+json" set:html={JSON.stringify(collectionJsonLd)} />
+<BaseLayout itemList={itemList} lang="tr" activeNav="broadcasts" title={title} description={description}>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
     <!-- Hero Header -->
     <section class="space-y-4 max-w-3xl">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-obsidian-border text-xs font-mono text-gold-tungsten">
@@ -433,7 +393,7 @@ const collectionJsonLd = {
         Filtreleri Sıfırla
       </button>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <script>

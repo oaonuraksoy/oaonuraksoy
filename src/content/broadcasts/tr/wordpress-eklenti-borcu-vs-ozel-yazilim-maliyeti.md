@@ -1,6 +1,8 @@
 ---
 title: "WordPress Eklenti Borcu vs. Özel Kodlama: B2B Şirketlerin Yıllık 100.000 TL'lik Gizli Sunucu ve Reklam Zararı"
 description: "Kurumsal B2B şirketlerin 'ücretsiz ve pratik' zannederek kurduğu WordPress sitelerinin arka planda yarattığı devasa maliyet yükü: Eklenti lisansları, aşırı sunucu kaynağı tüketimi, Google Ads reklam bütçesi erimesi ve özel mimarinin 3 yıllık toplam sahip olma maliyeti (TCO) analizi."
+seoTitle: "WordPress Eklenti Borcu vs Özel Yazılım"
+seoDescription: "B2B şirketlerde WordPress eklenti borcunun yıllık sunucu, bakım ve reklam maliyeti ile özel kodlanmış mimarinin toplam sahip olma maliyeti analizi."
 pubDate: 2026-11-02
 lang: "tr"
 ref: "wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti"

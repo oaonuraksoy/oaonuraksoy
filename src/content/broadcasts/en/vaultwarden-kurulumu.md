@@ -1,7 +1,10 @@
 ---
 title: "Self-Hosted Bitwarden Premium for Free: One-Command Vaultwarden Setup (Docker & Plesk)"
 description: "Run full Bitwarden Premium features on your own VPS for free without trusting passwords to third-party clouds. End-to-end architecture guide with Docker, Plesk Nginx Reverse Proxy, and the oaVaultWardenInstaller bash script."
+seoTitle: "Self-Hosted Vaultwarden Setup (Docker, Plesk)"
+seoDescription: "Run Bitwarden Premium features on your own server for free: Vaultwarden setup with oaVaultWardenInstaller, Docker and a Plesk Nginx proxy."
 pubDate: 2026-08-20
+updatedDate: 2026-11-05
 lang: "en"
 ref: "vaultwarden-kurulumu"
 featured: false
@@ -84,8 +87,15 @@ Here is an empirical comparison drawn directly from my production benchmarks:
 To eliminate manual Docker mapping errors, port conflicts, and security oversights, I developed the open-source `oaVaultWardenInstaller` shell script. Run it directly on your clean VPS:
 
 ```bash
-# Execute the installation wizard directly on your server
-wget -qO- https://raw.githubusercontent.com/oaonuraksoy/oaVaultWardenInstaller/main/install.sh | bash
+# Debian 11/12 or Ubuntu 20.04+ servers
+curl -fsSL https://raw.githubusercontent.com/oaonuraksoy/oaVaultWardenInstaller/main/install-vaultwarden-debian.sh -o install-vaultwarden-debian.sh \
+  && chmod +x install-vaultwarden-debian.sh \
+  && sudo ./install-vaultwarden-debian.sh
+
+# AlmaLinux 8, Rocky Linux 8 or RHEL 8 servers
+curl -fsSL https://raw.githubusercontent.com/oaonuraksoy/oaVaultWardenInstaller/main/install-vaultwarden-almalinux8.sh -o install-vaultwarden-almalinux8.sh \
+  && chmod +x install-vaultwarden-almalinux8.sh \
+  && sudo ./install-vaultwarden-almalinux8.sh
 ```
 
 The script deterministically executes the following setup steps:

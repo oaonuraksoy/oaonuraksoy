@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          # Tam git geçmişi: sitemap lastmod / dateModified / RSS tarihleri git'ten türetilir.
+          fetch-depth: 0
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -34,7 +37,11 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Build Project with Astro
+      - name: Security Audit (high+)
+        run: npm audit --audit-level=high
+
+      # astro build + sitemap index + link kontrolü + SEO/GEO koruma kapısı (scripts/check-seo.mjs)
+      - name: Build & Validate
         run: npm run build
 
       - name: Upload Pages Artifact
@@ -53,3 +60,40 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify:
+    name: Purge Edge Cache & Notify Search Engines
+    runs-on: ubuntu-latest
+    needs: deploy
+    # Bildirim hatası yayını geri almaz; yalnızca raporlanır.
+    continue-on-error: true
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # İsteğe bağlı: depo ayarlarında CLOUDFLARE_API_TOKEN (Zone.Cache Purge) ve CLOUDFLARE_ZONE_ID
+      # secret'ları tanımlıysa Cloudflare önbelleği temizlenir; tanımlı değilse adım atlanır.
+      - name: Purge Cloudflare Cache
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ZONE: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ZONE" ]; then
+            echo "Cloudflare secret'ları tanımlı değil; önbellek temizleme atlandı."
+            exit 0
+          fi
+          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/purge_cache" \
+            -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
+
+      # Yalnızca bu push'ta değişen sayfalar IndexNow'a (Bing, Yandex, Seznam, Naver…) bildirilir;
+      # içerik değiştiyse /rss.xml için WebSub ping'i gönderilir.
+      - name: Notify IndexNow & WebSub
+        run: node scripts/ping-search-engines.mjs --since "${{ github.event.before }}"

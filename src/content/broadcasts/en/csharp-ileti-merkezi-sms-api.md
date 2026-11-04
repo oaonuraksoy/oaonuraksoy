@@ -1,6 +1,8 @@
 ---
 title: "C# .NET SMS & OTP API Integration Guide (İleti Merkezi XML API Library)"
 description: "A lightweight, open-source C# .NET class wrapper for the İleti Merkezi SMS Gateway. Send single notifications, bulk campaigns, high-priority 2FA OTP codes, and query credit balances with type-safe methods."
+seoTitle: "C# .NET SMS & OTP API Guide (İleti Merkezi)"
+seoDescription: "Using the İleti Merkezi SMS API from C# .NET: single and bulk SMS, OTP verification codes and balance queries with an open-source class library."
 pubDate: 2022-09-23
 lang: "en"
 ref: "csharp-ileti-merkezi-sms-api"

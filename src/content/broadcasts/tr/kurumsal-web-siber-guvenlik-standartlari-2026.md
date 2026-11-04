@@ -1,6 +1,8 @@
 ---
 title: "Kurumsal Web Sitelerinde 2026 Siber Güvenlik Standartları: Bilgi İşlem Ekipleri Nelere Bakmalı?"
 description: "Kurumsal B2B ve sanayi şirketlerinin bilgi işlem (IT) ve siber güvenlik ekipleri için 2026 web güvenlik denetim rehberi: HSTS Preload zorunluluğu, katı CSP (İçerik Güvenlik Politikası), SSG izolasyonu ile sıfır saldırı yüzeyi, Permissions-Policy ve Cloudflare VIP WAF bot yönetimi."
+seoTitle: "2026 Kurumsal Web Siber Güvenlik Standartları"
+seoDescription: "Bilgi işlem ve satın alma ekipleri için 2026 kurumsal web güvenliği kontrol listesi: HSTS, CSP, güvenlik başlıkları ve KVKK/GDPR uyumu."
 pubDate: 2026-11-03
 lang: "tr"
 ref: "kurumsal-web-siber-guvenlik-standartlari-2026"

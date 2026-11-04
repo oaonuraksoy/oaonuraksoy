@@ -9,6 +9,7 @@
     "store": "https://apps.microsoft.com/detail/9n0wq4v12wgx?hl=tr-TR&gl=TR",
     "github": "https://github.com/oaonuraksoy/oapos"
   },
+  "schema": { "applicationCategory": "BusinessApplication", "operatingSystem": "Windows 10, Windows 11", "price": "0", "priceCurrency": "USD" },
   "metrics": {
     "en": [
       { "label": "Transaction Latency", "value": "< 10ms" },
@@ -25,6 +26,8 @@
   },
   "en": {
     "title": "oaPOS — Windows Desktop POS & Real-Time Inventory Architecture",
+    "seoTitle": "oaPOS: Windows POS & Inventory Architecture",
+    "seoDescription": "oaPOS case study: an offline-first Windows POS and real-time inventory system built with .NET 8 and WPF, published on the Microsoft Store.",
     "description": "A resilient, high-speed Windows desktop point-of-sale and inventory system built on a local HOST/CLIENT distributed architecture with zero cloud dependency and sub-10ms transaction latency.",
     "role": "Lead Systems Architect & Desktop Developer",
     "period": "2024 — Present",
@@ -72,6 +75,8 @@
   },
   "tr": {
     "title": "oaPOS — Windows Masaüstü POS & Gerçek Zamanlı Stok Takip Mimarisi",
+    "seoTitle": "oaPOS: Windows POS ve Stok Takip Mimarisi",
+    "seoDescription": "oaPOS vaka analizi: .NET 8 ve WPF ile buluttan bağımsız çalışan, Microsoft Store onaylı Windows POS ve gerçek zamanlı stok takip mimarisi.",
     "description": "Yerel HOST/CLIENT dağıtık ağ mimarisi üzerine kurulu, sıfır bulut bağımlılığı ve 10 milisaniye altı işlem gecikmesi sunan Microsoft Store onaylı Windows masaüstü satış ve envanter yönetim sistemi.",
     "role": "Baş Sistem Mimarı & Masaüstü Yazılım Geliştirici",
     "period": "2024 — Günümüz",

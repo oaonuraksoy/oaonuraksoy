@@ -1,14 +1,17 @@
 {
   "name": "oaportfolyo",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.11.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/generate-sitemap-index.mjs && npm run test:links",
+    "build": "astro build && node scripts/generate-sitemap-index.mjs && npm run test:links && npm run test:seo",
     "preview": "astro preview",
     "test:links": "node scripts/check-links.mjs",
+    "test:seo": "node scripts/check-seo.mjs",
+    "og:images": "node scripts/generate-og-images.mjs",
+    "notify:indexers": "node scripts/ping-search-engines.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -20,6 +23,10 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",
-    "lighthouse": "^13.4.1"
+    "lighthouse": "^13.4.1",
+    "sharp": "^0.35.5"
+  },
+  "overrides": {
+    "postcss-selector-parser": "^6.1.5"
   }
 }

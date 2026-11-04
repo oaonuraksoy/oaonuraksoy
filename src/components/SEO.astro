@@ -1,53 +1,64 @@
 ---
+/**
+ * SEO.astro — <head> meta, canonical, hreflang, Open Graph ve Twitter Card (AGENTS.md §7.2).
+ * - og:image daima 1200×630 JPG paylaşım sürümüdür (public/images/og/); boyut/MIME dosyadan okunur.
+ * - Tarih meta'ları (article:*) git geçmişinden gelir; build anı yazılmaz.
+ * - rel="me" listesi src/data/identity.mjs'den gelir.
+ */
+import { SITE_URL, REL_ME, DEFAULT_OG_IMAGE } from '../data/identity.mjs';
+import { imageMeta, ogVariant } from '../utils/image-meta.mjs';
+import { lastModified } from '../utils/content-dates.mjs';
+
 interface Props {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   image?: string;
+  imageAlt?: string;
   canonicalUrl?: string;
   counterpartUrl?: string;
   lang?: 'en' | 'tr';
   type?: 'website' | 'article' | 'profile';
+  article?: { publishedTime: string; tags?: string[] };
 }
 
-const siteUrl = 'https://onuraksoy.com.tr';
-
 const {
-  title = 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı',
-  description = "Onur Aksoy'un resmi web sitesi, sistem geliştirme portfolyosu ve vaka analizleri. Yapay zeka yerel sistemler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar.",
-  image = `${siteUrl}/images/onur-aksoy.webp`,
-  canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://onuraksoy.com.tr').href,
+  title,
+  description,
+  image = DEFAULT_OG_IMAGE,
+  imageAlt,
+  canonicalUrl = new URL(Astro.url.pathname, SITE_URL).href,
   counterpartUrl,
   lang = 'tr',
-  type = 'website'
+  type = 'website',
+  article
 } = Astro.props;
 
-// Determine counterpart URL for hreflang
+// ── hreflang çiftleri ────────────────────────────────────────────────────────
 const pathname = Astro.url.pathname;
 let enPath = pathname;
 let trPath = pathname;
-
 if (counterpartUrl) {
-  if (lang === 'tr') {
-    trPath = pathname;
-    enPath = counterpartUrl;
-  } else {
-    enPath = pathname;
-    trPath = counterpartUrl;
-  }
+  if (lang === 'tr') enPath = counterpartUrl;
+  else trPath = counterpartUrl;
 } else if (pathname.startsWith('/en')) {
-  enPath = pathname;
   trPath = pathname.replace(/^\/en(\/|$)/, '/') || '/';
 } else {
-  trPath = pathname;
-  enPath = pathname === '/' || pathname === '' ? '/en/' : `/en${pathname.endsWith('/') ? pathname : pathname + '/'}`;
+  enPath = pathname === '/' ? '/en/' : `/en${pathname.endsWith('/') ? pathname : pathname + '/'}`;
 }
+const enUrl = new URL(enPath, SITE_URL).href;
+const trUrl = new URL(trPath, SITE_URL).href;
 
-const enUrl = new URL(enPath, siteUrl).href;
-const trUrl = new URL(trPath, siteUrl).href;
+// ── Open Graph görseli (gerçek boyut + MIME) ─────────────────────────────────
+let og = imageMeta(ogVariant(image));
+if (!og.exists || !og.width) og = imageMeta(DEFAULT_OG_IMAGE);
+const ogAlt = imageAlt || title;
 
-const keywords = lang === 'tr'
-  ? 'Onur Aksoy, Onur Aksoy kimdir, Yazılım Geliştirici, Dijital Dönüşüm Uzmanı, Sistem Mimarı, AI-Native Geliştirici, Ankara Yazılım, oaPOS, oaDub, SEO Lens, 10SeC, Orvyna, Hackonomist'
-  : 'Onur Aksoy, Who is Onur Aksoy, Software Developer, Digital Strategist, Systems Architect, Local-First Software, oaPOS, oaDub, SEO Lens, 10SeC, Orvyna, Hackonomist';
+// ── Makale tarihleri ─────────────────────────────────────────────────────────
+let modifiedTime: string | undefined;
+if (article) {
+  const lm = lastModified(pathname);
+  modifiedTime = lm && Date.parse(lm) > Date.parse(article.publishedTime) ? lm : article.publishedTime;
+}
 ---
 
 <!-- Global Metadata -->
@@ -58,16 +69,13 @@ const keywords = lang === 'tr'
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Robots & Search Engine Crawlers -->
+<!-- Robots -->
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
-<meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content="Onur Aksoy (Hackonomist)" />
-<meta name="keywords" content={keywords} />
 <meta name="theme-color" content="#08090A" />
 
 <!-- Canonical & Hreflang -->
@@ -76,53 +84,43 @@ const keywords = lang === 'tr'
 <link rel="alternate" hreflang="en" href={enUrl} />
 <link rel="alternate" hreflang="x-default" href={trUrl} />
 
-<!-- Open Graph / Facebook -->
+<!-- Open Graph -->
 <meta property="og:type" content={type} />
+<meta property="og:site_name" content="Onur Aksoy" />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={image} />
-<meta property="og:image:type" content="image/webp" />
-<meta property="og:image:width" content={image.includes('onur-aksoy.webp') ? '937' : '1200'} />
-<meta property="og:image:height" content={image.includes('onur-aksoy.webp') ? '1679' : '630'} />
-<meta property="og:image:alt" content={title} />
-<meta property="og:site_name" content="Onur Aksoy" />
+<meta property="og:image" content={og.url} />
+<meta property="og:image:secure_url" content={og.url} />
+{og.type && <meta property="og:image:type" content={og.type} />}
+<meta property="og:image:width" content={String(og.width)} />
+<meta property="og:image:height" content={String(og.height)} />
+<meta property="og:image:alt" content={ogAlt} />
 <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
 <meta property="og:locale:alternate" content={lang === 'tr' ? 'en_US' : 'tr_TR'} />
+{article && <meta property="article:published_time" content={article.publishedTime} />}
+{article && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{article && <meta property="article:author" content={`${SITE_URL}${lang === 'tr' ? '/about/' : '/en/about/'}`} />}
+{article?.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
 
-<!-- Twitter -->
+<!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={canonicalUrl} />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={image} />
-<meta name="twitter:image:alt" content={title} />
 <meta name="twitter:site" content="@oaonuraksoy" />
 <meta name="twitter:creator" content="@oaonuraksoy" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={og.url} />
+<meta name="twitter:image:alt" content={ogAlt} />
 
-<!-- GEO & AI Discoverability Tags -->
+<!-- Yerel varlık sinyalleri -->
 <meta name="geo.region" content="TR-06" />
 <meta name="geo.placename" content="Ankara" />
-<meta name="geo.position" content="39.9334;32.8597" />
-<meta name="ICBM" content="39.9334, 32.8597" />
-<link rel="author" href="https://onuraksoy.com.tr" />
-<link rel="me" href="https://www.wikidata.org/wiki/Q141993579" />
-<link rel="me" href="https://orcid.org/0009-0001-4481-1759" />
-<link rel="me" href="https://www.crunchbase.com/person/onur-aksoy-1c4f" />
-<link rel="me" href="https://github.com/oaonuraksoy" />
-<link rel="me" href="https://www.linkedin.com/in/oaonuraksoy/" />
-<link rel="me" href="https://www.youtube.com/@oaonuraksoy" />
-<link rel="me" href="https://x.com/oaonuraksoy" />
-<link rel="me" href="https://www.instagram.com/oaonuraksoy/" />
-<link rel="me" href="https://www.tiktok.com/@oaonuraksoy" />
-<link rel="me" href="https://www.facebook.com/oaAKSOY/" />
-<link rel="me" href="https://huggingface.co/hackonomist" />
-<link rel="me" href="https://dev.to/oaonuraksoy" />
-<link rel="me" href="https://medium.com/@oaonuraksoy" />
-<link rel="me" href="https://substack.com/@oaonuraksoy" />
-<link rel="me" href="https://www.reddit.com/user/oaonuraksoy/" />
-<link rel="me" href="https://www.quora.com/profile/Onur-Aksoy-39" />
-<link rel="me" href="https://open.spotify.com/show/3FSqxgXs900CueJqIJwUQA" />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" title="Onur Aksoy — Sistem Mimarisi & Yayınlar RSS" href="https://onuraksoy.com.tr/rss.xml" />
+
+<!-- Kimlik doğrulama (rel=me) — src/data/identity.mjs -->
+<link rel="author" href={`${SITE_URL}${lang === 'tr' ? '/about/' : '/en/about/'}`} />
+{REL_ME.map((href) => <link rel="me" href={href} />)}
+
+<!-- Keşif uç noktaları -->
+<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="Onur Aksoy — RSS" href={`${SITE_URL}/rss.xml`} />
 <link rel="hub" href="https://pubsubhubbub.appspot.com/" />

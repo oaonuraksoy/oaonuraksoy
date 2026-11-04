@@ -1,6 +1,8 @@
 ---
 title: "Web Architecture Guide for Industrial & B2B Export Manufacturers: 5 Technical Criteria That Build Global Buyer Trust"
 description: "A comprehensive engineering guide for export-oriented manufacturing enterprises in OSTIM, Ivedik, and Sincan Industrial Zones. Learn how sub-50ms edge latency, strict hreflang multi-language discipline, CAD/HS code schemas, and zero-JS frontends establish instant procurement trust."
+seoTitle: "Web Architecture for Industrial B2B Exporters"
+seoDescription: "Five technical web architecture criteria that build trust with global buyers for industrial manufacturers and B2B exporters in Ankara."
 pubDate: 2026-11-01
 lang: "en"
 ref: "ankara-osb-sanayi-b2b-ihracat-web-mimarisi"

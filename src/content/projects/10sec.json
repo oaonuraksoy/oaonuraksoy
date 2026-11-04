@@ -19,6 +19,7 @@
     "github": "https://github.com/oaonuraksoy/10SeC",
     "demo": "https://oaonuraksoy.github.io/10SeC/"
   },
+  "schema": { "applicationCategory": "MultimediaApplication", "operatingSystem": "Microsoft Edge (Windows, macOS, Linux), Web", "price": "0", "priceCurrency": "USD" },
   "metrics": {
     "en": [
       { "label": "Processing Mode", "value": "100% Client-Side WASM" },
@@ -35,6 +36,8 @@
   },
   "en": {
     "title": "10SeC — In-Browser Video Splitter & Timeline Trimmer Engine",
+    "seoTitle": "10SeC: In-Browser Video Splitter Extension",
+    "seoDescription": "10SeC is a Microsoft Edge extension that splits videos into clips inside the browser with FFmpeg WebAssembly, with no server uploads.",
     "description": "Client-side FFmpeg WebAssembly and Web Worker multi-threaded video segmentation extension and web app that automatically chunks long videos into 9.5s clips for WhatsApp, Instagram, TikTok with zero server upload.",
     "role": "Creator & Media Systems Developer",
     "period": "2026 — Present",
@@ -82,6 +85,8 @@
   },
   "tr": {
     "title": "10SeC — Tarayıcı İçi Video Bölücü & Zaman Çizelgesi Kırpma Motoru",
+    "seoTitle": "10SeC: Tarayıcı İçi Video Parçalayıcı",
+    "seoDescription": "10SeC, FFmpeg WebAssembly ile videoları sunucuya yüklemeden tarayıcıda kliplere bölen Microsoft Edge eklentisi. Mimari vaka analizi.",
     "description": "Sunucuya yükleme yapmadan, FFmpeg WebAssembly ve Web Worker çoklu iş parçacığıyla videoları WhatsApp, Instagram ve TikTok için 9.5 saniyelik parçalara bölen tarayıcı içi video motoru ve eklenti.",
     "role": "Yaratıcı & Medya Sistemleri Geliştiricisi",
     "period": "2026 — Günümüz",

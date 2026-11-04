@@ -1,6 +1,8 @@
 ---
 title: "AI Influencer Account Bans: YPP 'Low-Effort' Strikes, Meta Detection Algorithms & Consistency Architecture"
 description: "A deep technical autopsy into why 82% of AI influencer accounts get terminated or shadowbanned within 45 days: Acoustic Slop spectrogram analysis, missing PRNU sensor noise, Video Selfie verification traps, and FLUX.1 + ComfyUI determinism."
+seoTitle: "AI Influencer Bans & Consistency Architecture"
+seoDescription: "Why AI influencer accounts get YouTube YPP low-effort strikes and Meta detection flags, and the character consistency architecture against them."
 pubDate: 2026-04-10
 lang: "en"
 ref: "ai-influencer-consistency-architecture"

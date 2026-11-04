@@ -16,6 +16,7 @@
   "links": {
     "github": "https://github.com/oaonuraksoy/oa_sip_recorder"
   },
+  "schema": { "applicationCategory": "UtilitiesApplication", "operatingSystem": "Linux", "price": "0", "priceCurrency": "USD" },
   "metrics": {
     "en": [
       { "label": "Capture Mode", "value": "Passive Promiscuous Sniffing" },
@@ -32,6 +33,8 @@
   },
   "en": {
     "title": "oa_sip_recorder — High-Performance Passive VoIP SIP/RTP Call Capture & Stereo Audio Synthesizer in Rust",
+    "seoTitle": "oa_sip_recorder: Passive VoIP Recorder (Rust)",
+    "seoDescription": "oa_sip_recorder is an open-source Rust tool that passively captures SIP/RTP traffic with libpcap and writes stereo WAV call recordings.",
     "description": "A zero-overhead, multi-threaded systems tool engineered in Rust to sniff VoIP network interfaces via libpcap, track SIP signaling dialogs, reconstruct G.711 RTP media streams, and output stereo WAV audio with sub-25MB memory footprint.",
     "role": "Systems Architect & Low-Level Network Developer",
     "period": "2024 — Present",
@@ -79,6 +82,8 @@
   },
   "tr": {
     "title": "oa_sip_recorder — Rust ile Yüksek Performanslı Pasif VoIP SIP/RTP Çağrı Dinleme ve Stereo Ses Sentezleyici",
+    "seoTitle": "oa_sip_recorder: Rust ile Pasif VoIP Kaydı",
+    "seoDescription": "oa_sip_recorder, SIP/RTP trafiğini libpcap ile pasif olarak yakalayıp stereo WAV kayda dönüştüren açık kaynak Rust aracı. Mimari vaka analizi.",
     "description": "VoIP ağ arayüzlerini libpcap ile pasif dinleyerek SIP sinyalleşmesini ayrıştıran, dinamik RTP paketlerini yakalayıp G.711 çözücüyle arayan/arananı iki ayrı kanalda senkron stereo WAV dosyasına dönüştüren yüksek performanslı Rust sistem aracı.",
     "role": "Sistem Mimarı & Düşük Seviye Ağ Geliştiricisi",
     "period": "2024 — Günümüz",

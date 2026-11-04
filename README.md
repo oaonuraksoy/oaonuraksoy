@@ -5,7 +5,8 @@
 # Onur Aksoy
 ### ⚡ a.k.a. **Hackonomist**
 
-**AI-Native Systems Architect • Local-First Desktop Engineer • Multidisciplinary Creator**
+**Software Developer, Digital Strategist & Systems Architect**  
+**Yazılım Geliştirici, Dijital Dönüşüm Uzmanı & Sistem Mimarı**
 
 📍 Ankara, Turkey (GMT+3) & Global Remote
 
@@ -29,7 +30,7 @@ I am **Onur Aksoy** (widely recognized across the digital sphere and developer e
 My engineering discipline revolves around absolute resilience: deterministic software that continues to execute without internet dependency, autonomous multi-agent loops that solve non-trivial workflows, and sub-millisecond execution loops unburdened by enterprise bloat.
 
 **TR:**  
-Ben **Onur Aksoy** (dijital ekosistemde ve teknoloji topluluklarında bilinen adımla **Hackonomist**). Ankara merkezli olarak küresel ölçekte; **yapay zeka yerel mimariler (AI-native)**, **sıfır gecikmeli yerel öncelikli çevrimdışı masaüstü sistemleri (local-first)**, **bulut Web2App derleme motorları** ve **uçtan uca büyüme/ekonomi sistemleri** geliştiren bir sistem mimarı ve mühendisim.
+Ben **Onur Aksoy** (dijital ekosistemde ve teknoloji topluluklarında bilinen adımla **Hackonomist**). Ankara merkezli olarak küresel ölçekte; **yapay zeka yerel mimariler (AI-native)**, **sıfır gecikmeli yerel öncelikli çevrimdışı masaüstü sistemleri (local-first)**, **bulut Web2App derleme motorları** ve **uçtan uca büyüme/ekonomi sistemleri** geliştiren bir Yazılım Geliştirici, Dijital Dönüşüm Uzmanı & Sistem Mimarıyım.
 
 Mühendislik felsefem ödün vermez bir dayanıklılık üzerine kuruludur: buluta bağımlı kalmadan %100 otonom çalışan deterministik sistemler, karmaşık iş akışlarını otonom yöneten çoklu ajan döngüleri ve hantal kurumsal mimarilerden arındırılmış mikrosaniye hızında çalışan çözümler.
 
@@ -41,7 +42,8 @@ Mühendislik felsefem ödün vermez bir dayanıklılık üzerine kuruludur: bulu
 | :--- | :--- | :--- |
 | 🖥️ **oaPOS**<br />`Windows Masaüstü POS & Stok Mimarisi` | **Resmi Microsoft Store Sertifikalı**<br />• **Stack:** .NET 8, C#, WPF (DirectX), PostgreSQL, SQLite Embedded (ACID), Redis Cache, Yerel LAN TCP/IP Soketleri.<br />• **Kabiliyet:** Buluttan %100 bağımsız çevrimdışı Host/Client terminal senkronizasyonu, < 10ms işlem gecikmesi, doğrudan Win32 ESC/POS termal yazıcı ve donanımsal barkod okuyucu kancaları. | 🏪 [Microsoft Store Mağazası](https://apps.microsoft.com/detail/9n0wq4v12wgx?hl=tr-TR&gl=TR)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/oapos/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/oapos/) |
 | 🎙️ **oaDub**<br />`Gerçek Zamanlı Çok Modlu Yapay Zeka Sekme Dublajı` | **Microsoft Edge Add-ons Sertifikalı (Manifest V3)**<br />• **Stack:** Google Gemini 3.5 Live API, Çift Yönlü WebSockets, Web Audio PCM (16kHz/24kHz), Offscreen Document API.<br />• **Kabiliyet:** Tarayıcı sekmesindeki sesi sunucu aracısı olmadan doğrudan Gemini Live motoruna akıtarak 400ms altı gecikmeyle anlık simültane sesli çeviri ve dublaj üretir. | 🧩 [Edge Add-ons Mağazası](https://microsoftedge.microsoft.com/addons/detail/oadub-gemini-live-sim%C3%BCl/cpnkpahbhcdbhhgacmnnobbieedaacgb)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/oadub/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/oadub/) |
-| 🎬 **10SeC**<br />`Tarayıcı İçi Video Bölücü & Kırpma Motoru` | **%100 İstemci Taraflı (Zero-Server Upload)**<br />• **Stack:** FFmpeg WebAssembly (WASM), Çok İzlekli Web Workers, MEMFS Sanal Dosya Sistemi, JSZip.<br />• **Kabiliyet:** Uzun videoları sunucuya yüklemeden doğrudan tarayıcı belleğinde (RAM) 9.5 saniyelik hassas kliplere böler ve anında ZIP olarak dışa aktarır. | 🚀 [Canlı Uygulama](https://oaonuraksoy.github.io/10SeC/)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/10sec/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/10sec/) |
+| 🔎 **SEO Lens — Technical SEO & Schema Inspector**<br />`Teknik SEO & Schema.org Denetleyicisi` | **Resmi Microsoft Edge Add-ons Eklentisi (Manifest V3)**<br />• **Stack:** Saf ECMAScript (ES2024), sıfır üçüncü taraf bağımlılık, Manifest V3 CSP.<br />• **Kabiliyet:** Sayfadaki JSON-LD `@graph` / Microdata şemalarını, meta etiketlerini, hreflang ve sosyal paylaşım kartlarını tek tıkla denetler. | 🧩 [Edge Add-ons Mağazası](https://microsoftedge.microsoft.com/addons/detail/seo-lens-technical-seo-/anfhafomoldobnodlcbdjepneccjlnib)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/seo-lens/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/seo-lens/) |
+| 🎬 **10SeC**<br />`Tarayıcı İçi Video Bölücü & Kırpma Motoru` | **%100 İstemci Taraflı (Zero-Server Upload)**<br />• **Stack:** FFmpeg WebAssembly (WASM), Çok İzlekli Web Workers, MEMFS Sanal Dosya Sistemi, JSZip.<br />• **Kabiliyet:** Uzun videoları sunucuya yüklemeden doğrudan tarayıcı belleğinde (RAM) 9.5 saniyelik hassas kliplere böler ve anında ZIP olarak dışa aktarır. | 🧩 [Edge Add-ons Mağazası](https://microsoftedge.microsoft.com/addons/detail/10sec-%E2%80%94-video-par%C3%A7alay%C4%B1c%C4%B1/eooacplpamongbimoibjkmgnbjmcbdjk)<br />🚀 [Canlı Uygulama](https://oaonuraksoy.github.io/10SeC/)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/10sec/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/10sec/) |
 | 📱 **Orvyna App Studio**<br />`Bulut Web2App Derleme Mimarisi` | **Doğrudan App Store Connect & Play Store Pipeline'ı**<br />• **Stack:** TypeScript, Vite, Web Components, Apple App Store Connect API, TestFlight SDK, Android TWA / Google Play AAB.<br />• **Kabiliyet:** Web uygulamalarını tek satır yerel kod yazmadan yerel iOS (.ipa) ve Android (.aab) paketlerine dönüştüren, bulut üzerinden anında TestFlight ve Store dağıtımı sağlayan otonom stüdyo. | 🚀 [Canlı Stüdyo Uygulaması](https://oaonuraksoy.github.io/orvyna-builder/)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/orvyna-app-studio/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/orvyna-app-studio/) |
 | 📞 **oa_sip_recorder**<br />`Rust ile Pasif VoIP SIP/RTP Çağrı Kaydedici` | **Sıfır Kopya (Zero-Copy) Ağ Dinleme Motoru**<br />• **Stack:** Rust 1.70+, libpcap, G.711 (PCMU/PCMA) Kodek Çözücü, Eşzamanlı Durum Makinesi.<br />• **Kabiliyet:** Ağ kartı üzerinden SIP sinyalleşmesini ve RTP ses akışlarını pasif olarak yakalayıp < 25MB bellek tüketimiyle gerçek zamanlı stereo WAV ses dosyalarına dönüştürür. | 💻 [GitHub Deposu](https://github.com/oaonuraksoy/oa_sip_recorder)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/oa-sip-recorder/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/oa-sip-recorder/) |
 | 🎨 **E-Commerce Image Enhancer**<br />`AI Görsel & Işıklandırma Stüdyosu` | **Google Flow & Difüzyon Pipeline'ı**<br />• **Stack:** Latent Diffusion Modelleri, Alt-Piksel Segmentasyon Maskeleri, Doğal Işıklandırma Fizik Motoru, Google Flow Mimarisi.<br />• **Kabiliyet:** Ham e-ticaret ürün fotoğraflarını yapay zeka ile stüdyo kalitesinde ışıklandırma, derinlik haritası ve gerçekçi ortam arka planlarıyla birleştirerek görsel dönüşüm oranlarını maksimize eden motor. | 🎨 [Canlı Etkileşimli Araç](https://flow.google.com/shared/tool/31436e00-6863-4877-bcd7-3c418c5816fc)<br />📖 [Teknik Vaka Analizi (TR)](https://onuraksoy.com.tr/projects/ecommerce-image-enhancer/)<br />🌐 [Case Study (EN)](https://onuraksoy.com.tr/en/projects/ecommerce-image-enhancer/) |
@@ -140,7 +142,8 @@ Portfolyoda sergilenen tüm amiral gemisi projeler Astro Content Collections alt
      }
    }
    ```
-3. `npm run build` komutu ile tip güvenliğini ve statik derlemeyi doğrulayın.
+3. Arama sonuçları için `tr`/`en` bloklarına kısa `seoTitle` (≤ 47 karakter) ve `seoDescription` (110–160), kök seviyeye `schema` (`applicationCategory`, `operatingSystem`) ekleyin; ardından `npm run og:images` ile proje paylaşım kartlarını üretin.
+4. `npm run build` komutu ile tip güvenliğini, statik derlemeyi ve SEO/GEO koruma kapısını doğrulayın.
 
 ### ✍️ Yeni Yayın Ekleme, Kapak Görselleri ve Vitrin (`src/content/broadcasts/`)
 Tüm yayınlar (Video, Podcast, Makale vb.) `src/content/broadcasts/{en,tr}/*.md` dizininde Markdown olarak tutulur.
@@ -160,6 +163,12 @@ npm run build
 
 # Üretim derlemesini yerel olarak test et
 npm run preview
+
+# Paylaşım (Open Graph) görsellerini üret — yeni kapak/proje ekledikten sonra
+npm run og:images
+
+# Yalnızca SEO/GEO koruma kapısını çalıştır (build zaten içerir)
+npm run test:seo
 ```
 
 </details>
