@@ -15,7 +15,8 @@ export const GET: APIRoute = async () => {
     '10sec',
     'orvyna-app-studio',
     'oa-sip-recorder',
-    'ecommerce-image-enhancer'
+    'ecommerce-image-enhancer',
+    'seo-lens'
   ];
 
   const broadcastSlugs = [

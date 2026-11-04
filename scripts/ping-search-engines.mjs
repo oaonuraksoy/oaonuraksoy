@@ -31,12 +31,14 @@ const urlList = [
   `https://${HOST}/projects/orvyna-app-studio/`,
   `https://${HOST}/projects/oa-sip-recorder/`,
   `https://${HOST}/projects/ecommerce-image-enhancer/`,
+  `https://${HOST}/projects/seo-lens/`,
   `https://${HOST}/en/projects/oapos/`,
   `https://${HOST}/en/projects/oadub/`,
   `https://${HOST}/en/projects/10sec/`,
   `https://${HOST}/en/projects/orvyna-app-studio/`,
   `https://${HOST}/en/projects/oa-sip-recorder/`,
   `https://${HOST}/en/projects/ecommerce-image-enhancer/`,
+  `https://${HOST}/en/projects/seo-lens/`,
 
   // Broadcasts (TR & EN)
   `https://${HOST}/broadcasts/ai-influencer-consistency-architecture/`,

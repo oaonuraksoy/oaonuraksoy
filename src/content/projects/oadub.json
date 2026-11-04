@@ -34,7 +34,7 @@
   "en": {
     "title": "oaDub — Real-Time Multimodal AI Simultaneous Tab Dubbing Engine",
     "description": "An advanced Chrome/Edge Manifest V3 extension streaming 16kHz raw PCM tab audio over bidirectional WebSockets to Google Gemini Live API, synthesizing instant 24kHz voice translation with zero server intermediaries.",
-    "role": "Lead Architect & AI Systems Engineer",
+    "role": "Lead Architect & AI Systems Developer",
     "period": "2025 — Present",
     "status": "Production / Official Microsoft Edge Add-ons",
     "executiveOverview": "Language barriers on global video platforms such as YouTube, Coursera, Twitch, and web conferencing platforms hinder continuous learning and technical mastery. Traditional subtitle extensions impose continuous cognitive load, whereas legacy AI dubbing platforms require minutes of batch post-processing before rendering an alternative video track.\n\n**oaDub** introduces an instant, real-time auditory translation paradigm. Built as a high-performance browser extension complying with the strict Chrome Manifest V3 lifecycle, oaDub captures live media tab audio, streams raw 16kHz Little-Endian PCM audio chunks across a low-latency bidirectional WebSocket directly to **Google Gemini 3.5 Live Multimodal API**, and receives streaming 24kHz PCM audio buffers. Through a client-side Web Audio API dual-channel mixer with background original volume ducking, oaDub delivers real-time simultaneous voice translation in under 400 milliseconds—all with zero intermediate servers and complete API key privacy.",
@@ -81,7 +81,7 @@
   "tr": {
     "title": "oaDub — Gerçek Zamanlı Çok Modlu Yapay Zeka Eşzamanlı Sekme Dublajı Motoru",
     "description": "Sekme sesini 16kHz ham PCM formatında Manifest V3 Offscreen üzerinden yakalayıp Google Gemini Live API'ye çift yönlü WebSocket ile akıtan ve 24kHz eşzamanlı dublaj üreten sıfır-sunucu Edge eklentisi.",
-    "role": "Baş Mimar & Yapay Zeka Sistem Mühendisi",
+    "role": "Baş Mimar & Yapay Zeka Sistem Kurucusu",
     "period": "2025 — Günümüz",
     "status": "Canlıda / Resmi Microsoft Edge Eklentisi",
     "executiveOverview": "Küresel video platformlarında (YouTube, Coursera, Twitch, web konferansları) yabancı dildeki teknik ve eğitsel içerikleri takip etmek altyazı okuma zorunluluğu nedeniyle sürekli bir bilişsel yük yaratır; geleneksel yapay zeka dublaj araçları ise alternatif bir video kanalı render etmek için dakikalarca süren toplu işlem süreleri gerektirir.\n\n**oaDub**, bu engele son nesil çok modlu yapay zeka ile son veren anlık ve gerçek zamanlı bir eşzamanlı sesli dublaj motorudur. Chrome Manifest V3 kısıtlamalarına tam uyumlu olarak geliştirilen eklenti, tarayıcı sekmesindeki canlı medyayı yakalayarak 16kHz Little-Endian ham PCM formatında doğrudan **Google Gemini 3.5 Live Multimodal WebSocket API**'sine akıtır. Yapay zekadan anlık dönen 24kHz PCM ses akışı, istemci tarafındaki Web Audio API çift kanallı mikseri üzerinden orijinal sesi hafifçe kısarak (audio ducking) eşzamanlı yayınlar. Sistem, harici hiçbir ara sunucuya ihtiyaç duymadan 400 milisaniyenin altında gecikmeyle çalışırken, kullanıcı API anahtarını tamamen yerel `chrome.storage.local` alanında korur.",

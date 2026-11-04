@@ -33,7 +33,7 @@
   "en": {
     "title": "oa_sip_recorder — High-Performance Passive VoIP SIP/RTP Call Capture & Stereo Audio Synthesizer in Rust",
     "description": "A zero-overhead, multi-threaded systems tool engineered in Rust to sniff VoIP network interfaces via libpcap, track SIP signaling dialogs, reconstruct G.711 RTP media streams, and output stereo WAV audio with sub-25MB memory footprint.",
-    "role": "Systems Architect & Low-Level Network Engineer",
+    "role": "Systems Architect & Low-Level Network Developer",
     "period": "2024 — Present",
     "status": "Open Source / Production Ready",
     "executiveOverview": "Enterprise PBX platforms and call centers often struggle with voice recording architectures. Traditional active solutions—such as PBX-level recording (Asterisk MixMonitor, FreeSWITCH) or SIP proxy trunking—introduce significant CPU overhead, network latency, and single-point-of-failure risks into live communication channels.\n\n**oa_sip_recorder** was architected to overcome these limitations via completely passive, zero-impact network tapping. Written in modern Rust, the engine attaches directly to network interfaces (NICs) via `libpcap` in promiscuous mode. By parsing live Ethernet, IPv4/IPv6, and UDP frames with zero-copy deserialization, it detects SIP signaling (`INVITE`, `200 OK`, `BYE`), correlates Call-ID states, demultiplexes dynamic RTP audio port pairs, decodes G.711 (PCMU/PCMA) payloads, and reconstructs caller (left channel) and callee (right channel) voice streams into synchronized 16-bit Broadcast RIFF stereo WAV files—all with sub-25MB memory consumption.",
@@ -80,7 +80,7 @@
   "tr": {
     "title": "oa_sip_recorder — Rust ile Yüksek Performanslı Pasif VoIP SIP/RTP Çağrı Dinleme ve Stereo Ses Sentezleyici",
     "description": "VoIP ağ arayüzlerini libpcap ile pasif dinleyerek SIP sinyalleşmesini ayrıştıran, dinamik RTP paketlerini yakalayıp G.711 çözücüyle arayan/arananı iki ayrı kanalda senkron stereo WAV dosyasına dönüştüren yüksek performanslı Rust sistem aracı.",
-    "role": "Sistem Mimarı & Düşük Seviye Ağ Mühendisi",
+    "role": "Sistem Mimarı & Düşük Seviye Ağ Geliştiricisi",
     "period": "2024 — Günümüz",
     "status": "Açık Kaynak / Üretime Hazır",
     "executiveOverview": "Kurumsal santral (PBX) ve çağrı merkezi operasyonlarında ses kaydı altyapısı kritik bir mimari zorluktur. Santral seviyesinde kayıt alan (Asterisk MixMonitor, FreeSWITCH modülleri) veya SIP proxy yönlendirmesi kullanan aktif sistemler; canlı çağrı hatlarına işlemci yükü, ağ gecikmesi ve tek hata noktası (SPOF) riski bindirir.\n\n**oa_sip_recorder**, çağrı hattına ve PBX sunucusuna sıfır ek yük getiren pasif ağ dinleme (promiscuous packet sniffing) mimarisiyle bu açmazı ortadan kaldırır. Modern Rust ile geliştirilen sistem, ağ arayüzüne (NIC) `libpcap` üzerinden kanca atar. Sıfır kopyalama (zero-copy) bellek disipliniyle Ethernet, IPv4/IPv6 ve UDP paketlerini ayrıştırır; SIP sinyalleşmesini (`INVITE`, `200 OK`, `BYE`) izleyerek Call-ID bazlı oturum durumlarını yönetir. Dinamik RTP portlarını gerçek zamanlı eşleştirip G.711 (PCMU/PCMA) ses paketlerini çözer; arayanı sol kanalda, arananı sağ kanalda konumlandırarak mükemmel senkronize 16-bit stereo WAV dosyaları üretir. Üstelik tüm bu hattı 25 MB altı sabit bellek tüketimiyle icra eder.",

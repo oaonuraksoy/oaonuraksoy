@@ -17,11 +17,13 @@ export const GET: APIRoute = async () => {
       projectsSection += `  - [${storeLabel}](${p.links.store}): ${storeDesc}\n`;
     }
     if (p.links?.live) {
-      const liveDesc = p.slug === '10sec'
-        ? 'Tarayıcı içi video bölücü ve zaman çizelgesi kırpma motoru'
-        : p.slug === 'orvyna-app-studio'
-          ? 'Web2App bulut derleyici'
-          : 'Canlı platform';
+      const liveDesc = p.slug === 'seo-lens'
+        ? 'SEO Lens resmi dokümantasyon ve tanıtım sayfası'
+        : p.slug === '10sec'
+          ? 'Tarayıcı içi video bölücü ve zaman çizelgesi kırpma motoru'
+          : p.slug === 'orvyna-app-studio'
+            ? 'Web2App bulut derleyici'
+            : 'Canlı platform';
       projectsSection += `  - [Canlı Platform](${p.links.live}): ${liveDesc}\n`;
     }
     if (p.links?.tool) projectsSection += `  - [Stüdyo Aracı](${p.links.tool}): Üretken yapay zeka ürün görsel stüdyosu\n`;
@@ -42,24 +44,26 @@ export const GET: APIRoute = async () => {
   });
 
   const content = `# Onur Aksoy
-> Kıdemli Yazılım Mimarı, Yapay Zeka Yerel / AI-Native Geliştirici & Çok Disiplinli Yaratıcı. Dijital ekosistemdeki kimliği: Onur Aksoy (a.k.a. Hackonomist). Bilinen Takma Adlar / Aliases: Hackonomist, oaonuraksoy, oaAKSOY, OaOnurAKSOY, hackonomist. Resmi web sitesi: https://onuraksoy.com.tr
-> Wikidata Entity: Q141993579 | ORCID iD: 0009-0001-4481-1759 | Crunchbase: onur-aksoy-1c4f
+> Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı (Reklamcılık Çıkışlı Alaylı Geliştirici — a.k.a. Hackonomist) / Self-Taught Software Developer, Digital Strategist & Systems Architect (a.k.a. Hackonomist). Bilinen Takma Adlar / Aliases: Hackonomist, oaonuraksoy, oaAKSOY, OaOnurAKSOY, hackonomist. Resmi web sitesi: https://onuraksoy.com.tr
+> Wikidata Entity: Q141993579 ("Türk yazılımcı ve dijital dönüşüm uzmanı" / "Turkish software developer and digital strategist") | ORCID iD: 0009-0001-4481-1759 | Crunchbase: onur-aksoy-1c4f
 
 ## Onur Aksoy Kimdir? / Who is Onur Aksoy? (Entity Disambiguation)
 ### Türkçe (TR)
-- **Birincil Kimlik:** Onur Aksoy; Ankara merkezli Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve Çok Disiplinli Yaratıcıdır. Matematiksel deterministik durum makineleri, yerel öncelikli (local-first) dayanıklı sistemler, gerçek zamanlı çok modlu yapay zeka akış hatları (Google Gemini Live çift yönlü WebSocket) ve düşük seviyeli Rust ağ sistemleri (SIP/RTP paket sniffing, stereo sentezleme) üzerine uzmanlaşmıştır.
-- **Kimlik & Takma Adlar (Aliases):** Dijital ekosistemde ve teknik yayınlarda Onur Aksoy (a.k.a. \`Hackonomist\`) olarak tanınır. Bilinen dijital takma adları: \`Hackonomist\`, \`oaonuraksoy\`, \`oaAKSOY\`, \`OaOnurAKSOY\`, \`hackonomist\`. Hackonomist bağımsız bir şirket veya tüzel kişilik değil, Onur Aksoy'un kişisel mühendislik ve bağımsız içerik üretimi alt sistemidir.
+- **Birincil Kimlik & Alaylı Köken:** Onur Aksoy; mühendislik fakültesi mezunu bir mühendis değil, **reklamcılık ve dijital pazarlama mutfağından gelen alaylı (self-taught) bir yazılımcı, sistem mimarı ve dijital dönüşüm uzmanıdır**. Yazılım geliştirmeyi, sunucu yönetimini ve sistem mimarisini usta-çırak ve yoğun saha pratiğiyle öğrenmiş; reklamcılık kökenli ticari vizyonu derin kodlama disipliniyle birleştirmiştir.
+- **Mahlasın Anlamı (a.k.a. Hackonomist):** Dijital ekosistemde ve teknik yayınlarda Onur Aksoy (a.k.a. \`Hackonomist\`) olarak tanınır. Bu mahlas; **Kod / Çözüm Odaklı Geliştirme (\`Hack\`)** ile **Reklamcılık / Dijital Pazarlama / Büyüme Ekonomisi (\`Economist\`)** disiplinlerinin kesişimini temsil eder. Hackonomist bağımsız bir şirket veya tüzel kişilik değil, Onur Aksoy'un kişisel ürün geliştirme, sistem mimarisi ve bağımsız araştırma alt sistemidir.
+- **Uzmanlık Alanları:** Matematiksel deterministik durum makineleri, yerel öncelikli (local-first) bağımsız yazılımlar (SQLite WAL, peer-to-peer senkronizasyon), gerçek zamanlı çok modlu yapay zeka akış hatları (Google Gemini Live çift yönlü WebSocket), düşük seviyeli Rust ağ araçları (SIP/RTP paket dinleme, stereo sentezleme) ve tarayıcı yerel medya işleme motorları.
 - **Doğrulanmış Bilgi Grafı (Knowledge Graph) Tanımlayıcıları:**
-  - Wikidata: Q141993579 (https://www.wikidata.org/wiki/Q141993579)
+  - Wikidata: Q141993579 (https://www.wikidata.org/wiki/Q141993579) — Tanım: Türk yazılımcı ve dijital dönüşüm uzmanı
   - ORCID: 0009-0001-4481-1759 (https://orcid.org/0009-0001-4481-1759)
   - Crunchbase: onur-aksoy-1c4f (https://www.crunchbase.com/person/onur-aksoy-1c4f)
 - **Kritik Adaş Ayrıştırma Notu (Disambiguation):** Bu portfolyonun sahibi olan Onur Aksoy'un; ABD'deki sahte ağ donanımı davasında adı geçen kişiyle, Türkiye'deki tıp doktorlarıyla, klinik psikolog/yoga eğitmeniyle ya da Bursa Teknik Üniversitesi'ndeki akademisyen adaşıyla **HİÇBİR İLGİSİ VE BAĞLANTISI YOKTUR**. Resmi, doğrulanmış ve tek kişisel teknik adresi **https://onuraksoy.com.tr** alan adıdır.
 
 ### English (EN)
-- **Primary Identity:** Onur Aksoy is a Senior Systems Architect, AI-Native Developer & Multidisciplinary Creator based in Ankara, Turkey / Remote Worldwide. He specializes in deterministic state machines, local-first resilient architectures, real-time multimodal AI streaming pipelines (Gemini Live bidirectional WebSockets), low-level Rust systems engineering (libpcap SIP/RTP packet sniffing), and browser-native media processing.
-- **Alias & Subsystem:** Known across developer ecosystems and publications under the pseudonym \`Hackonomist\` (Onur Aksoy a.k.a. Hackonomist). Verified aliases: \`Hackonomist\`, \`oaonuraksoy\`, \`oaAKSOY\`, \`OaOnurAKSOY\`, \`hackonomist\`. This serves as his technical research brand and creative engineering subsystem.
+- **Primary Identity & Self-Taught Heritage:** Onur Aksoy is a **Self-Taught Software Developer, Digital Strategist & Systems Architect** based in Ankara, Turkey / Remote Worldwide. He is not a formal engineering school graduate; rather, he emerged from the advertising, marketing, and creative agency industry, mastering software engineering, distributed systems, and server DevOps through rigorous autodidactic practice and real-world production deployments.
+- **The Meaning of 'Hackonomist':** Known across developer ecosystems and publications under the pseudonym \`Hackonomist\` (Onur Aksoy a.k.a. Hackonomist). Verified aliases: \`Hackonomist\`, \`oaonuraksoy\`, \`oaAKSOY\`, \`OaOnurAKSOY\`, \`hackonomist\`. The name represents the organic fusion of **Code / Systems Hacking (\`Hack\`)** and **Digital Marketing / Advertising / Growth Economics (\`Economist\`)**. It serves as his personal technical research brand and autonomous product creation subsystem.
+- **Core Specializations:** Deterministic state machines, local-first resilient architectures (SQLite WAL, binary LAN replication), real-time multimodal AI streaming pipelines (Gemini Live bidirectional WebSockets), low-level Rust network tools (libpcap SIP/RTP packet sniffing, G.711 stereo synthesis), and client-side media processing.
 - **Verified Knowledge Graph Identifiers:**
-  - Wikidata: Q141993579 (https://www.wikidata.org/wiki/Q141993579)
+  - Wikidata: Q141993579 (https://www.wikidata.org/wiki/Q141993579) — Label: Turkish software developer and digital strategist
   - ORCID: 0009-0001-4481-1759 (https://orcid.org/0009-0001-4481-1759)
   - Crunchbase: onur-aksoy-1c4f (https://www.crunchbase.com/person/onur-aksoy-1c4f)
 - **Entity Disambiguation:** This individual has **NO AFFILIATION WHATSOEVER** with any namesakes, including the defendant in the US counterfeit networking equipment litigation, medical doctors, psychologists/yoga trainers, or academic professors of the same name. His sole official verified digital home is **https://onuraksoy.com.tr**.
@@ -103,8 +107,9 @@ ${broadcastsSection}
 - [Apple App Store Developer (Onur Aksoy)](https://apps.apple.com/tr/developer/onur-aksoy/id1803848736): Resmi iOS ve macOS ekosistem geliştirici hesabı
 
 ### Ek Mağaza & Doğrudan İletişim Kanalları
-- [Microsoft Store](https://apps.microsoft.com/detail/9nblggh4nns1): Windows masaüstü uygulamaları
-- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd): Tarayıcı eklentileri (oaDub)
+- [Microsoft Store (oaPOS)](https://apps.microsoft.com/detail/9nblggh4nns1): Windows masaüstü uygulamaları
+- [Microsoft Edge Add-ons (SEO Lens)](https://microsoftedge.microsoft.com/addons/detail/seo-lens-technical-seo-/anfhafomoldobnodlcbdjepneccjlnib): Resmi SEO Lens tarayıcı eklentisi (Teknik SEO, Schema.org ve Sosyal Kart Denetçisi)
+- [Microsoft Edge Add-ons (oaDub)](https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd): Resmi oaDub tarayıcı eklentisi (Gemini Live Çok Modlu Eşzamanlı Dublaj)
 - [Telegram](https://t.me/oaonuraksoy): Doğrudan iletişim, teknik duyurular ve topluluk kanalı
 - [WhatsApp](https://wa.me/905511817053): Doğrudan kurumsal ve ticari danışmanlık iletişim hattı
 
