@@ -7,7 +7,7 @@ interface FAQItem {
 }
 
 interface Props {
-  type?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article';
+  type?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article' | 'Service';
   title?: string;
   description?: string;
   url?: string;
@@ -38,6 +38,8 @@ const isTr = lang === 'tr' && !pathname.startsWith('/en');
 const homeUrl = isTr ? 'https://onuraksoy.com.tr/' : 'https://onuraksoy.com.tr/en/';
 const isHome = pathname === '/' || pathname === '/en/' || pathname === '/en';
 const isProfilePage = isHome || pathname === '/about/' || pathname === '/about' || pathname === '/en/about/' || pathname === '/en/about';
+const cleanPath = pathname.replace(/\/$/, '');
+const isCollectionPage = cleanPath === '/broadcasts' || cleanPath === '/en/broadcasts' || cleanPath === '/projects' || cleanPath === '/en/projects';
 
 const resolvedImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : '/' + image}`;
 
@@ -156,6 +158,13 @@ const personSchema: any = {
 };
 
 // 2. WebSite Entity with Google SearchAction
+const broadcastsSearchUrl = isTr 
+  ? 'https://onuraksoy.com.tr/broadcasts/?q={search_term_string}' 
+  : 'https://onuraksoy.com.tr/en/broadcasts/?q={search_term_string}';
+const projectsSearchUrl = isTr 
+  ? 'https://onuraksoy.com.tr/projects/?q={search_term_string}' 
+  : 'https://onuraksoy.com.tr/en/projects/?q={search_term_string}';
+
 const websiteSchema: any = {
   '@type': 'WebSite',
   '@id': `${siteUrl}/#website`,
@@ -170,14 +179,24 @@ const websiteSchema: any = {
   publisher: {
     '@id': `${siteUrl}/#person`
   },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: 'https://www.google.com/search?q=site:onuraksoy.com.tr+{search_term_string}'
+  potentialAction: [
+    {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: broadcastsSearchUrl
+      },
+      'query-input': 'required name=search_term_string'
     },
-    'query-input': 'required name=search_term_string'
-  }
+    {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: projectsSearchUrl
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  ]
 };
 
 // 3. Primary ImageObject
@@ -226,7 +245,11 @@ const sectionLabels: Record<string, { en: string; tr: string }> = {
   'orvyna-app-studio': { en: 'Orvyna App Studio', tr: 'Orvyna App Studio' },
   'oa-sip-recorder': { en: 'OA SIP — Passive VoIP Recorder', tr: 'OA SIP — Pasif VoIP Kaydedici' },
   'ecommerce-image-enhancer': { en: 'E-Commerce Image Enhancer', tr: 'E-Ticaret Görsel Geliştirici' },
-  '10sec': { en: '10SeC — Video Splitter & Trimmer', tr: '10SeC — Video Bölücü & Kırpıcı' }
+  '10sec': { en: '10SeC — Video Splitter & Trimmer', tr: '10SeC — Video Bölücü & Kırpıcı' },
+  'ankara-kurumsal-web-tasarim': { en: 'Ankara Corporate Web Design & B2B Architecture', tr: 'Ankara Kurumsal Web Tasarım & B2B Mimari' },
+  'ankara-b2b-web-architecture': { en: 'Ankara Corporate Web Design & B2B Architecture', tr: 'Ankara Kurumsal Web Tasarım & B2B Mimari' },
+  'ankara-web-yazilim': { en: 'Ankara Custom Web Software & Systems Architecture', tr: 'Ankara Web Yazılım & Özel Sistem Mimarisi' },
+  'ankara-custom-software-architecture': { en: 'Ankara Custom Web Software & Systems Architecture', tr: 'Ankara Web Yazılım & Özel Sistem Mimarisi' }
 };
 
 let breadcrumbSchema: any = null;
@@ -283,37 +306,17 @@ if (isHome) {
   };
 }
 
-// 5. WebPage / ProfilePage Entity
-const webpageSchema: any = isProfilePage ? {
-  '@type': 'ProfilePage',
+// 5. WebPage / ProfilePage / CollectionPage Entity
+const pageType = isProfilePage ? 'ProfilePage' : (isCollectionPage ? 'CollectionPage' : 'WebPage');
+
+const webpageSchema: any = {
+  '@type': pageType,
   '@id': `${resolvedUrl}#webpage`,
   url: resolvedUrl,
   name: title,
   description: description,
   dateCreated: '2024-01-15T00:00:00+03:00',
   dateModified: new Date().toISOString(),
-  mainEntity: {
-    '@id': 'https://onuraksoy.com.tr/#person'
-  },
-  about: {
-    '@id': 'https://onuraksoy.com.tr/#person'
-  },
-  primaryImageOfPage: {
-    '@id': 'https://onuraksoy.com.tr/#primaryimage'
-  },
-  isPartOf: {
-    '@id': `${siteUrl}/#website`
-  },
-  breadcrumb: {
-    '@id': `${resolvedUrl}#breadcrumb`
-  },
-  inLanguage: isTr ? 'tr-TR' : 'en-US'
-} : {
-  '@type': 'WebPage',
-  '@id': `${resolvedUrl}#webpage`,
-  url: resolvedUrl,
-  name: title,
-  description: description,
   about: {
     '@id': 'https://onuraksoy.com.tr/#person'
   },
@@ -328,6 +331,12 @@ const webpageSchema: any = isProfilePage ? {
   },
   inLanguage: isTr ? 'tr-TR' : 'en-US'
 };
+
+if (isProfilePage) {
+  webpageSchema.mainEntity = {
+    '@id': 'https://onuraksoy.com.tr/#person'
+  };
+}
 
 // 6. Custom Schema (SoftwareApplication or Article)
 let customSchema: any = null;
@@ -391,6 +400,121 @@ if (type === 'SoftwareApplication') {
   };
 }
 
+// 6b. Service & ProfessionalService Schema (type === 'Service')
+let professionalServiceSchema: any = null;
+let serviceSchema: any = null;
+
+if (type === 'Service') {
+  const areaServedList = [
+    { '@type': 'AdministrativeArea', name: 'Ankara' },
+    { '@type': 'AdministrativeArea', name: 'OSTİM OSB' },
+    { '@type': 'AdministrativeArea', name: 'İvedik OSB' },
+    { '@type': 'AdministrativeArea', name: 'Başkent OSB' },
+    { '@type': 'AdministrativeArea', name: 'Sincan ASO 1. & 2. OSB' },
+    { '@type': 'Country', name: 'Türkiye' },
+    { '@type': 'Place', name: 'Worldwide' }
+  ];
+
+  professionalServiceSchema = {
+    '@type': 'ProfessionalService',
+    '@id': `${resolvedUrl}#professionalservice`,
+    name: title,
+    description: description,
+    url: resolvedUrl,
+    image: resolvedImageUrl,
+    founder: {
+      '@id': 'https://onuraksoy.com.tr/#person'
+    },
+    priceRange: '$$$',
+    telephone: '+905511817053',
+    email: 'dev@onuraksoy.com.tr',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Ankara',
+      addressRegion: 'Ankara',
+      addressCountry: 'TR'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 39.9334,
+      longitude: 32.8597
+    },
+    areaServed: areaServedList
+  };
+
+  serviceSchema = {
+    '@type': 'Service',
+    '@id': `${resolvedUrl}#service`,
+    name: title,
+    description: description,
+    url: resolvedUrl,
+    provider: {
+      '@id': 'https://onuraksoy.com.tr/#person'
+    },
+    serviceType: isTr
+      ? 'Kurumsal Web Tasarım, B2B İhracat Portalı ve Özel Sistem Mimarisi'
+      : 'Corporate Web Design, B2B Export Portals & Custom Systems Architecture',
+    areaServed: areaServedList,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: isTr ? 'Kurumsal Mimari ve Mühendislik Hizmetleri' : 'Enterprise Architecture & Engineering Services',
+      itemListElement: isTr
+        ? [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Kurumsal Web Tasarım & B2B İhracat Mimarisi',
+                description: 'Astro 7 Zero-JS, 50ms altı küresel CDN ve Cloudflare Edge altyapısıyla B2B sanayi ihracat portalları.'
+              }
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Özel Web Yazılım & ERP / API Entegrasyonu',
+                description: 'TypeScript, Rust ve .NET 8 yığınıyla özel iş mantığı, stok/ERP ve donanım entegrasyon sistemleri.'
+              }
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Doğrudan Sistem Mimarı Danışmanlığı & Güvenlik Denetimi',
+                description: 'Aracısız, doğrudan Onur Aksoy tarafından yürütülen mimari planlama, teknik borç temizliği ve siber güvenlik uyumu.'
+              }
+            }
+          ]
+        : [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Corporate Web Design & B2B Export Architecture',
+                description: 'Sub-50ms global CDN and Cloudflare Edge powered B2B industrial export portals with Astro 7 Zero-JS.'
+              }
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Custom Web Software & ERP / API Integration',
+                description: 'Custom business logic, inventory/ERP and hardware integration systems built on TypeScript, Rust, and .NET 8.'
+              }
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Direct Systems Architect Advisory & Security Audit',
+                description: 'Direct architectural planning, technical debt elimination, and cybersecurity audit led directly by Onur Aksoy.'
+              }
+            }
+          ]
+    }
+  };
+}
+
 // 7. FAQ Schema
 let faqSchema: any = null;
 if (faqs && faqs.length > 0) {
@@ -421,6 +545,12 @@ if (breadcrumbSchema) {
 }
 if (customSchema) {
   graph.push(customSchema);
+}
+if (professionalServiceSchema) {
+  graph.push(professionalServiceSchema);
+}
+if (serviceSchema) {
+  graph.push(serviceSchema);
 }
 if (faqSchema) {
   graph.push(faqSchema);

@@ -20,9 +20,55 @@ const countArticle = broadcasts.filter((b) => !b.data.youtubeId && !b.data.spoti
 
 const title = "Yayınlar & Bilgi Kasası — Onur Aksoy";
 const description = "Teknik ekran kayıtları, derin mimari transkriptler, interaktif zaman damgalı bölümler ve yüksek hızlı mimari kaynaklar.";
+
+const canonicalUrl = 'https://onuraksoy.com.tr/broadcasts/';
+const collectionJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${canonicalUrl}#collection`,
+      url: canonicalUrl,
+      name: title,
+      description: description,
+      isPartOf: {
+        '@id': 'https://onuraksoy.com.tr/#website'
+      },
+      about: {
+        '@id': 'https://onuraksoy.com.tr/#person'
+      },
+      inLanguage: 'tr-TR',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${canonicalUrl}?q={search_term_string}`
+        },
+        'query-input': 'required name=search_term_string'
+      },
+      mainEntity: {
+        '@id': `${canonicalUrl}#itemlist`
+      }
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${canonicalUrl}#itemlist`,
+      name: 'Yayınlar & Bilgi Kasası Kataloğu',
+      numberOfItems: broadcasts.length,
+      itemListElement: broadcasts.map((b, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: b.data.title,
+        description: b.data.description,
+        url: `https://onuraksoy.com.tr/broadcasts/${b.id.replace(/^tr\//, '')}/`
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout lang="tr" activeNav="broadcasts" title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(collectionJsonLd)} />
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
     <!-- Hero Header -->
@@ -41,7 +87,7 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
 
     <!-- Spotlight Öne Çıkan Yayın Vitrini -->
     {featuredBroadcast && (
-      <section class="relative rounded-2xl border border-gold-tungsten/40 bg-gradient-to-br from-obsidian-surface via-obsidian-surface to-obsidian-black p-6 sm:p-8 shadow-2xl overflow-hidden group">
+      <section id="featured-spotlight" class="relative rounded-2xl border border-gold-tungsten/40 bg-gradient-to-br from-obsidian-surface via-obsidian-surface to-obsidian-black p-6 sm:p-8 shadow-2xl overflow-hidden group">
         <div class="absolute -right-20 -top-20 w-80 h-80 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -119,7 +165,70 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
     )}
 
     <!-- Kategori & Format Filtreleme Merkezi -->
-    <section class="space-y-6 pt-4 border-t border-obsidian-border/60">
+    <section id="filter-center" class="space-y-6 pt-4 border-t border-obsidian-border/60">
+      <!-- Anlık Arama Çubuğu & Görünüm Modu Değiştirici -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <!-- Search Bar -->
+        <div class="relative flex-1">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-dim">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="search"
+            id="broadcast-search"
+            placeholder="Yayın başlığı, konu veya teknoloji ara... (kısayol: /)"
+            aria-label="Yayınlarda ara"
+            autocomplete="off"
+            class="w-full pl-10 pr-20 py-2.5 rounded-xl bg-obsidian-surface border border-obsidian-border text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-gold-tungsten/60 focus:ring-1 focus:ring-gold-tungsten/40 transition-all"
+          />
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center gap-1.5">
+            <button
+              type="button"
+              id="search-clear"
+              class="hidden px-1.5 py-0.5 rounded text-xs font-mono text-text-dim hover:text-gold-highlight hover:bg-obsidian-black transition-colors cursor-pointer"
+              aria-label="Aramayı temizle"
+            >
+              ✕
+            </button>
+            <kbd class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono text-text-dim bg-obsidian-black border border-obsidian-border rounded">
+              /
+            </kbd>
+          </div>
+        </div>
+
+        <!-- Görünüm Modu Değiştirici -->
+        <div class="flex items-center gap-1 p-1 rounded-xl bg-obsidian-surface border border-obsidian-border self-end sm:self-auto" role="group" aria-label="Görünüm Modu">
+          <button
+            type="button"
+            id="view-detailed"
+            class="view-mode-btn p-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all bg-gold-tungsten/20 text-gold-highlight border border-gold-tungsten/50 cursor-pointer"
+            data-view="detailed"
+            aria-pressed="true"
+            title="2'li Resimli Kart Grid Görünümü"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+            <span class="hidden md:inline">Detaylı Kartlar</span>
+          </button>
+          <button
+            type="button"
+            id="view-compact"
+            class="view-mode-btn p-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-text-dim border border-transparent hover:text-text-primary cursor-pointer"
+            data-view="compact"
+            aria-pressed="false"
+            title="Kompakt Liste Görünümü"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span class="hidden md:inline">Kompakt Liste</span>
+          </button>
+        </div>
+      </div>
+
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <!-- Format Filtre Sekmeleri -->
         <div class="flex items-center gap-2 flex-wrap" role="group" aria-label="Format filtreleri">
@@ -200,15 +309,21 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
         if (!item.data.youtubeId && !item.data.spotifyUrl) formats.push('article');
 
         const tagsString = (item.data.tags || []).map((t) => t.toLowerCase()).join(' ');
+        const searchString = [
+          item.data.title,
+          item.data.description,
+          ...(item.data.tags || [])
+        ].join(' ');
 
         return (
           <article
             class="broadcast-card group flex flex-col rounded-xl border border-obsidian-border bg-obsidian-surface hover:border-gold-tungsten/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-gold-tungsten/5"
             data-formats={formats.join(' ')}
             data-tags={tagsString}
+            data-search={searchString}
           >
             <!-- Thumbnail & Video Rozeti -->
-            <a href={`/broadcasts/${slug}/`} class="relative aspect-video overflow-hidden bg-obsidian-black block">
+            <a href={`/broadcasts/${slug}/`} class="broadcast-thumb relative aspect-video overflow-hidden bg-obsidian-black block">
               <img
                 src={thumbUrl}
                 alt={item.data.title}
@@ -251,7 +366,7 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
             </a>
 
             <!-- Card Body -->
-            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="broadcast-body p-6 flex-1 flex flex-col justify-between space-y-4">
               <div class="space-y-2.5">
                 <div class="flex items-center gap-3 text-xs text-text-muted font-mono">
                   <time datetime={item.data.pubDate.toISOString()}>
@@ -273,7 +388,7 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
                   </a>
                 </h2>
 
-                <p class="text-sm text-text-muted line-clamp-3 leading-relaxed">
+                <p class="broadcast-desc text-sm text-text-muted line-clamp-3 leading-relaxed">
                   {item.data.description}
                 </p>
               </div>
@@ -281,9 +396,14 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
               <div class="pt-2 flex items-center justify-between border-t border-obsidian-border/60">
                 <div class="flex items-center gap-1.5 flex-wrap">
                   {item.data.tags.slice(0, 3).map((tag) => (
-                    <span class="text-[11px] font-mono text-text-muted px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border">
+                    <button
+                      type="button"
+                      class="card-tag-btn text-[11px] font-mono text-text-muted hover:text-gold-highlight px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/40 transition-colors cursor-pointer"
+                      data-tag={tag.toLowerCase()}
+                      aria-label={`"${tag}" etiketine göre filtrele`}
+                    >
                       #{tag}
-                    </span>
+                    </button>
                   ))}
                 </div>
 
@@ -317,34 +437,91 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
 </BaseLayout>
 
 <script>
-  // Sıfır bağımlılıklı anlık filtreleme motoru
+  // Sıfır bağımlılıklı anlık filtreleme, arama ve görünüm modu motoru
   const filterTabs = document.querySelectorAll<HTMLButtonElement>('.filter-tab');
   const tagPills = document.querySelectorAll<HTMLButtonElement>('.tag-pill');
+  const cardTagBtns = document.querySelectorAll<HTMLButtonElement>('.card-tag-btn');
   const cards = document.querySelectorAll<HTMLElement>('.broadcast-card');
   const visibleCountEl = document.getElementById('visible-count');
   const emptyStateEl = document.getElementById('empty-state');
   const resetBtn = document.getElementById('reset-filter-btn');
+  const searchInput = document.getElementById('broadcast-search') as HTMLInputElement | null;
+  const searchClear = document.getElementById('search-clear');
+  const spotlightEl = document.getElementById('featured-spotlight');
+  const viewButtons = document.querySelectorAll<HTMLButtonElement>('.view-mode-btn');
+  const broadcastsGrid = document.getElementById('broadcasts-grid');
 
   let currentFilter = 'all';
   let currentTag = '';
+  let activeSearch = '';
+  let activeView = 'detailed';
+
+  // Read ?q= from URL on load
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const qParam = urlParams.get('q');
+    if (qParam && searchInput) {
+      searchInput.value = qParam;
+      activeSearch = qParam;
+    }
+  } catch {}
+
+  function updateUrlQuery(search: string) {
+    try {
+      const url = new URL(window.location.href);
+      if (search && search.trim().length > 0) {
+        url.searchParams.set('q', search.trim());
+      } else {
+        url.searchParams.delete('q');
+      }
+      window.history.replaceState({}, '', url.pathname + (url.search ? url.search : ''));
+    } catch {}
+  }
+
+  function normalize(str: string) {
+    return (str || '')
+      .toLocaleLowerCase('tr')
+      .replace(/İ/g, 'i')
+      .replace(/I/g, 'ı')
+      .replace(/ı/g, 'i')
+      .replace(/ğ/g, 'g')
+      .replace(/ü/g, 'u')
+      .replace(/ş/g, 's')
+      .replace(/ö/g, 'o')
+      .replace(/ç/g, 'c')
+      .trim();
+  }
 
   function applyFilters() {
+    const q = normalize(activeSearch);
     let visible = 0;
 
     cards.forEach((card) => {
       const formats = (card.getAttribute('data-formats') || '').split(' ');
       const tags = (card.getAttribute('data-tags') || '').split(' ');
+      const searchData = normalize(card.getAttribute('data-search') || '');
 
       const formatMatches = currentFilter === 'all' || formats.includes(currentFilter);
       const tagMatches = !currentTag || tags.includes(currentTag);
+      const searchMatches = !q || searchData.includes(q);
 
-      if (formatMatches && tagMatches) {
+      if (formatMatches && tagMatches && searchMatches) {
         card.classList.remove('hidden');
         visible++;
       } else {
         card.classList.add('hidden');
       }
     });
+
+    // Auto-hide spotlight when search or filter is active
+    if (spotlightEl) {
+      const isFilterActive = q !== '' || currentFilter !== 'all' || currentTag !== '';
+      if (isFilterActive) {
+        spotlightEl.classList.add('hidden');
+      } else {
+        spotlightEl.classList.remove('hidden');
+      }
+    }
 
     if (visibleCountEl) {
       visibleCountEl.textContent = visible.toString();
@@ -357,20 +534,32 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
         emptyStateEl.classList.add('hidden');
       }
     }
+
+    if (searchClear) {
+      if (activeSearch.length > 0) {
+        searchClear.classList.remove('hidden');
+      } else {
+        searchClear.classList.add('hidden');
+      }
+    }
+
+    updateUrlQuery(activeSearch);
   }
 
+  // Format filter tabs
   filterTabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       filterTabs.forEach((t) => {
-        t.className = 'filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary';
+        t.className = 'filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-obsidian-surface border border-obsidian-border text-text-muted hover:text-text-primary cursor-pointer';
       });
-      tab.className = 'filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gold-tungsten text-obsidian-black font-semibold shadow-sm';
+      tab.className = 'filter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gold-tungsten text-obsidian-black font-semibold shadow-sm cursor-pointer';
 
       currentFilter = tab.getAttribute('data-filter') || 'all';
       applyFilters();
     });
   });
 
+  // Tag pills
   tagPills.forEach((pill) => {
     pill.addEventListener('click', () => {
       const clickedTag = pill.getAttribute('data-tag') || '';
@@ -391,10 +580,105 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
     });
   });
 
+  // Card Tag buttons click
+  cardTagBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const clickedTag = btn.getAttribute('data-tag') || '';
+      if (clickedTag) {
+        currentTag = clickedTag;
+        tagPills.forEach((p) => {
+          if (p.getAttribute('data-tag') === clickedTag) {
+            p.classList.remove('text-text-muted');
+            p.classList.add('bg-gold-tungsten', 'text-obsidian-black');
+          } else {
+            p.classList.remove('bg-gold-tungsten', 'text-obsidian-black');
+            p.classList.add('text-text-muted');
+          }
+        });
+        applyFilters();
+        const filterCenter = document.getElementById('filter-center');
+        if (filterCenter) {
+          filterCenter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+
+  // Search input events
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      activeSearch = (e.target as HTMLInputElement).value;
+      applyFilters();
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        activeSearch = '';
+        applyFilters();
+        searchInput.blur();
+      }
+    });
+  }
+
+  // Clear button
+  if (searchClear) {
+    searchClear.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        activeSearch = '';
+        searchInput.focus();
+        applyFilters();
+      }
+    });
+  }
+
+  // Keyboard shortcut '/'
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName || '')) {
+      e.preventDefault();
+      searchInput?.focus();
+    }
+  });
+
+  // View Mode Toggle (Detailed vs Compact)
+  viewButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-view');
+      if (!mode || mode === activeView) return;
+      activeView = mode;
+
+      viewButtons.forEach((b) => {
+        b.classList.remove('bg-gold-tungsten/20', 'text-gold-highlight', 'border-gold-tungsten/50');
+        b.classList.add('text-text-dim', 'border-transparent');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('bg-gold-tungsten/20', 'text-gold-highlight', 'border-gold-tungsten/50');
+      btn.classList.remove('text-text-dim', 'border-transparent');
+      btn.setAttribute('aria-pressed', 'true');
+
+      if (broadcastsGrid) {
+        if (activeView === 'compact') {
+          broadcastsGrid.classList.remove('md:grid-cols-2', 'gap-8');
+          broadcastsGrid.classList.add('grid-cols-1', 'gap-4');
+          cards.forEach((c) => c.classList.add('compact-card'));
+        } else {
+          broadcastsGrid.classList.remove('grid-cols-1', 'gap-4');
+          broadcastsGrid.classList.add('md:grid-cols-2', 'gap-8');
+          cards.forEach((c) => c.classList.remove('compact-card'));
+        }
+      }
+    });
+  });
+
+  // Reset button
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
       currentFilter = 'all';
       currentTag = '';
+      activeSearch = '';
+      if (searchInput) searchInput.value = '';
       filterTabs[0]?.click();
       tagPills.forEach((p) => {
         p.classList.remove('bg-gold-tungsten', 'text-obsidian-black');
@@ -403,4 +687,30 @@ const description = "Teknik ekran kayıtları, derin mimari transkriptler, inter
       applyFilters();
     });
   }
+
+  // Initial trigger if query param exists
+  if (activeSearch) {
+    applyFilters();
+  }
 </script>
+
+<style>
+  @media (min-width: 640px) {
+    .broadcast-card.compact-card {
+      flex-direction: row !important;
+      align-items: center;
+    }
+    .broadcast-card.compact-card .broadcast-thumb {
+      width: 180px !important;
+      height: 105px !important;
+      aspect-ratio: auto !important;
+      flex-shrink: 0;
+    }
+    .broadcast-card.compact-card .broadcast-body {
+      padding: 1rem 1.25rem !important;
+    }
+    .broadcast-card.compact-card .broadcast-desc {
+      display: none;
+    }
+  }
+</style>

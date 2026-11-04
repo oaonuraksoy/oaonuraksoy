@@ -29,14 +29,63 @@ const categories = [
   { id: 'ai', label: 'Yapay Zeka & Medya', count: categoryCounts.ai },
   { id: 'web-cloud', label: 'Web & Mağaza Altyapısı', count: categoryCounts['web-cloud'] },
 ];
+
+const title = "Amiral Gemisi Projeler & Mimari Vaka Analizleri — Onur Aksoy";
+const description = "Onur Aksoy tarafından geliştirilen resmi mağaza onaylı masaüstü yazılımları, yerel öncelikli dağıtık sistemler ve üretken yapay zeka araçları.";
+
+const canonicalUrl = 'https://onuraksoy.com.tr/projects/';
+const collectionJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${canonicalUrl}#collection`,
+      url: canonicalUrl,
+      name: title,
+      description: description,
+      isPartOf: {
+        '@id': 'https://onuraksoy.com.tr/#website'
+      },
+      about: {
+        '@id': 'https://onuraksoy.com.tr/#person'
+      },
+      inLanguage: 'tr-TR',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${canonicalUrl}?q={search_term_string}`
+        },
+        'query-input': 'required name=search_term_string'
+      },
+      mainEntity: {
+        '@id': `${canonicalUrl}#itemlist`
+      }
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${canonicalUrl}#itemlist`,
+      name: 'Amiral Gemisi Projeler & Mimari Vaka Analizleri',
+      numberOfItems: projects.length,
+      itemListElement: projects.map((p, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: p.title,
+        description: p.description,
+        url: `https://onuraksoy.com.tr/projects/${p.slug}/`
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Amiral Gemisi Projeler & Mimari Vaka Analizleri — Onur Aksoy"
-  description="Onur Aksoy tarafından geliştirilen resmi mağaza onaylı masaüstü yazılımları, yerel öncelikli dağıtık sistemler ve üretken yapay zeka araçları."
+  title={title}
+  description={description}
   lang="tr"
   activeNav="projects"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(collectionJsonLd)} />
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
     <!-- Header -->
     <div class="mb-10 max-w-2xl">
@@ -343,6 +392,28 @@ const categories = [
       let activeSearch = '';
       let activeView = 'detailed';
 
+      // Read ?q= query parameter on load
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const qParam = urlParams.get('q');
+        if (qParam && searchInput) {
+          searchInput.value = qParam;
+          activeSearch = qParam;
+        }
+      } catch {}
+
+      function updateUrlQuery(search) {
+        try {
+          const url = new URL(window.location.href);
+          if (search && search.trim().length > 0) {
+            url.searchParams.set('q', search.trim());
+          } else {
+            url.searchParams.delete('q');
+          }
+          window.history.replaceState({}, '', url.pathname + (url.search ? url.search : ''));
+        } catch {}
+      }
+
       const totalProjects = projectCards.length;
       const isTr = document.documentElement.lang === 'tr';
 
@@ -403,6 +474,9 @@ const categories = [
             searchClear.classList.add('hidden');
           }
         }
+
+        // Sync URL query
+        updateUrlQuery(activeSearch);
       }
 
       // Search Input Event
@@ -530,6 +604,11 @@ const categories = [
           }
         });
       });
+
+      // Initial filter if search query is present
+      if (activeSearch) {
+        applyFilters();
+      }
     })();
   </script>
 </BaseLayout>
