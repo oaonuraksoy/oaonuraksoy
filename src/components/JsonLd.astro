@@ -23,8 +23,8 @@ const siteUrl = 'https://onuraksoy.com.tr';
 
 const {
   type = 'Person',
-  title = 'Onur Aksoy — Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı',
-  description = "Onur Aksoy'un resmi web sitesi, sistem geliştirme portfolyosu ve vaka analizleri. Reklamcılık kökenli alaylı yazılımcı ve dijital stratejist; yerel öncelikli sistemler, yapay zeka araçları ve büyüme odaklı dijital mimariler.",
+  title = 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı',
+  description = "Onur Aksoy'un resmi web sitesi, sistem geliştirme portfolyosu ve vaka analizleri. Yapay zeka yerel sistemler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar.",
   url,
   image = 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
   datePublished,
@@ -69,10 +69,10 @@ const personSchema: any = {
       url: 'https://www.crunchbase.com/person/onur-aksoy-1c4f'
     }
   ],
-  jobTitle: isTr ? 'Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı' : 'Software Developer, Digital Strategist & Systems Architect',
+  jobTitle: isTr ? 'Yazılım Geliştirici & Sistem Mimarı' : 'Software Developer, Digital Strategist & Systems Architect',
   disambiguatingDescription: isTr 
-    ? 'Ankara merkezli Yazılım Geliştirici, Dijital Stratejist ve Sistem Mimarı Onur Aksoy (a.k.a. Hackonomist). Reklamcılık ve büyüme stratejisi kökenli, kendi operasyonel ihtiyaçlarını kodla çözen alaylı (self-taught) bir sistem kurucusudur. oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio ve oa_sip_recorder sistemlerinin yaratıcısıdır.' 
-    : 'Ankara-based Software Developer, Digital Strategist, and Systems Architect Onur Aksoy (a.k.a. Hackonomist). Coming from an advertising and growth marketing background, he is a self-taught builder who solves operational bottlenecks with software. Creator of oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio, and oa_sip_recorder.',
+    ? 'Ankara merkezli Yazılım Geliştirici & Sistem Mimarı Onur Aksoy (a.k.a. Hackonomist). oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio ve oa_sip_recorder sistemlerinin mimarıdır.' 
+    : 'Ankara-based Software Developer, Digital Strategist & Systems Architect Onur Aksoy (a.k.a. Hackonomist). Architect of oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio, and oa_sip_recorder.',
   url: 'https://onuraksoy.com.tr/',
   mainEntityOfPage: {
     '@id': `${resolvedUrl}#webpage`
@@ -88,7 +88,7 @@ const personSchema: any = {
       contentUrl: 'https://onuraksoy.com.tr/images/onur-aksoy.webp',
       width: 937,
       height: 1679,
-      caption: isTr ? 'Onur Aksoy — Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı' : 'Onur Aksoy — Software Developer, Digital Strategist & Systems Architect'
+      caption: isTr ? 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı' : 'Onur Aksoy — Software Developer, Digital Strategist & Systems Architect'
     }
   ],
   email: 'mailto:dev@onuraksoy.com.tr',
@@ -99,7 +99,7 @@ const personSchema: any = {
   knowsLanguage: ['tr-TR', 'en-US'],
   hasOccupation: {
     '@type': 'Occupation',
-    name: isTr ? 'Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı' : 'Software Developer, Digital Strategist & Systems Architect',
+    name: isTr ? 'Yazılım Geliştirici & Sistem Mimarı' : 'Software Developer, Digital Strategist & Systems Architect',
     occupationLocation: {
       '@type': 'City',
       name: 'Ankara'
@@ -133,6 +133,7 @@ const personSchema: any = {
     'https://apps.microsoft.com/detail/9nblggh4nns1',
     'https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd',
     'https://microsoftedge.microsoft.com/addons/detail/seo-lens-technical-seo-/anfhafomoldobnodlcbdjepneccjlnib',
+    'https://microsoftedge.microsoft.com/addons/detail/10sec-%E2%80%94-video-par%C3%A7alay%C4%B1c%C4%B1/eooacplpamongbimoibjkmgnbjmcbdjk',
     'https://github.com/oaonuraksoy/seo-lens',
     'https://t.me/oaonuraksoy',
     'https://wa.me/905511817053'
@@ -185,7 +186,7 @@ const imageSchema: any = {
   '@id': `${siteUrl}/#primaryimage`,
   name: title,
   caption: isTr 
-    ? 'Onur Aksoy — Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı' 
+    ? 'Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı' 
     : 'Onur Aksoy — Software Developer, Digital Strategist & Systems Architect',
   contentUrl: resolvedImageUrl,
   url: resolvedImageUrl,

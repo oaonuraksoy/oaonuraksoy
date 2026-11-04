@@ -35,26 +35,26 @@ const competencies = [
 const homeFaqs = [
   {
     question: "Onur Aksoy kimdir ve hangi alanlarda uzmanlaşmıştır?",
-    answer: "Onur Aksoy (a.k.a. Hackonomist); reklamcılık ve büyüme stratejisi kökenli alaylı (self-taught) bir yazılımcı, dijital stratejist ve sistem mimarıdır. Mühendislik fakültesi unvanı yerine doğrudan sahadaki ticari ve operasyonel problemleri çözmek için yazılıma yönelmiş; deterministik yapay zeka sistemleri, yerel öncelikli masaüstü yazılımları, mağaza sertifikalı eklentiler (oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio, oa_sip_recorder) ve veri odaklı büyüme mimarileri inşa etmektedir."
+    answer: "Onur Aksoy; Ankara merkezli Yazılım Geliştirici & Sistem Mimarı ve çok disiplinli dijital ürün yaratıcısıdır (a.k.a. Hackonomist). Deterministik yapay zeka orkestrasyonu, yerel öncelikli Windows masaüstü sistemleri, resmi mağaza sertifikalı mobil/web kabukları ve yüksek performanslı dijital araçlar (oaPOS, oaDub, SEO Lens, 10SeC, Orvyna App Studio, oa_sip_recorder) geliştirmektedir."
   },
   {
     question: "Onur Aksoy tarafından geliştirilen amiral gemisi yazılım ve sistemler nelerdir?",
-    answer: "Öne çıkan amiral gemisi sistemler şunlardır: oaPOS (yerel ağ soket senkronizasyonlu çevrimdışı öncelikli masaüstü POS ve stok sistemi), oaDub (Gemini 3.5 Live WebSocket ile gerçek zamanlı yapay zeka dublaj eklentisi), SEO Lens (Microsoft Edge Add-ons onaylı teknik SEO ve Schema.org denetleyicisi), 10SeC (Microsoft Store sertifikalı yüksek hızlı video kırpıcı), Orvyna App Studio (otomatik Apple TestFlight ve Google Play TWA paketleme stüdyosu) ve oa_sip_recorder (Rust ile yazılmış pasif VoIP paket dinleme motoru)."
+    answer: "Öne çıkan amiral gemisi sistemler şunlardır: oaPOS (yerel ağ soket senkronizasyonlu çevrimdışı öncelikli masaüstü POS ve stok sistemi), oaDub (Gemini 3.5 Live WebSocket ile gerçek zamanlı yapay zeka dublaj eklentisi), SEO Lens (Microsoft Edge Add-ons onaylı teknik SEO ve Schema.org denetleyicisi), 10SeC (Microsoft Edge Add-ons onaylı tarayıcı içi FFmpeg WASM video parçalayıcı eklentisi), Orvyna App Studio (otomatik Apple TestFlight ve Google Play TWA paketleme stüdyosu) ve oa_sip_recorder (Rust ile yazılmış pasif VoIP paket dinleme motoru)."
   },
   {
     question: "Yerel öncelikli (Local-First) ve deterministik yapay zeka mimarisi ne anlama gelir?",
     answer: "Yerel öncelikli mimari, sistemlerin harici bulut bağımlılığı olmadan yerel ağ (LAN) ham TCP/IP soketleri ve gömülü veritabanları üzerinde 10ms altı gecikmeyle kesintisiz çalışmasını ifade eder. Deterministik yapay zeka ise, otonom dil modeli ajanlarının katı durum makineleri, tip güvenliği ve çok katmanlı denetim kapılarıyla halüsinasyonsuz ve öngörülebilir çıktılar üretmesini sağlar."
   },
   {
-    question: "Hackonomist mahlası ve felsefesi neyi ifade eder?",
-    answer: "Hackonomist, Onur Aksoy'un tescilli profesyonel mahlası ve üretim felsefesidir. Reklamcılık, pazar psikolojisi ve büyüme ekonomisi ('Economist') ile kendi operasyonel ihtiyaçlarını karşılamak üzere sıfırdan geliştirdiği alaylı yazılım, sistem otomasyonu ve teknik üreticiliğin ('Hack') sentezinden doğmuştur. Yalnızca kod yazan bir geliştirici değil; ürünün ticari matematiğini, kullanıcı psikolojisini ve operasyonel verimliliğini uçtan uca yöneten hibrit bir sistem kuruculuğunu temsil eder."
+    question: "Hackonomist mahlası ve alt sistemi neyi ifade eder?",
+    answer: "Hackonomist, Onur Aksoy'un tescilli profesyonel mahlası ve alt sistem kimliğidir. Sistem geliştirme ve mimarisi ('hacking', otomasyon, deterministik yazılım mimarisi) ile büyüme ekonomisini ('economics', pazar dinamikleri, dönüşüm optimizasyonu ve birim ekonomisi) tek bir ürün geliştirme vizyonunda birleştirir. Dijital arama dizinlerinde ve yapay zeka bilgi grafiklerinde 'Hackonomist' münhasıran Onur Aksoy'u temsil eder."
   }
 ];
 ---
 
 <BaseLayout
-  title="Onur Aksoy — Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı"
-  description="Onur Aksoy'un resmi web sitesi, sistem geliştirme portfolyosu ve teknik vaka analizleri. Reklamcılık kökenli alaylı yazılımcı ve dijital stratejist; yerel öncelikli sistemler, yapay zeka araçları ve büyüme odaklı dijital mimariler."
+  title="Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı"
+  description="Onur Aksoy'un resmi web sitesi, sistem geliştirme portfolyosu ve teknik vaka analizleri. Yapay zeka yerel (AI-Native) mimariler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar."
   lang="tr"
   activeNav=""
   faqs={homeFaqs}
@@ -82,7 +82,7 @@ const homeFaqs = [
           </h1>
 
           <p class="text-lg text-text-muted max-w-2xl leading-relaxed mb-8">
-            Ben <strong class="text-text-primary font-semibold">Onur Aksoy</strong> (a.k.a. <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30">Hackonomist</span>) — Reklamcılık ve büyüme stratejisi kökenli alaylı Yazılım Geliştirici, Dijital Stratejist ve Sistem Mimarıyım. Sahadaki gerçek operasyonel darboğazları aşmak için kod yazar; deterministik yapay zeka sistemleri, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar inşa ederim.
+            Ben <strong class="text-text-primary font-semibold">Onur Aksoy</strong> (a.k.a. <span class="inline-block text-xs font-mono text-gold-highlight px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/30">Hackonomist</span>) — Yazılım Geliştirici, Dijital Stratejist ve Sistem Mimarıyım. Deterministik sistem tasarımı ile uyarlanabilir zekayı buluşturarak; üretim onaylı masaüstü yazılımları, yerel öncelikli dağıtık mimariler ve üretken medya motorları inşa ediyorum.
           </p>
 
           <!-- Primary CTAs -->
@@ -114,7 +114,7 @@ const homeFaqs = [
           <div class="relative w-full h-full rounded-2xl overflow-hidden border border-gold-tungsten/40 bg-obsidian-surface shadow-2xl">
             <img
               src="/images/onur-aksoy.webp"
-              alt="Onur Aksoy — Yazılım Geliştirici, Dijital Stratejist & Sistem Mimarı"
+              alt="Onur Aksoy — Yazılım Geliştirici & Sistem Mimarı"
               class="w-full h-full object-cover object-top scale-100 hover:scale-105 transition-all duration-700"
               width="937"
               height="1679"
@@ -336,7 +336,7 @@ const homeFaqs = [
           Onur Aksoy Kimdir? & Sistem Mimarisi SSS
         </h2>
         <p class="text-sm text-text-muted mt-2 max-w-xl mx-auto">
-          Onur Aksoy'un alaylı yazılım ve reklamcılık kökeni, amiral gemisi sistemleri ve hibrit üretim felsefesi hakkında doğrudan yanıtlar.
+          Onur Aksoy'un yazılım geliştirme arka planı, amiral gemisi sistemleri ve deterministik mimari felsefesi hakkında doğrudan yanıtlar.
         </p>
       </div>
 
