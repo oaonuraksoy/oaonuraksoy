@@ -3,6 +3,32 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getAllProjects } from '../../../utils/projects';
 
 const projects = await getAllProjects('en');
+
+const projectCategoryMap: Record<string, string[]> = {
+  'seo-lens': ['extension', 'web-cloud'],
+  '10sec': ['extension', 'ai'],
+  'oadub': ['extension', 'ai'],
+  'oapos': ['desktop'],
+  'oa-sip-recorder': ['desktop'],
+  'orvyna-app-studio': ['web-cloud'],
+  'ecommerce-image-enhancer': ['ai', 'web-cloud']
+};
+
+const categoryCounts = {
+  all: projects.length,
+  extension: projects.filter(p => projectCategoryMap[p.slug]?.includes('extension')).length,
+  desktop: projects.filter(p => projectCategoryMap[p.slug]?.includes('desktop')).length,
+  ai: projects.filter(p => projectCategoryMap[p.slug]?.includes('ai')).length,
+  'web-cloud': projects.filter(p => projectCategoryMap[p.slug]?.includes('web-cloud')).length,
+};
+
+const categories = [
+  { id: 'all', label: 'All Systems', count: categoryCounts.all },
+  { id: 'extension', label: 'Browser Extensions', count: categoryCounts.extension },
+  { id: 'desktop', label: 'Desktop & Local-First', count: categoryCounts.desktop },
+  { id: 'ai', label: 'AI & Media', count: categoryCounts.ai },
+  { id: 'web-cloud', label: 'Web & Store Platforms', count: categoryCounts['web-cloud'] },
+];
 ---
 
 <BaseLayout
@@ -13,7 +39,7 @@ const projects = await getAllProjects('en');
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
     <!-- Header -->
-    <div class="mb-14 max-w-2xl">
+    <div class="mb-10 max-w-2xl">
       <span class="text-xs font-mono tracking-widest text-gold-tungsten uppercase font-semibold">
         Project Index
       </span>
@@ -25,114 +51,485 @@ const projects = await getAllProjects('en');
       </p>
     </div>
 
-    <!-- Projects List -->
-    <div class="space-y-10">
-      {projects.map((project) => (
-        <article class="card-noir rounded-2xl p-6 sm:p-10">
-          <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-6">
-            <div>
-              <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-obsidian-subtle text-gold-highlight border border-obsidian-border">
-                  {project.status}
-                </span>
-                <span class="text-xs font-mono text-text-dim">
-                  {project.period}
-                </span>
-                <span class="text-xs text-text-dim">•</span>
-                <span class="text-xs text-text-muted font-medium">
-                  {project.role}
-                </span>
+    <!-- Controls: Search Bar & View Mode Toggle -->
+    <div class="mb-10 space-y-4">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <!-- Search Bar -->
+        <div class="relative flex-1">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-dim">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="search"
+            id="project-search"
+            placeholder="Search systems, tech stack, or role... (press / to focus)"
+            aria-label="Search systems"
+            autocomplete="off"
+            class="w-full pl-10 pr-20 py-2.5 rounded-xl bg-obsidian-surface border border-obsidian-border text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-gold-tungsten/60 focus:ring-1 focus:ring-gold-tungsten/40 transition-all"
+          />
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center gap-1.5">
+            <button
+              type="button"
+              id="search-clear"
+              class="hidden px-1.5 py-0.5 rounded text-xs font-mono text-text-dim hover:text-gold-highlight hover:bg-obsidian-black transition-colors"
+              aria-label="Clear search query"
+            >
+              ✕
+            </button>
+            <kbd class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono text-text-dim bg-obsidian-black border border-obsidian-border rounded">
+              /
+            </kbd>
+          </div>
+        </div>
+
+        <!-- View Mode Switcher -->
+        <div class="flex items-center gap-1 p-1 rounded-xl bg-obsidian-surface border border-obsidian-border self-end sm:self-auto" role="group" aria-label="View Mode">
+          <button
+            type="button"
+            class="view-mode-btn p-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all bg-gold-tungsten/20 text-gold-highlight border border-gold-tungsten/50"
+            data-view="detailed"
+            aria-pressed="true"
+            title="Detailed List View"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span class="hidden md:inline">Detailed</span>
+          </button>
+          <button
+            type="button"
+            class="view-mode-btn p-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-text-dim border border-transparent hover:text-text-primary"
+            data-view="compact"
+            aria-pressed="false"
+            title="Compact Grid View"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+            <span class="hidden md:inline">Compact</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills & Counter -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Category Filters">
+          {categories.map((cat, idx) => (
+            <button
+              type="button"
+              data-category={cat.id}
+              aria-pressed={idx === 0 ? "true" : "false"}
+              class={`category-pill px-3 py-1.5 rounded-lg text-xs font-mono transition-all border ${
+                idx === 0
+                  ? 'bg-gold-tungsten text-obsidian-black font-bold shadow-md shadow-gold-tungsten/20 border-gold-tungsten'
+                  : 'bg-obsidian-surface border-obsidian-border text-text-muted hover:border-gold-tungsten/50 hover:text-gold-highlight'
+              }`}
+            >
+              <span>{cat.label}</span>
+              <span class="ml-1.5 opacity-70">({cat.count})</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Live Counter -->
+        <div id="results-count" class="text-xs font-mono text-text-dim self-start sm:self-auto">
+          Showing {projects.length} of {projects.length} systems
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden text-center py-16 px-6 rounded-2xl bg-obsidian-surface/40 border border-obsidian-border space-y-4 mb-10">
+      <div class="w-12 h-12 mx-auto rounded-full bg-obsidian-black border border-obsidian-border flex items-center justify-center text-gold-tungsten">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-text-primary">
+          No systems found matching your search
+        </h3>
+        <p class="text-xs text-text-muted mt-1 max-w-sm mx-auto">
+          Try adjusting your search query or reset the category filters.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="reset-filters-btn"
+        class="px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black text-xs font-bold hover:bg-gold-highlight transition-all shadow-md shadow-gold-tungsten/20"
+      >
+        Reset Filters
+      </button>
+    </div>
+
+    <!-- Projects List / Grid Container -->
+    <div id="projects-container" class="space-y-10">
+      {projects.map((project) => {
+        const cats = ['all', ...(projectCategoryMap[project.slug] || [])].join(',');
+        const searchIndex = [
+          project.title,
+          project.description,
+          project.role,
+          project.status,
+          project.period,
+          ...(project.tags || [])
+        ].join(' ');
+
+        return (
+          <article
+            class="project-card card-noir rounded-2xl p-6 sm:p-10 transition-all duration-300"
+            data-categories={cats}
+            data-search={searchIndex}
+          >
+            <div class="project-header flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-6">
+              <div>
+                <div class="flex flex-wrap items-center gap-3 mb-3">
+                  <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-obsidian-subtle text-gold-highlight border border-obsidian-border">
+                    {project.status}
+                  </span>
+                  <span class="text-xs font-mono text-text-dim">
+                    {project.period}
+                  </span>
+                  <span class="text-xs text-text-dim">•</span>
+                  <span class="text-xs text-text-muted font-medium">
+                    {project.role}
+                  </span>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold text-text-primary hover:text-gold-highlight transition-colors">
+                  <a href={`/en/projects/${project.slug}/`}>
+                    {project.title}
+                  </a>
+                </h2>
               </div>
 
-              <h2 class="text-2xl sm:text-3xl font-bold text-text-primary hover:text-gold-highlight transition-colors">
-                <a href={`/en/projects/${project.slug}/`}>
-                  {project.title}
-                </a>
-              </h2>
+              <!-- Direct External Actions -->
+              <div class="flex flex-wrap items-center gap-3 self-start">
+                {project.links?.store && (
+                  <a
+                    href={project.links.store}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                  >
+                    {project.links.store.includes('microsoftedge') || project.links.store.includes('addons')
+                      ? 'Edge Add-on ↗'
+                      : 'Microsoft Store ↗'}
+                  </a>
+                )}
+                {project.links?.live && (
+                  <a
+                    href={project.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                  >
+                    Live Platform ↗
+                  </a>
+                )}
+                {project.links?.tool && (
+                  <a
+                    href={project.links.tool}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                  >
+                    Launch Tool ↗
+                  </a>
+                )}
+                {project.links?.github && (
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten/50 hover:text-gold-highlight transition-all"
+                  >
+                    GitHub ↗
+                  </a>
+                )}
+              </div>
             </div>
 
-            <!-- Direct External Actions -->
-            <div class="flex flex-wrap items-center gap-3 self-start">
-              {project.links?.store && (
-                <a
-                  href={project.links.store}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
-                >
-                  {project.links.store.includes('microsoftedge') || project.links.store.includes('addons')
-                    ? 'Edge Add-on ↗'
-                    : 'Microsoft Store ↗'}
-                </a>
-              )}
-              {project.links?.live && (
-                <a
-                  href={project.links.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
-                >
-                  Live Platform ↗
-                </a>
-              )}
-              {project.links?.tool && (
-                <a
-                  href={project.links.tool}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
-                >
-                  Launch Tool ↗
-                </a>
-              )}
-              {project.links?.github && (
-                <a
-                  href={project.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs font-semibold px-3 py-1.5 rounded-md bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten/50 hover:text-gold-highlight transition-all"
-                >
-                  GitHub ↗
-                </a>
-              )}
+            <p class="project-desc text-sm sm:text-base text-text-muted leading-relaxed mb-8 max-w-4xl">
+              {project.description}
+            </p>
+
+            <!-- Metrics -->
+            {project.metrics && project.metrics.length > 0 && (
+              <div class="project-metrics grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-xl bg-obsidian-black border border-obsidian-border mb-8 max-w-3xl">
+                {project.metrics.map((m) => (
+                  <div>
+                    <div class="text-[11px] sm:text-xs text-text-dim font-mono leading-tight mb-1">{m.label}</div>
+                    <div class="text-sm sm:text-base font-bold text-gold-highlight">{m.value}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <!-- Tags & Case Study Read CTA -->
+            <div class="project-footer flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-obsidian-border/60">
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <button
+                    type="button"
+                    class="tag-filter-btn text-xs font-mono px-2.5 py-0.5 rounded bg-obsidian-surface border border-obsidian-border text-text-dim hover:border-gold-tungsten/50 hover:text-gold-highlight transition-all cursor-pointer"
+                    data-tag={tag}
+                    aria-label={`Filter by "${tag}" tag`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+
+              <a
+                href={`/en/projects/${project.slug}/`}
+                class="text-sm font-bold text-gold-tungsten hover:text-gold-highlight flex items-center gap-1.5 transition-colors"
+              >
+                Deep-Dive Technical Case Study &rarr;
+              </a>
             </div>
-          </div>
-
-          <p class="text-sm sm:text-base text-text-muted leading-relaxed mb-8 max-w-4xl">
-            {project.description}
-          </p>
-
-          <!-- Metrics -->
-          {project.metrics && project.metrics.length > 0 && (
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-xl bg-obsidian-black border border-obsidian-border mb-8 max-w-3xl">
-              {project.metrics.map((m) => (
-                <div>
-                  <div class="text-[11px] sm:text-xs text-text-dim font-mono leading-tight mb-1">{m.label}</div>
-                  <div class="text-sm sm:text-base font-bold text-gold-highlight">{m.value}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <!-- Tags & Case Study Read CTA -->
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-obsidian-border/60">
-            <div class="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-obsidian-surface border border-obsidian-border text-text-dim">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <a
-              href={`/en/projects/${project.slug}/`}
-              class="text-sm font-bold text-gold-tungsten hover:text-gold-highlight flex items-center gap-1.5 transition-colors"
-            >
-              Deep-Dive Technical Case Study &rarr;
-            </a>
-          </div>
-        </article>
-      ))}
+          </article>
+        );
+      })}
     </div>
   </div>
+
+  <style is:inline>
+    .compact-card {
+      padding: 1.5rem !important;
+    }
+    .compact-card h2 {
+      font-size: 1.25rem !important;
+      line-height: 1.75rem !important;
+    }
+    .compact-card p.project-desc {
+      font-size: 0.8125rem !important;
+      line-height: 1.45 !important;
+      margin-bottom: 1rem !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .compact-card .project-header {
+      margin-bottom: 1rem !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+    }
+    .compact-card .project-footer {
+      padding-top: 1rem !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 0.75rem !important;
+    }
+  </style>
+
+  <script is:inline>
+    (function() {
+      const searchInput = document.getElementById('project-search');
+      const searchClear = document.getElementById('search-clear');
+      const categoryPills = document.querySelectorAll('.category-pill');
+      const projectCards = document.querySelectorAll('.project-card');
+      const resultsCount = document.getElementById('results-count');
+      const emptyState = document.getElementById('empty-state');
+      const resetBtn = document.getElementById('reset-filters-btn');
+      const tagButtons = document.querySelectorAll('.tag-filter-btn');
+      const viewButtons = document.querySelectorAll('.view-mode-btn');
+      const container = document.getElementById('projects-container');
+
+      let activeCategory = 'all';
+      let activeSearch = '';
+      let activeView = 'detailed';
+
+      const totalProjects = projectCards.length;
+      const isTr = document.documentElement.lang === 'tr';
+
+      function normalize(str) {
+        return (str || '')
+          .toLocaleLowerCase('tr')
+          .replace(/İ/g, 'i')
+          .replace(/I/g, 'ı')
+          .replace(/ı/g, 'i')
+          .replace(/ğ/g, 'g')
+          .replace(/ü/g, 'u')
+          .replace(/ş/g, 's')
+          .replace(/ö/g, 'o')
+          .replace(/ç/g, 'c')
+          .trim();
+      }
+
+      function applyFilters() {
+        const q = normalize(activeSearch);
+        let visibleCount = 0;
+
+        projectCards.forEach(card => {
+          const categories = (card.getAttribute('data-categories') || '').split(',');
+          const searchData = normalize(card.getAttribute('data-search') || '');
+
+          const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
+          const matchesSearch = !q || searchData.includes(q);
+
+          if (matchesCategory && matchesSearch) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Update Counter
+        if (resultsCount) {
+          resultsCount.textContent = isTr
+            ? `${totalProjects} sistemden ${visibleCount} tanesi gösteriliyor`
+            : `Showing ${visibleCount} of ${totalProjects} systems`;
+        }
+
+        // Toggle Empty State
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+          }
+        }
+
+        // Toggle Clear Button
+        if (searchClear) {
+          if (activeSearch.length > 0) {
+            searchClear.classList.remove('hidden');
+          } else {
+            searchClear.classList.add('hidden');
+          }
+        }
+      }
+
+      // Search Input Event
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          activeSearch = e.target.value;
+          applyFilters();
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            searchInput.value = '';
+            activeSearch = '';
+            applyFilters();
+            searchInput.blur();
+          }
+        });
+      }
+
+      // Clear Button
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          if (searchInput) {
+            searchInput.value = '';
+            activeSearch = '';
+            searchInput.focus();
+            applyFilters();
+          }
+        });
+      }
+
+      // Category Pills
+      categoryPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          categoryPills.forEach(p => {
+            p.classList.remove('bg-gold-tungsten', 'text-obsidian-black', 'font-bold', 'shadow-md', 'shadow-gold-tungsten/20', 'border-gold-tungsten');
+            p.classList.add('bg-obsidian-surface', 'border-obsidian-border', 'text-text-muted');
+            p.setAttribute('aria-pressed', 'false');
+          });
+
+          pill.classList.remove('bg-obsidian-surface', 'border-obsidian-border', 'text-text-muted');
+          pill.classList.add('bg-gold-tungsten', 'text-obsidian-black', 'font-bold', 'shadow-md', 'shadow-gold-tungsten/20', 'border-gold-tungsten');
+          pill.setAttribute('aria-pressed', 'true');
+
+          activeCategory = pill.getAttribute('data-category') || 'all';
+          applyFilters();
+        });
+      });
+
+      // Tag Buttons Click
+      tagButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const tag = btn.getAttribute('data-tag');
+          if (tag && searchInput) {
+            searchInput.value = tag;
+            activeSearch = tag;
+            applyFilters();
+            searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            searchInput.focus();
+          }
+        });
+      });
+
+      // Reset Button
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          activeSearch = '';
+          activeCategory = 'all';
+
+          categoryPills.forEach(p => {
+            const cat = p.getAttribute('data-category');
+            if (cat === 'all') {
+              p.classList.add('bg-gold-tungsten', 'text-obsidian-black', 'font-bold', 'shadow-md', 'shadow-gold-tungsten/20', 'border-gold-tungsten');
+              p.classList.remove('bg-obsidian-surface', 'border-obsidian-border', 'text-text-muted');
+              p.setAttribute('aria-pressed', 'true');
+            } else {
+              p.classList.remove('bg-gold-tungsten', 'text-obsidian-black', 'font-bold', 'shadow-md', 'shadow-gold-tungsten/20', 'border-gold-tungsten');
+              p.classList.add('bg-obsidian-surface', 'border-obsidian-border', 'text-text-muted');
+              p.setAttribute('aria-pressed', 'false');
+            }
+          });
+
+          applyFilters();
+        });
+      }
+
+      // Keyboard shortcut '/' to focus search
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
+          e.preventDefault();
+          searchInput?.focus();
+        }
+      });
+
+      // View Mode Toggle (Detailed vs Compact)
+      viewButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mode = btn.getAttribute('data-view');
+          if (!mode || mode === activeView) return;
+          activeView = mode;
+
+          viewButtons.forEach(b => {
+            b.classList.remove('bg-gold-tungsten/20', 'text-gold-highlight', 'border-gold-tungsten/50');
+            b.classList.add('text-text-dim', 'border-transparent');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('bg-gold-tungsten/20', 'text-gold-highlight', 'border-gold-tungsten/50');
+          btn.classList.remove('text-text-dim', 'border-transparent');
+          btn.setAttribute('aria-pressed', 'true');
+
+          if (container) {
+            if (activeView === 'compact') {
+              container.classList.remove('space-y-10');
+              container.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'gap-6', 'space-y-0');
+              document.querySelectorAll('.project-metrics').forEach(m => m.classList.add('hidden'));
+              document.querySelectorAll('.project-card').forEach(c => c.classList.add('compact-card'));
+            } else {
+              container.classList.remove('grid', 'grid-cols-1', 'md:grid-cols-2', 'gap-6', 'space-y-0');
+              container.classList.add('space-y-10');
+              document.querySelectorAll('.project-metrics').forEach(m => m.classList.remove('hidden'));
+              document.querySelectorAll('.project-card').forEach(c => c.classList.remove('compact-card'));
+            }
+          }
+        });
+      });
+    })();
+  </script>
 </BaseLayout>
