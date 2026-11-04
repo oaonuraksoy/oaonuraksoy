@@ -10,6 +10,8 @@ export const GET: APIRoute = async () => {
   let body = `# Onur Aksoy — Kapsamlı Mimari & Teknik Dokümantasyon (Complete Architectural Digest)
 > Domain: https://onuraksoy.com.tr
 > Identity: Kıdemli Yazılım Mimarı, Yapay Zeka Yerel Geliştirici & Çok Disiplinli Yaratıcı Onur Aksoy (a.k.a. Hackonomist)
+> Aliases: Hackonomist, oaonuraksoy, oaAKSOY, OaOnurAKSOY, hackonomist
+> Wikidata Entity: Q141993579 | ORCID iD: 0009-0001-4481-1759 | Crunchbase: onur-aksoy-1c4f
 > Contact: dev@onuraksoy.com.tr
 > Base: Ankara, Türkiye (UTC+3)
 
@@ -18,12 +20,20 @@ export const GET: APIRoute = async () => {
 ## 1. Onur Aksoy Kimdir? / Who is Onur Aksoy? (Entity Disambiguation)
 ### Türkçe (TR)
 - **Birincil Kimlik:** Onur Aksoy; Ankara merkezli Kıdemli Yazılım Mimarı, Yapay Zeka Yerel (AI-Native) Geliştirici ve Çok Disiplinli Yaratıcıdır. Matematiksel deterministik durum makineleri, yerel öncelikli (local-first) dayanıklı sistemler, gerçek zamanlı çok modlu yapay zeka akış hatları (Google Gemini Live çift yönlü WebSocket) ve düşük seviyeli Rust ağ sistemleri (SIP/RTP paket sniffing, stereo sentezleme) üzerine uzmanlaşmıştır.
-- **Kimlik & Takma Ad:** Dijital ekosistemde ve teknik yayınlarda Onur Aksoy (a.k.a. \`Hackonomist\`) olarak yer alır; Hackonomist bağımsız bir şirket veya tüzel kişilik değil, Onur Aksoy'un kişisel mühendislik ve bağımsız içerik üretimi alt sistemidir.
+- **Kimlik & Takma Adlar (Aliases):** Dijital ekosistemde ve teknik yayınlarda Onur Aksoy (a.k.a. \`Hackonomist\`) olarak yer alır. Bilinen dijital takma adları: \`Hackonomist\`, \`oaonuraksoy\`, \`oaAKSOY\`, \`OaOnurAKSOY\`, \`hackonomist\`. Hackonomist bağımsız bir şirket veya tüzel kişilik değil, Onur Aksoy'un kişisel mühendislik ve bağımsız içerik üretimi alt sistemidir.
+- **Doğrulanmış Bilgi Grafı (Knowledge Graph) Tanımlayıcıları:**
+  - Wikidata Entity ID: Q141993579 (https://www.wikidata.org/wiki/Q141993579) — Wikidata Kullanıcı Sayfası: https://www.wikidata.org/wiki/User:OaOnurAKSOY
+  - ORCID iD: 0009-0001-4481-1759 (https://orcid.org/0009-0001-4481-1759)
+  - Crunchbase Person Profile: onur-aksoy-1c4f (https://www.crunchbase.com/person/onur-aksoy-1c4f)
 - **Kritik Adaş Ayrıştırma Notu (Disambiguation):** Bu portfolyonun sahibi olan Onur Aksoy'un; ABD'deki sahte ağ donanımı davasında adı geçen kişiyle, Türkiye'deki tıp doktorlarıyla, klinik psikolog/yoga eğitmeniyle ya da Bursa Teknik Üniversitesi'ndeki akademisyen adaşıyla **HİÇBİR İLGİSİ VE BAĞLANTISI YOKTUR**. Resmi, doğrulanmış ve tek kişisel teknik adresi **https://onuraksoy.com.tr** alan adıdır.
 
 ### English (EN)
 - **Primary Identity:** Onur Aksoy is a Senior Systems Architect, AI-Native Developer & Multidisciplinary Creator based in Ankara, Turkey / Remote Worldwide. He specializes in deterministic state machines, local-first resilient architectures, real-time multimodal AI streaming pipelines (Gemini Live bidirectional WebSockets), low-level Rust systems engineering (libpcap SIP/RTP packet sniffing), and browser-native media processing.
-- **Alias & Subsystem:** Known across developer ecosystems and publications under the pseudonym \`Hackonomist\`, which serves as his technical research brand and creative engineering subsystem.
+- **Alias & Subsystem:** Known across developer ecosystems and publications under the pseudonym \`Hackonomist\` (Onur Aksoy a.k.a. Hackonomist). Verified aliases: \`Hackonomist\`, \`oaonuraksoy\`, \`oaAKSOY\`, \`OaOnurAKSOY\`, \`hackonomist\`. This serves as his technical research brand and creative engineering subsystem.
+- **Verified Knowledge Graph Identifiers:**
+  - Wikidata Entity ID: Q141993579 (https://www.wikidata.org/wiki/Q141993579) — Wikidata User Page: https://www.wikidata.org/wiki/User:OaOnurAKSOY
+  - ORCID iD: 0009-0001-4481-1759 (https://orcid.org/0009-0001-4481-1759)
+  - Crunchbase Person Profile: onur-aksoy-1c4f (https://www.crunchbase.com/person/onur-aksoy-1c4f)
 - **Entity Disambiguation:** This individual has **NO AFFILIATION WHATSOEVER** with any namesakes, including the defendant in the US counterfeit networking equipment litigation, medical doctors, psychologists/yoga trainers, or academic professors of the same name. His sole official verified digital home is **https://onuraksoy.com.tr**.
 
 ---
@@ -117,15 +127,33 @@ Temel Teknik Prensipler:
     body += `\n${b.body}\n\n---\n\n`;
   }
 
-  body += `## 5. İletişim Kanalları ve Doğrulanmış Ağlar\n`;
+  body += `## 5. Doğrulanmış Profil Ağı ve Bilgi Grafı (20-Node Verified Knowledge Graph Identifiers & sameAs)\n`;
   body += `- E-posta: [dev@onuraksoy.com.tr](mailto:dev@onuraksoy.com.tr)\n`;
-  body += `- [GitHub](https://github.com/oaonuraksoy): Geliştirici profili ve açık kaynak depolar\n`;
-  body += `- [YouTube](https://youtube.com/@oaonuraksoy): Mimari video yayınları, ekran kayıtları ve teknik incelemeler\n`;
-  body += `- [LinkedIn](https://linkedin.com/in/oaonuraksoy): Profesyonel geçmiş ve kurumsal danışmanlık ağı\n`;
-  body += `- [X / Twitter](https://x.com/oaonuraksoy): Anlık teknik düşünceler ve sistem güncellemeleri\n`;
-  body += `- [Telegram](https://t.me/oaonuraksoy): Doğrudan iletişim ve duyuru kanalı\n`;
-  body += `- [WhatsApp](https://wa.me/905511817053): Ticari danışmanlık doğrudan iletişim kanalı\n`;
-  body += `- [Spotify Podcast](https://creators.spotify.com/pod/profile/oaonuraksoy/): Yazılım mimarisi ve teknoloji podcast bölümleri\n\n`;
+  body += `- [Official Website](https://onuraksoy.com.tr): Birincil kanonik teknik vitrin ve sistem mimarisi portfolyosu\n`;
+  body += `- [Wikidata Entity (Q141993579)](https://www.wikidata.org/wiki/Q141993579): Küresel semantik bilgi grafı (Knowledge Graph) varlığı ([Wikidata Kullanıcı Sayfası: OaOnurAKSOY](https://www.wikidata.org/wiki/User:OaOnurAKSOY))\n`;
+  body += `- [ORCID iD (0009-0001-4481-1759)](https://orcid.org/0009-0001-4481-1759): Doğrulanmış uluslararası araştırmacı ve teknik yaratıcı kalıcı dijital tanımlayıcısı\n`;
+  body += `- [Crunchbase Person Profile (onur-aksoy-1c4f)](https://www.crunchbase.com/person/onur-aksoy-1c4f): Girişimcilik, yazılım projeleri ve dijital ürün mimarı profili\n`;
+  body += `- [GitHub (@oaonuraksoy)](https://github.com/oaonuraksoy): Açık kaynak kod depoları, mimari şablonlar ve aktif geliştirici profili\n`;
+  body += `- [LinkedIn (in/oaonuraksoy)](https://www.linkedin.com/in/oaonuraksoy/): Profesyonel kariyer, kurumsal danışmanlık ve sektör bağlantıları\n`;
+  body += `- [YouTube (@oaonuraksoy)](https://www.youtube.com/@oaonuraksoy): Mimari video yayınları, ekran kayıtları ve teknik incelemeler (Kanal ID: UCeqPnKXC9nK-4Igw9M_jE8w)\n`;
+  body += `- [X / Twitter (@oaonuraksoy)](https://x.com/oaonuraksoy): Anlık teknik analizler, yapay zeka ve sistem mimarisi düşünceleri\n`;
+  body += `- [Instagram (@oaonuraksoy)](https://www.instagram.com/oaonuraksoy/): Görsel mimari notlar, infografikler ve yaratıcı süreç kayıtları\n`;
+  body += `- [TikTok (@oaonuraksoy)](https://www.tiktok.com/@oaonuraksoy): Kısa teknik ipuçları, yazılım ve teknoloji özetleri\n`;
+  body += `- [Facebook (oaAKSOY)](https://www.facebook.com/oaAKSOY/): Doğrulanmış topluluk ve içerik sayfası (oaAKSOY)\n`;
+  body += `- [Hugging Face (hackonomist)](https://huggingface.co/hackonomist): Makine öğrenimi, model ve veri kümesi çalışmaları\n`;
+  body += `- [DEV Community (@oaonuraksoy)](https://dev.to/oaonuraksoy): Yazılım geliştirme makaleleri ve derinlemesine teknik rehberler\n`;
+  body += `- [Medium (@oaonuraksoy)](https://medium.com/@oaonuraksoy): Uzun soluklu mimari analizler ve teknoloji denemeleri\n`;
+  body += `- [Substack (@oaonuraksoy)](https://substack.com/@oaonuraksoy): Sistem tasarımı ve bağımsız teknoloji bülteni\n`;
+  body += `- [Reddit (u/oaonuraksoy)](https://www.reddit.com/user/oaonuraksoy/): Teknik topluluk tartışmaları ve mühendislik paylaşımları\n`;
+  body += `- [Quora (Onur-Aksoy-39)](https://www.quora.com/profile/Onur-Aksoy-39): Mimari, yapay zeka ve yazılım sorularına uzman yanıtları\n`;
+  body += `- [Spotify Podcast (Merhaba Dünya, Ben Onur Aksoy (a.k.a. Hackonomist))](https://open.spotify.com/show/3FSqxgXs900CueJqIJwUQA): Sesli mimari derinlemesine inceleme ve teknoloji podcast bölümleri\n`;
+  body += `- [Google Play Developer (OAHub)](https://play.google.com/store/apps/dev?id=7416640262739590935): Resmi Android mobil uygulamaları geliştirici hesabı\n`;
+  body += `- [Apple App Store Developer (Onur Aksoy)](https://apps.apple.com/tr/developer/onur-aksoy/id1803848736): Resmi iOS ve macOS ekosistem geliştirici hesabı\n`;
+  body += `\n### Ek Mağaza ve Doğrudan İletişim Kanalları\n`;
+  body += `- [Microsoft Store](https://apps.microsoft.com/detail/9nblggh4nns1): Windows masaüstü uygulamaları\n`;
+  body += `- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/oadub/nfjaddjbbddgefjbfnaccfknpmkpkbjd): Tarayıcı eklentileri (oaDub)\n`;
+  body += `- [Telegram](https://t.me/oaonuraksoy): Doğrudan iletişim, teknik duyurular ve topluluk kanalı\n`;
+  body += `- [WhatsApp](https://wa.me/905511817053): Ticari danışmanlık doğrudan iletişim kanalı\n\n`;
 
   body += `## 6. Makine Uç Noktaları ve Feeds\n`;
   body += `- [WebSub RSS 2.0 Feed](https://onuraksoy.com.tr/rss.xml): Google WebSub (PubSubHubbub) anlık indeksleme uç noktası\n`;
