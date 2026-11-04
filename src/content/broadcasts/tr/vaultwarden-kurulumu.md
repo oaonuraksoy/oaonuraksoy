@@ -4,7 +4,7 @@ description: "Şifrelerinizi ve TOTP 2FA kodlarınızı üçüncü parti bulutla
 pubDate: 2026-08-20
 lang: "tr"
 ref: "vaultwarden-kurulumu"
-featured: true
+featured: false
 tags: ["Vaultwarden", "Bitwarden", "Docker", "Plesk", "SiberGuvenlik", "SelfHosted", "Linux"]
 youtubeId: "OMLQdKx_T08"
 duration: "PT4M48S"

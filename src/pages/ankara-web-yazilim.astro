@@ -1,0 +1,349 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: "Piyasadaki web ajanslarının sunduğu 'özel yazılım' ile sizin mimariniz arasındaki fark nedir?",
+    answer: "Ankara'daki birçok ajans, müşterilerine 'özel yazılım yapıyoruz' diyerek aslında arkada hazır WordPress veya hazır PHP scriptlerini birkaç görsel değişiklikle teslim eder. Bu yaklaşım veritabanını üçüncü parti eklentilere bağımlı hale getirir ve büyüme anında kilitlenir. Ben hazır şablon kullanmam; TypeScript, Astro, Rust veya .NET 8 üzerinde, işletmenizin doğrudan iş kurallarına ve veri akışına göre tasarlanmış, sıfır teknik borçlu bağımsız kod tabanları inşa ederim."
+  },
+  {
+    question: "Geliştirilen yazılımın kaynak kodları ve fikri mülkiyeti kime ait oluyor?",
+    answer: "Kaynak kodların tamamı, bağımsız Git deposu, veritabanı şemaları ve mimari dokümantasyonuyla birlikte eksiksiz olarak şirketinize ait olur. Lisans yenileme, yıllık kod kullanım bedeli veya ajansa bağımlılık gibi suni engeller oluşturmam. Kodunuzu gelecekte kendi bünyenizdeki bir yazılım ekibi dahi kolayca devralıp büyütebilir."
+  },
+  {
+    question: "Web arayüzleri mevcut masaüstü programlarımız, ERP veya yerel ağ (LAN) cihazlarımızla entegre olabilir mi?",
+    answer: "Kesinlikle. oaPOS ve oa_sip_recorder sistemlerinde uyguladığım yerel öncelikli (local-first) soket ve IPC mühendisliği sayesinde; internet kesilse dahi çalışan yerel ağ sunucuları, barkod/terazi/yazıcı gibi seri port donanımları veya kurumsal SAP/Logo/Mikro ERP veritabanlarıyla deterministik veri köprüleri kurarım."
+  },
+  {
+    question: "Yapay zeka ve deterministik otomasyonları iş süreçlerimize nasıl dahil ediyorsunuz?",
+    answer: "Yapay zekayı yalnızca sohbet botu olarak değil; siparişlerin sınıflandırılması, teknik şartnamelerin ayrıştırılması, stok tahminleme ve çok dilli müşteri tekliflerinin hazırlanması gibi iş mantığı operasyonlarına güvenilir API boru hatları (pipeline) ile entegre ederim. Hata payı barındırmayan deterministik kontrol mekanizmalarıyla çalışırım."
+  },
+  {
+    question: "Kurumsal bilgi işlem (IT) ve siber güvenlik denetimlerinden nasıl geçiyorsunuz?",
+    answer: "Geliştirdiğim sistemler OWASP Top 10 güvenlik standartlarına, KVKK uyumuna ve Zero-Trust prensiplerine göre yapılandırılır. Açık kaynak kod denetimleri (audit), katı içerik güvenlik politikaları (CSP) ve rol tabanlı erişim yetkilendirmeleriyle kurumsal IT birimlerinin onayından eksiksiz geçer."
+  }
+];
+
+const title = "Ankara Web Yazılım & Özel Sistem Mimarisi — Onur Aksoy";
+const description = "Standart ajansların 'özel yazılım' diye sunduğu hazır temalardan kaçının. Ankara merkezli işletmelere özel API, yerel öncelikli ve ölçeklenebilir kod mimarisi.";
+const counterpartUrl = "/en/ankara-custom-software-architecture/";
+const ogImage = "https://onuraksoy.com.tr/images/services/ankara-web-yazilim.webp";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={ogImage}
+  lang="tr"
+  counterpartUrl={counterpartUrl}
+  schemaType="Service"
+  faqs={faqs}
+>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb Nav -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-xs font-mono text-text-muted">
+        <li>
+          <a href="/" class="hover:text-gold-highlight transition-colors">Ana Sayfa</a>
+        </li>
+        <li>/</li>
+        <li class="text-gold-tungsten font-semibold">Ankara Web Yazılım & Özel Sistem Mimarisi</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pb-12 border-b border-obsidian-border mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-gold-tungsten/40 text-xs font-mono text-gold-tungsten mb-4">
+        <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+        <span>Özel Sistem Mühendisliği & Deterministik Kod</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight mb-6">
+        Ankara Web Yazılım Firmaları Arayanlara: Şablon Ajans Değil, Özel Sistem Mimarisi
+      </h1>
+      <p class="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-3xl font-normal">
+        Hazır CMS şablonlarının tıkandığı yüksek eşzamanlı B2B portallar, ERP/stok entegrasyonları, yerel ağ masaüstü-web hibrit sistemleri ve kurumsal otomasyonlar için doğrudan sistem mimarı liderliğinde yazılım mühendisliği.
+      </p>
+    </header>
+
+    <!-- Executive Summary Card -->
+    <section class="mb-16 p-6 sm:p-8 rounded-2xl bg-obsidian-surface/60 border border-gold-tungsten/30 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-48 h-48 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-2">
+          Mühendislik Vizyonu & Gerçek Üretim
+        </span>
+        <p class="text-base text-text-primary leading-relaxed mb-4">
+          Geleneksel web ajanslarının sunduğu "özel yazılım" paketleri çoğu zaman arkada onlarca kontrolsüz eklenti barındıran hantal WordPress kurulumlarından ibarettir. İşletmeniz büyüdükçe bu yapay sistemler kilitlenir, veri tabanı sorguları dakikalar sürer ve veri güvenliğiniz riske girer.
+        </p>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Ben; TypeScript, Astro, Rust ve .NET 8 ekosistemleri üzerinde, doğrudan işletmenizin özel iş akışlarına yanıt veren bağımsız sistemler geliştiriyorum. oaPOS masaüstü satış motoru, oa_sip_recorder VoIP analiz altyapısı ve SEO Lens tarayıcı çekirdeğinde kanıtladığım mühendislik disiplinini kurumsal projelerinize taşıyorum.
+        </p>
+      </div>
+    </section>
+
+    <!-- The Illusion of "Custom Software" in Agencies -->
+    <section class="mb-16 space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+        Ajansların Gizlediği "Özel Yazılım" Yanılsaması ve Eklenti Borcu
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-red-950/40 text-red-400 flex items-center justify-center font-mono font-bold mb-4">
+            01
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Gizli Eklenti Bağımlılığı</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Müşteriye özel kod diye sunulan projeler aslında onlarca yabancı geliştiricinin eklentilerinden oluşur. Bir eklenti bozulduğunda tüm sistem çöker.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-amber-950/40 text-amber-400 flex items-center justify-center font-mono font-bold mb-4">
+            02
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Rehine Tutulan Kaynak Kodlar</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Ajanslar kod tabanını şeffaf biçimde teslim etmez; sizi her küçük geliştirme veya hata düzeltmesi için fahiş saatlik bakım sözleşmelerine mahkum eder.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-emerald-950/40 text-emerald-400 flex items-center justify-center font-mono font-bold mb-4">
+            03
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Gerçek Sistem Mühendisliği</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            oaPOS, oa_sip_recorder ve 10SeC projelerinde uyguladığım gibi: temiz Git geçmişi, sıfır eklenti yükü ve kurumsal IT birimlerinin denetimine açık bağımsız mimari.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparative Architecture Matrix -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Mimari Standartlar
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Şablon Ajans "Özel Yazılımı" vs. Gerçek Mühendislik Mimarisi
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-obsidian-border bg-obsidian-surface">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-obsidian-black/80 text-text-muted font-mono uppercase tracking-wider text-[11px] border-b border-obsidian-border">
+            <tr>
+              <th scope="col" class="py-4 px-4 sm:px-6">Kapsam</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-red-300">Şablon Ajans "Özel Yazılımı"</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Onur Aksoy Mühendislik Mimarisi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-obsidian-border/50 text-text-secondary">
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Kaynak Kod & Fikri Mülkiyet</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Ajans mülkiyetinde veya şifrelenmiş dosya yapıları</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">%100 müşteriye ait bağımsız Git deposu ve dokümantasyon</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Veritabanı & Sorgu Performansı</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Şişkin CMS tabloları, N+1 sorgu kilitlenmeleri</td>
+              <td class="py-4 px-4 sm:px-6 text-emerald-400 font-mono font-semibold">Tip güvenli, normalize ilişkisel yapılar (PostgreSQL / SQLite / Edge D1)</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Donanım & ERP Entegrasyonu</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Yetersiz REST mock'ları, internet yoksa duran sistemler</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Ham LAN soketleri, seri port (RS232/USB) ve deterministik veri senkronizasyonu</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Siber Güvenlik & Denetim</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Bilinmeyen üçüncü parti eklenti zafiyetleri</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Zero-Trust mimarisi, katı yetkilendirme ve OWASP Top 10 tam uyumu</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Bakım & Sürdürülebilirlik</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Tek bir ajansa göbekten bağımlılık, dokümantasyon yokluğu</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Herhangi bir kıdemli mühendisin yönetebileceği standart ve temiz mimari</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Three Engineering Guarantees -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Taahhütler
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Kurumsal İşletmeniz İçin Üç Mühendislik Garantisi
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">GARANTİ 01</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Sıfır Teknik Borç & Tam Kod Mülkiyeti</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Yazdığım her satır kod projenin bağımsız deposunda müşteriye teslim edilir. Gizli lisanslama, suni framework kısıtlamaları veya yıllık kullanım harçları asla uygulanmaz.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            %100 Kod Bağımsızlığı
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">GARANTİ 02</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Web + Masaüstü + AI Hibrit Orkestrasyon</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Yalnızca tarayıcıya hapsolmayan; Windows yerel masaüstü, LAN cihazları ve modern web arayüzlerini deterministik birleştiren çok katmanlı mühendislik yetkinliği.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Hibrit Sistem Entegrasyonu
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">GARANTİ 03</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Bilgi İşlem (IT) Şartnamelerine Tam Uyum</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Kurumsal IT ekiplerinin güvenlik, yedeklilik ve loglama şartnamelerine eksiksiz uyan; KVKK ve ISO standartlarında denetlenebilir yazılım altyapısı.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            Kurumsal IT Uyumu
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relevant Technical Vault & Broadcasts -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Teknik Vaka Analizleri & İncelemeler
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          İlgili Mühendislik Yayınları ve Mimari Raporlar
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-red-400">Analiz • 9 dk okuma</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            WordPress Eklenti Borcu vs. Özel Yazılım Maliyeti
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            3 yıllık toplam sahip olma maliyetinde hazır CMS eklentilerinin işletmelere çıkardığı gizli faturalar ve özel yazılımın birim ekonomisi.
+          </p>
+        </a>
+
+        <a
+          href="/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-gold-tungsten">Güvenlik Raporu • 11 dk okuma</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Kurumsal Web Siber Güvenlik Standartları 2026
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Zero-Trust mimarisi, katı CSP kuralları ve modern web uygulamalarında tedarik zinciri saldırılarına karşı savunma stratejileri.
+          </p>
+        </a>
+
+        <a
+          href="/ankara-kurumsal-web-tasarim/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-emerald-400">B2B Web • Mimari Sayfa</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara Kurumsal Web Tasarım & B2B İhracat Mimarisi
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Sanayi ve teknoloji koridorundaki üreticiler için 50ms altı küresel açılış hızına sahip Astro Zero-JS mimarisi.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Merak Edilenler
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Sıkça Sorulan Sorular ve Mimari Cevaplar
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group border border-obsidian-border rounded-xl p-5 bg-obsidian-surface/40 hover:border-gold-tungsten/40 transition-all duration-300">
+            <summary class="flex items-center justify-between font-semibold text-text-primary cursor-pointer list-none text-sm sm:text-base">
+              <span>{faq.question}</span>
+              <span class="text-gold-tungsten group-open:rotate-180 transition-transform duration-200 ml-4 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-text-muted mt-4 pt-4 border-t border-obsidian-border/50 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Direct CTA & Advisory Block -->
+    <section class="p-8 sm:p-10 rounded-2xl bg-gradient-to-b from-obsidian-surface to-obsidian-black border border-gold-tungsten/40 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold">
+          Doğrudan İletişim & Mimari Değerlendirme
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
+          Özel Yazılım Projenizi Doğrudan Sistem Mimarıyla Planlayın
+        </h2>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Ajans şablonlarıyla vakit kaybetmeyin. İş kurallarınızı, API ihtiyaçlarınızı ve sistem hedeflerinizi doğrudan benimle görüşün; sıfır teknik borç garantisiyle hayata geçirelim.
+        </p>
+
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+          <a
+            href="mailto:dev@onuraksoy.com.tr"
+            class="px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold hover:bg-gold-highlight transition-colors flex items-center gap-2"
+          >
+            <span>dev@onuraksoy.com.tr</span>
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>WhatsApp: +90 551 181 70 53</span>
+          </a>
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>Telegram: @oaonuraksoy</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

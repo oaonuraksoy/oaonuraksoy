@@ -51,7 +51,13 @@ Temel Teknik Prensipler:
 
 ---
 
-## 3. Üretim Seviyesindeki Amiral Gemisi Projeler (Production Projects)
+## 3. Kurumsal Mimari, B2B İhracat Vitrinleri & Özel Web Yazılımı (Enterprise Architecture & Custom Software)
+- [Ankara Kurumsal Web Tasarım & B2B Sistem Mimarisi](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/) ([EN](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/)): OSTİM, İvedik, Sincan ASO ve Başkent OSB'deki sanayi şirketleri için sub-50ms küresel B2B web mimarisi, Zero-JS ön yüz disiplini, 3D CAD/GTIP veri sözleşmeleri ve tip güvenli RFQ form altyapısı.
+- [Ankara Özel Web Yazılım & Sistem Geliştirme](https://onuraksoy.com.tr/ankara-web-yazilim/) ([EN](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/)): Ankara merkezli kurumsal kuruluşlar için yüksek başarımlı TypeScript, Astro SSG, Rust mikroservisleri, .NET 8 ve deterministik yerel öncelikli (local-first) veritabanı mimarileri.
+
+---
+
+## 4. Üretim Seviyesindeki Amiral Gemisi Projeler (Production Projects)
 
 `;
 
@@ -113,7 +119,7 @@ Temel Teknik Prensipler:
     body += `---\n\n`;
   }
 
-  body += `## 4. Teknik Yayınlar, Mimari Makaleler ve Deşifreler (Broadcasts & Vault)\n\n`;
+  body += `## 5. Teknik Yayınlar, Mimari Makaleler ve Deşifreler (Broadcasts & Vault)\n\n`;
 
   for (const b of broadcastsTr) {
     const slug = b.id.replace(/^tr\//, '').replace(/^en\//, '');
@@ -127,7 +133,7 @@ Temel Teknik Prensipler:
     body += `\n${b.body}\n\n---\n\n`;
   }
 
-  body += `## 5. Doğrulanmış Profil Ağı ve Bilgi Grafı (20-Node Verified Knowledge Graph Identifiers & sameAs)\n`;
+  body += `## 6. Doğrulanmış Profil Ağı ve Bilgi Grafı (20-Node Verified Knowledge Graph Identifiers & sameAs)\n`;
   body += `- E-posta: [dev@onuraksoy.com.tr](mailto:dev@onuraksoy.com.tr)\n`;
   body += `- [Official Website](https://onuraksoy.com.tr): Birincil kanonik teknik vitrin ve sistem mimarisi portfolyosu\n`;
   body += `- [Wikidata Entity (Q141993579)](https://www.wikidata.org/wiki/Q141993579): Küresel semantik bilgi grafı (Knowledge Graph) varlığı ([Wikidata Kullanıcı Sayfası: OaOnurAKSOY](https://www.wikidata.org/wiki/User:OaOnurAKSOY))\n`;
@@ -157,7 +163,7 @@ Temel Teknik Prensipler:
   body += `- [Telegram](https://t.me/oaonuraksoy): Doğrudan iletişim, teknik duyurular ve topluluk kanalı\n`;
   body += `- [WhatsApp](https://wa.me/905511817053): Ticari danışmanlık doğrudan iletişim kanalı\n\n`;
 
-  body += `## 6. Makine Uç Noktaları ve Feeds\n`;
+  body += `## 7. Makine Uç Noktaları ve Feeds\n`;
   body += `- [WebSub RSS 2.0 Feed](https://onuraksoy.com.tr/rss.xml): Google WebSub (PubSubHubbub) anlık indeksleme uç noktası\n`;
   body += `- [LLMs Quick Summary](https://onuraksoy.com.tr/llms.txt): Hızlı LLM referans özeti\n`;
   body += `- [XML Sitemap Index](https://onuraksoy.com.tr/sitemap-index.xml): Ana site haritası dizini\n`;

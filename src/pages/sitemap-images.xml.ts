@@ -20,6 +20,10 @@ export const GET: APIRoute = async () => {
   ];
 
   const broadcastSlugs = [
+    'sub-50ms-global-b2b-portals-edge-zero-js',
+    'kurumsal-web-siber-guvenlik-standartlari-2026',
+    'wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti',
+    'ankara-osb-sanayi-b2b-ihracat-web-mimarisi',
     'ai-influencer-consistency-architecture',
     'ai-native-architecture',
     'local-first-software',
@@ -58,6 +62,24 @@ export const GET: APIRoute = async () => {
     {
       page: 'https://onuraksoy.com.tr/en/about/',
       images: [...portraitImages]
+    },
+    // 5. Ankara Enterprise Web & Custom Software Architecture TR
+    {
+      page: 'https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/',
+      images: ['https://onuraksoy.com.tr/images/services/ankara-kurumsal-web-tasarim.webp']
+    },
+    {
+      page: 'https://onuraksoy.com.tr/ankara-web-yazilim/',
+      images: ['https://onuraksoy.com.tr/images/services/ankara-web-yazilim.webp']
+    },
+    // 6. Ankara Enterprise Web & Custom Software Architecture EN
+    {
+      page: 'https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/',
+      images: ['https://onuraksoy.com.tr/images/services/ankara-kurumsal-web-tasarim.webp']
+    },
+    {
+      page: 'https://onuraksoy.com.tr/en/ankara-custom-software-architecture/',
+      images: ['https://onuraksoy.com.tr/images/services/ankara-web-yazilim.webp']
     }
   ];
 

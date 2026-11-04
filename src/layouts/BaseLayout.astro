@@ -17,7 +17,7 @@ interface Props {
   lang?: 'en' | 'tr';
   activeNav?: string;
   counterpartUrl?: string;
-  schemaType?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article';
+  schemaType?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article' | 'Service';
   faqs?: FAQItem[];
   disableDefaultJsonLd?: boolean;
 }
@@ -43,6 +43,7 @@ const {
       description={description}
       image={image}
       lang={lang}
+      counterpartUrl={counterpartUrl}
     />
     {!disableDefaultJsonLd && (
       <JsonLd

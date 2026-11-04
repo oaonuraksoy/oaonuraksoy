@@ -23,6 +23,8 @@ export const GET: APIRoute = async () => {
   // Core Pages (TR)
   const corePagesTr = [
     { title: 'Onur Aksoy — Kıdemli Yazılım Mimarı & Yapay Zeka Yerel Geliştirici', path: '/', desc: 'Onur Aksoy (Hackonomist) kişisel portfolyo ve sistem mimarisi ana sayfası.' },
+    { title: 'Ankara Kurumsal Web Tasarım & B2B Sistem Mimarisi — Onur Aksoy', path: '/ankara-kurumsal-web-tasarim/', desc: 'Ankara OSB, İvedik, OSTİM ve Sincan sanayi şirketleri için sub-50ms küresel B2B web mimarisi ve ihracat vitrini.' },
+    { title: 'Ankara Web Yazılım & Özel Sistem Geliştirme — Onur Aksoy', path: '/ankara-web-yazilim/', desc: 'Ankara merkezli kurumsal şirketler için özel web yazılımı, Rust & C# mikroservis mimarileri ve güvenli veritabanı sistemleri.' },
     { title: 'Hakkında — Onur Aksoy', path: '/about/', desc: 'Mühendislik felsefesi, arka plan, teknik yetkinlikler ve biyografi.' },
     { title: 'Projeler — Onur Aksoy', path: '/projects/', desc: 'Amiral gemisi yazılım mimarileri, masaüstü, web ve AI sistemleri.' },
     { title: 'Yayınlar & Kasa — Onur Aksoy', path: '/broadcasts/', desc: 'Teknik video yayınları, mimari makaleler ve indirilebilir mühendislik arşivleri.' },
@@ -42,6 +44,8 @@ export const GET: APIRoute = async () => {
   // Core Pages (EN)
   const corePagesEn = [
     { title: 'Onur Aksoy — Senior Systems Architect & AI-Native Developer', path: '/en/', desc: 'Onur Aksoy (Hackonomist) personal portfolio and systems architecture showcase.' },
+    { title: 'Ankara Enterprise Web Design & B2B Architecture — Onur Aksoy', path: '/en/ankara-b2b-web-architecture/', desc: 'Sub-50ms global B2B web architectures, zero-JS export showcases for Ankara industrial leaders.' },
+    { title: 'Ankara Custom Software Development & Systems Architecture — Onur Aksoy', path: '/en/ankara-custom-software-architecture/', desc: 'Custom enterprise web software, high-performance Rust/.NET backend systems, and secure database architectures in Ankara.' },
     { title: 'About Onur Aksoy', path: '/en/about/', desc: 'Engineering philosophy, background, core competencies, and biography.' },
     { title: 'Projects — Onur Aksoy', path: '/en/projects/', desc: 'Flagship software architectures, desktop systems, web, and AI solutions.' },
     { title: 'Broadcasts & Vault — Onur Aksoy', path: '/en/broadcasts/', desc: 'Technical video broadcasts, architecture screencasts, and downloadable engineering blueprints.' },

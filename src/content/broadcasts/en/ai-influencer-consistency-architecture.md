@@ -4,7 +4,7 @@ description: "A deep technical autopsy into why 82% of AI influencer accounts ge
 pubDate: 2026-04-10
 lang: "en"
 ref: "ai-influencer-consistency-architecture"
-featured: true
+featured: false
 tags: ["ArtificialIntelligence", "AIInfluencer", "ComfyUI", "LoRA", "AlgorithmicBans", "SystemsArchitecture", "ComputerVision"]
 duration: "PT18M40S"
 thumbnail: "/images/broadcasts/ai-influencer-consistency-architecture.webp"

@@ -1,0 +1,354 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: "Why choose Astro Zero-JS and Cloudflare Edge over off-the-shelf WordPress templates?",
+    answer: "Off-the-shelf WordPress themes and visual page builders load dozens of external plugins, bloated stylesheets, and megabytes of unneeded JavaScript. This degrades page load times to 2-3 seconds domestically and 4-6 seconds in key export destinations across North America and Europe. My Astro Zero-JS and Cloudflare Edge architecture serves zero unnecessary JavaScript to the client, delivering sub-50ms global response times and ensuring international buyers inspect your product catalog without delay."
+  },
+  {
+    question: "What makes B2B web architecture critical for industrial manufacturers in Ankara (OSTİM, İvedik, Başkent OSB)?",
+    answer: "For industrial manufacturers and defense contractors, a website is not a casual digital brochure; it is a direct channel for high-value export contracts and Requests for Quotation (RFQ). International corporate buyers immediately abandon sites with sluggish performance, broken mobile viewports, or unreadable technical specifications. Custom engineering instills immediate trust, achieves superior search engine indexation, and secures a dependable pipeline of commercial inquiries."
+  },
+  {
+    question: "How does your architecture handle multilingual localization and international SEO (Hreflang)?",
+    answer: "Rather than relying on automated browser-side translation plugins or fragile cookie redirects, every language variant is statically pre-rendered to dedicated routes. Bidirectional rel='alternate' hreflang annotations, strict ISO language and country codes, and semantic Schema.org entity graphs are integrated directly into the markup. This ensures search engines in target export markets serve the right language to the right corporate buyer."
+  },
+  {
+    question: "How does the web architecture integrate with our existing ERP, inventory, or RFQ workflows?",
+    answer: "The architecture is designed around decoupled APIs and deterministic data pipelines. Whether sending instant notifications via email and WhatsApp, routing directly into oaTeklif and oaPOS back-office engines, or bridging into enterprise SAP, Logo, or Mikro ERP databases, all incoming inquiries and technical specifications are structured and delivered safely."
+  },
+  {
+    question: "Who will lead the engineering process, and what are the ongoing maintenance costs?",
+    answer: "Unlike traditional agencies, you do not deal with sales representatives, account managers, or rotating junior interns. You collaborate directly with me, Onur Aksoy, the systems architect who designs and writes every line of code. Because the infrastructure runs on Cloudflare's global edge network, there are no expensive monthly server fees or recurring plugin licensing costs. You receive full source code ownership with zero technical debt."
+  }
+];
+
+const title = "Ankara B2B Web Architecture & Industrial Export Portals | Onur Aksoy";
+const description = "Off-the-shelf WordPress themes fail in global trade. Sub-50ms edge-rendered, zero-JS web architecture engineered for Ankara industrial and defense exporters.";
+const counterpartUrl = "/ankara-kurumsal-web-tasarim/";
+const ogImage = "https://onuraksoy.com.tr/images/services/ankara-kurumsal-web-tasarim.webp";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={ogImage}
+  lang="en"
+  counterpartUrl={counterpartUrl}
+  schemaType="Service"
+  faqs={faqs}
+>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb Nav -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-xs font-mono text-text-muted">
+        <li>
+          <a href="/en/" class="hover:text-gold-highlight transition-colors">Home</a>
+        </li>
+        <li>/</li>
+        <li class="text-gold-tungsten font-semibold">Ankara B2B Web Architecture & Industrial Portals</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pb-12 border-b border-obsidian-border mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-gold-tungsten/40 text-xs font-mono text-gold-tungsten mb-4">
+        <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+        <span>Industrial Systems & Global Export Architecture</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight mb-6">
+        Ankara B2B Web Architecture & Global Export Systems
+      </h1>
+      <p class="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-3xl font-normal">
+        Engineered for manufacturers across OSTİM, İvedik, Başkent OSB, Sincan ASO 1st & 2nd Industrial Zones, and Ankara's defense-aerospace corridor: ultra-high performance web systems delivering sub-50ms global response times without template vulnerabilities.
+      </p>
+    </header>
+
+    <!-- Executive Summary Card -->
+    <section class="mb-16 p-6 sm:p-8 rounded-2xl bg-obsidian-surface/60 border border-gold-tungsten/30 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-48 h-48 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-2">
+          Architectural Brief & Strategy
+        </span>
+        <p class="text-base text-text-primary leading-relaxed mb-4">
+          Bulky WordPress templates distributed by generic creative agencies fail industrial manufacturers in global markets. When an international procurement officer clicks on your machinery catalog and waits five seconds for bloated scripts to render, your firm loses credibility before conversations even start.
+        </p>
+        <p class="text-sm text-text-muted leading-relaxed">
+          I combine the Astro Zero-JS pre-rendering engine with Cloudflare Edge's 330+ points of presence worldwide. I deliver your technical catalogs, engineering capabilities, and Request for Quotation (RFQ) pipelines at lightning speed, backed by zero ongoing maintenance debt and strict security guarantees.
+        </p>
+      </div>
+    </section>
+
+    <!-- Why Industrial Firms Lose Ground -->
+    <section class="mb-16 space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+        Why Ankara Industrial Exporters Lose B2B Clients with Generic Templates
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-red-950/40 text-red-400 flex items-center justify-center font-mono font-bold mb-4">
+            01
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Crippling Plugin Bloat & Latency</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Dozens of third-party plugins lock the database. For overseas buyers browsing from Frankfurt or Chicago, latency climbs above 4 seconds.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-amber-950/40 text-amber-400 flex items-center justify-center font-mono font-bold mb-4">
+            02
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Broken Hreflang & Missing Indexation</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Automated translation plugins distort hreflang signals, causing Google search bots to overlook non-Turkish catalog pages entirely.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-emerald-950/40 text-emerald-400 flex items-center justify-center font-mono font-bold mb-4">
+            03
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Compounding Security Vulnerabilities</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Unpatched CMS extensions and unvetted PHP scripts present perpetual attack surfaces, burdening your organization with recurring agency maintenance retainers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparative Architecture Matrix -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Technical Benchmarks
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Architecture Comparison: Agency Template vs. Onur Aksoy B2B Systems Architecture
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-obsidian-border bg-obsidian-surface">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-obsidian-black/80 text-text-muted font-mono uppercase tracking-wider text-[11px] border-b border-obsidian-border">
+            <tr>
+              <th scope="col" class="py-4 px-4 sm:px-6">Engineering Benchmark</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-red-300">Standard Agency Template (WordPress / Elementor)</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Onur Aksoy B2B Systems Architecture</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-obsidian-border/50 text-text-secondary">
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Global TTFB & Page Load Time</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">1800ms – 4500ms (Origin hosting bottleneck)</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-mono font-semibold">&lt; 50ms (330+ Cloudflare Edge PoPs)</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Client Bundle & Script Overhead</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">3-5 MB JavaScript, dozens of blocking stylesheets</td>
+              <td class="py-4 px-4 sm:px-6 text-emerald-400 font-mono font-semibold">Astro Zero-JS, 0 KB runtime bloat</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Multilingual Hreflang Integrity</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Fragile client-side routing, indexing collisions</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Bidirectional, compile-time validated hreflang tags</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Cybersecurity & Attack Surface</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Frequent SQL injection vulnerabilities, plugin exploits</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Static compilation, zero origin database exposure, strict CSP</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">AI Search & SGE Discoverability</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Missing Schema.org entities, inaccessible to AI crawlers</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Full Schema.org @graph (Service, FAQPage) & llms.txt endpoints</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">3-Year Total Cost of Ownership</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">High VPS hosting, annual plugin licenses, retainer fees</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Zero server licensing, zero plugin lock-in, total code ownership</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Three Core Pillars -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Core Principles
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Three Architectural Pillars Behind Global B2B Conversion
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">PILLAR 01</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Sub-50ms Speed for International Buyers</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              When procurement specialists in Munich, Houston, or Riyadh inspect your catalog, assets load from local edge points without latency, eliminating high bounce rates.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            Sub-50ms Global Response
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">PILLAR 02</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Reliable RFQ, WhatsApp & ERP Pipelines</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Tender inquiries never get lost in unmonitored inboxes. Derived from oaTeklif and oaPOS system designs, RFQ data bridges seamlessly into ERPs or direct messaging pipelines.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Deterministic Pipeline
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">PILLAR 03</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Direct Collaboration with the Systems Architect</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              No middle managers, no generic agency friction. You work directly with me to blueprint, develop, and deploy your industrial export platform to perfection.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            Direct Architect Access
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relevant Technical Vault & Broadcasts -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Technical Vault & Field Notes
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Related Engineering Analyses & Architecture Blueprints
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/en/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-gold-tungsten">Field Report • 10 min read</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            B2B Web Architecture Guide for Industrial Exporters
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            In-depth strategic guidance for manufacturing and defense leaders seeking digital export sovereignty in global markets.
+          </p>
+        </a>
+
+        <a
+          href="/en/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-emerald-400">Security Report • 11 min read</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Enterprise Web Cybersecurity Standards 2026
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            HSTS Preload, strict CSP headers, zero attack-surface static compilation, and Cloudflare WAF protection.
+          </p>
+        </a>
+
+        <a
+          href="/en/ankara-custom-software-architecture/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-text-primary">Software Architecture • Dedicated Page</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara Custom Web Software & Systems Architecture
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            High-concurrency APIs, local-first desktop integrations, and bespoke systems built on TypeScript, Rust, and .NET 8.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Knowledge Base
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Frequently Asked Questions & Architectural Answers
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group border border-obsidian-border rounded-xl p-5 bg-obsidian-surface/40 hover:border-gold-tungsten/40 transition-all duration-300">
+            <summary class="flex items-center justify-between font-semibold text-text-primary cursor-pointer list-none text-sm sm:text-base">
+              <span>{faq.question}</span>
+              <span class="text-gold-tungsten group-open:rotate-180 transition-transform duration-200 ml-4 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-text-muted mt-4 pt-4 border-t border-obsidian-border/50 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Direct CTA & Advisory Block -->
+    <section class="p-8 sm:p-10 rounded-2xl bg-gradient-to-b from-obsidian-surface to-obsidian-black border border-gold-tungsten/40 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold">
+          Direct Inquiries & Architecture Review
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
+          Do Not Delegate Your Global B2B Infrastructure to Template Agencies
+        </h2>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Discuss your export objectives, technical catalog specifications, and integration requirements directly with me. Let us engineer a digital foundation built for global scale.
+        </p>
+
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+          <a
+            href="mailto:dev@onuraksoy.com.tr"
+            class="px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold hover:bg-gold-highlight transition-colors flex items-center gap-2"
+          >
+            <span>dev@onuraksoy.com.tr</span>
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>WhatsApp: +90 551 181 70 53</span>
+          </a>
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>Telegram: @oaonuraksoy</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

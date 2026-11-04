@@ -4,7 +4,7 @@ description: "Run full Bitwarden Premium features on your own VPS for free witho
 pubDate: 2026-08-20
 lang: "en"
 ref: "vaultwarden-kurulumu"
-featured: true
+featured: false
 tags: ["Vaultwarden", "Bitwarden", "Docker", "Plesk", "Cybersecurity", "SelfHosted", "DevOps"]
 youtubeId: "OMLQdKx_T08"
 duration: "PT4M48S"

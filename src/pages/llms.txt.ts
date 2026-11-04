@@ -68,6 +68,8 @@ export const GET: APIRoute = async () => {
 
 ## Navigation & Core Sections (Türkçe Kök Dizin)
 - [Ana Sayfa](https://onuraksoy.com.tr/): Ana teknik vitrin, mimari portfolyo ve sistem felsefesi
+- [Ankara Kurumsal Web Tasarım & B2B Mimari](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/) ([EN](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/)): Ankara OSB, İvedik, OSTİM ve Sincan sanayi kuruluşları için sub-50ms küresel B2B ihracat vitrini, zero-JS ve tip güvenli RFQ veri mimarisi
+- [Ankara Web Yazılım & Özel Sistem Mimarisi](https://onuraksoy.com.tr/ankara-web-yazilim/) ([EN](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/)): Kurumsal işletmeler için özel web yazılımı, yüksek başarımlı Rust, .NET 8 ve Astro mikroservis mimarileri
 - [Projeler Dizini](https://onuraksoy.com.tr/projects/): Amiral gemisi yazılım mimarileri, kıyaslama testleri ve vaka analizleri
 - [Yayınlar & Kasa](https://onuraksoy.com.tr/broadcasts/): Video yayınları, teknik makaleler, mimari deşifreler ve indirilebilir arşivler
 - [Hakkında](https://onuraksoy.com.tr/about/): Biyografi, mühendislik felsefesi ve teknik yetkinlik matrisi
@@ -75,6 +77,8 @@ export const GET: APIRoute = async () => {
 
 ## English Edition (/en/)
 - [Homepage (EN)](https://onuraksoy.com.tr/en/): Main technical showcase and architecture portfolio
+- [Ankara Enterprise Web Architecture](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/) ([TR](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/)): Sub-50ms global B2B web architecture and zero-JS export portals for industrial enterprises in Ankara OSTIM and Sincan
+- [Ankara Custom Software Architecture](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/) ([TR](https://onuraksoy.com.tr/ankara-web-yazilim/)): Custom enterprise web software, distributed Rust/.NET backends, and deterministic local-first database architectures
 - [Projects Index (EN)](https://onuraksoy.com.tr/en/projects/): Flagship software architectures and case studies
 - [Broadcasts & Vault (EN)](https://onuraksoy.com.tr/en/broadcasts/): Video screencasts, technical deep dives, and downloadable blueprints
 - [About Onur Aksoy (EN)](https://onuraksoy.com.tr/en/about/): Engineering philosophy, background, and tech stack

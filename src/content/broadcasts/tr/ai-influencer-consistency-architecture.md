@@ -4,7 +4,7 @@ description: "Yapay zeka influencer hesaplarının %80'inin ilk 45 günde neden 
 pubDate: 2026-04-10
 lang: "tr"
 ref: "ai-influencer-consistency-architecture"
-featured: true
+featured: false
 tags: ["YapayZeka", "AIInfluencer", "ComfyUI", "LoRA", "AlgoritmikBan", "SistemMimarisi", "GoruntuIsleme"]
 duration: "PT18M40S"
 thumbnail: "/images/broadcasts/ai-influencer-consistency-architecture.webp"

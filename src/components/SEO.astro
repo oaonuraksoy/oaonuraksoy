@@ -4,6 +4,7 @@ interface Props {
   description?: string;
   image?: string;
   canonicalUrl?: string;
+  counterpartUrl?: string;
   lang?: 'en' | 'tr';
   type?: 'website' | 'article' | 'profile';
 }
@@ -15,6 +16,7 @@ const {
   description = "Onur Aksoy'un resmi web sitesi, sistem geliştirme portfolyosu ve vaka analizleri. Yapay zeka yerel sistemler, yerel öncelikli masaüstü yazılımları ve yüksek performanslı dijital araçlar.",
   image = `${siteUrl}/images/onur-aksoy.webp`,
   canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://onuraksoy.com.tr').href,
+  counterpartUrl,
   lang = 'tr',
   type = 'website'
 } = Astro.props;
@@ -24,7 +26,15 @@ const pathname = Astro.url.pathname;
 let enPath = pathname;
 let trPath = pathname;
 
-if (pathname.startsWith('/en')) {
+if (counterpartUrl) {
+  if (lang === 'tr') {
+    trPath = pathname;
+    enPath = counterpartUrl;
+  } else {
+    enPath = pathname;
+    trPath = counterpartUrl;
+  }
+} else if (pathname.startsWith('/en')) {
   enPath = pathname;
   trPath = pathname.replace(/^\/en(\/|$)/, '/') || '/';
 } else {

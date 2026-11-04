@@ -12,6 +12,8 @@ const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const urlList = [
   // Core Pages (TR Root)
   `https://${HOST}/`,
+  `https://${HOST}/ankara-kurumsal-web-tasarim/`,
+  `https://${HOST}/ankara-web-yazilim/`,
   `https://${HOST}/about/`,
   `https://${HOST}/projects/`,
   `https://${HOST}/broadcasts/`,
@@ -19,6 +21,8 @@ const urlList = [
 
   // Core Pages (EN)
   `https://${HOST}/en/`,
+  `https://${HOST}/en/ankara-b2b-web-architecture/`,
+  `https://${HOST}/en/ankara-custom-software-architecture/`,
   `https://${HOST}/en/about/`,
   `https://${HOST}/en/projects/`,
   `https://${HOST}/en/broadcasts/`,
@@ -41,6 +45,10 @@ const urlList = [
   `https://${HOST}/en/projects/seo-lens/`,
 
   // Broadcasts (TR & EN)
+  `https://${HOST}/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/`,
+  `https://${HOST}/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/`,
+  `https://${HOST}/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/`,
+  `https://${HOST}/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/`,
   `https://${HOST}/broadcasts/ai-influencer-consistency-architecture/`,
   `https://${HOST}/broadcasts/ai-native-architecture/`,
   `https://${HOST}/broadcasts/local-first-software/`,
@@ -49,6 +57,10 @@ const urlList = [
   `https://${HOST}/broadcasts/oateklif-ucretsiz-teklif-olusturucu/`,
   `https://${HOST}/broadcasts/det-domain-takip-scripti/`,
   `https://${HOST}/broadcasts/csharp-ileti-merkezi-sms-api/`,
+  `https://${HOST}/en/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/`,
+  `https://${HOST}/en/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/`,
+  `https://${HOST}/en/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/`,
+  `https://${HOST}/en/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/`,
   `https://${HOST}/en/broadcasts/ai-influencer-consistency-architecture/`,
   `https://${HOST}/en/broadcasts/ai-native-architecture/`,
   `https://${HOST}/en/broadcasts/local-first-software/`,
@@ -68,12 +80,18 @@ const urlList = [
   `https://${HOST}/llms-full.txt`,
   `https://${HOST}/robots.txt`,
 
-  // Multi-ratio Portraits
+  // Multi-ratio Portraits & Cover Images
   `https://${HOST}/images/onur-aksoy.webp`,
   `https://${HOST}/images/onur-aksoy-1x1.webp`,
   `https://${HOST}/images/onur-aksoy-4x3.webp`,
   `https://${HOST}/images/onur-aksoy-16x9.webp`,
-  `https://${HOST}/images/onur-aksoy-og.webp`
+  `https://${HOST}/images/onur-aksoy-og.webp`,
+  `https://${HOST}/images/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi.webp`,
+  `https://${HOST}/images/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti.webp`,
+  `https://${HOST}/images/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026.webp`,
+  `https://${HOST}/images/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js.webp`,
+  `https://${HOST}/images/services/ankara-kurumsal-web-tasarim.webp`,
+  `https://${HOST}/images/services/ankara-web-yazilim.webp`
 ];
 
 async function pingWebSub() {

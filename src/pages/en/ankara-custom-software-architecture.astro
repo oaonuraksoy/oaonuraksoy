@@ -1,0 +1,349 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: "What differentiates your systems architecture from typical agency 'custom software'?",
+    answer: "Most local web agencies label their work as 'custom software' while merely packaging off-the-shelf WordPress setups or third-party PHP scripts with superficial CSS tweaks. This inflates database overhead and fails under real production concurrency. I build zero-dependency, bespoke software systems from scratch using TypeScript, Astro, Rust, and .NET 8, tailored specifically to your organization's business logic with zero technical debt."
+  },
+  {
+    question: "Who owns the source code and intellectual property upon delivery?",
+    answer: "Your organization holds 100% ownership of the entire source code repository, relational database schemas, and architectural documentation. There are no proprietary license lock-ins, artificial framework dependencies, or recurring retainers. Any competent senior engineering team can inspect, build, and extend the system independently."
+  },
+  {
+    question: "Can your web software bridge into existing desktop software, ERPs, or local-area hardware?",
+    answer: "Yes. Leveraging the local-first socket and IPC patterns I engineered for oaPOS and oa_sip_recorder, I build deterministic bridges between modern web interfaces and on-premise infrastructure. This includes offline-first LAN networks, serial port hardware (scales, barcode scanners, printers), and enterprise ERP databases such as SAP, Logo, or Mikro."
+  },
+  {
+    question: "How do you incorporate AI workflows and deterministic automations into business logic?",
+    answer: "Rather than treating AI as a superficial customer chat widget, I embed multimodal models into operational pipelines—such as automating order classification, parsing technical procurement specifications, forecasting inventory, and preparing multilingual RFQ responses with deterministic safeguards that eliminate hallucination risks."
+  },
+  {
+    question: "How do your architectures comply with enterprise IT and cybersecurity audits?",
+    answer: "Every system is constructed to satisfy OWASP Top 10 security standards, strict data protection compliance (KVKK/GDPR), and Zero-Trust principles. With static code auditing, strict Content Security Policies (CSP), and role-based access control (RBAC), the architecture passes corporate IT security screenings seamlessly."
+  }
+];
+
+const title = "Ankara Custom Web Software & Systems Architecture — Onur Aksoy";
+const description = "Avoid template agencies disguised as 'custom software'. High-concurrency APIs, local-first architectures, and scalable TypeScript, Rust, and .NET systems.";
+const counterpartUrl = "/ankara-web-yazilim/";
+const ogImage = "https://onuraksoy.com.tr/images/services/ankara-web-yazilim.webp";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={ogImage}
+  lang="en"
+  counterpartUrl={counterpartUrl}
+  schemaType="Service"
+  faqs={faqs}
+>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb Nav -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-xs font-mono text-text-muted">
+        <li>
+          <a href="/en/" class="hover:text-gold-highlight transition-colors">Home</a>
+        </li>
+        <li>/</li>
+        <li class="text-gold-tungsten font-semibold">Ankara Custom Web Software & Architecture</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pb-12 border-b border-obsidian-border mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-gold-tungsten/40 text-xs font-mono text-gold-tungsten mb-4">
+        <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+        <span>Bespoke Engineering & Deterministic Code</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight mb-6">
+        Custom Systems Architecture for Enterprises in Ankara
+      </h1>
+      <p class="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-3xl font-normal">
+        When standard CMS templates collapse: high-concurrency B2B platforms, ERP/inventory synchronizations, local-first desktop-web hybrid systems, and enterprise automation engineered directly by a senior systems architect.
+      </p>
+    </header>
+
+    <!-- Executive Summary Card -->
+    <section class="mb-16 p-6 sm:p-8 rounded-2xl bg-obsidian-surface/60 border border-gold-tungsten/30 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-48 h-48 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-2">
+          Engineering Brief & Real Production
+        </span>
+        <p class="text-base text-text-primary leading-relaxed mb-4">
+          Most 'custom software' offered by traditional agencies is nothing more than bloated CMS installations wrapped in superficial code. As your enterprise scales, these fragile stacks lock up, query latencies spiral out of control, and proprietary dependencies jeopardize data integrity.
+        </p>
+        <p class="text-sm text-text-muted leading-relaxed">
+          I engineer robust, decoupled applications using TypeScript, Astro, Rust, and .NET 8 that reflect your specific business domain. From the local-first POS networking in oaPOS to high-throughput VoIP recording in oa_sip_recorder and WASM audio/video tooling in 10SeC, I bring proven production rigor to your enterprise systems.
+        </p>
+      </div>
+    </section>
+
+    <!-- The Illusion of "Custom Software" in Agencies -->
+    <section class="mb-16 space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+        The "Custom Software" Mirage: Why Agency Stacks Accumulate Technical Debt
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-red-950/40 text-red-400 flex items-center justify-center font-mono font-bold mb-4">
+            01
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Hidden Plugin Fragility</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Marketed as custom-tailored, projects are chained to dozens of unvetted third-party plugins. A single upstream bug can compromise the entire infrastructure.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-amber-950/40 text-amber-400 flex items-center justify-center font-mono font-bold mb-4">
+            02
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Hostage Source Code</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Agencies frequently obscure repository access and documentation, forcing clients into predatory hourly maintenance retainers for basic modifications.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-emerald-950/40 text-emerald-400 flex items-center justify-center font-mono font-bold mb-4">
+            03
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Rigorous Systems Engineering</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            As demonstrated across oaPOS, oa_sip_recorder, and 10SeC: pristine Git history, zero plugin bloat, and clean architecture ready for enterprise IT audit.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparative Architecture Matrix -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Architectural Benchmarks
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Agency "Custom Software" vs. True Systems Engineering
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-obsidian-border bg-obsidian-surface">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-obsidian-black/80 text-text-muted font-mono uppercase tracking-wider text-[11px] border-b border-obsidian-border">
+            <tr>
+              <th scope="col" class="py-4 px-4 sm:px-6">Domain</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-red-300">Agency "Custom Software"</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Onur Aksoy Systems Architecture</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-obsidian-border/50 text-text-secondary">
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Code Ownership & IP Rights</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Proprietary agency lock-in or obfuscated files</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">100% client-owned independent Git repo & technical specs</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Database & Concurrency</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Overburdened CMS schemas, severe N+1 bottlenecks</td>
+              <td class="py-4 px-4 sm:px-6 text-emerald-400 font-mono font-semibold">Type-safe, normalized schemas (PostgreSQL / SQLite / Edge D1)</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Hardware & ERP Integration</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Fragile REST mocks; systems halt without Internet</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Raw LAN sockets, serial ports (RS232/USB), and deterministic sync</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Cybersecurity & Governance</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Unvetted third-party plugin vulnerabilities</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Zero-Trust architecture, granular RBAC, and full OWASP Top 10 compliance</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Maintainability</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Strict agency dependence, undocumented spaghetti code</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Clean, industry-standard code navigable by any senior engineer</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Three Engineering Guarantees -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Guarantees
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Three Engineering Commitments to Enterprise Clients
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">GUARANTEE 01</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Zero Technical Debt & Full IP Ownership</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Every single line of production code is delivered to your organization's private repository. No artificial licensing, no framework handcuffs.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            100% Code Independence
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">GUARANTEE 02</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Web + Desktop + AI Hybrid Orchestration</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Unconstrained by simple browser runtimes: native Windows desktop runtimes, LAN device drivers, and modern web applications unified into a cohesive system.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Hybrid System Orchestration
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">GUARANTEE 03</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Full Enterprise IT & Security Alignment</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Constructed to meet rigorous corporate IT security standards, audit logging, and data privacy protocols (GDPR/KVKK) with comprehensive test coverage.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            Enterprise IT Compliance
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relevant Technical Vault & Broadcasts -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Technical Field Notes & Analyses
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Related Engineering Analyses & Architecture Blueprints
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/en/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-red-400">Analysis • 9 min read</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            WordPress Plugin Debt vs. Custom Software Economics
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            The hidden multi-year costs of plugin maintenance contracts compared against the long-term unit economics of bespoke software.
+          </p>
+        </a>
+
+        <a
+          href="/en/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-gold-tungsten">Security Report • 11 min read</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Enterprise Web Cybersecurity Standards 2026
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Zero-Trust architectures, strict Content Security Policies, and mitigation strategies against modern software supply-chain vulnerabilities.
+          </p>
+        </a>
+
+        <a
+          href="/en/ankara-b2b-web-architecture/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-emerald-400">B2B Web • Dedicated Page</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara B2B Web Architecture & Industrial Systems
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Sub-50ms edge-rendered, zero-JS web architecture engineered for Ankara industrial and defense exporters.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Knowledge Base
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Frequently Asked Questions & Architectural Answers
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group border border-obsidian-border rounded-xl p-5 bg-obsidian-surface/40 hover:border-gold-tungsten/40 transition-all duration-300">
+            <summary class="flex items-center justify-between font-semibold text-text-primary cursor-pointer list-none text-sm sm:text-base">
+              <span>{faq.question}</span>
+              <span class="text-gold-tungsten group-open:rotate-180 transition-transform duration-200 ml-4 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-text-muted mt-4 pt-4 border-t border-obsidian-border/50 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Direct CTA & Advisory Block -->
+    <section class="p-8 sm:p-10 rounded-2xl bg-gradient-to-b from-obsidian-surface to-obsidian-black border border-gold-tungsten/40 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold">
+          Direct Collaboration & Architecture Review
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
+          Plan Your Custom Software Architecture Directly with the Systems Architect
+        </h2>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Skip generic agency templates. Discuss your operational workflows, API integrations, and engineering requirements directly with me—with a guarantee of zero technical debt.
+        </p>
+
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+          <a
+            href="mailto:dev@onuraksoy.com.tr"
+            class="px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold hover:bg-gold-highlight transition-colors flex items-center gap-2"
+          >
+            <span>dev@onuraksoy.com.tr</span>
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>WhatsApp: +90 551 181 70 53</span>
+          </a>
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>Telegram: @oaonuraksoy</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

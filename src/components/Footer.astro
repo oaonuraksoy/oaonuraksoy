@@ -106,6 +106,31 @@ const socialLinks = [
       </div>
     </div>
 
+    <!-- Enterprise Architecture & Regional Advisory -->
+    <div class="py-5 border-b border-obsidian-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold-tungsten"></span>
+        <span class="font-mono text-gold-tungsten uppercase tracking-wider text-[11px] font-semibold">
+          {lang === 'tr' ? 'Kurumsal Mimari & Bölgesel Çözümler:' : 'Enterprise Architecture & Regional Advisory:'}
+        </span>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <a
+          href={lang === 'tr' ? '/ankara-kurumsal-web-tasarim/' : '/en/ankara-b2b-web-architecture/'}
+          class="text-text-secondary hover:text-gold-highlight hover:underline decoration-gold-tungsten/40 underline-offset-4 transition-colors font-medium"
+        >
+          {lang === 'tr' ? 'Ankara Kurumsal Web Tasarım & B2B Mimari' : 'Ankara B2B Web Architecture'}
+        </a>
+        <span class="text-obsidian-border hidden sm:inline">•</span>
+        <a
+          href={lang === 'tr' ? '/ankara-web-yazilim/' : '/en/ankara-custom-software-architecture/'}
+          class="text-text-secondary hover:text-gold-highlight hover:underline decoration-gold-tungsten/40 underline-offset-4 transition-colors font-medium"
+        >
+          {lang === 'tr' ? 'Ankara Özel Web Yazılım & Sistem Mimarisi' : 'Ankara Custom Software Architecture'}
+        </a>
+      </div>
+    </div>
+
     <!-- Bottom Bar -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-muted">
       <div class="flex items-center gap-3">
