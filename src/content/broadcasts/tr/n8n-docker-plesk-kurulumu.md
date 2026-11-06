@@ -1,13 +1,14 @@
 ---
-title: "Zapier'e Para Ödemeyin: Plesk Sunucuda Docker ile Ücretsiz n8n Kurulumu"
-description: "İş süreçlerinizi ve yapay zeka otomasyonlarınızı Zapier veya Make gibi pahalı SaaS platformlarına adım başı ödeme yapmadan kendi sunucunuzda nasıl çalıştırırsınız? Plesk üzerinde Docker ile sınırsız n8n kurulumu ve ters proxy mimarisi."
-seoTitle: "n8n Kurulumu: Plesk Sunucuda Docker ile"
-seoDescription: "Zapier'e ödeme yapmadan iş akışı otomasyonu: Plesk yönetimli sunucuda Docker ile ücretsiz, kendi barındırdığınız n8n kurulumu adım adım."
+title: "n8n'den Rust & MCP Ajanlarına Geçiş: Docker/Plesk Kurulumu ve 2026 Otonom Mimari Kıyaslaması"
+description: "Plesk ve Docker üzerinde n8n kurulum arşiv rehberi; 2026'da Node.js otomasyon araçları yerine neden Rust tabanlı Tinyflows, GraphBit ve MCP ajanlarına geçtik?"
+seoTitle: "n8n vs. Rust & MCP Otonom Ajan Mimarisi"
+seoDescription: "Plesk ve Docker üzerinde n8n kurulum arşiv rehberi; 2026'da Node.js otomasyon araçları yerine neden Rust tabanlı Tinyflows, GraphBit ve MCP ajanlarına geçtik?"
 pubDate: 2025-04-04
+updatedDate: 2026-11-06
 lang: "tr"
 ref: "n8n-docker-plesk-kurulumu"
 featured: false
-tags: ["n8n", "Otomasyon", "Docker", "Plesk", "SelfHosted", "YapayZeka", "DevOps"]
+tags: ["Rust", "MCP", "n8n", "Otomasyon", "Docker", "Plesk", "SelfHosted", "DevOps"]
 youtubeId: "VsdZFJN8ezI"
 duration: "PT3M28S"
 thumbnail: "/images/broadcasts/n8n-docker-plesk-kurulumu.webp"
@@ -28,65 +29,101 @@ downloads:
     type: "yml"
     driveUrl: "/vault/n8n/docker-compose-n8n-plesk.yml"
     hash: "sha256:bc9927eaa2cdc8df2e3ff63de4e0e4998d7729f14522380280a55b5309f05315"
-  - name: "n8n Resmi Dokümantasyonu (GitHub)"
+  - name: "Tinyflows Rust DAG Engine (GitHub)"
     size: "Open Source"
+    type: "web"
+    driveUrl: "https://github.com/tinyhumansai/tinyflows"
+  - name: "n8n Resmi Dokümantasyonu (Arşiv)"
+    size: "Archive"
     type: "web"
     driveUrl: "https://github.com/n8n-io/n8n"
 faqs:
-  - question: "Zapier veya Make yerine n8n kurmak neden daha avantajlıdır?"
-    answer: "Zapier ve Make gibi SaaS servisleri her tetikleyici ve döngü adımı için ayrı ücret (task toll) keser. Yoğun veri işleyen veya yapay zeka ajanları çalıştıran bir sistemde aylık fatura yüzlerce dolara ulaşabilir. Self-hosted n8n ise kendi sunucunuzun işlem gücüyle çalışır; ayda 1 milyon adım çalıştırsanız dahi ek bir maliyet çıkarmaz."
+  - question: "2026'da yeni bir projede n8n mi yoksa Rust/MCP tabanlı motorlar (Tinyflows, GraphBit, Goose) mı tercih edilmeli?"
+    answer: "2026 kurumsal mimarilerinde ve otonom çoklu ajan sistemlerinde kesinlikle Rust çekirdekli deterministik DAG motorları (Tinyflows, GraphBit) ve MCP protokolü tercih edilmelidir. n8n basit webhook tetiklemeleri ve no-code ihtiyaçları için bir geçiş aracıydı; ancak bellek yönetimi, derleme anı tip güvenliği (WorkflowGraph), devre kesiciler ve deterministik çalışma gerektiren çoklu ajan orkestrasyonunda Rust altyapısı alternatifsizdir."
+  - question: "Zapier veya Make yerine n8n kurmak neden bir ara çözüm olarak kaldı?"
+    answer: "Zapier ve Make gibi SaaS servislerinin adım başı faturalandırma modelinden kaçmak için 2024-2025'te n8n önemli bir maliyet avantajı sağladı. Ancak yapay zeka ajanları geliştikçe, Node.js tabanlı n8n'in bellek sızıntıları, Fair-code lisans kısıtları ve kırılgan JSON şemaları kurumsal ölçekte Rust tabanlı motorlara geçişi zorunlu kıldı."
   - question: "Plesk Nginx ters proxy yapılandırmasında proxy_buffering off neden zorunludur?"
     answer: "n8n iş akışı düzenleyicisinde test çalıştırırken ve canlı logları görüntülerken Server-Sent Events (SSE) ve WebSocket akışlarını kullanır. Nginx tamponlama (buffering) açık kaldığında yanıtlar istemciye paketler dolana kadar gecikmeli iletilir; bu da arayüzde donmalara yol açar."
   - question: "n8n konteyneri yeniden başlatıldığında akışlarım ve kimlik bilgilerim kaybolur mu?"
     answer: "Hayır. /var/n8n_data sunucu dizini konteyner içindeki /home/node/.n8n dizinine hacim (volume mount) olarak bağlandığı sürece tüm iş akışları, şifreli anahtarlar ve yürütme geçmişi sunucu diskinde kalıcı olarak saklanır."
-  - question: "Kendi n8n sunucuma yerel yapay zeka modellerini (Ollama vb.) bağlayabilir miyim?"
-    answer: "Evet. Aynı sunucuda çalışan Ollama konteyneri veya harici OpenAI/Anthropic API'leri n8n'in dahili AI Agent, Vector Store ve Text Embeddings düğümleriyle doğrudan entegre edilebilir; verileriniz üçüncü parti otomasyon bulutlarına sızmaz."
+  - question: "Model Context Protocol (MCP) neden n8n düğümlerinin yerini aldı?"
+    answer: "MCP, Anthropic tarafından başlatılan ve sektör standardı haline gelen açık bir protokoldür. Ajanların veritabanlarına, dosya sistemlerine ve API'lere standart JSON-RPC üzerinden tip güvenli erişmesini sağlar. n8n gibi her araç için ayrı bir görsel düğüm ve JS bağımlılığı yüklemek yerine, tek bir standart MCP sunucusu tüm ajan ekosistemine hizmet eder."
 ---
 
-## SaaS Sayacına Para Kaptırmaktan Nasıl Kurtuldum?
+## 2026 Mimari Güncelleme: Neden Node.js Tabanlı n8n'i Geride Bırakıp Rust & MCP Mimarisine Geçtik?
 
-Yazılım projelerimde ve müşteri operasyonlarında webhook entegrasyonları, Stripe fatura bildirimleri, CRM veri senkronizasyonu ve yapay zeka ajan iş akışları kurarken yıllarca Zapier ve Make kullandım. Ancak ölçek büyüdüğünde karşınıza çıkan faturalandırma mantığı tam bir mühendislik kabusu: **Tek bir sonsuz döngü (infinite loop) veya yoğun bir webhook fırtınası yüzünden sabah uyandığınızda yüzlerce dolarlık aşım faturasıyla karşılaşabiliyorsunuz.**
+2024 ve 2025 yıllarında Zapier ve Make gibi SaaS platformlarının adım başı sayaç (task toll) dayatan fahiş faturalandırma modellerinden kaçmak için **self-hosted n8n**, ekosistem için değerli bir ilk nesil ara çözümdü. Kendi VDS sunucumuzda Docker üzerinde n8n çalıştırmak, sıradan webhook yönlendirmelerinde ve temel bildirim akışlarında yüksek maliyet tasarrufu sağladı.
 
-Üstelik şirket veritabanı şifrelerinizi, müşteri e-posta listelerinizi ve gizli API anahtarlarınızı üçüncü parti SaaS platformlarının sunucularına metin olarak girmek hiçbir uyumluluk ve güvenlik prensibiyle uyuşmuyor.
+Ancak **2026 yılına geldiğimizde**, otonom çoklu ajan (multi-agent) mimarileri ve yüksek işlem hacimli kurumsal yapay zeka sistemleri devreye girdiğinde n8n'in temel kısıtları su yüzüne çıktı:
 
-İşte bu yüzden kendi üretim altyapımda ve oaHub projelerinde tüm iş akışlarını açık kaynaklı **n8n** üzerine taşıdım. Plesk kurulu bir VDS üzerinde Docker konteyneri olarak çalıştırdığınızda; ayda ister 1.000 işlem yapın ister 500.000 adım koşturun, sunucu maliyetiniz tek bir kuruş dahi artmıyor.
+1. **V8 Engine ve Node.js Bellek Şişmesi:** Tek bir n8n konteyneri boşta dahi 450 MB – 1 GB RAM tüketir. Yüzlerce eşzamanlı ajan yürütmesinde bellek sızıntıları (OOM) yaşanması kaçınılmazdır.
+2. **Kırılgan Çalışma Zamanı JSON Dönüşümleri:** Düğümler arasında tip garantisi olmayan serbest JSON nesneleri akıtılır. Akış ortasında meydana gelen şema kaymaları, sessiz başarısızlıklara ve veri kaybına yol açar.
+3. **Deterministik Olmayan Döngüler:** Dahili LangChain sarmalayıcıları, ajanların sonsuz veya öngörülemez döngülere girmesini engelleyen katı matematiksel devre kesicilere (circuit breakers) sahip değildir.
+4. **Fair-Code Lisans Kısıtlamaları:** n8n tam anlamıyla açık kaynak (permissive open-source) değildir; "Sustainable Use" lisansı ticari ölçekleme senaryolarında yasal gri alanlar yaratır.
 
-Bu yayında; Plesk kontrol panelinde Docker modülüyle n8n'i nasıl sıfırdan kurduğumuzu, Nginx ters proxy ve SSE (Server-Sent Events) ayarlarını ve canlı bir webhook akışını adım adım paylaşıyorum.
+### oaHub Üretim Altyapısının Yeni Omurgası: Rust & Model Context Protocol (MCP)
+
+oaHub üretim altyapısında artık görsel sürükle-bırak Node.js kutucukları yerine **Rust çekirdekli deterministik DAG (Directed Acyclic Graph) motorları ve doğrudan Model Context Protocol (MCP)** kullanıyoruz:
+
+- **`Tinyflows` (`tinyhumansai/tinyflows` + `tinymcp`):** `%100 Rust` (`#![forbid(unsafe_code)]`) ile yazılmış, tip güvenli `WorkflowGraph` durum makinesine sahip mikro orkestrasyon motoru. Konteyner şişkinliği olmadan, tek bir ikili dosya (binary) halinde saniyede binlerce ajan görevini 15 MB RAM ile paralel yürütür.
+- **`GraphBit` (`InfinitiBit/graphbit`):** Rust çekirdekli deterministik çoklu ajan DAG motoru. Asenkron Tokio çalışma zamanı üzerinde yerleşik devre kesiciler (circuit breakers), katı durum doğrulaması ve sub-5ms işlem gecikmesi sunar.
+- **`Goose` (`aaif-goose`) & Yerel MCP Sunucuları:** 70'ten fazla yerleşik Model Context Protocol uzantısıyla doğrudan ikili düzeyde çalışan, tarayıcı veya V8 bağımlılığı olmayan otonom ajan yürütme katmanı.
+
+```mermaid
+flowchart TD
+    subgraph Legacy["Eski Nesil Yaklaşım (2024-2025 Arşiv)"]
+        N8N["n8n (Node.js / V8 Engine)<br/>500MB+ RAM / Konteyner"]
+        LangChain["LangChain / UI Düğümleri<br/>(Kırılgan JSON / Bellek Sızıntısı)"]
+        N8N --> LangChain
+    end
+
+    subgraph Modern["2026 Otonom Mimari (oaHub Üretim Altyapısı)"]
+        RustCore["Rust Deterministik DAG Motorları<br/>(Tinyflows & GraphBit)"]
+        MCP["Model Context Protocol (MCP)<br/>Tip Güvenli Araç İletişimi"]
+        Goose["Goose / Binary Native Agents<br/>Sub-5ms Gecikme / 15MB RAM"]
+        RustCore --> MCP
+        MCP --> Goose
+    end
+```
+
+---
+
+## 4 Sütunlu Mimari Kıyaslama: SaaS vs. n8n vs. 2026 Rust & MCP
+
+Gerçek üretim iş yüklerimizden elde ettiğimiz maliyet, bellek, güvenlik ve operasyonel bağımsızlık verileri:
+
+| Kriter | Zapier / Make (SaaS) | Self-Hosted n8n (Eski Nesil Node.js) | 2026 Rust & MCP Mimarisi (Tinyflows / GraphBit / Goose) |
+|---|---|---|---|
+| **Çalışma Zamanı & Bellek (RAM)** | Kapalı bulut altyapısı | V8 Engine / Node.js (~450MB–1GB RAM) | **Sıfır maliyetli soyutlama (Zero-cost Rust, ~8–25MB RAM)** |
+| **Ajan Güvenliği & Tip Denetimi** | Yok (UI şablonları) | Çalışma zamanı JSON doğrulaması (kırılgan) | **Derleme anı (compile-time) tip garantisi (`#![forbid(unsafe_code)]`)** |
+| **Yürütme Mantığı & Hata İzolasyonu** | Adım başı ücretli polling | Tekil Node.js event loop / OOM çökme riski | **Deterministik DAG durum makinesi + Devre Kesici (Circuit Breakers)** |
+| **Araç Entegrasyon Standardı** | Tescilli SaaS konnektörleri | Topluluk düğümleri (Community nodes) | **Evrensel Model Context Protocol (MCP / Stdio & SSE)** |
+| **Ajanlar Arası İletişim Gecikmesi** | 1000–5000 ms (Ağ gecikmesi) | 50–200 ms (Dahili kuyruk / Redis) | **Sub-5ms (Doğrudan ikili IPC / async-channel)** |
+| **Lisans & Operasyonel Bağımsızlık** | Kapalı ticari SaaS | Fair-code (Sustainable use kısıtı) | **%100 Açık Kaynak (MIT / Apache-2.0, sıfır kısıt)** |
+
+---
+
+## Arşiv Kurulum Rehberi: Plesk & Docker ile n8n Kurulumu (2025 Video Adımları)
+
+Aşağıdaki teknik adımlar, 2025 tarihli YouTube videomuzda (`VsdZFJN8ezI`) anlatılan ve geleneksel webhook/bildirim senaryoları için Plesk üzerinde n8n barındırmak isteyen geliştiriciler için eksiksiz arşiv dokümantasyonu olarak korunmaktadır.
 
 ```mermaid
 flowchart TD
     Webhook["Dış Webhook Çağrısı<br/>(Stripe, GitHub, Webhook POST)"] -->|HTTPS 443| Nginx["Plesk Nginx Ters Proxy<br/>(proxy_buffering off; SSE Desteği)"]
     Nginx -->|Port 5678| n8n["n8n Konteyneri<br/>(Node.js Workflow Runtime)"]
     n8n --> Storage[("Kalıcı SQLite Verisi<br/>(/var/n8n_data)")]
-    n8n --> LLM["Yapay Zeka / LangChain Düğümleri<br/>(Ollama / OpenAI / Claude)"]
     n8n --> Action["Uç Eylemler<br/>(Telegram, E-Posta, MySQL, S3)"]
 ```
 
----
+### 1. Plesk Docker Kataloğunda n8n İmajı ve Konfigürasyonu
 
-## Mimari Kıyaslama: Zapier vs. Make vs. Self-Hosted n8n
-
-Kendi iş akışlarımda test ettiğim maliyet, güvenlik ve teknik kabiliyet tablosu:
-
-| Kriter | Zapier (SaaS) | Make (Integromat SaaS) | Self-Hosted n8n (Bizim Kurulum) |
-|---|---|---|---|
-| **Aylık 100.000 İşlem Maliyeti** | ~$599 / ay | ~$149 / ay | **$0 (Mevcut sunucunuzda)** |
-| **Veri Gizliliği & Egemenliği** | Üçüncü parti ABD sunucuları | Üçüncü parti AB sunucuları | **%100 Kendi VDS / Sunucunuzda** |
-| **Özel Kod Çalıştırma** | 1–2 sn CPU sınırı (Kısıtlı Python/JS) | 5 sn işlem sınırı | **Limitsiz Node.js / NPM Paketleri** |
-| **Yapay Zeka Ajan Düğümleri** | Ek kredi ve ücret gerektirir | Temel LLM düğümleri | **LangChain, Ollama ve Vektör Veritabanı Desteği** |
-| **Webhook Gecikmesi** | Polling bazlı (1–5 dakika gecikme) | Polling / Anlık | **Milisaniyelik Anlık Yanıt (Sub-100ms)** |
-
----
-
-## 1. Plesk Docker Kataloğunda n8n Kurulumu
-
-Plesk panelinizde **Docker > Docker Kataloğu** sekmesine gelin ve `n8nio/n8n` imajını aratıp indirin. Konteyner ayarlarında mutlaka yapılması gereken 3 hayati adım şunlardır:
+Plesk kontrol panelinizde **Docker > Docker Kataloğu** sekmesine gelin ve `n8nio/n8n` imajını aratıp indirin. Konteyner ayarlarında uygulanması gereken parametreler:
 
 1. **Port Eşleştirmesi:**
    - Konteyner Portu: `5678`
-   - Sunucu Portu: `5678` (Yerel arabirime bağlı `127.0.0.1:5678`)
+   - Sunucu Portu: `5678` (Yalnızca yerel arabirime bağlı `127.0.0.1:5678`)
 2. **Kalıcı Dizin Bağlantısı (Volume Mount):**
-   Konteyneri güncellediğinizde veya sunucuyu yeniden başlattığınızda iş akışlarınızın silinmemesi için sunucu üzerinde `/var/n8n_data` dizinini oluşturun:
+   Konteyner güncellemelerinde iş akışlarının silinmemesi için sunucu üzerinde `/var/n8n_data` dizinini oluşturun:
    - Sunucu Dizini: `/var/n8n_data`
    - Konteyner İçi Dizin: `/home/node/.n8n`
    - İzinler: `chown -R 1000:1000 /var/n8n_data`
@@ -101,11 +138,9 @@ Plesk panelinizde **Docker > Docker Kataloğu** sekmesine gelin ve `n8nio/n8n` i
    EXECUTIONS_DATA_MAX_AGE=168
    ```
 
----
+### 2. Plesk Nginx Ters Proxy ve SSE Yapılandırması
 
-## 2. Plesk Nginx Ters Proxy Yapılandırması
-
-n8n web arayüzünde sürükle-bırak yaparken ve canlı akışları test ederken arayüzün kilitlenmemesi için Nginx ters proxy katmanında `proxy_buffering off;` tanımlanması zorunludur. Plesk'te `n8n.alanadiniz.com` alt alan adının **Ek Nginx Yönergeleri** bölümüne şu blok eklenir:
+n8n web arayüzünde canlı akış testleri yürütülürken arayüzün donmaması için Nginx ters proxy katmanında `proxy_buffering off;` tanımlanması zorunludur. Plesk'te ilgili alt alan adının **Ek Nginx Yönergeleri** bölümüne şu blok eklenir:
 
 ```nginx
 location / {
@@ -123,29 +158,25 @@ location / {
 }
 ```
 
-Bu yönerge kaydedilip Let's Encrypt SSL aktifleştirildiğinde, tarayıcınızdan `https://n8n.alanadiniz.com` adresine gittiğinizde ilk kurulum ekranı sizi karşılayacaktır.
+Bu yönerge kaydedilip Let's Encrypt SSL aktifleştirildiğinde, tarayıcınızdan `https://n8n.alanadiniz.com` adresine gittiğinizde ilk kurulum ekranı açılır.
 
----
-
-## 3. İlk Otomasyon Akışı: Canlı Webhook ve Telegram Testi
+### 3. Webhook ve Canlı Test Doğrulaması
 
 Videoda canlı olarak test ettiğimiz iş akışında:
 - Bir **Webhook** düğümü ekledik (Tetikleyici tipi: `POST`).
-- Gelen JSON gövdesini bir **Code** düğümünde normalize ettik.
-- Elde ettiğimiz metni resmi **Telegram Bot** düğümüne bağlayarak cep telefonumuza anında bildirim düşürdük.
-- Test isteğini gönderdiğimizde işlem tam **32 milisaniyede** tamamlandı.
+- Gelen JSON gövdesini bir **Code** düğümünde temizledik.
+- Elde ettiğimiz metni resmi **Telegram Bot** düğümüne bağlayarak anında bildirim aldık.
+- Test isteği 32 milisaniyede başarıyla tamamlandı.
 
 ---
 
-## Sık Karşılaşılan Sorunlar ve Çözümleri (Troubleshooting)
+## Sık Karşılaşılan Sorunlar ve Çözümleri (Arşiv Notları)
 
 1. **"The connection to the server was lost" hatası:**
-   - *Sebep:* Nginx ters proxy üzerinde WebSocket (`Upgrade`) başlıklarının eksik olması veya Cloudflare kullanıyorsanız proxy modunda WebSockets seçeneğinin kapalı olması.
+   - *Sebep:* Nginx ters proxy üzerinde WebSocket (`Upgrade`) başlıklarının eksik olması veya Cloudflare proxy modunda WebSockets seçeneğinin devre dışı kalması.
    - *Çözüm:* Nginx yönergelerine `proxy_http_version 1.1;` ve `proxy_set_header Upgrade $http_upgrade;` satırlarını ekleyin.
-2. **Konteyner yeniden başlayınca kullanıcı kaydının sıfırlanması:**
+2. **Konteyner yeniden başlayınca kullanıcı verilerinin sıfırlanması:**
    - *Sebep:* `/home/node/.n8n` dizininin sunucudaki yerel diske bağlanmaması.
    - *Çözüm:* Docker hacim bağlantısında `/var/n8n_data:/home/node/.n8n` tanımını doğrulayın.
 3. **Webhook URL'lerinin `localhost` olarak üretilmesi:**
    - *Çözüm:* `WEBHOOK_URL` çevre değişkenini mutlaka tam alan adınızla tanımlayın (`https://n8n.alanadiniz.com/`).
-
-Yukarıdaki **The Vault** kutusundan üretim seviyesindeki Docker Compose dosyasını indirerek kendi sunucunuza hemen kurabilirsiniz.
