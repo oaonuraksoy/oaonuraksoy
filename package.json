@@ -1,0 +1,33 @@
+{
+  "name": "oaportfolyo",
+  "type": "module",
+  "version": "1.13.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build && node scripts/generate-sitemap-index.mjs && npm run test:links && npm run test:seo",
+    "preview": "astro preview",
+    "test:links": "node scripts/check-links.mjs",
+    "test:seo": "node scripts/check-seo.mjs",
+    "og:images": "node scripts/generate-og-images.mjs",
+    "notify:indexers": "node scripts/ping-search-engines.mjs",
+    "astro": "astro",
+    "cf:purge": "node .local-ops/purge-cloudflare.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.1.4",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^7.4.10",
+    "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20",
+    "lighthouse": "^13.6.0",
+    "sharp": "^0.35.5"
+  },
+  "overrides": {
+    "postcss-selector-parser": "^6.1.5"
+  }
+}

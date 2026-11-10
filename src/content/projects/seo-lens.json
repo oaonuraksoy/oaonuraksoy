@@ -1,0 +1,138 @@
+{
+  "id": "seo-lens",
+  "slug": "seo-lens",
+  "order": 7,
+  "featured": true,
+  "accentColor": "#10B981",
+  "tags": [
+    "Technical SEO",
+    "Schema.org Validator",
+    "JSON-LD & Microdata",
+    "Chrome / Edge Manifest V3",
+    "Social Share Simulator",
+    "SERP Pixel Analyzer",
+    "Zero-Dependency Extension"
+  ],
+  "links": {
+    "store": "https://microsoftedge.microsoft.com/addons/detail/seo-lens-technical-seo-/anfhafomoldobnodlcbdjepneccjlnib",
+    "github": "https://github.com/oaonuraksoy/seo-lens",
+    "live": "https://oaonuraksoy.github.io/seo-lens/"
+  },
+  "schema": { "applicationCategory": "DeveloperApplication", "operatingSystem": "Microsoft Edge (Windows, macOS, Linux)", "price": "0", "priceCurrency": "USD" },
+  "metrics": {
+    "en": [
+      { "label": "Audit Speed", "value": "Sub-50ms Client DOM Execution" },
+      { "label": "Schema Validation", "value": "Full @graph & Microdata Coverage" },
+      { "label": "Social Simulators", "value": "Facebook, WhatsApp, X, LinkedIn" },
+      { "label": "Dependencies", "value": "0 NPM Packages / 100% Native Vanilla JS" }
+    ],
+    "tr": [
+      { "label": "Denetim Hızı", "value": "50ms Altı İstemci DOM Analizi" },
+      { "label": "Şema Doğrulama", "value": "Eksiksiz @graph & Microdata Kapsamı" },
+      { "label": "Sosyal Simülatör", "value": "Facebook, WhatsApp, X, LinkedIn" },
+      { "label": "Bağımlılık", "value": "0 Harici Paket / %100 Saf Vanilla JS" }
+    ]
+  },
+  "en": {
+    "title": "SEO Lens — Technical SEO, Schema.org Validator & Social Preview Inspector",
+    "seoTitle": "SEO Lens: Technical SEO & Schema Inspector",
+    "seoDescription": "SEO Lens — Technical SEO & Schema Inspector is an official Microsoft Edge add-on that audits Schema.org, meta tags and social share previews.",
+    "description": "A zero-dependency, privacy-first Microsoft Edge Manifest V3 extension providing instant on-page SEO audits, Google SERP pixel calculations, deep Schema.org (@graph JSON-LD & Microdata) structural validation, and 4-way live social card simulations.",
+    "role": "Lead Systems Architect & Core Developer",
+    "period": "2026 — Present",
+    "status": "Production / Official Microsoft Edge Add-ons",
+    "executiveOverview": "In modern web engineering, technical SEO flaws and malformed structured data directly destroy organic search visibility and social media conversion rates. However, existing browser extensions in the market are plagued by bloated multi-megabyte bundles, third-party analytics trackers that phone home client source codes, subscription paywalls for basic features, and brittle Schema parsers that break when encountering modern `@graph` arrays.\n\n**SEO Lens** was engineered by **Onur Aksoy (a.k.a. Hackonomist)** to solve these deficiencies from first principles. Built as a high-performance, zero-dependency browser extension adhering strictly to the modern Chrome/Edge Manifest V3 security model, SEO Lens audits active web pages entirely client-side in under 50 milliseconds. It combines an algorithmic 0–100 Technical SEO Health Score with Google SERP pixel-width calculations, an exhaustive `H1`–`H6` visual heading tree, a recursive Schema.org (`JSON-LD` and `Microdata`) validation engine that pinpoints syntax error line/column coordinates, a live 4-platform social card simulator (Facebook, WhatsApp, X/Twitter, LinkedIn), and one-click structured JSON audit export—all with zero external tracking and complete data sovereignty.",
+    "mermaidTopology": "flowchart TD\n    subgraph PageEnvironment [\"Active Browser Tab DOM\"]\n        DOMTree[\"HTML Document\\n&lt;head&gt; / &lt;body&gt;\"]\n        MetaTags[\"Title, Description, Canonical\\nMeta Robots, Open Graph, Twitter\"]\n        HeadingsTree[\"Heading Hierarchy\\n&lt;h1&gt; to &lt;h6&gt; Elements\"]\n        SchemaScripts[\"Structured Data Scripts\\nJSON-LD & Microdata Entities\"]\n        DOMTree --> MetaTags\n        DOMTree --> HeadingsTree\n        DOMTree --> SchemaScripts\n    end\n    subgraph ExtensionCore [\"SEO Lens Extension Engine (Manifest V3)\"]\n        ContentScript[\"Isolated Content Script\\nDOM Snapshot Extractor\"]\n        AuditPipeline[\"Algorithmic SEO Evaluation Engine\"]\n        subgraph SubModules [\"Inspection & Validation Modules\"]\n            HealthScorer[\"0-100 SEO Health Scorer\\nSERP Pixel Width Calculator\"]\n            HeadingInspector[\"Heading Tree & Gap Detector\\nMissing / Multiple H1 Alert\"]\n            SchemaValidator[\"Schema.org Structural Engine\\n@graph Recursive Validator\"]\n            SocialCanvas[\"4-Way Social Simulator\\nFB, WhatsApp, X, LinkedIn\"]\n        end\n        ExportEngine[\"Structured JSON Export\\nAudit Report Generator\"]\n    end\n    MetaTags --> ContentScript\n    HeadingsTree --> ContentScript\n    SchemaScripts --> ContentScript\n    ContentScript -- \"Structured DOM Payload\" --> AuditPipeline\n    AuditPipeline --> HealthScorer\n    AuditPipeline --> HeadingInspector\n    AuditPipeline --> SchemaValidator\n    AuditPipeline --> SocialCanvas\n    AuditPipeline --> ExportEngine\n    style PageEnvironment fill:#08090A,stroke:#10B981,stroke-width:1px,color:#EDEDED\n    style ExtensionCore fill:#0E131F,stroke:#059669,stroke-width:1px,color:#EDEDED\n    style SubModules fill:#14171D,stroke:#10B981,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Architectural Benchmark: SEO Lens vs. Traditional SEO Extensions & Cloud Crawlers",
+      "headers": ["Technical & Operational Criterion", "Traditional SEO Extensions", "Cloud Crawler SaaS Tools", "SEO Lens Edge Engine"],
+      "rows": [
+        ["Audit Latency", "350ms – 1200ms (Heavy Bundle)", "30s – 5min (Remote Cloud Queue)", "< 50ms (Pure In-Memory DOM Analysis)"],
+        ["External Dependencies", "15 – 45 NPM Packages / Bundlers", "Complex Cloud Microservices", "0 External Packages / Pure Vanilla JS"],
+        ["Schema.org @graph Arrays", "Often crashes or displays 'Unknown'", "Parsed remotely with delay", "Native Recursive Validation & Type Check"],
+        ["Data Privacy & Tracking", "Injects Telemetry & Tracks URLs", "Stores URLs on Third-Party Servers", "100% Client-Side / Zero Data Retention"],
+        ["Social Share Simulation", "Static raw meta tag display", "Basic mockups (often outdated)", "Live Pixel-Perfect 4-Platform Canvas"],
+        ["Manifest V3 & CSP Compliance", "Legacy Manifest V2 or inline hacks", "Web dashboard only", "100% Strict Manifest V3 / Zero Inline Scripts"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Zero-Dependency Manifest V3 Architecture & Sub-50ms In-Memory DOM Auditing",
+        "content": "Rather than bundling heavy modern JavaScript frameworks (React, Vue, or Webpack bundles) that introduce security vulnerabilities and execution delays, SEO Lens is written entirely in clean, native Vanilla ECMAScript (ES2024). Operating under the strict Chrome/Edge Manifest V3 security lifecycle, its isolated content script extracts the complete document metadata, heading tree, and script payloads in a single frame, executing comprehensive validation algorithms in under 50 milliseconds without causing DOM re-layouts or memory leaks."
+      },
+      {
+        "title": "2. Deep Schema.org Structural Validator with Recursive @graph & Microdata Support",
+        "content": "Most browser-based schema checkers fail when encountering modern enterprise structured data utilizing `@graph` arrays. SEO Lens incorporates an in-house recursive Schema.org parsing engine. It unpacks root `@graph` definitions, validates syntax errors with exact line and column number reporting, and performs deep entity rule verification across core schemas including Article, Product, Organization, LocalBusiness, BreadcrumbList, FAQPage, HowTo, Recipe, and WebSite, catching missing required attributes before search crawlers penalize the page."
+      },
+      {
+        "title": "3. Google SERP Pixel Width Calculations & 0–100 Algorithmic Health Scoring",
+        "content": "Character limits alone no longer guarantee that search titles or meta descriptions will render cleanly on Google SERP; proportional letter widths (e.g., 'W' vs. 'I') dictate pixel truncation. SEO Lens implements a client-side proportional font calculation engine that measures both exact character counts and real Google SERP pixel dimensions (Title: 580px max, Description: 990px max). These metrics feed into an algorithmic 0–100 Technical SEO Health Score that evaluates canonical declarations, meta robots flags, HTTPS enforcement, language tags, viewport scaling, and charset integrity."
+      },
+      {
+        "title": "4. 4-Platform Real-Time Social Card Simulation & One-Click Structured JSON Export",
+        "content": "Social media sharing cards directly drive click-through rates (CTR) on platforms with drastically different visual viewports. SEO Lens features an interactive 4-way live simulator rendering pixel-perfect cards for Facebook (Open Graph standard), WhatsApp (compact card with preview image), X/Twitter (Summary Large Image), and LinkedIn (feed snippet with publisher attribution). Furthermore, developers and technical agencies can export the complete audit report, parsed schema models, and warning summaries as a standardized JSON document with a single click for continuous CI/CD or client deliverables."
+      }
+    ],
+    "techStack": [
+      { "label": "Runtime & Platform", "value": "Microsoft Edge / Google Chrome Extension (Manifest V3)" },
+      { "label": "Core Engine", "value": "Pure Vanilla ECMAScript (ES2024), Zero Third-Party Dependencies" },
+      { "label": "Security Model", "value": "Strict Manifest V3 CSP (script-src 'self'), Zero Inline Event Handlers" },
+      { "label": "Validation Engine", "value": "Recursive Schema.org (@graph JSON-LD & Microdata) Syntax Tracing" },
+      { "label": "SERP Analyzer", "value": "Client-Side Proportional Pixel Width Measurement (580px / 990px)" },
+      { "label": "Visual Simulator", "value": "Live 4-Way Multi-Platform Canvas (Facebook, WhatsApp, X, LinkedIn)" },
+      { "label": "Distribution", "value": "Official Microsoft Edge Add-ons Store Certified" }
+    ],
+    "businessImpact": "SEO Lens equips web developers, technical SEO architects, and digital marketing agencies with a sovereign, blazingly fast audit tool that guarantees schema validity and search snippet perfection before deployment—eliminating recurring SaaS subscriptions and protecting user privacy."
+  },
+  "tr": {
+    "title": "SEO Lens — Teknik SEO, Schema.org Doğrulayıcı & Sosyal Paylaşım Denetçisi",
+    "seoTitle": "SEO Lens: Teknik SEO ve Schema Denetleyicisi",
+    "seoDescription": "SEO Lens — Technical SEO & Schema Inspector: Schema.org, meta etiketleri ve sosyal paylaşım kartlarını denetleyen resmi Microsoft Edge eklentisi.",
+    "description": "Sayfa içi SEO metriklerini, Google SERP piksel genişliklerini, derinlemesine Schema.org (@graph JSON-LD ve Microdata) yapılandırılmış verilerini anlık denetleyen ve 4'lü canlı sosyal paylaşım kartı simülasyonu sunan sıfır bağımlılıklı Microsoft Edge eklentisi.",
+    "role": "Baş Sistem Mimarı & Çekirdek Geliştirici",
+    "period": "2026 — Günümüz",
+    "status": "Canlıda / Resmi Microsoft Edge Eklentisi",
+    "executiveOverview": "Modern web geliştirmede teknik SEO hataları ve bozuk yapılandırılmış veri (Schema.org) tanımları, web sitelerinin arama motorlarındaki görünürlüğünü ve sosyal medya tıklama oranlarını doğrudan baltalar. Ancak piyasadaki mevcut tarayıcı eklentileri; çok megabaytlık hantal paketleri, istemci kaynak kodlarını dış sunuculara sızdıran üçüncü parti analitik takipçileri, temel özelliklere konan abonelik duvarları ve modern `@graph` dizileriyle karşılaştığında çöken kırılgan şema ayrıştırıcılarıyla ciddi bir verimsizlik yaratmaktadır.\n\n**SEO Lens**, bu problemleri kökten çözmek amacıyla **Onur Aksoy (a.k.a. Hackonomist)** tarafından sıfırdan geliştirildi. Chrome ve Microsoft Edge'in en katı Manifest V3 güvenlik standartlarına tam uyumlu, sıfır harici bağımlılığa sahip yerel bir tarayıcı eklentisi olarak tasarlanan SEO Lens; aktif web sayfalarını tamamen istemci tarafında 50 milisaniyenin altında analiz eder. 0–100 arası algoritmik Teknik SEO Sağlık Skoru, Google SERP piksel genişliği hesaplayıcısı, `H1`–`H6` görsel başlık ağacı, sentaks hatalarını satır ve sütun bazında gösteren özyinelemeli Schema.org (`JSON-LD` ve `Microdata`) doğrulama motoru, 4'lü canlı sosyal medya kart simülatörü (Facebook, WhatsApp, X/Twitter, LinkedIn) ve tek tıkla yapılandırılmış JSON raporu dışa aktarımıyla eksiksiz bir teknik denetim sunar.",
+    "mermaidTopology": "flowchart TD\n    subgraph SayfaOrtami [\"Aktif Tarayıcı Sekmesi DOM'u\"]\n        DOMTree[\"HTML Belgesi\\n&lt;head&gt; / &lt;body&gt;\"]\n        MetaTags[\"Title, Description, Canonical\\nMeta Robots, Open Graph, Twitter\"]\n        HeadingsTree[\"Başlık Hiyerarşisi\\n&lt;h1&gt; - &lt;h6&gt; Ağacı\"]\n        SchemaScripts[\"Yapılandırılmış Veriler\\nJSON-LD & Microdata Kodları\"]\n        DOMTree --> MetaTags\n        DOMTree --> HeadingsTree\n        DOMTree --> SchemaScripts\n    end\n    subgraph EklentiCekirdegi [\"SEO Lens Eklenti Motoru (Manifest V3)\"]\n        ContentScript[\"İzole İçerik Betiği\\nDOM Veri Yakalama\"]\n        AuditPipeline[\"Algoritmik SEO Değerlendirme Hattı\"]\n        subgraph AltModuller [\"Denetim ve Doğrulama Modülleri\"]\n            HealthScorer[\"0-100 SEO Sağlık Skoru\\nSERP Piksel Genişlik Motoru\"]\n            HeadingInspector[\"Başlık Ağacı & Atlama Tespiti\\nEksik / Çoklu H1 Uyarısı\"]\n            SchemaValidator[\"Schema.org Doğrulama Motoru\\n@graph Özyinelemeli Doğrulayıcı\"]\n            SocialCanvas[\"4'lü Sosyal Simülatör\\nFB, WhatsApp, X, LinkedIn\"]\n        end\n        ExportEngine[\"Yapılandırılmış JSON Dışa Aktarımı\\nTek Tıkla Rapor Üretici\"]\n    end\n    MetaTags --> ContentScript\n    HeadingsTree --> ContentScript\n    SchemaScripts --> ContentScript\n    ContentScript -- \"Yapılandırılmış DOM Yükü\" --> AuditPipeline\n    AuditPipeline --> HealthScorer\n    AuditPipeline --> HeadingInspector\n    AuditPipeline --> SchemaValidator\n    AuditPipeline --> SocialCanvas\n    AuditPipeline --> ExportEngine\n    style SayfaOrtami fill:#08090A,stroke:#10B981,stroke-width:1px,color:#EDEDED\n    style EklentiCekirdegi fill:#0E131F,stroke:#059669,stroke-width:1px,color:#EDEDED\n    style AltModuller fill:#14171D,stroke:#10B981,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari Karşılaştırma: SEO Lens vs. Geleneksel SEO Eklentileri ve Bulut Tarayıcılar",
+      "headers": ["Teknik & Operasyonel Kriter", "Geleneksel SEO Eklentileri", "Bulut Tabanlı SaaS Tarayıcılar", "SEO Lens Yerel Edge Motoru"],
+      "rows": [
+        ["Analiz Gecikmesi", "350ms – 1200ms (Ağır Paket)", "30s – 5dk (Uzak Bulut Sırası)", "< 50ms (Saf Bellek İçi DOM Analizi)"],
+        ["Harici Bağımlılıklar", "15 – 45 NPM Paketi / Bundler", "Karmaşık Bulut Mikroservisleri", "0 Harici Paket / %100 Saf Vanilla JS"],
+        ["Schema.org @graph Desteği", "Sıklıkla Çöker veya Tanımsız Gösterir", "Gecikmeli Uzak Ayrıştırma", "Yerel Özyinelemeli Doğrulama & Tip Kontrolü"],
+        ["Veri Gizliliği & Takip", "Telemetri Enjekte Eder, URL Takibi Yapar", "URL'leri Üçüncü Parti Sunucularda Saklar", "%100 İstemci Tarafı / Sıfır Veri Saklama"],
+        ["Sosyal Paylaşım Simülatörü", "Statik ham meta etiket gösterimi", "Basit maketler (çoğunlukla güncel değil)", "Canlı Birebir 4'lü Platform Önizleme"],
+        ["Manifest V3 & CSP Uyumu", "Eski Manifest V2 veya satır içi hackler", "Yalnızca web paneli", "%100 Katı Manifest V3 / Sıfır Satır İçi Betik"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Sıfır Bağımlılıklı Manifest V3 Mimarisi & 50ms Altı Bellek İçi DOM Denetimi",
+        "content": "Güvenlik açıkları ve çalışma zamanı gecikmeleri yaratan ağır JavaScript çerçeveleri (React, Vue veya Webpack paketleri) kullanmak yerine, SEO Lens tamamen saf, modern Vanilla ECMAScript (ES2024) ile geliştirilmiştir. Chrome ve Microsoft Edge'in katı Manifest V3 güvenlik yaşam döngüsü altında çalışan izole içerik betiği; belgenin tüm meta etiketlerini, başlık ağacını ve script bloklarını tek bir döngüde yakalayarak sayfada layout bozulması veya bellek sızıntısı yaratmadan 50 milisaniyenin altında analiz eder."
+      },
+      {
+        "title": "2. Özyinelemeli @graph ve Microdata Destekli Derinlemesine Schema.org Doğrulayıcı",
+        "content": "Geleneksel tarayıcı eklentileri, modern kurumsal web sitelerinde kullanılan `@graph` şema dizilerini çözümleyemez ve çöker. SEO Lens, dahili özyinelemeli Schema.org doğrulama motoruyla kök `@graph` yapılarını açar, sözdizimi (syntax) hatalarını tam satır ve sütun numaralarıyla raporlar. Article, Product, Organization, LocalBusiness, BreadcrumbList, FAQPage, HowTo, Recipe ve WebSite gibi kritik şemaların zorunlu ve önerilen alanlarını eksiksiz denetleyerek arama motoru cezalarını önceden tespit eder."
+      },
+      {
+        "title": "3. Google SERP Piksel Genişliği Analizi ve 0–100 Algorithmic Sağlık Skoru",
+        "content": "Yalnızca karakter sayısı kontrolü yapmak, başlık veya açıklamaların Google arama sonuçlarında düzgün görüneceğini garanti etmez; orantısal harf genişlikleri (örneğin 'W' ile 'I' harfinin kapladığı piksel farkı) kesilmeyi belirler. SEO Lens, orantısal yazı tipi genişliklerini istemci tarafında hesaplayarak hem net karakter sayısını hem de Google SERP piksel boyutunu (Başlık: maks 580px, Açıklama: maks 990px) anlık gösterir. Bu veriler; canonical, meta robots, HTTPS, dil, viewport ve Open Graph etiketleriyle birleşerek 0–100 arası algoritmik bir Teknik SEO Sağlık Skoruna dönüştürülür."
+      },
+      {
+        "title": "4. 4'lü Canlı Sosyal Medya Paylaşım Simülatörü ve Tek Tıkla Yapılandırılmış JSON Raporu",
+        "content": "Sosyal ağlardaki bağlantı kartları, kullanıcıların tıklama oranını doğrudan etkiler. SEO Lens; Facebook (Open Graph standart kartı), WhatsApp (önizleme görselli kompakt kart), X/Twitter (Summary Large Image kartı) ve LinkedIn (yayıncı imzalı akış kartı) için birebir piksel duyarlı canlı kart önizlemesi sunar. Geliştiriciler ve ajanslar, tüm analiz bulgularını, parse edilmiş şema ağaçlarını ve uyarıları tek tıkla standart bir JSON raporu olarak dışa aktarabilir."
+      }
+    ],
+    "techStack": [
+      { "label": "Çalışma Zamanı & Platform", "value": "Microsoft Edge / Google Chrome Eklentisi (Manifest V3)" },
+      { "label": "Çekirdek Mimari", "value": "Saf Vanilla ECMAScript (ES2024), Sıfır Harici Paket Bağımlılığı" },
+      { "label": "Güvenlik Modeli", "value": "Katı Manifest V3 CSP (script-src 'self'), Sıfır Satır İçi İşleyici" },
+      { "label": "Doğrulama Motoru", "value": "Özyinelemeli Schema.org (@graph JSON-LD & Microdata) Sentaks İzleme" },
+      { "label": "SERP Analizcisi", "value": "İstemci Taraflı Orantısal Piksel Genişliği Ölçümü (580px / 990px)" },
+      { "label": "Görsel Simülatör", "value": "Canlı 4'lü Platform Kart Tuvali (Facebook, WhatsApp, X, LinkedIn)" },
+      { "label": "Dağıtım & Sertifikasyon", "value": "Resmi Microsoft Edge Add-ons Mağazası Onaylı" }
+    ],
+    "businessImpact": "SEO Lens; web geliştiricilerine, teknik SEO mimarlarına ve dijital ajanslara sitelerini yayına almadan önce tüm yapılandırılmış veri ve arama görünümü kusurlarını anında tespit etme olanağı tanır. Aylık SaaS aboneliklerini ortadan kaldırırken tam veri egemenliği ve sıfır veri sızıntısı sağlar."
+  }
+}

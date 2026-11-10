@@ -1,0 +1,217 @@
+---
+/**
+ * JsonLd.astro — Sayfa başına TEK @graph üretir (AGENTS.md §7.1).
+ * Site geneli düğümler (Person, WebSite, kişi görseli) src/utils/schema.mjs üzerinden
+ * src/data/identity.mjs'den beslenir; burada kimlik verisi elle yazılmaz.
+ */
+import { getProjectBySlug } from '../utils/projects';
+import { SITE_URL, PERSON_ID, WEBSITE_ID, BUSINESS_ID } from '../data/identity.mjs';
+import { lastModified, firstPublished } from '../utils/content-dates.mjs';
+import {
+  personNode, personImageNode, websiteNode, primaryImageNode,
+  breadcrumbNode, faqNode, graphJson, inLanguage,
+  SERVICE_AREA_SERVED, businessNode, serviceOfferCatalog, bookNode
+} from '../utils/schema.mjs';
+
+interface FAQItem { question: string; answer: string; }
+interface ListEntry { name: string; url: string; description?: string; }
+
+interface Props {
+  type?: 'Person' | 'WebSite' | 'SoftwareApplication' | 'Article' | 'Service';
+  title?: string;
+  /** Sayfanın/varlığın görünen adı (H1). Verilmezse title kullanılır. */
+  name?: string;
+  description?: string;
+  url?: string;
+  image: string;
+  lang?: 'en' | 'tr';
+  faqs?: FAQItem[];
+  itemList?: { name: string; items: ListEntry[] };
+  serviceType?: string;
+}
+
+const {
+  type = 'Person',
+  title = 'Onur Aksoy',
+  name,
+  description = '',
+  url,
+  image,
+  lang = 'tr',
+  faqs,
+  itemList,
+  serviceType
+} = Astro.props;
+
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const pageUrl = url || new URL(pathname, SITE_URL).href;
+const isTr = lang === 'tr';
+const homeUrl = isTr ? `${SITE_URL}/` : `${SITE_URL}/en/`;
+const isHome = pathname === '/' || pathname === '/en/';
+const bare = pathname.replace(/^\/en(\/|$)/, '/');
+// Varlık adı: verilen H1 adı, yoksa <title>'dan marka eki ayıklanmış hali
+const pageName = name || title.replace(/\s+[|—]\s+Onur Aksoy.*$/, '');
+
+const dateModified = lastModified(pathname);
+const datePublished = firstPublished(pathname);
+
+const segments = bare.split('/').filter(Boolean);
+const project = segments[0] === 'projects' && segments[1]
+  ? await getProjectBySlug(segments[1], isTr ? 'tr' : 'en')
+  : undefined;
+
+// ── Breadcrumb (ana sayfa hariç) ─────────────────────────────────────────────
+const sectionLabels: Record<string, { tr: string; en: string }> = {
+  projects: { tr: 'Projeler', en: 'Projects' },
+  broadcasts: { tr: 'Yayınlar & Bilgi Kasası', en: 'Broadcasts & Vault' },
+  about: { tr: 'Hakkımda', en: 'About' },
+  contact: { tr: 'İletişim', en: 'Contact' }
+};
+let breadcrumb: Record<string, any> | null = null;
+if (!isHome) {
+  const crumbs = [{ name: isTr ? 'Ana Sayfa' : 'Home', url: homeUrl }];
+  const first = segments[0];
+  if (segments.length === 1) {
+    crumbs.push({ name: sectionLabels[first]?.[lang] || pageName, url: pageUrl });
+  } else {
+    crumbs.push({ name: sectionLabels[first]?.[lang] || first, url: `${homeUrl}${first}/` });
+    crumbs.push({ name: project ? project.title.split(/\s+—\s+/)[0] : pageName, url: pageUrl });
+  }
+  breadcrumb = breadcrumbNode(pageUrl, crumbs);
+}
+
+// ── WebPage / ProfilePage / AboutPage / ContactPage / CollectionPage ──────────
+let pageType = 'WebPage';
+if (isHome) {
+  pageType = 'ProfilePage';
+} else if (bare === '/about/') {
+  pageType = 'AboutPage';
+} else if (bare === '/contact/') {
+  pageType = 'ContactPage';
+} else if (itemList) {
+  pageType = 'CollectionPage';
+}
+
+const webpage: Record<string, any> = {
+  '@type': pageType,
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: title,
+  description,
+  inLanguage: inLanguage(lang),
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': PERSON_ID },
+  primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
+  ...(breadcrumb ? { breadcrumb: { '@id': `${pageUrl}#breadcrumb` } } : {}),
+  ...(datePublished ? { datePublished } : {}),
+  ...(dateModified ? { dateModified } : {})
+};
+if (isHome) webpage.mainEntity = { '@id': PERSON_ID };
+
+const graph: Record<string, any>[] = [
+  personNode(lang),
+  personImageNode(),
+  websiteNode(),
+  webpage,
+  primaryImageNode(pageUrl, image, pageName)
+];
+if (isHome) graph.push(bookNode());
+if (breadcrumb) graph.push(breadcrumb);
+
+// ── CollectionPage → ItemList ────────────────────────────────────────────────
+if (itemList) {
+  webpage.mainEntity = { '@id': `${pageUrl}#itemlist` };
+  graph.push({
+    '@type': 'ItemList',
+    '@id': `${pageUrl}#itemlist`,
+    name: itemList.name,
+    numberOfItems: itemList.items.length,
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    itemListElement: itemList.items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: it.url,
+      name: it.name
+    }))
+  });
+}
+
+// ── SoftwareApplication (proje detay sayfaları) ──────────────────────────────
+if (type === 'SoftwareApplication' && project) {
+  const s = project.schema;
+  const projectName = project.title.split(/\s+—\s+/)[0];
+  const sameAs = [project.links?.store, project.links?.github, project.links?.live, project.links?.tool]
+    .filter((u, i, arr): u is string => !!u && arr.indexOf(u) === i);
+  webpage.mainEntity = { '@id': `${pageUrl}#software` };
+  webpage.about = { '@id': `${pageUrl}#software` };
+  graph.push({
+    '@type': 'SoftwareApplication',
+    '@id': `${pageUrl}#software`,
+    name: projectName,
+    alternateName: project.title,
+    description: project.description,
+    url: pageUrl,
+    mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+    image: { '@id': `${pageUrl}#primaryimage` },
+    applicationCategory: s?.applicationCategory || 'BusinessApplication',
+    operatingSystem: s?.operatingSystem || 'Web',
+    isAccessibleForFree: (s?.price ?? '0') === '0',
+    offers: {
+      '@type': 'Offer',
+      price: s?.price ?? '0',
+      priceCurrency: s?.priceCurrency ?? 'USD',
+      availability: 'https://schema.org/InStock',
+      ...(project.links?.store ? { url: project.links.store } : {})
+    },
+    ...(project.links?.store ? { installUrl: project.links.store } : {}),
+    keywords: project.tags.join(', '),
+    author: { '@id': PERSON_ID },
+    creator: { '@id': PERSON_ID },
+    inLanguage: inLanguage(lang),
+    ...(sameAs.length ? { sameAs } : {})
+  });
+  if (project.links?.github) {
+    graph.push({
+      '@type': 'SoftwareSourceCode',
+      '@id': `${pageUrl}#source`,
+      name: `${projectName} — source code`,
+      codeRepository: project.links.github,
+      author: { '@id': PERSON_ID },
+      targetProduct: { '@id': `${pageUrl}#software` }
+    });
+  }
+}
+
+// ── Service + ProfessionalService (kurumsal B2B sayfaları) ───────────────────
+if (type === 'Service') {
+  const catalogKind =
+    bare.includes('web-tasarim') || bare.includes('b2b-web-architecture')
+      ? 'web-design'
+      : 'custom-software';
+  graph.push(businessNode());
+  graph.push({
+    '@type': 'Service',
+    '@id': `${pageUrl}#service`,
+    name: pageName,
+    description,
+    url: pageUrl,
+    serviceType: serviceType || pageName,
+    provider: { '@id': BUSINESS_ID },
+    brand: { '@id': PERSON_ID },
+    areaServed: SERVICE_AREA_SERVED,
+    availableLanguage: ['tr', 'en'],
+    mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+    hasOfferCatalog: serviceOfferCatalog(catalogKind, lang)
+  });
+  webpage.mainEntity = { '@id': `${pageUrl}#service` };
+  webpage.about = { '@id': `${pageUrl}#service` };
+}
+
+if (faqs && faqs.length > 0 && pageType !== 'ProfilePage' && pageType !== 'AboutPage') {
+  graph.push(faqNode(pageUrl, faqs));
+}
+
+const json = graphJson(graph);
+---
+
+<script type="application/ld+json" set:html={json} />

@@ -1,0 +1,24 @@
+# Otomatik metin normalizasyonu - tüm platformlarda ve CI/CD'de LF zorunlu
+* text=auto eol=lf
+
+# Özel metin dosyaları
+*.json text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.ts text eol=lf
+*.astro text eol=lf
+*.md text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.svg text eol=lf
+
+# Binary dosyalar (satır sonu dokunulmaz)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.cdr binary
+*.woff binary
+*.woff2 binary

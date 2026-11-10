@@ -1,0 +1,357 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: "Neden hazır WordPress veya ajans şablonları yerine Astro Zero-JS mimarisini tercih etmelisiniz?",
+    answer: "Hazır WordPress temaları ve görsel sayfa oluşturucular onlarca harici eklenti, şişkin CSS ve megabaytlarca JavaScript yüküyle gelir. Bu durum Türkiye içindeki açılış hızını 2-3 saniyeye, Avrupa ve Amerika gibi hedef ihracat pazarlarındaki açılış hızını ise 4-6 saniyeye çıkarır. Benim geliştirdiğim Astro Zero-JS ve Cloudflare Edge mimarisi, istemciye gereksiz JavaScript göndermez; küresel ölçekte 50 milisaniyenin altında açılır ve yurt dışındaki alıcıların sitenizi beklemeden incelemesini sağlar."
+  },
+  {
+    question: "Ankara sanayi firmaları (OSTİM, İvedik, Başkent OSB) için B2B web mimarisinin önemi nedir?",
+    answer: "Sanayi ve üretim sektöründe faaliyet gösteren ihracatçılar için web sitesi bir vitrin değil, doğrudan döviz girdisi sağlayan uluslararası bir teklif (RFQ) ve şartname kapısıdır. Yabancı kurumsal satın almacılar yavaş yüklenen, mobil cihazda kayan veya PDF katalog indirmesi tıkanan firmaları ciddiye almaz. Özel mimari, firmanıza küresel güvenilirlik, yüksek arama motoru görünürlüğü ve kesintisiz kurumsal teklif akışı kazandırır."
+  },
+  {
+    question: "Geliştirdiğiniz web siteleri çoklu dil ve uluslararası SEO (Hreflang) altyapısını nasıl yönetir?",
+    answer: "Otomatik eklenti çevirileri veya çerez bazlı yönlendirmeler yerine; her dil sürümü bağımsız statik rotalara derlenir. Çift yönlü rel='alternate' hreflang etiketleri, ISO ülke/dil kodları ve Schema.org yapılandırılmış veri grafları kod seviyesinde entegre edilir. Böylece Google hem Türkiye'de hem de hedef ihracat ülkelerinizde doğru dili doğru alıcıya hatasız indeksler."
+  },
+  {
+    question: "Web sitemiz mevcut ERP, stok veya teklif (RFQ) süreçlerimizle nasıl haberleşir?",
+    answer: "Geliştirdiğim sistem mimarisi bağımsız API ve veri köprüleri üzerine kuruludur. İster doğrudan e-posta ve WhatsApp üzerinden anlık bildirim, ister oaTeklif ve oaPOS benzeri arka ofis sistemleri, ister kurumsal SAP/Logo/Mikro ERP veritabanları olsun; gelen teklif talepleri deterministik olarak iş mantığınıza aktarılır."
+  },
+  {
+    question: "Proje sürecinde kiminle çalışacağım ve bakım maliyetleri nasıl olacak?",
+    answer: "Geleneksel ajansların aksine aracı satış temsilcileri, müşteri yöneticileri veya junior stajyerlerle değil; doğrudan sistemin mimarı olan Onur Aksoy ile çalışırsınız. Sunucu tarafında Cloudflare küresel uç ağı kullanıldığı için aylık ağır sunucu veya lisans yenileme maliyetleri oluşmaz. Sistem sıfır bakım borcu ve tam kaynak kod mülkiyetiyle teslim edilir."
+  }
+];
+
+const title = "Ankara Kurumsal Web Tasarım & Web Sitesi | Onur Aksoy";
+const name = "Ankara Kurumsal Web Tasarım ve İhracat Odaklı Web Sitesi Çözümleri";
+const description = "Ankara kurumsal web tasarım ve çok dilli B2B ihracat web sitesi çözümleri. Hazır WordPress temaları yerine 50ms altı hızda çalışan özel web mimarisi.";
+const counterpartUrl = "/en/ankara-b2b-web-architecture/";
+const ogImage = "https://onuraksoy.com.tr/images/services/ankara-kurumsal-web-tasarim.webp";
+---
+
+<BaseLayout
+  title={title}
+  name={name}
+  description={description}
+  image={ogImage}
+  lang="tr"
+  counterpartUrl={counterpartUrl}
+  schemaType="Service"
+  serviceType="Ankara Kurumsal Web Tasarım & B2B İhracat Web Sitesi"
+  faqs={faqs}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb Nav -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-xs font-mono text-text-muted">
+        <li>
+          <a href="/" class="hover:text-gold-highlight transition-colors">Ana Sayfa</a>
+        </li>
+        <li>/</li>
+        <li class="text-gold-tungsten font-semibold">Ankara Kurumsal Web Tasarım & Web Sitesi</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pb-12 border-b border-obsidian-border mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-gold-tungsten/40 text-xs font-mono text-gold-tungsten mb-4">
+        <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+        <span>Bölgesel Mühendislik & Küresel İhracat Altyapısı</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight mb-6">
+        Ankara Kurumsal Web Tasarım: İhracat ve Sanayi Odaklı Özel Web Sitesi Çözümleri
+      </h1>
+      <p class="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-3xl font-normal">
+        OSTİM, İvedik, Başkent OSB, Sincan ASO 1. ve 2. OSB ile savunma ve teknoloji koridorundaki üreticiler için; hazır tema tuzaklarından arındırılmış, 50 milisaniyenin altında küresel açılış hızına sahip yüksek performanslı web sistemleri geliştiriyorum.
+      </p>
+    </header>
+
+    <!-- Executive Summary Card -->
+    <section class="mb-16 p-6 sm:p-8 rounded-2xl bg-obsidian-surface/60 border border-gold-tungsten/30 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-48 h-48 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-2">
+          Mimari Özet & Çözüm Vizyonu
+        </span>
+        <p class="text-base text-text-primary leading-relaxed mb-4">
+          Geleneksel web ajanslarının sunduğu hantal WordPress şablonları, sanayi ve B2B ihracat firmalarınızın küresel pazarda elini zayıflatıyor. Yurt dışındaki bir satın almacı kataloğunuza tıkladığında saniyelerce beklemek zorunda kalıyorsa veya mobil cihazında sayfalarınız donuyorsa, satış görüşmesi başlamadan bitiyor demektir.
+        </p>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Ben, Astro Zero-JS derleme motorunu Cloudflare Edge ağının 330'u aşkın küresel veri merkeziyle birleştiriyorum. Üretim kabiliyetlerinizi, teknik şartnamelerinizi ve teklif (RFQ) formlarınızı dünya genelinde ışık hızında sunan, sıfır sunucu bakım borcu içeren bir mühendislik mimarisi inşa ediyorum.
+        </p>
+      </div>
+    </section>
+
+    <!-- Why Industrial Firms Lose Ground -->
+    <section class="mb-16 space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+        Neden Ankara'daki Sanayi ve İhracat Firmaları Hazır Temalarla Müşteri Kaybediyor?
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-red-950/40 text-red-400 flex items-center justify-center font-mono font-bold mb-4">
+            01
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Ağır Eklenti Borcu & Gecikme</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            30-50 farklı WordPress eklentisi veritabanını kilitler. Frankfurt'tan veya Şikago'dan bağlanan yabancı müşteri için açılış süresi 5 saniyeyi bulur.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-amber-950/40 text-amber-400 flex items-center justify-center font-mono font-bold mb-4">
+            02
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Kırık Çoklu Dil & İndeks Hataları</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Otomatik çeviri eklentileri Hreflang etiketlerini karıştırır; Google botları yabancı dildeki ürünlerinizi indeksleyemez ve aramalarda yok sayılırsınız.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-emerald-950/40 text-emerald-400 flex items-center justify-center font-mono font-bold mb-4">
+            03
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-2">Sürekli Güvenlik & Lisans Maliyeti</h3>
+          <p class="text-xs text-text-muted leading-relaxed">
+            Haftalık tema güncellemeleri, PHP sürüm uyuşmazlıkları ve veritabanı saldırı açıkları işletmenize sürekli ajans faturası çıkarır.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparative Architecture Matrix -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Mühendislik Kriterleri
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Mimari Kıyaslama: Şablon Ajans vs. Onur Aksoy B2B Sistem Mimarisi
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-obsidian-border bg-obsidian-surface">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-obsidian-black/80 text-text-muted font-mono uppercase tracking-wider text-[11px] border-b border-obsidian-border">
+            <tr>
+              <th scope="col" class="py-4 px-4 sm:px-6">Kriter</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-red-300">Klasik Ajans Şablonu (WordPress / Elementor)</th>
+              <th scope="col" class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Onur Aksoy B2B Sistem Mimarisi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-obsidian-border/50 text-text-secondary">
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Küresel TTFB & Açılış Hızı</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">1800ms – 4500ms (Yerel hosting bağımlılığı)</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-mono font-semibold">&lt; 50ms (330+ Cloudflare Edge PoP)</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Kod Tabanı & JS Ağırlığı</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">3-5 MB JavaScript, onlarca harici kütüphane</td>
+              <td class="py-4 px-4 sm:px-6 text-emerald-400 font-mono font-semibold">Astro Zero-JS, 0 KB gereksiz runtime bloat</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Çoklu Dil & Uluslararası Hreflang</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Eklentiye bağımlı, dinamik ve arama motorunu yanıltan yapı</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Çift yönlü, statik derlenmiş tip güvenli Hreflang eşleşmesi</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Siber Güvenlik & Saldırı Yüzeyi</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">MySQL veritabanı açıkları, eklenti zafiyetleri</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Statik derleme, sıfır veritabanı yüzeyi, katı CSP politikası</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">Yapay Zeka & SGE Görünürlüğü</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Eksik şemalar, yapay zeka botlarına kapalı içerik</td>
+              <td class="py-4 px-4 sm:px-6 text-text-primary">Kapsamlı Schema.org @graph (Service, FAQPage) ve llms.txt entegrasyonu</td>
+            </tr>
+            <tr class="hover:bg-obsidian-black/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-medium text-text-primary">3 Yıllık Toplam Sahip Olma Maliyeti</td>
+              <td class="py-4 px-4 sm:px-6 text-text-muted">Yüksek VPS sunucu, yıllık eklenti ve ajans bakım sözleşmeleri</td>
+              <td class="py-4 px-4 sm:px-6 text-gold-highlight font-semibold">Sıfır sunucu lisansı, sıfır eklenti borcu, bağımsız kod mülkiyeti</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Three Core Pillars -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Mühendislik Prensipleri
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          İhracat Web Sitenizi Taşıyan Üç Çekirdek Sütun
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">SÜTUN 01</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Yurt Dışı Alıcıyı Kaçırmayan Küresel Hız</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Almanya, ABD, Körfez ülkeleri veya Orta Asya'daki bir satın alma yöneticisi ürün kataloğunuzu açtığında sistem yerel bir sunucu gibi tepki verir. Uç ağda önbelleklenen statik varlıklar sayesinde gecikme sıfıra yaklaşır.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            50ms Altı Küresel Yanıt
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">SÜTUN 02</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Kurumsal Teklif (RFQ) & WhatsApp / ERP Köprüsü</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Teklif formları sıradan bir e-posta kutusuna düşüp kaybolmaz. oaTeklif ve oaPOS mühendislik tecrübemle geliştirdiğim yapı sayesinde şartnameler anında WhatsApp, Telegram veya kurumsal ERP sisteminize güvenle akar.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Kayıpsız Teklif Akışı
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">SÜTUN 03</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Aracısız Doğrudan Sistem Mimarı Danışmanlığı</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Ajans komisyonları, iletişim kopuklukları ve yetersiz teknik destekle vakit kaybetmezsiniz. Kodun her satırını bizzat yazar, mimari kararları doğrudan firmanızın ihracat hedeflerine göre şekillendiririm.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            Doğrudan Mühendis Teması
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relevant Technical Vault & Broadcasts -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Teknik Vaka Analizleri & İncelemeler
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          İlgili Mühendislik Yayınları ve Mimari Raporlar
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-gold-tungsten">Vaka Analizi • 10 dk okuma</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara OSB Sanayi Firmaları İçin B2B İhracat Web Mimarisi Rehberi
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            OSTİM ve İvedik üreticilerinin küresel pazarda dijital varlıklarını nasıl konumlandırması gerektiğine dair kapsamlı mimari inceleme.
+          </p>
+        </a>
+
+        <a
+          href="/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-emerald-400">Güvenlik Raporu • 11 dk okuma</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Kurumsal Web Sitelerinde 2026 Siber Güvenlik Standartları
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            HSTS Preload, katı CSP politikası, statik site mimarisiyle sıfır saldırı yüzeyi ve Cloudflare WAF koruması.
+          </p>
+        </a>
+
+        <a
+          href="/ankara-web-yazilim/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-text-primary">Özel Yazılım • Mimari Sayfa</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara Web Yazılım & Özel Sistem Mimarisi
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Hazır CMS şablonlarının tıkandığı ERP/stok entegrasyonları ve yüksek hacimli B2B portallar için özel yazılım mühendisliği.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Merak Edilenler
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Sıkça Sorulan Sorular ve Mimari Cevaplar
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group border border-obsidian-border rounded-xl p-5 bg-obsidian-surface/40 hover:border-gold-tungsten/40 transition-all duration-300">
+            <summary class="flex items-center justify-between font-semibold text-text-primary cursor-pointer list-none text-sm sm:text-base">
+              <span>{faq.question}</span>
+              <span class="text-gold-tungsten group-open:rotate-180 transition-transform duration-200 ml-4 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-text-muted mt-4 pt-4 border-t border-obsidian-border/50 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Direct CTA & Advisory Block -->
+    <section class="p-8 sm:p-10 rounded-2xl bg-gradient-to-b from-obsidian-surface to-obsidian-black border border-gold-tungsten/40 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold">
+          Doğrudan İletişim & Mimari Değerlendirme
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
+          İhracat Web Mimarınızı Şablon Ajanslara Bırakmayın
+        </h2>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Firmanızın ihracat hedeflerini, ürün katalog yapısını ve teknik gereksinimlerini doğrudan benimle görüşün. Teknik borçsuz, küresel standartta bir dijital altyapıyı birlikte kuralım.
+        </p>
+
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+          <a
+            href="mailto:dev@onuraksoy.com.tr"
+            class="px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold hover:bg-gold-highlight transition-colors flex items-center gap-2"
+          >
+            <span>dev@onuraksoy.com.tr</span>
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>WhatsApp: +90 551 181 70 53</span>
+          </a>
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>Telegram: @oaonuraksoy</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

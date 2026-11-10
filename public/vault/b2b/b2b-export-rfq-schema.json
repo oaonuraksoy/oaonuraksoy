@@ -1,0 +1,201 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://onuraksoy.com.tr/vault/b2b/b2b-export-rfq-schema.json",
+  "title": "B2B Export Catalog & International RFQ Data Contract Schema",
+  "description": "Production-grade schema for cross-border industrial manufacturing catalogs, HS/GTIP trade classifications, CAD specifications, and multi-language Requests for Quotation (RFQ). Designed for sub-50ms edge validation and zero-loss procurement integration.",
+  "version": "2026.1.0",
+  "type": "object",
+  "required": [
+    "rfqReference",
+    "createdAt",
+    "requester",
+    "shipmentTerms",
+    "targetDeliveryDate",
+    "lineItems"
+  ],
+  "properties": {
+    "rfqReference": {
+      "type": "string",
+      "pattern": "^RFQ-[A-Z0-9]{4}-[0-9]{6}$",
+      "description": "Unique deterministic RFQ identifier, e.g. RFQ-ANKA-202611"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of inquiry submission"
+    },
+    "targetLanguage": {
+      "type": "string",
+      "enum": ["tr", "en", "de", "fr", "ar", "ru"],
+      "default": "en",
+      "description": "Primary contract communication and technical documentation language"
+    },
+    "requester": {
+      "type": "object",
+      "required": ["companyName", "taxOrRegistrationId", "country", "contactPerson", "email"],
+      "properties": {
+        "companyName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "taxOrRegistrationId": {
+          "type": "string",
+          "description": "EORI number (EU), EIN (US), VKN (TR), or national business registry ID"
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "ISO 3166-1 alpha-2 country code (e.g. DE, US, TR, FR)"
+        },
+        "industrySector": {
+          "type": "string",
+          "enum": [
+            "Aerospace & Defense",
+            "Machinery & Heavy Industry",
+            "Automotive Tier 1/2",
+            "Energy & Petrochemicals",
+            "Industrial Automation & Robotics",
+            "Precision Metal Fabrication",
+            "Medical Devices"
+          ]
+        },
+        "contactPerson": {
+          "type": "string",
+          "minLength": 3
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "telephone": {
+          "type": "string",
+          "pattern": "^\\+[1-9][0-9]{7,14}$"
+        }
+      }
+    },
+    "shipmentTerms": {
+      "type": "object",
+      "required": ["incoterm", "deliveryPortOrDestination"],
+      "properties": {
+        "incoterm": {
+          "type": "string",
+          "enum": ["EXW", "FCA", "CPT", "CIP", "DAP", "DPU", "DDP", "FAS", "FOB", "CFR", "CIF"],
+          "description": "Incoterms 2020 international trade delivery condition"
+        },
+        "deliveryPortOrDestination": {
+          "type": "string",
+          "description": "Named port, container terminal, or destination address (e.g. Port of Hamburg DEHAM, Mersin TRMER)"
+        },
+        "preferredCurrency": {
+          "type": "string",
+          "enum": ["EUR", "USD", "GBP", "CHF", "TRY"],
+          "default": "EUR"
+        }
+      }
+    },
+    "targetDeliveryDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Target consignment delivery or milestone completion date"
+    },
+    "lineItems": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "itemNumber",
+          "partNumber",
+          "hsCode",
+          "title",
+          "quantity",
+          "unitOfMeasure"
+        ],
+        "properties": {
+          "itemNumber": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "partNumber": {
+            "type": "string",
+            "description": "Manufacturer or buyer technical part code"
+          },
+          "hsCode": {
+            "type": "string",
+            "pattern": "^[0-9]{6}([0-9]{2}([0-9]{4})?)?$",
+            "description": "Harmonized System (HS) / GTIP trade code (6, 8, or 12 digits, e.g. 8479.89.97)"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 200
+          },
+          "quantity": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "unitOfMeasure": {
+            "type": "string",
+            "enum": ["PCS", "SETS", "METERS", "KG", "TONS", "HOURS", "BATCH"]
+          },
+          "materialSpec": {
+            "type": "string",
+            "description": "Material standard (e.g. AISI 316L, 42CrMo4, AL 7075-T6, Ti-6Al-4V)"
+          },
+          "toleranceStandard": {
+            "type": "string",
+            "description": "Geometric tolerance standard (e.g. ISO 2768-mK, DIN 7168)"
+          },
+          "cadAttachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["filename", "fileFormat", "sha256Hash"],
+              "properties": {
+                "filename": { "type": "string" },
+                "fileFormat": {
+                  "type": "string",
+                  "enum": ["STEP", "STP", "IGES", "IGS", "DWG", "DXF", "PDF-2D", "SLDPRT", "PARASOLID"]
+                },
+                "sha256Hash": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "downloadUrl": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "requiredCertifications": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "EN 10204 3.1 Material Certificate",
+                "EN 10204 3.2 Inspection Certificate",
+                "ISO 9001:2015",
+                "AS9100D Aerospace",
+                "IATF 16949 Automotive",
+                "CE Marking Declaration",
+                "RoHS Compliance",
+                "REACH SVHC Declaration",
+                "CMM Inspection Report"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "confidentialityAgreementRequired": {
+      "type": "boolean",
+      "default": true
+    },
+    "buyerNotes": {
+      "type": "string",
+      "maxLength": 4000
+    }
+  }
+}

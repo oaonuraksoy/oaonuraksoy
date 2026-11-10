@@ -1,0 +1,168 @@
+---
+/**
+ * BroadcastJsonLd.astro — Yayın detay sayfaları için TEK @graph (AGENTS.md §7.1).
+ * Person / WebSite düğümleri src/utils/schema.mjs'den gelir (kimlik verisi kopyalanmaz).
+ * VideoObject alanları gerçek YouTube verisiyle (süre, yükleme tarihi) birebir eşleşmelidir.
+ */
+import { PERSON_ID, WEBSITE_ID } from '../data/identity.mjs';
+import { lastModified } from '../utils/content-dates.mjs';
+import {
+  personNode, personImageNode, websiteNode, primaryImageNode,
+  breadcrumbNode, faqNode, graphJson, inLanguage
+} from '../utils/schema.mjs';
+
+interface Chapter { time: string; seconds?: number; title: string; }
+interface DownloadItem { name: string; size: string; type: string; driveUrl: string; }
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  canonicalUrl: string;
+  image: string;
+  lang?: 'en' | 'tr';
+  tags?: string[];
+  youtubeId?: string;
+  spotifyUrl?: string;
+  duration?: string;
+  chapters?: Chapter[];
+  downloads?: DownloadItem[];
+  faqs?: { question: string; answer: string }[];
+  doi?: string;
+}
+
+const {
+  title, description, pubDate, canonicalUrl, image,
+  lang = 'tr', tags = [], youtubeId, spotifyUrl, duration,
+  chapters = [], downloads = [], faqs = [], doi
+} = Astro.props;
+
+const isTr = lang === 'tr';
+const homeUrl = isTr ? 'https://onuraksoy.com.tr/' : 'https://onuraksoy.com.tr/en/';
+const broadcastsUrl = `${homeUrl}broadcasts/`;
+const published = pubDate.toISOString();
+const modifiedRaw = lastModified(new URL(canonicalUrl).pathname);
+// dateModified yayın tarihinden önce olamaz
+const modified = modifiedRaw && Date.parse(modifiedRaw) > pubDate.getTime() ? modifiedRaw : published;
+
+const toSeconds = (t: string) => t.split(':').map(Number).reduce((acc, n) => acc * 60 + n, 0);
+const isoToSeconds = (iso?: string) => {
+  const m = iso?.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  return m ? (+(m[1] || 0)) * 3600 + (+(m[2] || 0)) * 60 + (+(m[3] || 0)) : undefined;
+};
+
+const graph: Record<string, any>[] = [
+  personNode(lang),
+  personImageNode(),
+  websiteNode(),
+  {
+    '@type': 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: title,
+    description,
+    inLanguage: inLanguage(lang),
+    isPartOf: { '@id': WEBSITE_ID },
+    primaryImageOfPage: { '@id': `${canonicalUrl}#primaryimage` },
+    breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` },
+    mainEntity: { '@id': `${canonicalUrl}#article` },
+    about: { '@id': `${canonicalUrl}#article` },
+    datePublished: published,
+    dateModified: modified
+  },
+  primaryImageNode(canonicalUrl, image, title),
+  breadcrumbNode(canonicalUrl, [
+    { name: isTr ? 'Ana Sayfa' : 'Home', url: homeUrl },
+    { name: isTr ? 'Yayınlar & Bilgi Kasası' : 'Broadcasts & Vault', url: broadcastsUrl },
+    { name: title, url: canonicalUrl }
+  ]),
+  {
+    '@type': doi ? ['TechArticle', 'ScholarlyArticle'] : 'TechArticle',
+    '@id': `${canonicalUrl}#article`,
+    headline: title,
+    description,
+    url: canonicalUrl,
+    inLanguage: inLanguage(lang),
+    mainEntityOfPage: { '@id': `${canonicalUrl}#webpage` },
+    isPartOf: { '@id': `${canonicalUrl}#webpage` },
+    image: { '@id': `${canonicalUrl}#primaryimage` },
+    datePublished: published,
+    dateModified: modified,
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': PERSON_ID },
+    ...(doi ? {
+      sameAs: `https://doi.org/${doi}`,
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'DOI',
+        value: doi,
+        url: `https://doi.org/${doi}`
+      }
+    } : {}),
+    ...(tags.length ? { keywords: tags.join(', ') } : {}),
+    ...(youtubeId ? { video: { '@id': `${canonicalUrl}#video` } } : {}),
+    ...(spotifyUrl ? { audio: { '@id': `${canonicalUrl}#audio` } } : {})
+  }
+];
+
+if (youtubeId) {
+  const totalSec = isoToSeconds(duration);
+  const clips = chapters.map((ch, idx) => {
+    const start = ch.seconds ?? toSeconds(ch.time);
+    const next = chapters[idx + 1];
+    const end = next ? (next.seconds ?? toSeconds(next.time)) : totalSec;
+    return {
+      '@type': 'Clip',
+      name: ch.title,
+      startOffset: start,
+      ...(end && end > start ? { endOffset: end } : {}),
+      url: `https://www.youtube.com/watch?v=${youtubeId}&t=${start}s`
+    };
+  });
+  graph.push({
+    '@type': 'VideoObject',
+    '@id': `${canonicalUrl}#video`,
+    name: title,
+    description,
+    thumbnailUrl: [image, `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`],
+    uploadDate: published,
+    ...(duration ? { duration } : {}),
+    contentUrl: `https://www.youtube.com/watch?v=${youtubeId}`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeId}`,
+    inLanguage: inLanguage(lang),
+    author: { '@id': PERSON_ID },
+    ...(clips.length ? { hasPart: clips } : {})
+  });
+}
+
+if (spotifyUrl) {
+  graph.push({
+    '@type': 'AudioObject',
+    '@id': `${canonicalUrl}#audio`,
+    name: `${title} (${isTr ? 'Podcast' : 'Podcast Edition'})`,
+    description,
+    contentUrl: spotifyUrl,
+    inLanguage: inLanguage(lang),
+    author: { '@id': PERSON_ID }
+  });
+}
+
+downloads.forEach((d, idx) => {
+  const isCode = ['code', 'sql', 'ts', 'js', 'sh'].includes(d.type.toLowerCase());
+  graph.push({
+    '@type': isCode ? 'SoftwareSourceCode' : 'DigitalDocument',
+    '@id': `${canonicalUrl}#download-${idx}`,
+    name: d.name,
+    encodingFormat: d.type,
+    url: d.driveUrl.startsWith('/') ? `https://onuraksoy.com.tr${d.driveUrl}` : d.driveUrl,
+    creator: { '@id': PERSON_ID },
+    isPartOf: { '@id': `${canonicalUrl}#article` }
+  });
+});
+
+if (faqs.length > 0) graph.push(faqNode(canonicalUrl, faqs));
+
+const json = graphJson(graph);
+---
+
+<script type="application/ld+json" set:html={json} />

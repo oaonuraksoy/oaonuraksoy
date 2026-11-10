@@ -1,0 +1,276 @@
+---
+interface Props {
+  lang?: 'tr' | 'en';
+}
+
+const { lang = 'tr' } = Astro.props;
+const isTr = lang === 'tr';
+
+const content = {
+  tr: {
+    sectionId: 'kitap',
+    badge: 'Resmî Yayın · Elektronik Kitap (Monografi)',
+    title: 'Yapay Zeka Sizi Tanımıyor',
+    subtitle: 'Algoritmaların Hafızasında Var Olmak',
+    authorLine: 'Yazar: Onur Aksoy (Hackonomist) · Yayımcı: Onur Aksoy',
+    editorialP1:
+      'Arama motorlarından yanıt motorlarına, indekslenmiş web sayfalarından olasılıksal ağırlıklara geçerken dijital kimlik sessiz bir kriz yaşıyor. Milyonlarca içeriğin üretildiği bir çağda, sistemler bireyleri ve kurumları daha iyi tanımıyor; aksine onları "isim ikizleri" ve eşseslilik karmaşası içinde birbirine karıştırarak olasılıksal ortalamalara indirgiyor.',
+    editorialP2:
+      'Bu eser; gözetim korkusunun arkasında gizlenen görünmezlik gerçeğini, kurumsal mühür ve kayıt geleneğinin dijital hafızadaki karşılığını, ve yapay zekanın bulanık hafızasında silinmeye direnen kalıcı bir dijital varlık inşa etmenin mimari stratejisini ele alıyor.',
+    colophonHeading: 'T.C. Kültür ve Turizm Bakanlığı (EKYGM) Resmî Künyesi',
+    colophon: [
+      { label: 'Eser Adı', value: 'Yapay Zeka Sizi Tanımıyor', full: false },
+      { label: 'Alt Eser Adı', value: 'Algoritmaların Hafızasında Var Olmak', full: false },
+      { label: 'Yazar', value: 'Onur Aksoy (Hackonomist)', full: false },
+      { label: 'Yayımcı', value: 'Onur Aksoy', full: false },
+      {
+        label: 'Yayınlandığı Ortam / Tür',
+        value: 'Elektronik Materyal · Elektronik Kitap (Çevrim içi / Web tabanlı) · Tek Kitap',
+        full: true
+      },
+      {
+        label: 'Ortam Türleri (Formatlar)',
+        value: 'PDF ve EPUB 3.0 (Ayrı format edisyonları)',
+        full: false
+      },
+      { label: 'Yayın Dili ve Alfabesi', value: 'Türkçe · Türk Alfabesi', full: false },
+      { label: 'Basım & Kapsam', value: '1. Basım · Kasım 2026, Ankara · 157 Sayfa', full: false },
+      {
+        label: 'Konu Başlığı',
+        value: 'Bilgisayar ve Enformasyon Teknolojisi / Bilgisayar Bilimi — Yapay Zeka (Hedef Kitle: Genel)',
+        full: true
+      },
+      { label: 'Erişime Açılma Tarihi', value: '11.11.2026', full: false },
+      { label: 'Yayına Erişim Türü & Satış Fiyatı', value: 'Ücretli — 49,90 TL', full: false },
+      {
+        label: 'ISBN Durumu',
+        value: 'T.C. Kültür ve Turizm Bakanlığı EKYGM ISBN Tahsis Sürecinde (PDF & EPUB)',
+        full: true
+      }
+    ],
+    tocHeading: 'Eser İçindekiler & Bölüm Mimarisi',
+    tocBadge: '11 Bölüm · Tam Metin',
+    chapters: [
+      'Önsöz: Her Şeyi Bilen Makinenin Kör Noktası',
+      '1. Büyük Yanılsama: Gözetim Korkusu ile Görünmezlik Gerçeği',
+      '2. Bağlantı Çağından Yanıt Çağına Göç',
+      '3. İsim İkizleri ve Kimlik Erimesi',
+      '4. Olasılıksal Hafıza Neden Yalan Söyler?',
+      '5. Dijital Gürültü ve Unutulan Emeğin Ekonomisi',
+      '6. Kayıt, Mühür ve Kurumsal Hafızanın İntikamı',
+      '7. Algoritmaların Hafızasında Yer Tutmak',
+      '8. Hatırlanma Hakkı ve Geleceğin İtibar Sözleşmesi',
+      'Son Söz: Silinmeye Direnen İsim',
+      'Kavram Sözlüğü & Seçilmiş Kaynakça'
+    ],
+    coverAlt: 'Yapay Zeka Sizi Tanımıyor — Algoritmaların Hafızasında Var Olmak Kitap Kapağı (Onur Aksoy)',
+    priceTag: '49,90 TL',
+    formatsTag: 'PDF · EPUB 3.0',
+    isbnStatusTag: 'EKYGM ISBN Tahsisinde',
+    ctaPrimaryText: 'E-Kitap Satın Alma & Kurumsal Temin Talebi (49,90 TL)',
+    ctaPrimaryHref: 'mailto:dev@onuraksoy.com.tr?subject=Yapay%20Zeka%20Sizi%20Tanimiyor%20-%20E-Kitap%20Satis%20ve%20Temin%20Talebi',
+    storeBadge: 'Google Play Kitaplar ve küresel e-kitap mağazalarında (EPUB & PDF)',
+    orderNote: 'Bireysel siparişler ve kurumsal çoklu lisanslama talepleri için doğrudan yayımcı ile iletişime geçebilirsiniz. Eser DRM korumasız, doğrulanmış PDF ve EPUB 3.0 formatlarında dijital olarak teslim edilir.'
+  },
+  en: {
+    sectionId: 'book',
+    badge: 'Official Publication · E-Book Monograph',
+    title: 'Yapay Zeka Sizi Tanımıyor',
+    subtitle: 'Existing in the Memory of Algorithms',
+    authorLine: 'Author: Onur Aksoy (Hackonomist) · Publisher: Onur Aksoy',
+    editorialP1:
+      'As the digital sphere shifts from search engines to answer engines—from indexed hyperlinks to probabilistic weights—digital identity faces a quiet crisis. In an age of infinite automated output, generative systems do not understand individuals and organizations with greater fidelity; instead, they dilute identities within "name twins" and homonym collisions, flattening distinct legacies into statistical averages.',
+    editorialP2:
+      'This monograph investigates the reality of digital invisibility hiding behind the fear of surveillance, the modern renaissance of institutional seals and verified records, and the foundational architectural strategy required to build an enduring semantic footprint that resists erasure in the hazy memory of neural networks.',
+    colophonHeading: 'Official Monograph Colophon & EKYGM Registration Details',
+    colophon: [
+      { label: 'Title', value: 'Yapay Zeka Sizi Tanımıyor', full: false },
+      { label: 'Subtitle', value: 'Existing in the Memory of Algorithms (Algoritmaların Hafızasında Var Olmak)', full: false },
+      { label: 'Author', value: 'Onur Aksoy (Hackonomist)', full: false },
+      { label: 'Publisher', value: 'Onur Aksoy', full: false },
+      {
+        label: 'Publication Type',
+        value: 'Electronic Material · E-Book (Online / Web-Based) · Monograph',
+        full: true
+      },
+      {
+        label: 'Formats',
+        value: 'PDF & EPUB 3.0 (Discrete format editions)',
+        full: false
+      },
+      { label: 'Language & Script', value: 'Turkish · Latin (Turkish) Alphabet', full: false },
+      { label: 'Edition & Scope', value: '1st Edition · November 2026, Ankara · 157 Pages', full: false },
+      {
+        label: 'Subject Classification',
+        value: 'Computer Science & Information Technology — Artificial Intelligence (Audience: General)',
+        full: true
+      },
+      { label: 'Publication Date', value: '11.11.2026', full: false },
+      { label: 'Access & Pricing', value: 'Paid — 49.90 TRY', full: false },
+      {
+        label: 'ISBN Status',
+        value: 'Ministry of Culture and Tourism (EKYGM) ISBN Allocation in Progress (PDF & EPUB)',
+        full: true
+      }
+    ],
+    tocHeading: 'Table of Contents & Chapter Architecture',
+    tocBadge: '11 Chapters · Full Text',
+    chapters: [
+      'Preface: The Blind Spot of the All-Knowing Machine',
+      '1. The Grand Illusion: The Fear of Surveillance vs. The Reality of Invisibility',
+      '2. Migration from the Age of Links to the Age of Answers',
+      '3. Name Twins and the Erosion of Identity',
+      '4. Why Does Probabilistic Memory Hallucinate?',
+      '5. Digital Noise and the Economics of Forgotten Labor',
+      '6. Records, Seals, and the Retribution of Institutional Memory',
+      '7. Anchoring in the Memory of Algorithms',
+      '8. The Right to Be Remembered and the Future Reputation Covenant',
+      'Epilogue: The Name That Resists Erasure',
+      'Glossary of Terms & Selected Bibliography'
+    ],
+    coverAlt: 'AI Doesn\'t Know You — Existing in the Memory of Algorithms Book Cover (Onur Aksoy)',
+    priceTag: '49.90 TRY',
+    formatsTag: 'PDF · EPUB 3.0',
+    isbnStatusTag: 'EKYGM ISBN Allocation Pending',
+    ctaPrimaryText: 'Request E-Book Purchase & Institutional Licensing (49.90 TRY)',
+    ctaPrimaryHref: 'mailto:dev@onuraksoy.com.tr?subject=AI%20Does%20Not%20Know%20You%20-%20E-Book%20Order%20and%20Inquiry',
+    storeBadge: 'Google Play Books & global digital bookstores (EPUB & PDF)',
+    orderNote: 'For individual orders and institutional multi-user licensing, contact the publisher directly. Delivered in DRM-free authenticated PDF and EPUB 3.0 formats.'
+  }
+};
+
+const t = content[lang];
+---
+
+<section id={t.sectionId} class="py-20 border-t border-obsidian-border bg-obsidian-surface/30">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
+    <div class="mb-12 text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-black border border-gold-tungsten/30 mb-4">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold-highlight"></span>
+        <span class="text-xs font-mono text-gold-highlight uppercase tracking-wider">
+          {t.badge}
+        </span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary leading-tight">
+        {t.title}
+      </h2>
+      <p class="text-lg sm:text-xl text-gold-highlight font-semibold mt-2">
+        {t.subtitle}
+      </p>
+      <p class="text-xs sm:text-sm text-text-muted mt-2 font-mono">
+        {t.authorLine}
+      </p>
+    </div>
+
+    <!-- Main Grid: Cover on Left, Editorial + Colophon on Right -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <!-- Left: Book Cover & Badges -->
+      <div class="lg:col-span-5 flex flex-col items-center">
+        <div class="relative w-full max-w-xs sm:max-w-sm rounded-2xl overflow-hidden border border-gold-tungsten/40 bg-obsidian-black shadow-2xl shadow-gold-tungsten/10 group">
+          <img
+            src="/images/books/yapay-zeka-sizi-tanimiyor-kapak.webp"
+            alt={t.coverAlt}
+            width="640"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/80 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono px-3 py-1.5 rounded-lg bg-obsidian-surface/90 border border-obsidian-border backdrop-blur-sm">
+            <span class="text-gold-highlight font-semibold">{t.priceTag}</span>
+            <span class="text-text-muted">{t.formatsTag}</span>
+          </div>
+        </div>
+
+        <!-- Quick Trust Badges -->
+        <div class="w-full max-w-xs sm:max-w-sm mt-4 grid grid-cols-2 gap-2 text-center">
+          <div class="p-2.5 rounded-xl bg-obsidian-surface border border-obsidian-border text-[11px]">
+            <span class="block text-text-dim font-mono">{isTr ? 'Format' : 'Format'}</span>
+            <span class="text-text-primary font-semibold">{t.formatsTag}</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-obsidian-surface border border-gold-tungsten/30 text-[11px]">
+            <span class="block text-text-dim font-mono">{isTr ? 'Durum' : 'Status'}</span>
+            <span class="text-gold-highlight font-semibold">{t.isbnStatusTag}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Editorial Synopsis, Colophon, TOC & Purchasing -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <!-- Editorial Synopsis -->
+        <div class="card-noir p-6 rounded-2xl border border-obsidian-border bg-obsidian-surface/50">
+          <h3 class="text-xs font-mono uppercase tracking-wider text-gold-tungsten mb-3">
+            {isTr ? 'Eser Tanıtımı & Editoryal Çerçeve' : 'Editorial Synopsis & Architectural Framework'}
+          </h3>
+          <p class="text-sm text-text-primary leading-relaxed mb-3">
+            {t.editorialP1}
+          </p>
+          <p class="text-sm text-text-muted leading-relaxed">
+            {t.editorialP2}
+          </p>
+        </div>
+
+        <!-- Official EKYGM Colophon Card -->
+        <div class="card-noir p-6 rounded-2xl border border-gold-tungsten/30 bg-obsidian-surface/80">
+          <div class="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-obsidian-border/70">
+            <h3 class="text-xs font-mono uppercase tracking-wider text-gold-highlight font-semibold">
+              {t.colophonHeading}
+            </h3>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30">
+              EKYGM
+            </span>
+          </div>
+
+          <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 text-xs">
+            {t.colophon.map((item) => (
+              <div class={item.full ? 'sm:col-span-2' : ''}>
+                <dt class="text-text-dim font-mono text-[11px]">{item.label}</dt>
+                <dd class="text-text-primary font-medium mt-0.5 leading-snug">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <!-- Table of Contents (Details / Summary) -->
+        <details class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/40 transition-colors">
+          <summary class="flex items-center justify-between font-bold text-text-primary cursor-pointer list-none text-sm group-open:text-gold-highlight transition-colors">
+            <span class="flex items-center gap-2">
+              <span>{t.tocHeading}</span>
+              <span class="text-[11px] font-mono font-normal text-text-muted px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border">
+                {t.tocBadge}
+              </span>
+            </span>
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-obsidian-black border border-obsidian-border text-gold-tungsten group-open:rotate-45 transition-transform duration-200">
+              +
+            </span>
+          </summary>
+          <ol class="mt-4 pt-4 border-t border-obsidian-border/50 space-y-2 text-xs text-text-muted font-mono list-decimal list-inside leading-relaxed">
+            {t.chapters.map((ch) => (
+              <li class="hover:text-text-primary transition-colors">{ch}</li>
+            ))}
+          </ol>
+        </details>
+
+        <!-- Purchasing / Licensing CTA Box -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-obsidian-surface via-obsidian-surface to-obsidian-black border border-gold-tungsten/40 shadow-xl">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-4">
+            <a
+              href={t.ctaPrimaryHref}
+              class="px-6 py-3.5 rounded-xl font-bold text-sm bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight shadow-lg shadow-gold-tungsten/20 transition-all duration-200 text-center"
+            >
+              {t.ctaPrimaryText}
+            </a>
+            <span class="inline-flex items-center justify-center text-xs font-mono text-gold-highlight px-3.5 py-2 rounded-xl bg-obsidian-black border border-obsidian-border text-center">
+              {t.storeBadge}
+            </span>
+          </div>
+          <p class="text-xs text-text-dim leading-relaxed">
+            {t.orderNote}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

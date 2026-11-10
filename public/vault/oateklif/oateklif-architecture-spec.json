@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "oaTeklif Application Architecture & Quotation Data Contract",
+  "author": "Onur Aksoy (a.k.a. Hackonomist)",
+  "website": "https://onuraksoy.com.tr",
+  "repository": "https://github.com/oaonuraksoy/oaTeklifFormApp",
+  "version": "1.0.0",
+  "architecture": {
+    "platform": ".NET 8.0 Windows Desktop (WPF/WinForms)",
+    "paradigm": "Local-First Sovereign Client",
+    "pdfEngine": "Vector PDF Primitives (PDFSharp Core)",
+    "storage": "Local User Profile AppData / JSON Flatfile",
+    "telemetry": "None (Zero outbound tracking)"
+  },
+  "quotationSchema": {
+    "header": {
+      "quoteNumber": "string (format: YYYYMMDD-XXXX)",
+      "issueDate": "date (ISO-8601)",
+      "expiryDate": "date (ISO-8601)",
+      "currency": "enum [TRY, USD, EUR, GBP]",
+      "company": {
+        "name": "string",
+        "taxOffice": "string",
+        "taxNumber": "string",
+        "address": "string",
+        "phone": "string",
+        "email": "string",
+        "logoBase64": "string (optional PNG/JPEG raster or SVG)",
+        "iban": "string (TRXX...)"
+      },
+      "customer": {
+        "name": "string",
+        "contactPerson": "string",
+        "taxOffice": "string",
+        "taxNumber": "string",
+        "address": "string",
+        "phone": "string",
+        "email": "string"
+      }
+    },
+    "items": [
+      {
+        "lineIndex": "integer",
+        "description": "string",
+        "quantity": "decimal",
+        "unit": "enum [Adet, Saat, Gun, Ay, Lisans, Proje]",
+        "unitPrice": "decimal",
+        "discountRate": "decimal (0.00 - 100.00)",
+        "vatRate": "decimal (0, 1, 10, 20)",
+        "subtotal": "calculated: quantity * unitPrice * (1 - discountRate/100)",
+        "vatAmount": "calculated: subtotal * (vatRate/100)",
+        "lineTotal": "calculated: subtotal + vatAmount"
+      }
+    ],
+    "totals": {
+      "grossTotal": "decimal",
+      "totalDiscount": "decimal",
+      "netTaxableBase": "decimal",
+      "totalVat": "decimal",
+      "grandTotal": "decimal"
+    },
+    "terms": {
+      "paymentTerms": "string",
+      "deliveryTerms": "string",
+      "customNotes": "string",
+      "authorizedSignature": "boolean"
+    }
+  }
+}

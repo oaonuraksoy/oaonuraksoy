@@ -1,0 +1,43 @@
+# ==============================================================================
+# Docker Compose Architecture for Self-Hosted n8n on Plesk / Ubuntu VPS
+# Architecture: Onur Aksoy (a.k.a. Hackonomist) — https://onuraksoy.com.tr
+# Purpose: Unmetered workflow automation with persistent SQLite storage and SSE
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n_production
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      # Host and protocol bindings for webhook resolution
+      - N8N_HOST=n8n.yourdomain.com
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://n8n.yourdomain.com/
+      - GENERIC_TIMEZONE=Europe/Istanbul
+      
+      # Security and hardening
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168 # Prune logs older than 7 days
+      - EXECUTIONS_DATA_PRUNE_MAX_COUNT=50000
+      
+      # Real-time event streaming
+      - N8N_PUSH_BACKEND=websocket
+      
+      # Performance and concurrency settings
+      - N8N_DEFAULT_BINARY_DATA_MODE=filesystem
+      - EXECUTIONS_PROCESS=main
+    volumes:
+      - /var/n8n_data:/home/node/.n8n
+      - /var/n8n_data/local_files:/data/files
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
