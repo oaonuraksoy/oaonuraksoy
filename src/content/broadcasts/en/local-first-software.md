@@ -7,6 +7,12 @@ pubDate: 2024-10-02
 lang: "en"
 ref: "local-first-software"
 doi: "10.5281/zenodo.24114159"
+scholarlyPaper:
+  title: "Deterministic LAN State Replication and Passive SIP/RTP Packet Telemetry for Offline-First Commercial Terminals"
+  publicationDate: "2026/05/19"
+  pdfPath: "/papers/Onur_Aksoy_Local_First_LAN_State_Replication_VoIP_Telemetry_2026.pdf"
+  zenodoRecordId: "24114159"
+  language: "en"
 featured: false
 tags: ["LocalFirst", "DistributedSystems", "DatabaseArchitecture", "SQLite", "DirectX", "DotNet", "HighPerformance"]
 duration: "PT19M15S"
@@ -25,6 +31,11 @@ chapters:
   - time: "17:00"
     title: "Production Telemetry & Lessons from High-Throughput POS Systems"
 downloads:
+  - name: "CERN/Zenodo Open Access Academic Technical Paper (PDF)"
+    size: "17.2 KB"
+    type: "pdf"
+    driveUrl: "/papers/Onur_Aksoy_Local_First_LAN_State_Replication_VoIP_Telemetry_2026.pdf"
+    hash: "sha256:b3dbd37f57e3e30ad136fd16abf3d0d9969f239f1d7b57e5960ae2c98a4cdca4"
   - name: "lan_binary_sync_protocol.cs"
     size: "3.1 KB"
     type: "cs"

@@ -7,6 +7,12 @@ pubDate: 2024-11-15
 lang: "tr"
 ref: "ai-native-architecture"
 doi: "10.5281/zenodo.24113617"
+scholarlyPaper:
+  title: "Role-Isolated State Partitions and Asymmetric Verification Gates for Multi-Agent Software Synthesis"
+  publicationDate: "2026/08/14"
+  pdfPath: "/papers/Onur_Aksoy_Role_Isolated_Multi_Agent_Verification_Gates_2026.pdf"
+  zenodoRecordId: "24113617"
+  language: "en"
 featured: false
 tags: ["YapayZekaMimarisi", "AjanIsAkislari", "DeterministikSistemler", "SistemTasarimi", "YazilimMuhendisligi", "BaglamMuhendisligi", "OtonomAjanlar"]
 duration: "PT16M45S"
@@ -25,6 +31,11 @@ chapters:
   - time: "15:20"
     title: "Üretim Dağıtımı: Kurumsal Ajan Sürülerinden Çıkarılan Dersler"
 downloads:
+  - name: "CERN/Zenodo Açık Erişim Akademik Teknik Makale (PDF)"
+    size: "18.5 KB"
+    type: "pdf"
+    driveUrl: "/papers/Onur_Aksoy_Role_Isolated_Multi_Agent_Verification_Gates_2026.pdf"
+    hash: "sha256:94da849ec160edde6350e61e2f241cf60c8ae97882ba854c8fc7bf550c4dabdb"
   - name: "deterministic-agent-fsm-engine.ts"
     size: "2.6 KB"
     type: "ts"

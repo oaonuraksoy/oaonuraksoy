@@ -16,6 +16,7 @@
  *  K10 Sayfalar arası @id değişmezliği & ProfessionalService sameAs yasağı.
  *  K11 Sayfa tipi ayrımı (ProfilePage, AboutPage, ContactPage, Book, FAQPage yasağı) & teklif kanibalizm engeli.
  *  K12 Akademik ScholarlyArticle & Yayın WebPage.about.
+ *  K13 Kitap ISBN & Önizleme Bütünlüğü (K13a) ve Google Scholar Highwire Press citation_* / Öz-Arşiv PDF (K13b).
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -26,7 +27,8 @@ import {
   FROZEN_SITEMAPS,
   SITE_URL,
   PERSON_IMAGE_ID,
-  BOOK_ID
+  BOOK_ID,
+  BOOK_YAPAY_ZEKA
 } from '../src/data/identity.mjs';
 import { imageMeta } from '../src/utils/image-meta.mjs';
 
@@ -50,6 +52,11 @@ function walk(dir, exts, out = []) {
 const rel = (p) => path.relative(process.cwd(), p).split(path.sep).join('/');
 const decode = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const attr = (html, re) => { const m = html.match(re); return m ? decode(m[1]) : null; };
+const getMeta = (html, name) => {
+  const m = html.match(new RegExp(`<meta\\s+[^>]*name=["']${name}["'][^>]*content=["']([^"']*)["']`, 'i')) ||
+            html.match(new RegExp(`<meta\\s+[^>]*content=["']([^"']*)["'][^>]*name=["']${name}["']`, 'i'));
+  return m ? decode(m[1]) : null;
+};
 
 // ── K1: yasaklı unvanlar ────────────────────────────────────────────────────
 for (const file of [...walk(DIST, ['.html', '.txt', '.xml']), path.resolve('README.md')]) {
@@ -162,8 +169,39 @@ for (const file of htmlFiles) {
     }
 
     if (url === `${SITE_URL}/` || url === `${SITE_URL}/en/`) {
-      const hasBook = graph.some((n) => n['@type'] === 'Book' && n['@id'] === BOOK_ID);
-      if (!hasBook) fail(r, `K11 ${url} sayfasında Book düğümü (#book-yapay-zeka-sizi-tanimiyor) bulunmalı`);
+      const bookNode = graph.find((n) => n['@type'] === 'Book' && n['@id'] === BOOK_ID);
+      if (!bookNode) {
+        fail(r, `K11 ${url} sayfasında Book düğümü (#book-yapay-zeka-sizi-tanimiyor) bulunmalı`);
+      } else {
+        // K13a: Kitap ISBN & Önizleme Bütünlüğü
+        if (bookNode.isbn !== '9786250050002') {
+          fail(r, `K13a Book.isbn değeri 9786250050002 olmalı (mevcut: ${bookNode.isbn})`);
+        }
+        if (bookNode.numberOfPages !== 158) {
+          fail(r, `K13a Book.numberOfPages değeri 158 olmalı (mevcut: ${bookNode.numberOfPages})`);
+        }
+        const workExamples = Array.isArray(bookNode.workExample) ? bookNode.workExample : [];
+        const pdfWork = workExamples.find((w) => w['@id'] === `${BOOK_ID}-pdf`);
+        const epubWork = workExamples.find((w) => w['@id'] === `${BOOK_ID}-epub`);
+        if (!pdfWork || pdfWork.isbn !== '9786250049976' || pdfWork.numberOfPages !== 158) {
+          fail(r, `K13a Book.workExample PDF sürümünde isbn: 9786250049976 ve numberOfPages: 158 olmalı (mevcut: ${pdfWork?.isbn}, ${pdfWork?.numberOfPages})`);
+        }
+        if (!epubWork || epubWork.isbn !== '9786250050002') {
+          fail(r, `K13a Book.workExample EPUB sürümünde isbn: 9786250050002 olmalı (mevcut: ${epubWork?.isbn})`);
+        }
+        const previewPdfPath = path.resolve(DIST, 'books/yapay-zeka-sizi-tanimiyor-ucretsiz-onizleme.pdf');
+        if (!fs.existsSync(previewPdfPath)) {
+          fail(r, 'K13a dist/books/yapay-zeka-sizi-tanimiyor-ucretsiz-onizleme.pdf mevcut değil');
+        } else {
+          const header = Buffer.alloc(5);
+          const fd = fs.openSync(previewPdfPath, 'r');
+          fs.readSync(fd, header, 0, 5, 0);
+          fs.closeSync(fd);
+          if (header.toString('utf8') !== '%PDF-') {
+            fail(r, 'K13a dist/books/yapay-zeka-sizi-tanimiyor-ucretsiz-onizleme.pdf geçerli bir PDF dosyası değil (%PDF- ile başlamıyor)');
+          }
+        }
+      }
     }
 
     if (url === `${SITE_URL}/contact/` || url === `${SITE_URL}/en/contact/`) {
@@ -199,6 +237,42 @@ for (const file of htmlFiles) {
         const types = Array.isArray(articleNode['@type']) ? articleNode['@type'] : [articleNode['@type']];
         if (!types.includes('TechArticle') || !types.includes('ScholarlyArticle')) {
           fail(r, `K12 DOI içeren yayında @type hem TechArticle hem ScholarlyArticle içermeli (mevcut: ${JSON.stringify(articleNode['@type'])})`);
+        }
+
+        // K13b: Google Scholar Highwire Press citation_* & Öz-Arşiv PDF Bütünlüğü
+        if (url.startsWith(`${SITE_URL}/en/broadcasts/`)) {
+          const citTitle = getMeta(html, 'citation_title');
+          const citAuthor = getMeta(html, 'citation_author');
+          const citDate = getMeta(html, 'citation_publication_date');
+          const citDoi = getMeta(html, 'citation_doi');
+          const citPdfUrl = getMeta(html, 'citation_pdf_url');
+
+          if (!citTitle) fail(r, 'K13b citation_title meta etiketi bulunamadı');
+          if (citAuthor !== 'Aksoy, Onur') fail(r, `K13b citation_author "Aksoy, Onur" olmalı (mevcut: ${citAuthor})`);
+          if (!citDate || !/^\d{4}\/\d{2}\/\d{2}$/.test(citDate)) fail(r, `K13b citation_publication_date YYYY/MM/DD formatında olmalı (mevcut: ${citDate})`);
+          if (!citDoi) fail(r, 'K13b citation_doi meta etiketi bulunamadı');
+          if (!citPdfUrl || !/^https:\/\/onuraksoy\.com\.tr\/papers\/.+\.pdf$/.test(citPdfUrl)) {
+            fail(r, `K13b citation_pdf_url https://onuraksoy.com.tr/papers/*.pdf formatında olmalı (mevcut: ${citPdfUrl})`);
+          } else {
+            const paperFileName = citPdfUrl.replace('https://onuraksoy.com.tr/papers/', '');
+            const paperDistPath = path.resolve(DIST, 'papers', paperFileName);
+            if (!fs.existsSync(paperDistPath)) {
+              fail(r, `K13b dist/papers/${paperFileName} mevcut değil`);
+            } else {
+              const header = Buffer.alloc(5);
+              const fd = fs.openSync(paperDistPath, 'r');
+              fs.readSync(fd, header, 0, 5, 0);
+              fs.closeSync(fd);
+              if (header.toString('utf8') !== '%PDF-') {
+                fail(r, `K13b dist/papers/${paperFileName} geçerli bir PDF değil (%PDF- ile başlamıyor)`);
+              }
+            }
+          }
+        } else if (url.startsWith(`${SITE_URL}/broadcasts/`)) {
+          const citPdfUrl = getMeta(html, 'citation_pdf_url');
+          if (citPdfUrl) {
+            fail(r, `K13b Türkçe yayında citation_pdf_url meta etiketi bulunmamalı (mevcut: ${citPdfUrl})`);
+          }
         }
       }
     }
@@ -299,4 +373,4 @@ if (errors.length) {
   for (const e of errors) console.error('  - ' + e);
   process.exit(1);
 }
-console.log(`\n🛡  SEO/GEO koruma kapısı: ${htmlFiles.length} sayfa, K1–K12 kuralları ✅ ihlal yok.`);
+console.log(`\n🛡  SEO/GEO koruma kapısı: ${htmlFiles.length} sayfa, K1–K13 kuralları ✅ ihlal yok.`);

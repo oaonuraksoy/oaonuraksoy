@@ -7,6 +7,12 @@ pubDate: 2026-11-01
 lang: "en"
 ref: "ankara-osb-sanayi-b2b-ihracat-web-mimarisi"
 doi: "10.5281/zenodo.24113990"
+scholarlyPaper:
+  title: "Single-Graph Schema.org Entity Reconciliation and Homonym Disambiguation in Retrieval-Augmented Search Systems"
+  publicationDate: "2026/09/24"
+  pdfPath: "/papers/Onur_Aksoy_Single_Graph_Entity_Resolution_RAG_Disambiguation_2026.pdf"
+  zenodoRecordId: "24113990"
+  language: "en"
 featured: false
 tags: ["IndustrialWebArchitecture", "B2BExport", "EdgeComputing", "ZeroJS", "RFQSchema", "SystemsArchitecture", "AnkaraIndustry"]
 duration: "PT12M30S"
@@ -25,6 +31,11 @@ chapters:
   - time: "11:15"
     title: "Criterion 5: Corporate Email Reputation (DMARC, DKIM, SPF)"
 downloads:
+  - name: "CERN/Zenodo Open Access Academic Technical Paper (PDF)"
+    size: "18.4 KB"
+    type: "pdf"
+    driveUrl: "/papers/Onur_Aksoy_Single_Graph_Entity_Resolution_RAG_Disambiguation_2026.pdf"
+    hash: "sha256:28b3c927da13f84e22f70b9a5098735c51ea981fa821617c4a18290cb7749680"
   - name: "B2B International Export RFQ Data Contract Schema"
     size: "6.4 KB"
     type: "json"

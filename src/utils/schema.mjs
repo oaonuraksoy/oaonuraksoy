@@ -349,7 +349,7 @@ export function serviceOfferCatalog(kind, lang) {
 /**
  * Resmi Kitap Düğümü (Schema.org Book).
  * / ve /en/ sayfalarında %100 birebir aynı JSON olarak üretilir.
- * Bekleyen/uydurma ISBN eklenmez; workExample formatları PDF ve EPUB olarak belirtilir.
+ * T.C. Kültür ve Turizm Bakanlığı EKYGM resmi tescilli ISBN-13 numaraları işlenmiştir.
  */
 export function bookNode() {
   return {
@@ -358,6 +358,7 @@ export function bookNode() {
     name: BOOK_YAPAY_ZEKA.name,
     alternateName: BOOK_YAPAY_ZEKA.alternateName,
     description: BOOK_YAPAY_ZEKA.description,
+    isbn: BOOK_YAPAY_ZEKA.isbn,
     author: { '@id': PERSON_ID },
     publisher: { '@id': PERSON_ID },
     bookEdition: BOOK_YAPAY_ZEKA.bookEdition,
@@ -375,6 +376,8 @@ export function bookNode() {
         bookFormat: 'https://schema.org/EBook',
         encodingFormat: 'application/pdf',
         name: `${BOOK_YAPAY_ZEKA.name} (PDF E-Kitap)`,
+        isbn: BOOK_YAPAY_ZEKA.isbnPdf,
+        numberOfPages: BOOK_YAPAY_ZEKA.numberOfPages,
         inLanguage: BOOK_YAPAY_ZEKA.inLanguage
       },
       {
@@ -383,6 +386,7 @@ export function bookNode() {
         bookFormat: 'https://schema.org/EBook',
         encodingFormat: 'application/epub+zip',
         name: `${BOOK_YAPAY_ZEKA.name} (EPUB E-Kitap)`,
+        isbn: BOOK_YAPAY_ZEKA.isbnEpub,
         inLanguage: BOOK_YAPAY_ZEKA.inLanguage
       }
     ],

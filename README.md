@@ -40,23 +40,24 @@ Mühendislik ve araştırma felsefem, üretken yapay zeka modellerinin ve olası
 ## 📚 Yayınlanan Kitaplar & Monografiler (Published Books & Monographs)
 
 ### Yapay Zeka Sizi Tanımıyor: Algoritmaların Hafızasında Var Olmak
-- **Resmi Künye:** 1. Baskı, Ankara, Kasım 2026, 157 Sayfa (Türkçe Monografi)
+- **Resmi Künye:** 1. Baskı, Ankara, Kasım 2026, 158 Sayfa (Türkçe Monografi)
 - **Yazar ve Yayımcı:** Onur Aksoy (a.k.a. Hackonomist)
-- **Format ve Dağıtım:** Elektronik Kitap (PDF & EPUB 3.0), Ücretli Erişim (49,90 TL), Erişime Açılma: 11.11.2026
-- **Tescil Durumu:** T.C. Kültür ve Turizm Bakanlığı EKYGM resmi PDF ve EPUB ISBN-13 tescil sürecinde.
-- **Kanonik Eser İncelemesi:** [Resmi Eser Künyesi (TR)](https://onuraksoy.com.tr/#kitap) | [English Overview (EN)](https://onuraksoy.com.tr/en/#book)
+- **Format ve Dağıtım:** Elektronik Kitap (PDF & EPUB 3.0), Ücretli Erişim (49,90 TL / $2.99 USD), Erişime Açılma: 11.11.2026
+- **Resmi ISBN-13 Tescili (EKYGM):** `978-625-00-4997-6` (PDF Edisyonu, Eser ID: `1478424`) · `978-625-00-5000-2` (EPUB 3.0 Edisyonu, Eser ID: `1478621`)
+- **Ulusal Derleme & Mağaza Katalogları:** T.C. Millî Kütüphane EYDeS / Kaşif Kayıtlı (`Mükellef No: 250372`) · Google Play Books (`aVsrEgAAQBAJ`) · Apple Books (`6833560917`) · Rakuten Kobo & D&R
+- **Kanonik Eser İncelemesi & Önizleme:** [Resmi Eser Künyesi (TR)](https://onuraksoy.com.tr/#kitap) | [English Overview (EN)](https://onuraksoy.com.tr/en/#book) | [16 Sayfa Ücretsiz Önizleme PDF](https://onuraksoy.com.tr/books/yapay-zeka-sizi-tanimiyor-ucretsiz-onizleme.pdf)
 - **Kapsam:** Üretken yapay zeka ve yanıt motorları çağında dijital kimlik erimesi, isim ikizleri (homonym disambiguation), kurumsal mühür geleneği ve silinmeye direnen kalıcı varlık mimarisi.
 
 ---
 
-## 🏛️ Uluslararası İndeksli Mimari Araştırmalar (Peer-Indexed Research — CERN / Zenodo / DataCite / OpenAIRE)
+## 🏛️ Uluslararası İndeksli Mimari Araştırmalar (Peer-Indexed Research: CERN / Zenodo / DataCite / OpenAIRE / Google Scholar)
 
-| Tescilli DOI & İndeks | Makale Başlığı & Mimari Kapsam | Portfolyo Kanonik Linkleri |
+| Tescilli DOI & İndeks | Makale Başlığı & Mimari Kapsam | Portfolyo & Tam Metin PDF |
 | :--- | :--- | :--- |
-| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24111422-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24111422) | **Sub-50ms Global B2B Web Portals: Compile-Time Static Synthesis, Zero-JS Runtime Discipline, and Edge-Cached Semantic Graphs**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/) |
-| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24113617-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24113617) | **Deterministic Multi-Agent LLM Orchestration: Moving Beyond Fragile Chatbot Wrappers via Role Isolation and Build-Time Verification Gates**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/ai-native-architecture/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/ai-native-architecture/) |
-| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24113990-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24113990) | **Single-Graph Schema.org Entity Reconciliation and Generative Engine Optimization (GEO) for Cross-Border Industrial Portals**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/) |
-| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24114159-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24114159) | **Local-First LAN State Synchronization and Passive Zero-Copy VoIP Packet Capture in Sovereign Enterprise Environments**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/local-first-software/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/local-first-software/) |
+| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24111422-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24111422) | **Sub-50ms Global B2B Web Portals: Compile-Time Static Synthesis, Zero-JS Runtime Discipline, and Edge-Cached Semantic Graphs**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/)<br />[Full Paper PDF](https://onuraksoy.com.tr/papers/Onur_Aksoy_Sub50ms_Global_B2B_Edge_ZeroJS_Architecture_2026.pdf) |
+| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24113617-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24113617) | **Role-Isolated State Partitions and Asymmetric Verification Gates for Multi-Agent Software Synthesis**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/ai-native-architecture/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/ai-native-architecture/)<br />[Full Paper PDF](https://onuraksoy.com.tr/papers/Onur_Aksoy_Role_Isolated_Multi_Agent_Verification_Gates_2026.pdf) |
+| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24113990-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24113990) | **Single-Graph Schema.org Entity Reconciliation and Homonym Disambiguation in Retrieval-Augmented Search Systems**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/)<br />[Full Paper PDF](https://onuraksoy.com.tr/papers/Onur_Aksoy_Single_Graph_Entity_Resolution_RAG_Disambiguation_2026.pdf) |
+| [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24114159-00599C?style=flat-square&logo=cern&logoColor=white)](https://doi.org/10.5281/zenodo.24114159) | **Deterministic LAN State Replication and Passive SIP/RTP Packet Telemetry for Offline-First Commercial Terminals**<br />*CERN Zenodo / DataCite Commons / OpenAIRE* | [Türkçe Makale](https://onuraksoy.com.tr/broadcasts/local-first-software/)<br />[English Paper](https://onuraksoy.com.tr/en/broadcasts/local-first-software/)<br />[Full Paper PDF](https://onuraksoy.com.tr/papers/Onur_Aksoy_Local_First_LAN_State_Replication_VoIP_Telemetry_2026.pdf) |
 
 ---
 
@@ -118,8 +119,8 @@ Bu depo, [onuraksoy.com.tr](https://onuraksoy.com.tr) resmi web sitesinin Astro 
 - **Astro 7.4:** Sıfır gereksiz JavaScript yükü (Zero-JS architecture) ile anında açılan sayfalar
 - **Tailwind CSS:** Obsidian Noir (`#08090A`) ve Tungsten Gold (`#C58A3A`) tasarım token'ları
 - **Çift Dilli Dizin Yapısı:** Türkçe (`/`) ve İngilizce (`/en/`)
-- **GEO / SGE & LLM Entegrasyonu:** `llms.txt`, `llms-full.txt`, tekil Schema.org JSON-LD `@graph` ve SEO/GEO koruma kapısı (K1–K12)
-- **Monografi & E-Kitap Vitrini:** `BookShowcase.astro` ve Schema.org `Book` entegrasyonu
+- **GEO / SGE, Google Scholar & LLM Entegrasyonu:** `llms.txt`, `llms-full.txt`, Highwire Press `citation_*` meta etiketleri, tekil Schema.org JSON-LD `@graph` ve SEO/GEO koruma kapısı (`K1–K13`)
+- **Monografi & E-Kitap Vitrini:** `BookShowcase.astro`, EKYGM çift ISBN (`978-625-00-4997-6` / `978-625-00-5000-2`) ve Schema.org `Book` entegrasyonu
 
 ### ✍️ Yeni Proje Ekleme Rehberi (`src/content/projects/<slug>.json`)
 Portfolyoda sergilenen tüm amiral gemisi projeler Astro Content Collections altında bağımsız JSON dosyaları (`src/content/projects/*.json`) olarak yönetilir ve derleme anında Zod şemasıyla doğrulanır:
@@ -173,7 +174,7 @@ Portfolyoda sergilenen tüm amiral gemisi projeler Astro Content Collections alt
 ### ✍️ Yeni Yayın Ekleme, Kapak Görselleri ve Vitrin (`src/content/broadcasts/`)
 Tüm yayınlar (Video, Podcast, Makale vb.) `src/content/broadcasts/{en,tr}/*.md` dizininde Markdown olarak tutulur.
 - **Kapak Görseli:** Frontmatter'a `thumbnail: '/images/broadcasts/<ad>.webp'` eklenmesi yeterlidir. Video yoksa sayfada 16:9 sinematik obsidian hero görseli ve OpenGraph/JSON-LD kartı olarak otomatik devreye girer.
-- **Akademik DOI & Otorite Entegrasyonu:** Frontmatter'a `doi: "10.5281/zenodo.XXXXX"` eklendiğinde `BroadcastJsonLd.astro` derleme anında otomatik `ScholarlyArticle` çift düğümü ve DataCite DOI `PropertyValue` üretir; `check-seo.mjs` (K12) doğrular.
+- **Akademik DOI, Kanonik PDF & Google Scholar Entegrasyonu:** Frontmatter'a `doi` ve `scholarlyPaper` eklendiğinde `BroadcastJsonLd.astro` derleme anında otomatik `ScholarlyArticle` (`encoding` PDF dahil) ve DataCite DOI `PropertyValue` üretir; `/en/broadcasts/<slug>/` sayfalarında Highwire Press `citation_*` meta etiketleri basılır ve `check-seo.mjs` (`K12`, `K13b`) doğrular.
 - **Otomatik Vitrin:** Yeni bir yayın eklendiğinde hem `/broadcasts/` sayfalarında listelenir hem de `LatestBroadcasts.astro` sayesinde ana sayfa vitrininde otomatik ilk 5'e yerleşir.
 
 ### 🚀 Geliştirme Komutları
@@ -193,7 +194,7 @@ npm run preview
 # Paylaşım (Open Graph) görsellerini üret — yeni kapak/proje ekledikten sonra
 npm run og:images
 
-# Yalnızca SEO/GEO koruma kapısını çalıştır (K1–K12; build zaten içerir)
+# Yalnızca SEO/GEO koruma kapısını çalıştır (K1–K13; build zaten içerir)
 npm run test:seo
 ```
 

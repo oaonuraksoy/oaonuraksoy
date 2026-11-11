@@ -7,6 +7,12 @@ pubDate: 2026-11-01
 lang: "tr"
 ref: "ankara-osb-sanayi-b2b-ihracat-web-mimarisi"
 doi: "10.5281/zenodo.24113990"
+scholarlyPaper:
+  title: "Single-Graph Schema.org Entity Reconciliation and Homonym Disambiguation in Retrieval-Augmented Search Systems"
+  publicationDate: "2026/09/24"
+  pdfPath: "/papers/Onur_Aksoy_Single_Graph_Entity_Resolution_RAG_Disambiguation_2026.pdf"
+  zenodoRecordId: "24113990"
+  language: "en"
 featured: false
 tags: ["AnkaraOSB", "SanayiWebMimarisi", "B2BIhracat", "EdgeComputing", "ZeroJS", "RFQSemasi", "SistemTasarimi"]
 duration: "PT12M30S"
@@ -25,6 +31,11 @@ chapters:
   - time: "11:15"
     title: "Kriter 5: Kurumsal E-Posta İtibarı (DMARC, DKIM, SPF)"
 downloads:
+  - name: "CERN/Zenodo Açık Erişim Akademik Teknik Makale (PDF)"
+    size: "18.4 KB"
+    type: "pdf"
+    driveUrl: "/papers/Onur_Aksoy_Single_Graph_Entity_Resolution_RAG_Disambiguation_2026.pdf"
+    hash: "sha256:28b3c927da13f84e22f70b9a5098735c51ea981fa821617c4a18290cb7749680"
   - name: "B2B Uluslararası İhracat RFQ Veri Sözleşmesi Şeması"
     size: "6.4 KB"
     type: "json"

@@ -7,6 +7,12 @@ pubDate: 2026-11-04
 lang: "en"
 ref: "sub-50ms-global-b2b-portals-edge-zero-js"
 doi: "10.5281/zenodo.24111422"
+scholarlyPaper:
+  title: "Sub-50ms Global B2B Web Portals: Compile-Time Static Synthesis, Zero-JS Runtime Discipline, and Edge-Cached Semantic Graphs"
+  publicationDate: "2026/11/10"
+  pdfPath: "/papers/Onur_Aksoy_Sub50ms_Global_B2B_Edge_ZeroJS_Architecture_2026.pdf"
+  zenodoRecordId: "24111422"
+  language: "en"
 featured: true
 tags: ["EdgeComputing", "ZeroJS", "AstroSSG", "B2BPortals", "CoreWebVitals", "SystemsArchitecture", "CloudflareEdge"]
 duration: "PT18M45S"
@@ -25,6 +31,11 @@ chapters:
   - time: "15:40"
     title: "Pillar 5: Core Web Vitals 100/100 Benchmarks & Global Latency Analysis"
 downloads:
+  - name: "CERN/Zenodo Open Access Academic Technical Paper (PDF)"
+    size: "9.4 KB"
+    type: "pdf"
+    driveUrl: "/papers/Onur_Aksoy_Sub50ms_Global_B2B_Edge_ZeroJS_Architecture_2026.pdf"
+    hash: "sha256:92e426354077dcdfa4917d986f780801ea45bfd1223e133ac57d08aae9f40906"
   - name: "B2B International Export RFQ Data Contract Schema"
     size: "6.4 KB"
     type: "json"

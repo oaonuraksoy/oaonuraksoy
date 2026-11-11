@@ -86,6 +86,13 @@ const broadcasts = defineCollection({
     lang: z.enum(['en', 'tr']).default('en'),
     ref: z.string(),
     doi: z.string().optional(),
+    scholarlyPaper: z.object({
+      title: z.string(),
+      publicationDate: z.string(),
+      pdfPath: z.string(),
+      zenodoRecordId: z.string(),
+      language: z.string().default('en')
+    }).optional(),
     featured: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     youtubeId: z.string().optional(),

@@ -29,6 +29,19 @@ interface Props {
   ogType?: 'website' | 'article' | 'profile';
   article?: { publishedTime: string; tags?: string[] };
   disableDefaultJsonLd?: boolean;
+  citation?: {
+    title: string;
+    author: string;
+    authorOrcid?: string;
+    authorInstitution?: string;
+    publicationDate: string;
+    doi: string;
+    pdfUrl: string;
+    abstractHtmlUrl: string;
+    language?: string;
+    technicalReportInstitution?: string;
+    keywords?: string[];
+  };
 }
 
 const {
@@ -45,7 +58,8 @@ const {
   serviceType,
   ogType = 'website',
   article,
-  disableDefaultJsonLd = false
+  disableDefaultJsonLd = false,
+  citation
 } = Astro.props;
 ---
 
@@ -60,6 +74,7 @@ const {
       counterpartUrl={counterpartUrl}
       type={ogType}
       article={article}
+      citation={citation}
     />
     {!disableDefaultJsonLd && (
       <JsonLd

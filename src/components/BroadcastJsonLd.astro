@@ -29,12 +29,13 @@ interface Props {
   downloads?: DownloadItem[];
   faqs?: { question: string; answer: string }[];
   doi?: string;
+  paperPdfPath?: string;
 }
 
 const {
   title, description, pubDate, canonicalUrl, image,
   lang = 'tr', tags = [], youtubeId, spotifyUrl, duration,
-  chapters = [], downloads = [], faqs = [], doi
+  chapters = [], downloads = [], faqs = [], doi, paperPdfPath
 } = Astro.props;
 
 const isTr = lang === 'tr';
@@ -97,6 +98,13 @@ const graph: Record<string, any>[] = [
         propertyID: 'DOI',
         value: doi,
         url: `https://doi.org/${doi}`
+      }
+    } : {}),
+    ...(paperPdfPath ? {
+      encoding: {
+        '@type': 'MediaObject',
+        contentUrl: paperPdfPath.startsWith('http') ? paperPdfPath : `https://onuraksoy.com.tr${paperPdfPath}`,
+        encodingFormat: 'application/pdf'
       }
     } : {}),
     ...(tags.length ? { keywords: tags.join(', ') } : {}),

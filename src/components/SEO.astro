@@ -19,6 +19,19 @@ interface Props {
   lang?: 'en' | 'tr';
   type?: 'website' | 'article' | 'profile';
   article?: { publishedTime: string; tags?: string[] };
+  citation?: {
+    title: string;
+    author: string;
+    authorOrcid?: string;
+    authorInstitution?: string;
+    publicationDate: string; // YYYY/MM/DD
+    doi: string;
+    pdfUrl: string;          // https://onuraksoy.com.tr/papers/*.pdf
+    abstractHtmlUrl: string;
+    language?: string;
+    technicalReportInstitution?: string;
+    keywords?: string[];
+  };
 }
 
 const {
@@ -30,7 +43,8 @@ const {
   counterpartUrl,
   lang = 'tr',
   type = 'website',
-  article
+  article,
+  citation
 } = Astro.props;
 
 // ── hreflang çiftleri ────────────────────────────────────────────────────────
@@ -111,6 +125,24 @@ if (article) {
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={og.url} />
 <meta name="twitter:image:alt" content={ogAlt} />
+
+{citation && (
+  <>
+    <!-- Google Scholar / Highwire Press Metadata -->
+    <meta name="citation_title" content={citation.title} />
+    <meta name="citation_author" content={citation.author} />
+    {citation.authorOrcid && <meta name="citation_author_orcid" content={citation.authorOrcid} />}
+    {citation.authorInstitution && <meta name="citation_author_institution" content={citation.authorInstitution} />}
+    <meta name="citation_publication_date" content={citation.publicationDate} />
+    <meta name="citation_online_date" content={citation.publicationDate} />
+    <meta name="citation_doi" content={citation.doi} />
+    <meta name="citation_pdf_url" content={citation.pdfUrl} />
+    <meta name="citation_abstract_html_url" content={citation.abstractHtmlUrl} />
+    {citation.technicalReportInstitution && <meta name="citation_technical_report_institution" content={citation.technicalReportInstitution} />}
+    <meta name="citation_language" content={citation.language || 'en'} />
+    {citation.keywords && citation.keywords.length > 0 && <meta name="citation_keywords" content={citation.keywords.join('; ')} />}
+  </>
+)}
 
 <!-- Yerel varlık sinyalleri -->
 <meta name="geo.region" content="TR-06" />

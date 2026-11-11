@@ -1,4 +1,6 @@
 ---
+import { BOOK_YAPAY_ZEKA } from '../data/identity.mjs';
+
 interface Props {
   lang?: 'tr' | 'en';
 }
@@ -34,17 +36,32 @@ const content = {
         full: false
       },
       { label: 'Yayın Dili ve Alfabesi', value: 'Türkçe · Türk Alfabesi', full: false },
-      { label: 'Basım & Kapsam', value: '1. Basım · Kasım 2026, Ankara · 157 Sayfa', full: false },
+      { label: 'Basım & Kapsam', value: '1. Basım · Kasım 2026, Ankara · 158 Sayfa', full: false },
       {
         label: 'Konu Başlığı',
-        value: 'Bilgisayar ve Enformasyon Teknolojisi / Bilgisayar Bilimi — Yapay Zeka (Hedef Kitle: Genel)',
+        value: 'Bilgisayar ve Enformasyon Teknolojisi / Bilgisayar Bilimi: Yapay Zeka (Hedef Kitle: Genel)',
         full: true
       },
       { label: 'Erişime Açılma Tarihi', value: '11.11.2026', full: false },
-      { label: 'Yayına Erişim Türü & Satış Fiyatı', value: 'Ücretli — 49,90 TL', full: false },
+      { label: 'Yayına Erişim Türü & Satış Fiyatı', value: 'Ücretli: 49,90 TL', full: false },
       {
-        label: 'ISBN Durumu',
-        value: 'T.C. Kültür ve Turizm Bakanlığı EKYGM ISBN Tahsis Sürecinde (PDF & EPUB)',
+        label: 'ISBN-13 (PDF Edisyonu)',
+        value: `${BOOK_YAPAY_ZEKA.isbnPdfFormatted} (EKYGM Tescil No: ${BOOK_YAPAY_ZEKA.ekygmPdfId})`,
+        full: false
+      },
+      {
+        label: 'ISBN-13 (EPUB 3.0 Edisyonu)',
+        value: `${BOOK_YAPAY_ZEKA.isbnEpubFormatted} (EKYGM Tescil No: ${BOOK_YAPAY_ZEKA.ekygmEpubId})`,
+        full: false
+      },
+      {
+        label: 'Ulusal Derleme & Katalog',
+        value: 'T.C. Millî Kütüphane EYDeS / Kaşif Kayıtlı (Mükellef No: 250372)',
+        full: true
+      },
+      {
+        label: 'Küresel Mağaza Katalogları',
+        value: 'Google Play Kitaplar (ID: aVsrEgAAQBAJ) · Apple Books (ID: 6833560917) · Rakuten Kobo & D&R',
         full: true
       }
     ],
@@ -63,12 +80,13 @@ const content = {
       'Son Söz: Silinmeye Direnen İsim',
       'Kavram Sözlüğü & Seçilmiş Kaynakça'
     ],
-    coverAlt: 'Yapay Zeka Sizi Tanımıyor — Algoritmaların Hafızasında Var Olmak Kitap Kapağı (Onur Aksoy)',
+    coverAlt: 'Yapay Zeka Sizi Tanımıyor: Algoritmaların Hafızasında Var Olmak Kitap Kapağı (Onur Aksoy)',
     priceTag: '49,90 TL',
     formatsTag: 'PDF · EPUB 3.0',
-    isbnStatusTag: 'EKYGM ISBN Tahsisinde',
+    isbnStatusTag: 'EKYGM Tescilli · Çift ISBN',
     ctaPrimaryText: 'E-Kitap Satın Alma & Kurumsal Temin Talebi (49,90 TL)',
     ctaPrimaryHref: 'mailto:dev@onuraksoy.com.tr?subject=Yapay%20Zeka%20Sizi%20Tanimiyor%20-%20E-Kitap%20Satis%20ve%20Temin%20Talebi',
+    previewButtonText: 'Ücretsiz Önizleme İndir (16 Sayfa PDF)',
     storeBadge: 'Google Play Kitaplar ve küresel e-kitap mağazalarında (EPUB & PDF)',
     orderNote: 'Bireysel siparişler ve kurumsal çoklu lisanslama talepleri için doğrudan yayımcı ile iletişime geçebilirsiniz. Eser DRM korumasız, doğrulanmış PDF ve EPUB 3.0 formatlarında dijital olarak teslim edilir.'
   },
@@ -79,7 +97,7 @@ const content = {
     subtitle: 'Existing in the Memory of Algorithms',
     authorLine: 'Author: Onur Aksoy (Hackonomist) · Publisher: Onur Aksoy',
     editorialP1:
-      'As the digital sphere shifts from search engines to answer engines—from indexed hyperlinks to probabilistic weights—digital identity faces a quiet crisis. In an age of infinite automated output, generative systems do not understand individuals and organizations with greater fidelity; instead, they dilute identities within "name twins" and homonym collisions, flattening distinct legacies into statistical averages.',
+      'As the digital sphere shifts from search engines to answer engines, moving from indexed hyperlinks to probabilistic weights, digital identity faces a quiet crisis. In an age of infinite automated output, generative systems do not understand individuals and organizations with greater fidelity; instead, they dilute identities within "name twins" and homonym collisions, flattening distinct legacies into statistical averages.',
     editorialP2:
       'This monograph investigates the reality of digital invisibility hiding behind the fear of surveillance, the modern renaissance of institutional seals and verified records, and the foundational architectural strategy required to build an enduring semantic footprint that resists erasure in the hazy memory of neural networks.',
     colophonHeading: 'Official Monograph Colophon & EKYGM Registration Details',
@@ -99,17 +117,32 @@ const content = {
         full: false
       },
       { label: 'Language & Script', value: 'Turkish · Latin (Turkish) Alphabet', full: false },
-      { label: 'Edition & Scope', value: '1st Edition · November 2026, Ankara · 157 Pages', full: false },
+      { label: 'Edition & Scope', value: '1st Edition · November 2026, Ankara · 158 Pages', full: false },
       {
         label: 'Subject Classification',
-        value: 'Computer Science & Information Technology — Artificial Intelligence (Audience: General)',
+        value: 'Computer Science & Information Technology: Artificial Intelligence (Audience: General)',
         full: true
       },
       { label: 'Publication Date', value: '11.11.2026', full: false },
-      { label: 'Access & Pricing', value: 'Paid — 49.90 TRY', full: false },
+      { label: 'Access & Pricing', value: 'Paid: 49.90 TRY', full: false },
       {
-        label: 'ISBN Status',
-        value: 'Ministry of Culture and Tourism (EKYGM) ISBN Allocation in Progress (PDF & EPUB)',
+        label: 'ISBN-13 (PDF Edition)',
+        value: `${BOOK_YAPAY_ZEKA.isbnPdfFormatted} (EKYGM Reg No: ${BOOK_YAPAY_ZEKA.ekygmPdfId})`,
+        full: false
+      },
+      {
+        label: 'ISBN-13 (EPUB 3.0 Edition)',
+        value: `${BOOK_YAPAY_ZEKA.isbnEpubFormatted} (EKYGM Reg No: ${BOOK_YAPAY_ZEKA.ekygmEpubId})`,
+        full: false
+      },
+      {
+        label: 'National Legal Deposit',
+        value: 'National Library of Türkiye (EYDeS / Kaşif) Legal Deposit (#250372)',
+        full: true
+      },
+      {
+        label: 'Global Store Catalogs',
+        value: 'Google Play Books (ID: aVsrEgAAQBAJ) · Apple Books (ID: 6833560917) · Rakuten Kobo & D&R',
         full: true
       }
     ],
@@ -128,12 +161,13 @@ const content = {
       'Epilogue: The Name That Resists Erasure',
       'Glossary of Terms & Selected Bibliography'
     ],
-    coverAlt: 'AI Doesn\'t Know You — Existing in the Memory of Algorithms Book Cover (Onur Aksoy)',
+    coverAlt: 'AI Doesn\'t Know You: Existing in the Memory of Algorithms Book Cover (Onur Aksoy)',
     priceTag: '49.90 TRY',
     formatsTag: 'PDF · EPUB 3.0',
-    isbnStatusTag: 'EKYGM ISBN Allocation Pending',
+    isbnStatusTag: 'EKYGM Registered · Dual ISBN',
     ctaPrimaryText: 'Request E-Book Purchase & Institutional Licensing (49.90 TRY)',
     ctaPrimaryHref: 'mailto:dev@onuraksoy.com.tr?subject=AI%20Does%20Not%20Know%20You%20-%20E-Book%20Order%20and%20Inquiry',
+    previewButtonText: 'Download Free Preview (16-Page PDF)',
     storeBadge: 'Google Play Books & global digital bookstores (EPUB & PDF)',
     orderNote: 'For individual orders and institutional multi-user licensing, contact the publisher directly. Delivered in DRM-free authenticated PDF and EPUB 3.0 formats.'
   }
@@ -256,12 +290,22 @@ const t = content[lang];
         <!-- Purchasing / Licensing CTA Box -->
         <div class="p-6 rounded-2xl bg-gradient-to-br from-obsidian-surface via-obsidian-surface to-obsidian-black border border-gold-tungsten/40 shadow-xl">
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-4">
-            <a
-              href={t.ctaPrimaryHref}
-              class="px-6 py-3.5 rounded-xl font-bold text-sm bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight shadow-lg shadow-gold-tungsten/20 transition-all duration-200 text-center"
-            >
-              {t.ctaPrimaryText}
-            </a>
+            <div class="flex flex-wrap items-center gap-3">
+              <a
+                href={t.ctaPrimaryHref}
+                class="px-6 py-3.5 rounded-xl font-bold text-sm bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight shadow-lg shadow-gold-tungsten/20 transition-all duration-200 text-center"
+              >
+                {t.ctaPrimaryText}
+              </a>
+              <a
+                href={BOOK_YAPAY_ZEKA.previewPdfPath}
+                target="_blank"
+                rel="noopener"
+                class="px-5 py-3.5 rounded-xl font-semibold text-sm bg-obsidian-surface border border-gold-tungsten/50 hover:border-gold-highlight text-gold-highlight hover:text-text-primary transition-all duration-200 text-center"
+              >
+                {t.previewButtonText}
+              </a>
+            </div>
             <span class="inline-flex items-center justify-center text-xs font-mono text-gold-highlight px-3.5 py-2 rounded-xl bg-obsidian-black border border-obsidian-border text-center">
               {t.storeBadge}
             </span>

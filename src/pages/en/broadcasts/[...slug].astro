@@ -40,6 +40,20 @@ const counterpartUrl = counterpartSlug ? `/broadcasts/${counterpartSlug}/` : '/b
 const hasVideo = !!item.data.youtubeId;
 const hasAudio = !!item.data.spotifyUrl;
 const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
+
+const citation = (item.data.doi && item.data.scholarlyPaper) ? {
+  title: item.data.scholarlyPaper.title,
+  author: 'Aksoy, Onur',
+  authorOrcid: 'https://orcid.org/0009-0001-4481-1759',
+  authorInstitution: 'oaHub Systems Architecture, Ankara, Turkey',
+  publicationDate: item.data.scholarlyPaper.publicationDate,
+  doi: item.data.doi,
+  pdfUrl: `https://onuraksoy.com.tr${item.data.scholarlyPaper.pdfPath}`,
+  abstractHtmlUrl: canonicalUrl,
+  technicalReportInstitution: 'oaHub Research & CERN Zenodo',
+  language: item.data.scholarlyPaper.language || 'en',
+  keywords: item.data.tags
+} : undefined;
 ---
 
 <BaseLayout
@@ -48,6 +62,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
   image={pageImage}
   ogType="article"
   article={{ publishedTime: item.data.pubDate.toISOString(), tags: item.data.tags }}
+  citation={citation}
   lang="en"
   activeNav="broadcasts"
   counterpartUrl={counterpartUrl}
@@ -70,6 +85,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
     downloads={item.data.downloads}
     faqs={item.data.faqs}
     doi={item.data.doi}
+    paperPdfPath={item.data.scholarlyPaper?.pdfPath}
   />
 
   <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
@@ -107,6 +123,20 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
               title="Official CERN / Zenodo DataCite DOI Record"
             >
               DOI: {item.data.doi} ↗
+            </a>
+          </>
+        )}
+        {item.data.scholarlyPaper?.pdfPath && (
+          <>
+            <span>•</span>
+            <a
+              href={item.data.scholarlyPaper.pdfPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/40 text-gold-highlight hover:border-gold-tungsten transition-colors"
+              title="Full-Text Research Paper (PDF)"
+            >
+              Full Paper (PDF) ↗
             </a>
           </>
         )}

@@ -70,6 +70,7 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
     downloads={item.data.downloads}
     faqs={item.data.faqs}
     doi={item.data.doi}
+    paperPdfPath={item.data.scholarlyPaper?.pdfPath}
   />
 
   <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
@@ -107,6 +108,20 @@ const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
               title="Resmi CERN / Zenodo DataCite DOI Kaydı"
             >
               DOI: {item.data.doi} ↗
+            </a>
+          </>
+        )}
+        {item.data.scholarlyPaper?.pdfPath && (
+          <>
+            <span>•</span>
+            <a
+              href={item.data.scholarlyPaper.pdfPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/40 text-gold-highlight hover:border-gold-tungsten transition-colors"
+              title="Tam Metin Akademik Makale (PDF)"
+            >
+              Tam Metin Makale (PDF) ↗
             </a>
           </>
         )}

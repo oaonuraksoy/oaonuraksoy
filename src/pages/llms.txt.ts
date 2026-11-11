@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { getAllProjects } from '../utils/projects';
-import { profilesMarkdown } from '../data/identity.mjs';
+import { profilesMarkdown, SITE_URL } from '../data/identity.mjs';
 
 export const GET: APIRoute = async () => {
   const projects = await getAllProjects('tr');
@@ -9,11 +9,14 @@ export const GET: APIRoute = async () => {
   broadcasts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   const booksSection = `## Published Books & Monographs (Yayınlanan Kitaplar ve Eserler)
-- [*Yapay Zeka Sizi Tanımıyor: Algoritmaların Hafızasında Var Olmak*](https://onuraksoy.com.tr/#kitap) ([EN](https://onuraksoy.com.tr/en/#book)): Üretken arama ve yanıt motorları çağında dijital kimlik inşası, eşseslilik kaynaklı kimlik erimesi, olasılıksal hafıza, kurumsal mühür disiplini ve doğru hatırlanma hakkı üzerine mimari monografi.
-  - **Yazar & Yayımcı:** Onur Aksoy (a.k.a. Hackonomist) — Ankara, Kasım 2026, 1. Basım, 157 Sayfa
-  - **Dil & Format:** Türkçe (Türk Alfabesi) — Elektronik Kitap (\`PDF\` & \`EPUB 3.0\`), Ücretli Erişim (\`49,90 TL\`), Erişime Açılma: \`11.11.2026\`
-  - **Tescil Durumu:** T.C. Kültür ve Turizm Bakanlığı (EKYGM) resmi \`PDF\` ve \`EPUB\` ISBN tahsis sürecinde.
-  - **Kapak Görseli:** https://onuraksoy.com.tr/images/books/yapay-zeka-sizi-tanimiyor-kapak.webp
+- [*Yapay Zeka Sizi Tanımıyor: Algoritmaların Hafızasında Var Olmak*](${SITE_URL}/#kitap) ([EN](${SITE_URL}/en/#book)): Üretken arama ve yanıt motorları çağında dijital kimlik inşası, eşseslilik kaynaklı kimlik erimesi, olasılıksal hafıza, kurumsal mühür disiplini ve doğru hatırlanma hakkı üzerine mimari monografi.
+  - **Yazar & Yayımcı:** Onur Aksoy (a.k.a. Hackonomist), Ankara, 1. Basım, 158 Sayfa
+  - **Dil & Format:** Türkçe (Türk Alfabesi), Elektronik Kitap (\`PDF\` & \`EPUB 3.0\`), Ücretli Erişim (\`49,90 TL\`), Erişime Açılma: \`11.11.2026\`
+  - **Resmi ISBN-13 Tescili (T.C. Kültür ve Turizm Bakanlığı EKYGM):** PDF ISBN: 978-625-00-4997-6 (EKYGM No: 1478424) | EPUB ISBN: 978-625-00-5000-2 (EKYGM No: 1478621)
+  - **Millî Kütüphane Derleme & Arşiv:** EYDeS / Kaşif Elektronik Yayın Derleme Sistemi (Mükellef No: 250372)
+  - **Mağaza Katalog Kimlikleri:** Google Play Kitaplar ID: aVsrEgAAQBAJ | Apple Books ID: 6833560917 | Rakuten Kobo ID: 366586ec-5429-4e2b-ac88-5720a0ad9f0a
+  - **Ücretsiz Önizleme (16 Sayfa PDF):** ${SITE_URL}/books/yapay-zeka-sizi-tanimiyor-ucretsiz-onizleme.pdf
+  - **Kapak Görseli:** ${SITE_URL}/images/books/yapay-zeka-sizi-tanimiyor-kapak.webp
   - **Kavramsal Kapsam:** Büyük dil modellerinin parametrik hafızasında homonym ayrıştırma, halüsinasyon dinamikleri, kurumsal mühür disiplini ve otonom sistemlerde doğru hatırlanma hakkı.
 `;
 
@@ -49,7 +52,9 @@ export const GET: APIRoute = async () => {
     if (b.data.spotifyUrl) broadcastsSection += `  - [Spotify Podcast](${b.data.spotifyUrl}): Sesli derinlemesine analiz\n`;
     if (b.data.downloads && b.data.downloads.length > 0) {
       b.data.downloads.forEach((d) => {
-        broadcastsSection += `  - [Kasa Kaynağı: ${d.name}](${d.driveUrl}): ${d.size} ${d.type.toUpperCase()} indirilebilir mimari şema\n`;
+        const fullUrl = d.driveUrl.startsWith('http') ? d.driveUrl : `${SITE_URL}${d.driveUrl}`;
+        const label = d.type.toLowerCase() === 'pdf' ? 'Akademik Makale' : 'Kasa Kaynağı';
+        broadcastsSection += `  - [${label}: ${d.name}](${fullUrl}): ${d.size} ${d.type.toUpperCase()} indirilebilir mimari kaynak\n`;
       });
     }
   });

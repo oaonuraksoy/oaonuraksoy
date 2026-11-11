@@ -58,11 +58,14 @@ Temel Teknik Prensipler:
 
 ## 4. Yayınlanan Kitaplar ve Eserler (Published Books & Monographs)
 ### Eser: *Yapay Zeka Sizi Tanımıyor: Algoritmaların Hafızasında Var Olmak*
-- **Resmi Eser Künyesi (TR):** [https://onuraksoy.com.tr/#kitap](https://onuraksoy.com.tr/#kitap)
-- **English Overview (EN):** [https://onuraksoy.com.tr/en/#book](https://onuraksoy.com.tr/en/#book)
-- **Yazar & Yayımcı:** Onur Aksoy (a.k.a. Hackonomist) — Ankara, Kasım 2026, 1. Basım, 157 Sayfa
-- **Dil & Format:** Türkçe (Türk Alfabesi) — Elektronik Kitap (\`PDF\` & \`EPUB 3.0\`), Ücretli Erişim (\`49,90 TL\`), Erişime Açılma: \`11.11.2026\`
-- **Tescil Durumu:** T.C. Kültür ve Turizm Bakanlığı (EKYGM) resmi \`PDF\` ve \`EPUB\` ISBN tahsis sürecinde.
+- **Resmi Eser Künyesi (TR):** https://onuraksoy.com.tr/#kitap
+- **English Overview (EN):** https://onuraksoy.com.tr/en/#book
+- **Yazar & Yayımcı:** Onur Aksoy (a.k.a. Hackonomist), Ankara, 1. Basım, 158 Sayfa
+- **Dil & Format:** Türkçe (Türk Alfabesi), Elektronik Kitap (PDF & EPUB 3.0), Ücretli Erişim (49,90 TL), Erişime Açılma: 11.11.2026
+- **Resmi ISBN-13 Tescili (T.C. Kültür ve Turizm Bakanlığı EKYGM):** PDF ISBN: 978-625-00-4997-6 (EKYGM No: 1478424) | EPUB ISBN: 978-625-00-5000-2 (EKYGM No: 1478621)
+- **Millî Kütüphane Derleme & Arşiv:** EYDeS / Kaşif Elektronik Yayın Derleme Sistemi (Mükellef No: 250372)
+- **Mağaza Katalog Kimlikleri:** Google Play Kitaplar ID: aVsrEgAAQBAJ | Apple Books ID: 6833560917 | Rakuten Kobo ID: 366586ec-5429-4e2b-ac88-5720a0ad9f0a
+- **Ücretsiz Önizleme (16 Sayfa PDF):** https://onuraksoy.com.tr/books/yapay-zeka-sizi-tanimiyor-ucretsiz-onizleme.pdf
 - **Kapak Görseli:** https://onuraksoy.com.tr/images/books/yapay-zeka-sizi-tanimiyor-kapak.webp
 - **Kavramsal Özet & Odak:**
   Üretken yapay zeka, büyük dil modelleri ve otonom yanıt motorları (GEO/SGE) çağında bireylerin ve kurumların dijital kimlik inşası. Eşseslilik kaynaklı kimlik erimesi (homonym disambiguation), olasılıksal parametrik hafızanın dinamikleri, kurumsal mühür disiplini ve algoritmaların hafızasında doğru hatırlanma hakkının felsefi ve mimari temelleri.
@@ -143,6 +146,13 @@ Temel Teknik Prensipler:
     if (b.data.doi) body += `- DOI: https://doi.org/${b.data.doi}\n`;
     if (b.data.youtubeId) body += `- Video: https://www.youtube.com/watch?v=${b.data.youtubeId}\n`;
     if (b.data.spotifyUrl) body += `- Podcast: ${b.data.spotifyUrl}\n`;
+    if (b.data.downloads && b.data.downloads.length > 0) {
+      body += `- İndirilebilir Kaynaklar:\n`;
+      b.data.downloads.forEach((d) => {
+        const fullUrl = d.driveUrl.startsWith('http') ? d.driveUrl : `${SITE_URL}${d.driveUrl}`;
+        body += `  * [${d.name}](${fullUrl}) (${d.size}, ${d.type.toUpperCase()})\n`;
+      });
+    }
     body += `\n${b.body}\n\n---\n\n`;
   }
 
