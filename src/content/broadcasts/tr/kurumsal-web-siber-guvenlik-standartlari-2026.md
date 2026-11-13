@@ -4,6 +4,7 @@ description: "Kurumsal B2B ve sanayi şirketlerinin bilgi işlem (IT) ve siber g
 seoTitle: "Kurumsal Web Sitesi Güvenliği Standartları"
 seoDescription: "Kurumsal web sitesi güvenliği nasıl sağlanır? Bilgi işlem ekipleri için HSTS Preload, CSP, statik site izolasyonu, Cloudflare WAF ve KVKK denetim rehberi."
 pubDate: 2026-11-03
+updatedDate: 2026-11-13
 lang: "tr"
 ref: "kurumsal-web-siber-guvenlik-standartlari-2026"
 featured: false
@@ -130,7 +131,7 @@ Bilgi işlem ekibinizin `curl -I` veya [SEO Lens](/projects/seo-lens/) gibi anal
 
 ## Bilgi İşlem Ekipleri İçin Eylem Planı
 
-Kurumsal web varlıklarınızın siber güvenlik duruşunu uluslararası standartlara taşımak için [Ankara kurumsal web tasarım](/ankara-kurumsal-web-tasarim/) standartlarımız doğrultusunda şu 3 adımı devreye alabilirsiniz:
+Kurumsal web varlıklarınızın siber güvenlik duruşunu uluslararası standartlara taşımak için [ankara kurumsal web tasarım](/ankara-kurumsal-web-tasarim/) ve [ankara özel yazılım](/ankara-web-yazilim/) standartlarımız doğrultusunda şu 3 adımı devreye alabilirsiniz. Yapay zeka ajan entegrasyonlarında güvenli bot ve veri akışları için [ankara yapay zeka ajansı](/ankara-yapay-zeka-otomasyonu/) çözümlerimizi inceleyebilir, denetim süreçleri için doğrudan [Onur Aksoy (Hackonomist)](/about/) ile çalışabilirsiniz:
 
 1. **Güvenlik Başlığı Taraması:** Sitenizin mevcut başlıklarını `securityheaders.com` üzerinden test edin ve A+ skorunu hedefleyin.
 2. **Kasa Konfigürasyonunu İndirin:** The Vault'tan [enterprise-security-headers-2026.conf](/vault/b2b/enterprise-security-headers-2026.conf) dosyasını alıp Nginx veya Cloudflare Edge kural setlerinize doğrudan entegre edin.

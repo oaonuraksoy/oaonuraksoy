@@ -74,6 +74,10 @@ export const GET: APIRoute = async () => {
       page: 'https://onuraksoy.com.tr/ankara-web-yazilim/',
       images: ['https://onuraksoy.com.tr/images/services/ankara-web-yazilim.webp']
     },
+    {
+      page: 'https://onuraksoy.com.tr/ankara-yapay-zeka-otomasyonu/',
+      images: ['https://onuraksoy.com.tr/images/services/ankara-yapay-zeka-otomasyonu.webp']
+    },
     // 6. Ankara Enterprise Web & Custom Software Architecture EN
     {
       page: 'https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/',
@@ -82,6 +86,10 @@ export const GET: APIRoute = async () => {
     {
       page: 'https://onuraksoy.com.tr/en/ankara-custom-software-architecture/',
       images: ['https://onuraksoy.com.tr/images/services/ankara-web-yazilim.webp']
+    },
+    {
+      page: 'https://onuraksoy.com.tr/en/ankara-enterprise-ai-automation/',
+      images: ['https://onuraksoy.com.tr/images/services/ankara-enterprise-ai-automation.webp']
     }
   ];
 

@@ -1,0 +1,537 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: "Kurumsal yapay zeka otomasyonu nedir ve basit chatbot sarmalayıcılarından (GPT wrapper) farkı nedir?",
+    answer: "Piyasadaki yüzeysel chatbot sarmalayıcıları, kontrolsüz metin üreterek halüsinasyon riski taşır ve şirket içi veri güvenliğini tehlikeye atar. Benim kurduğum kurumsal yapay zeka otomasyonu mimarisi; Model Context Protocol (MCP), katı durum makineleri (FSM) ve tip güvenli veri sözleşmelerine dayanır. Müşteri siparişi, randevu akışı, stok sorgulama veya şartname analizi gibi kritik iş süreçleri şirketinizin kurallarına göre deterministik olarak işletilir; yapay zeka asla kurumsal mantığın dışına çıkamaz."
+  },
+  {
+    question: "Santral (PBX) ve telefon hatlarına yapay zeka sesli asistanı nasıl entegre edilir?",
+    answer: "Geleneksel tuşlamalı IVR menüleri arayanı dakikalarca bekletip hattı kilitler. Geliştirdiğim VoIP ve SIP ağ dinleme mimarisi (oa_sip_recorder tecrübesiyle); hastaneler, danışmanlık firmaları ve sanayi kuruluşlarında santral akışına bağlanır. Özel HRS Ankara Kadın Hastalıkları ve Doğum Hastanesi için kurulan '9'u Tuşlayın' modelinde olduğu gibi; arayan hasta veya müşterinin niyetini gerçek zamanlı sesli zekayla anlar, ilgili hekim, randevu veya departmana beklemesiz ön yönlendirme sağlar."
+  },
+  {
+    question: "Niyet odaklı (intent-based) canlı destek ve operatör yönetim ekranı nasıl çalışır?",
+    answer: "Klasik canlı destek pencereleri mesai saatleri dışında sessiz kalır veya ezbere kopyala-yapıştır mesajlarla kullanıcıyı kaçırır. Niyet odaklı mimari; web sitesine gelen hastanın veya B2B alıcının talebini milisaniyeler içinde sınıflandırır, acil talepleri nöbetçi operatörün ekranına bildirimle düşürürken genel soruları şirket bilgi bankasından anında doğrulanmış yanıtlarla karşılar."
+  },
+  {
+    question: "Şirket içi özel RAG (Retrieval-Augmented Generation) ve bilgi tabanı güvenliği nasıl sağlanır?",
+    answer: "Kurumsal dokümanlar, sözleşmeler, ürün teknik çizimleri ve hasta/müşteri kayıtları hiçbir zaman halka açık üçüncü parti yapay zeka eğitim havuzlarına aktarılmaz. Yerel öncelikli (local-first) veya izole özel bulut mimarisi üzerinde, yalnızca firmanıza ait vektör indeksleri ve katı rol tabanlı yetkilendirme (RBAC) ile çalışan özel RAG sistemleri kurulur."
+  },
+  {
+    question: "Yapay Zeka Arama Motorları (GEO / SGE) optimizasyonu neden zorunludur?",
+    answer: "Artık müşteriler ve kurumsal satın almacılar sadece Google'da anahtar kelime aratmakla kalmıyor; Perplexity, ChatGPT Arama ve Google AI Overviews gibi yapay zeka motorlarına doğrudan sorular yöneltiyor. Doğrulanmış Schema.org tekil @graph, llms.txt ve semantik varlık otoritesi mimarimiz; yapay zeka arama motorlarının firmanızı birincil otorite kaynak olarak alıntılamasını sağlar."
+  }
+];
+
+const title = "Ankara Yapay Zeka Ajansı & AI Otomasyonu | Onur Aksoy";
+const name = "Ankara Yapay Zeka Ajansı ve Kurumsal AI Otomasyonu Çözümleri";
+const description = "Ankara yapay zeka ajansı ve kurumsal yapay zeka otomasyonu: PBX sesli asistanlar, niyet odaklı canlı destek, özel RAG ve GEO otorite sistem mimarisi.";
+const counterpartUrl = "/en/ankara-enterprise-ai-automation/";
+const ogImage = "https://onuraksoy.com.tr/images/services/ankara-yapay-zeka-otomasyonu.webp";
+---
+
+<BaseLayout
+  title={title}
+  name={name}
+  description={description}
+  image={ogImage}
+  lang="tr"
+  counterpartUrl={counterpartUrl}
+  schemaType="Service"
+  serviceType="Ankara Yapay Zeka Ajansı & Kurumsal Yapay Zeka Otomasyonu"
+  faqs={faqs}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb Nav -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-xs font-mono text-text-muted">
+        <li>
+          <a href="/" class="hover:text-gold-highlight transition-colors">Ana Sayfa</a>
+        </li>
+        <li>/</li>
+        <li class="text-gold-tungsten font-semibold">Ankara Yapay Zeka Ajansı & Kurumsal AI Otomasyonu</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pb-12 border-b border-obsidian-border mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-gold-tungsten/40 text-xs font-mono text-gold-tungsten mb-4">
+        <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+        <span>Deterministik Yapay Zeka & Kurumsal Otomasyon</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight mb-6">
+        Ankara Yapay Zeka Ajansı ve Kurumsal Yapay Zeka Otomasyonu Çözümleri
+      </h1>
+      <p class="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-3xl font-normal">
+        Özel hastaneler, kurumsal şirketler, dijital yayıncılar ve sanayi kuruluşları için; halüsinasyonsuz santral sesli yapay zeka asistanları, niyet odaklı canlı destek operatör ekranları, özel RAG hatları ve GEO varlık otoritesi mimarisi.
+      </p>
+    </header>
+
+    <!-- Executive Summary Card -->
+    <section class="mb-16 p-6 sm:p-8 rounded-2xl bg-obsidian-surface/60 border border-gold-tungsten/30 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-48 h-48 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-2">
+          Mimari Teşhis & Kurumsal Dönüşüm
+        </span>
+        <p class="text-base text-text-primary leading-relaxed mb-4">
+          Geleneksel ajansların sunduğu yüzeysel "yapay zeka chatbot" paketleri, kurumsal şirketlerin iş süreçlerini çözmek yerine yeni güvenlik ve itibar riskleri yaratıyor. Kontrolsüz dil modelleri şirketinizi yanlış temsil edebiliyor, müşteri ve hasta verilerini sızdırabiliyor ve çağrı merkezi kuyruklarını rahatlatmakta yetersiz kalıyor.
+        </p>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Ben; deterministik durum makineleri, Model Context Protocol (MCP) standartları ve VoIP/santral telemetrisi üzerine kurulu egemen yapay zeka sistemleri inşa ediyorum. Özel HRS Ankara Hastanesi ve Tarihçi Anne projelerinde canlıya aldığım gibi; telefon santralinden web portalına ve mobil uygulamalara kadar tüm kanalları birbirine bağlayan, ölçülebilir operasyonel verimlilik sağlayan mühendislik çözümleri sunuyorum.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4 Problem -> Solution Architectural Pillars -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Dört Temel Çözüm Sütunu
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Kurumsal Yapay Zeka Otomasyonunun 4 Mimari Sütunu
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Sütun 1: PBX Sesli Asistan -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">SÜTUN 01</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30">VoIP & PBX</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              Santral & PBX Gerçek Zamanlı Sesli Yapay Zeka Asistanı
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              Arayan hastaların veya müşterilerin saatlerce hantal tuşlu IVR menülerinde beklemesini engeller. Telefon santraline bağlanan sesli yapay zeka; arayanın niyetini anında analiz eder, hekim branşlarına veya ilgili birimlere sıfır gecikmeyle ön yönlendirme sağlar.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-gold-highlight">
+              Saha Kanıtı: Özel HRS Ankara Hastanesi telefon santralinde "9'u Tuşlayın" akışıyla canlı kullanımda.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            Çağrı Kuyruklarında %40+ Rahatlama
+          </div>
+        </div>
+
+        <!-- Sütun 2: Niyet Odaklı Canlı Destek -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">SÜTUN 02</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40">Canlı Destek</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              Niyet Odaklı Akıllı Canlı Destek & Operatör Yönetim Ekranı
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              Web sitesi ve hasta portalı ziyaretçilerinin sorularını anlık niyet analiziyle filtreleyen akıllı asistan. Genel randevu ve kurum sorularını anında karşılarken, kritik talepleri nöbetçi operatör ekranına anlık sesli ve görsel bildirimle aktarır.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-emerald-400">
+              Saha Kanıtı: Mesai dışı saatlerde sağlık turizmi hastalarına 24/7 çok dilli kesintisiz erişim.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            7/24 Kesintisiz Hasta & Müşteri Yanıtı
+          </div>
+        </div>
+
+        <!-- Sütun 3: Özel RAG & MCP -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">SÜTUN 03</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-950/40 text-sky-400 border border-sky-800/40">Özel RAG & MCP</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              Özel Bilgi Tabanı RAG & Deterministik İş Akışları
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              Şirketinizin teknik dokümanları, fiyat listeleri, mevzuat arşivleri ve sözleşmelerini izole vektör tabanlarında güvenle işleyin. Model Context Protocol (MCP) standartlarıyla ERP ve veritabanı sistemlerinize bağlanan deterministik yapay zeka ajanları.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-sky-400">
+              Güvenlik: Şirket verisi üçüncü parti model eğitim havuzlarına asla gönderilmez.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Sıfır Halüsinasyon • Tam Veri Egemenliği
+          </div>
+        </div>
+
+        <!-- Sütun 4: GEO & Varlık Otoritesi -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">SÜTUN 04</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-purple-950/40 text-purple-400 border border-purple-800/40">GEO & SGE</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              GEO Varlık Otoritesi & Üretken Arama Motoru Optimizasyonu
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              Perplexity, ChatGPT Arama ve Google AI Overviews gibi yapay zeka yanıt sistemlerinde markanızı birincil otorite kaynağı yapın. Tekil Schema.org @graph ve /llms.txt protokolleriyle modellerin firmanızı doğrudan referans göstermesini sağlayın.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-purple-300">
+              Saha Kanıtı: Tarihçi Anne / Seda Aksoy projesinde Google SERP ve GEO yanıtlarında #1 birincil kaynak.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            Yapay Zeka Aramalarında #1 Otorite Kaynağı
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Strategic Sectors Grid -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Sektörel Uygulama Alanları
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          5 Temel Sektörde Yapay Zeka Otomasyonu
+        </h2>
+        <p class="text-sm text-text-muted">
+          Farklı operasyonel dinamiklere sahip kurumsal yapılarda ölçülebilir yapay zeka verimliliği.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">01 • Sağlık & Hastaneler</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Özel Hastaneler & Sağlık Kurumları</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              Telefon santrali sesli yapay zeka asistanı, niyet odaklı hasta canlı desteği, çok dilli randevu ve tahlil sonuç yönlendirmesi.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-gold-highlight">
+            Canlı Referans: hrsankara.com
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">02 • Kurumsal & Hukuk</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Kurumsal Şirketler, Hukuk & Danışmanlık</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              Mevzuat ve iç içtihat RAG asistanları, sözleşme analiz ajanları, gelen müşteri taleplerinin niyet bazlı sınıflandırılması.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-emerald-400">
+            Güvenli Şirket İçi Bilgi Tabanı
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">03 • Medya & Akademi</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Medya, Akademi & Kişisel Otorite</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              GEO ve AI arama motorlarında otorite inşası, video ve editoryal içerik yayın otomasyonu, mobil bildirim akışları.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-gold-highlight">
+            Canlı Referans: sedaaksoy.com.tr
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">04 • Perakende & Ticaret</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Perakende & E-Ticaret Markaları</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              Sipariş durumu, kargo takibi ve iade süreçlerini otonom yöneten niyet odaklı destek, yerel kasa sistemleriyle entegrasyon.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-emerald-400">
+            oaPOS Hibrit Entegrasyonu
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between md:col-span-2 lg:col-span-2">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">05 • Sanayi & Savunma</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Sanayi Üretimi, OSB, Savunma & İhracat</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              Teknik şartname ayrıştırma, uluslararası RFQ taleplerinin çok dilli yapay zeka ile otomatik ön analizi ve ERP/CRM veri senkronizasyonu.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-sky-400">
+            OSTİM • İvedik • Başkent OSB İhracat Hatları
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verified Production Case Studies -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Saha Doğrulaması
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Canlı Saha Vaka Analizleri & Doğrulanmış Sonuçlar
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Vaka 1: HRS Ankara -->
+        <article class="p-6 sm:p-7 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 font-semibold">
+                Özel Hastane & Sağlık Kurumu
+              </span>
+              <a
+                href="https://hrsankara.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+              >
+                hrsankara.com ↗
+              </a>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary">
+              Özel HRS Ankara Kadın Hastalıkları ve Doğum Hastanesi
+            </h3>
+            <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
+              <p>
+                <strong class="text-red-400 font-semibold font-mono text-xs">SORUN:</strong> Yüksek hacimli hasta trafiğinde parçalı randevu ve sonuç ekranları, çok dilli sağlık turizmi hastalarında iletişim kopukluğu ve mesai dışı saatlerde tıkanan çağrı merkezi + canlı destek kuyrukları.
+              </p>
+              <p>
+                <strong class="text-gold-highlight font-semibold font-mono text-xs">ÇÖZÜM:</strong> Hastane bilgi yönetim süreçleriyle doğrudan entegre hızlı ve yüksek güvenlikli çok dilli hasta portalı, randevu ve sonuçları tek ekranda toplayan resmi iOS ve Android mobil uygulaması, niyet odaklı akıllı canlı destek ve telefon santralinde "9'u Tuşlayın" sesli yapay zeka yönlendirme asistanı.
+              </p>
+              <p>
+                <strong class="text-emerald-400 font-semibold font-mono text-xs">SONUÇ:</strong> Web, mobil ve telefon santrali kanallarının tek merkezden yönetimi; çok dilli kesintisiz hasta erişimi ve operasyonel çağrı yoğunluğunda ölçülebilir rahatlama.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
+            <a href="/ankara-web-yazilim/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Özel Portal & Mobil &rarr;</a>
+            <span class="text-obsidian-border">•</span>
+            <a href="/projects/oa-sip-recorder/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Santral Telemetrisi &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Vaka 2: Tarihçi Anne / Seda Aksoy -->
+        <article class="p-6 sm:p-7 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40 font-semibold">
+                Dijital Yayıncılık & Kişisel Otorite
+              </span>
+              <a
+                href="https://sedaaksoy.com.tr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+              >
+                sedaaksoy.com.tr ↗
+              </a>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary">
+              Tarihçi Anne / Seda Aksoy
+            </h3>
+            <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
+              <p>
+                <strong class="text-red-400 font-semibold font-mono text-xs">SORUN:</strong> Dijital yayıncılıkta Google ve yapay zeka arama motorlarında ("Seda Aksoy", "Tarihçi Anne") birincil otorite kurma; web, mobil ve sosyal medya yayın operasyonunu tek elde verimli hale getirme ihtiyacı.
+              </p>
+              <p>
+                <strong class="text-gold-highlight font-semibold font-mono text-xs">ÇÖZÜM:</strong> GEO/SGE ve teknik SEO uyumlu yüksek hızlı resmi web portalı, App Store üzerinde yayında olan Tarihçi Anne iOS mobil uygulaması (anlık bildirim mimarisi dahil), özel masaüstü yayın stüdyosu otomasyonu ve organik büyüme mimarisi.
+              </p>
+              <p>
+                <strong class="text-emerald-400 font-semibold font-mono text-xs">SONUÇ:</strong> Google arama motorunda ve yapay zeka yanıtlarında #1 birincil otorite kaynağı, 10K+ Instagram topluluğu (@tarihcii.anne), 147.500+ YouTube izlenmesi (@tarihciianne) ve aktif iOS uygulama ekosistemi.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
+            <a href="/ankara-kurumsal-web-tasarim/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">GEO Web Portalı &rarr;</a>
+            <span class="text-obsidian-border">•</span>
+            <a href="/projects/seo-lens/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">SEO Lens Denetimi &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Three Engineering Commitments -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Mühendislik Standartları
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Kurumsal Yapay Zeka İçin Üç Taahhüt
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">TAAHHÜT 01</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Deterministik Güvenilirlik & Sıfır Halüsinasyon</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Yapay zeka modellerini serbest bırakmak yerine durum makineleri ve katı doğrulama filtreleri arasına alıyorum. Şirketinizin kuralları dışına çıkan hiçbir işlem onaylanmaz.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            Tip Güvenli İcra
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">TAAHHÜT 02</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Tam Veri Mahremiyeti & KVKK Uyumu</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Müşteri ve hasta verileri asla genel LLM eğitim havuzlarına aktarılmaz. Şirketinize özel izole RAG altyapısı ve rol tabanlı yetkilendirme (RBAC) ile çalışılır.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Kurumsal Veri Egemenliği
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">TAAHHÜT 03</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Doğrudan Sistem Mimarı Liderliği</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Aracı satış temsilcileri veya stajyerlerle değil; tüm yapay zeka ve sistem mimarisini bizzat tasarlayan <a href="/about/" class="text-gold-tungsten hover:text-gold-highlight underline underline-offset-2 transition-colors">Onur Aksoy (Hackonomist)</a> ile çalışırsınız.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            Doğrudan Mühendis Teması
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relevant Technical Vault & Broadcasts -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Teknik Vaka Analizleri & İncelemeler
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          İlgili Mühendislik Yayınları ve Mimari Raporlar
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/broadcasts/ai-native-architecture/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-gold-tungsten">Mimari Rapor • 16 dk okuma</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Yapay Zeka Yerel Mimari Paradigması: Kırılgan Chatbot Sarmalayıcılarının Ötesi &rarr;
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Deterministik durum makineleri, katmanlı çoklu model orkestrasyonu ve çift kademeli hasmane denetim mimarisi.
+          </p>
+        </a>
+
+        <a
+          href="/ankara-kurumsal-web-tasarim/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-emerald-400">Kurumsal Web • Mimari Sayfa</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara Kurumsal Web Tasarım & B2B Web Sitesi &rarr;
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Özel hastaneler, kurumsal şirketler ve sanayi ihracatçıları için 50ms altı hızda çalışan Astro Zero-JS mimarisi.
+          </p>
+        </a>
+
+        <a
+          href="/ankara-web-yazilim/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-sky-400">Özel Yazılım • Mimari Sayfa</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara Web Yazılım & Özel Sistem Mimarisi &rarr;
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Yüksek eşzamanlı B2B portallar, ERP/stok veri köprüleri ve masaüstü-web hibrit yazılım mühendisliği.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Merak Edilenler
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Sıkça Sorulan Sorular ve Mimari Cevaplar
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group border border-obsidian-border rounded-xl p-5 bg-obsidian-surface/40 hover:border-gold-tungsten/40 transition-all duration-300">
+            <summary class="flex items-center justify-between font-semibold text-text-primary cursor-pointer list-none text-sm sm:text-base">
+              <span>{faq.question}</span>
+              <span class="text-gold-tungsten group-open:rotate-180 transition-transform duration-200 ml-4 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-text-muted mt-4 pt-4 border-t border-obsidian-border/50 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Direct CTA & Advisory Block -->
+    <section class="p-8 sm:p-10 rounded-2xl bg-gradient-to-b from-obsidian-surface to-obsidian-black border border-gold-tungsten/40 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold">
+          Doğrudan İletişim & Mimari Değerlendirme
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
+          Kurumsal Yapay Zeka Otomasyonunu Birlikte İnşa Edelim
+        </h2>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Kırılgan chatbot sarmalayıcılarıyla vakit kaybetmeyin. Telefon santralinizi, canlı destek süreçlerinizi ve kurumsal veri akışlarınızı doğrudan benimle görüşün.
+        </p>
+
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+          <a
+            href="mailto:dev@onuraksoy.com.tr"
+            class="px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold hover:bg-gold-highlight transition-colors flex items-center gap-2"
+          >
+            <span>dev@onuraksoy.com.tr</span>
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>WhatsApp: +90 551 181 70 53</span>
+          </a>
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>Telegram: @oaonuraksoy</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

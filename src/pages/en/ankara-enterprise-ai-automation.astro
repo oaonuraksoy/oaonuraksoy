@@ -1,0 +1,537 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: "What defines enterprise AI automation, and how does it differ from simple chatbot wrappers?",
+    answer: "Superficial chatbot wrappers suffer from unpredictable hallucinations and expose confidential enterprise data. My enterprise AI automation architecture is built upon Model Context Protocol (MCP), deterministic Finite State Machines (FSM), and type-safe data contracts. Critical operational workflows including patient bookings, B2B procurement RFQs, and inventory queries execute deterministically according to strict corporate invariants without non-deterministic deviations."
+  },
+  {
+    question: "How do you integrate real-time voice AI assistants into phone PBX systems?",
+    answer: "Legacy touch-tone IVR trees frustrate callers and bottleneck queues. Leveraging our low-level VoIP and SIP network telemetry engineering (proven in oa_sip_recorder), we bridge real-time voice models directly into PBX lines. As deployed for Özel HRS Ankara Women's & Children's Hospital in their 'Press 9' flow, the voice AI comprehends natural clinical intent in real time and routes callers instantly to medical specialties and appointments."
+  },
+  {
+    question: "How does intent-based live support and operator console management work?",
+    answer: "Standard live chat widgets remain silent after hours or fail with scripted canned replies. Our intent-driven architecture classifies incoming patient or buyer queries in sub-second time. It resolves routine inquiries instantly from verified knowledge stores while routing high-priority or sensitive requests to on-duty operator consoles via instant desktop and mobile notifications."
+  },
+  {
+    question: "How do you guarantee data privacy with private RAG (Retrieval-Augmented Generation) pipelines?",
+    answer: "Corporate intellectual property, procurement contracts, clinical records, and technical drawings are never transmitted to public LLM training datasets. We construct isolated vector databases hosted either on-premise or within private edge enclaves, governed by rigorous Role-Based Access Control (RBAC) and data sanitization boundaries."
+  },
+  {
+    question: "Why is Generative Engine Optimization (GEO / SGE) essential for modern enterprises?",
+    answer: "Modern buyers and patients increasingly bypass traditional search bars to ask generative answer engines such as Perplexity, ChatGPT Search, and Google AI Overviews direct diagnostic questions. Our unified Schema.org single @graph, /llms.txt manifests, and semantic entity authority ensure these AI engines cite your organization as the primary authoritative answer source."
+  }
+];
+
+const title = "Ankara Enterprise AI Agency & Automation | Onur Aksoy";
+const name = "Ankara Enterprise AI Agency & Custom AI Automation Architecture";
+const description = "Enterprise AI agency and custom AI automation in Ankara: Voice PBX assistants, intent-based live support, private RAG pipelines, and GEO entity authority.";
+const counterpartUrl = "/ankara-yapay-zeka-otomasyonu/";
+const ogImage = "https://onuraksoy.com.tr/images/services/ankara-enterprise-ai-automation.webp";
+---
+
+<BaseLayout
+  title={title}
+  name={name}
+  description={description}
+  image={ogImage}
+  lang="en"
+  counterpartUrl={counterpartUrl}
+  schemaType="Service"
+  serviceType="Enterprise AI Agency & Custom AI Automation"
+  faqs={faqs}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Breadcrumb Nav -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-xs font-mono text-text-muted">
+        <li>
+          <a href="/en/" class="hover:text-gold-highlight transition-colors">Home</a>
+        </li>
+        <li>/</li>
+        <li class="text-gold-tungsten font-semibold">Ankara Enterprise AI Agency & Automation</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pb-12 border-b border-obsidian-border mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-surface border border-gold-tungsten/40 text-xs font-mono text-gold-tungsten mb-4">
+        <span class="w-2 h-2 rounded-full bg-gold-tungsten animate-pulse"></span>
+        <span>Deterministic AI Engineering & Enterprise Automation</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight mb-6">
+        Ankara Enterprise AI Agency & Custom Automation Architecture
+      </h1>
+      <p class="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-3xl font-normal">
+        Engineered for private hospitals, corporate enterprises, digital media authorities, and industrial leaders: real-time voice PBX AI assistants, intent-driven live support consoles, sovereign RAG pipelines, and GEO entity authority.
+      </p>
+    </header>
+
+    <!-- Executive Summary Card -->
+    <section class="mb-16 p-6 sm:p-8 rounded-2xl bg-obsidian-surface/60 border border-gold-tungsten/30 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-48 h-48 bg-gold-tungsten/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-2">
+          Architectural Diagnosis & Enterprise Transformation
+        </span>
+        <p class="text-base text-text-primary leading-relaxed mb-4">
+          Superficial "AI chatbot" offerings peddled by traditional marketing agencies introduce substantial security vulnerabilities and brand liabilities into enterprise workflows. Unconstrained generative models misrepresent corporate policy, leak confidential data, and fail to alleviate heavy call center queues.
+        </p>
+        <p class="text-sm text-text-muted leading-relaxed">
+          I build sovereign AI automation architectures grounded in deterministic state machines, Model Context Protocol (MCP) standards, and low-level telephony integration. As proven in production for Özel HRS Ankara Hospital and Tarihçi Anne, I orchestrate inbound phone lines, web portals, and mobile channels into unified, measurable operational pipelines.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4 Problem -> Solution Architectural Pillars -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Four Core Solution Pillars
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          The 4 Architectural Pillars of Enterprise AI Automation
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Pillar 1: PBX Voice AI -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">PILLAR 01</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30">VoIP & PBX</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              PBX Inbound Real-Time Voice AI Phone Assistant
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              Eliminates the frustration of endless touch-tone IVR queues. Connected directly to enterprise telephony backbones, our voice AI analyzes caller intent instantly and executes zero-latency pre-routing to medical specialists, scheduling, or departments.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-gold-highlight">
+              Production Proof: Live on Özel HRS Ankara Hospital PBX via the "Press 9" automated clinical flow.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            40%+ Reduction in Call Center Congestion
+          </div>
+        </div>
+
+        <!-- Pillar 2: Intent-Based Live Support -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">PILLAR 02</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40">Live Support</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              Intent-Driven Live Support & Operator Console Management
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              An intelligent intake assistant that filters incoming portal queries via sub-second intent classification. It answers standard institutional questions instantly while alerting on-duty human operators to emergency or high-value inquiries.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-emerald-400">
+              Production Proof: 24/7 multilingual patient accessibility for international health tourism.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            24/7 Continuous Patient & Client Intake
+          </div>
+        </div>
+
+        <!-- Pillar 3: Private RAG & MCP Workflows -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">PILLAR 03</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-950/40 text-sky-400 border border-sky-800/40">Private RAG & MCP</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              Sovereign Knowledge RAG & Deterministic MCP Workflows
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              Process internal technical documentation, price catalogs, regulatory archives, and contracts within air-gapped vector indices. Connected to enterprise ERP systems via Model Context Protocol (MCP) standards.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-sky-400">
+              Security: Enterprise data is strictly excluded from third-party foundation model training pools.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Zero Hallucination • Full Data Sovereignty
+          </div>
+        </div>
+
+        <!-- Pillar 4: GEO & Entity Authority -->
+        <div class="p-6 rounded-xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">PILLAR 04</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-purple-950/40 text-purple-400 border border-purple-800/40">GEO & SGE</span>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">
+              GEO Entity Authority & Generative Search Engine Optimization
+            </h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+              Establish primary citation authority across Perplexity, ChatGPT Search, and Google AI Overviews. Single Schema.org @graph models and /llms.txt protocols ensure AI answer engines quote your brand as the primary reference.
+            </p>
+            <div class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border/70 text-xs font-mono text-purple-300">
+              Production Proof: Tarihçi Anne / Seda Aksoy ranks as the #1 primary authority across Google and GEO queries.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            #1 Primary Authority in Generative AI Search
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Strategic Verticals Grid -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Sectoral Applications
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Enterprise AI Automation Across 5 Core Sectors
+        </h2>
+        <p class="text-sm text-text-muted">
+          Measurable efficiency gains tailored for diverse operational and organizational models.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">01 • Healthcare & Hospitals</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Private Hospitals & Healthcare</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              PBX voice AI phone assistants, intent-based patient live support, and multilingual appointment/lab result navigation.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-gold-highlight">
+            Production Proof: hrsankara.com
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">02 • Corporate & Legal</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Corporate Enterprises & Advisory</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              Regulatory compliance RAG assistants, contract analysis agents, and intent-based inquiry classification pipelines.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-emerald-400">
+            Sovereign Internal Knowledge Stores
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">03 • Media & Academy</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Media, Academy & Authority</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              GEO and AI search engine authority, publishing studio workflows, and mobile push notification delivery systems.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-gold-highlight">
+            Production Proof: sedaaksoy.com.tr
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">04 • Retail & Commerce</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Retail & E-Commerce Brands</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              Automated order tracking, return classification, and intent-based live support integrated into local-first point-of-sale systems.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-emerald-400">
+            oaPOS Architecture Integration
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between md:col-span-2 lg:col-span-2">
+          <div>
+            <span class="text-[11px] font-mono text-gold-tungsten font-semibold uppercase">05 • Industry & Defense</span>
+            <h3 class="text-base font-bold text-text-primary mt-2 mb-2">Manufacturing, Defense & Export</h3>
+            <p class="text-xs text-text-muted leading-relaxed">
+              Technical procurement parsing, multilingual RFQ pre-qualification, and bidirectional ERP/CRM synchronization.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-obsidian-border/50 text-[11px] font-mono text-sky-400">
+            OSTİM • İvedik • Başkent OSB Export Corridors
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verified Production Case Studies -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Production Verification
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Verified Field Case Studies & Concrete Outcomes
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Case 1: HRS Ankara -->
+        <article class="p-6 sm:p-7 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 font-semibold">
+                Healthcare Institution
+              </span>
+              <a
+                href="https://hrsankara.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+              >
+                hrsankara.com ↗
+              </a>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary">
+              Özel HRS Ankara Women's & Children's Hospital
+            </h3>
+            <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
+              <p>
+                <strong class="text-red-400 font-mono text-xs">PROBLEM:</strong> Fragmented appointment workflows under peak patient volume, communication friction with multilingual health tourism patients, and call center queues.
+              </p>
+              <p>
+                <strong class="text-gold-highlight font-mono text-xs">SOLUTION:</strong> Multilingual patient portal integrated directly into hospital information systems, unified official iOS and Android apps, intent-based live support, and a PBX "Press 9" voice AI assistant.
+              </p>
+              <p>
+                <strong class="text-emerald-400 font-mono text-xs">OUTCOME:</strong> Centralized orchestration across web, mobile, and phone channels; measurable operational relief in call center queues.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
+            <a href="/en/ankara-custom-software-architecture/" class="text-gold-tungsten hover:text-gold-highlight font-medium">Custom Portal & Mobile &rarr;</a>
+            <span class="text-obsidian-border">•</span>
+            <a href="/en/projects/oa-sip-recorder/" class="text-gold-tungsten hover:text-gold-highlight font-medium">Telephony Telemetry &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Case 2: Tarihçi Anne / Seda Aksoy -->
+        <article class="p-6 sm:p-7 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40 font-semibold">
+                Digital Publishing & Authority
+              </span>
+              <a
+                href="https://sedaaksoy.com.tr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+              >
+                sedaaksoy.com.tr ↗
+              </a>
+            </div>
+            <h3 class="text-lg font-bold text-text-primary">
+              Tarihçi Anne / Seda Aksoy
+            </h3>
+            <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
+              <p>
+                <strong class="text-red-400 font-mono text-xs">PROBLEM:</strong> Establishing primary authority across Google and AI answer engines ("Seda Aksoy", "Tarihçi Anne") while streamlining editorial publishing.
+              </p>
+              <p>
+                <strong class="text-gold-highlight font-mono text-xs">SOLUTION:</strong> GEO/SGE and technical SEO optimized web portal, Tarihçi Anne iOS app on the App Store, and bespoke desktop publishing studio automation.
+              </p>
+              <p>
+                <strong class="text-emerald-400 font-mono text-xs">OUTCOME:</strong> #1 primary authority on Google SERP & GEO engines, 10K+ community, and 147,500+ YouTube views.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
+            <a href="/en/ankara-b2b-web-architecture/" class="text-gold-tungsten hover:text-gold-highlight font-medium">GEO Web Portal &rarr;</a>
+            <span class="text-obsidian-border">•</span>
+            <a href="/en/projects/seo-lens/" class="text-gold-tungsten hover:text-gold-highlight font-medium">SEO Lens Audit &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Three Engineering Commitments -->
+    <section class="mb-16 space-y-6">
+      <div class="mb-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Engineering Invariants
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Three Commitments to Enterprise AI Implementations
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">COMMITMENT 01</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Deterministic Execution & Zero Hallucination</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Rather than unconstrained generation, models operate within state machines and deterministic boundary guards. No state mutation occurs without programmatic invariant validation.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-emerald-400">
+            Type-Safe Execution
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">COMMITMENT 02</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Total Data Privacy & Compliance</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              Customer and patient records are never fed to public foundation models. We build on isolated private RAG stores with strict Role-Based Access Control (RBAC).
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-gold-tungsten">
+            Corporate Data Sovereignty
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-obsidian-surface/80 border border-obsidian-border flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono text-gold-tungsten font-bold tracking-wider">COMMITMENT 03</span>
+            <h3 class="text-lg font-semibold text-text-primary mt-2 mb-3">Direct Collaboration with Systems Architect</h3>
+            <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+              No junior intermediaries or account executives. You collaborate directly with <a href="/en/about/" class="text-gold-tungsten hover:text-gold-highlight underline underline-offset-2 transition-colors">Onur Aksoy (Hackonomist)</a>, who blueprints and writes every architectural layer.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 text-xs font-mono text-text-primary">
+            Direct Architect Access
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relevant Technical Vault & Broadcasts -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Technical Field Notes & Analyses
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Related Engineering Analyses & Architecture Blueprints
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/en/broadcasts/ai-native-architecture/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-gold-tungsten">Architecture Paper • 16 min read</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            AI-Native Architecture Paradigm: Beyond Fragile Chatbot Wrappers &rarr;
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Deterministic state machines, tiered multi-model orchestration, and dual-layer adversarial verification gates.
+          </p>
+        </a>
+
+        <a
+          href="/en/ankara-b2b-web-architecture/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-emerald-400">Enterprise Web • Dedicated Page</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara Corporate Web Design & B2B Web Architecture &rarr;
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            Sub-50ms edge-rendered, zero-JS web architecture engineered for healthcare, corporate, and defense exporters.
+          </p>
+        </a>
+
+        <a
+          href="/en/ankara-custom-software-architecture/"
+          class="group p-5 rounded-xl bg-obsidian-surface border border-obsidian-border hover:border-gold-tungsten/50 transition-all duration-300 block"
+        >
+          <span class="text-[11px] font-mono text-sky-400">Custom Software • Dedicated Page</span>
+          <h3 class="text-sm font-semibold text-text-primary group-hover:text-gold-highlight transition-colors mt-2 mb-2">
+            Ankara Custom Web Software & Systems Architecture &rarr;
+          </h3>
+          <p class="text-xs text-text-muted line-clamp-3 leading-relaxed">
+            High-concurrency B2B platforms, ERP data bridges, and desktop-web hybrid systems architecture.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="mb-16">
+      <div class="mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold block mb-1">
+          Knowledge Base
+        </span>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Frequently Addressed Architectural Inquiries
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group border border-obsidian-border rounded-xl p-5 bg-obsidian-surface/40 hover:border-gold-tungsten/40 transition-all duration-300">
+            <summary class="flex items-center justify-between font-semibold text-text-primary cursor-pointer list-none text-sm sm:text-base">
+              <span>{faq.question}</span>
+              <span class="text-gold-tungsten group-open:rotate-180 transition-transform duration-200 ml-4 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-text-muted mt-4 pt-4 border-t border-obsidian-border/50 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Direct CTA & Advisory Block -->
+    <section class="p-8 sm:p-10 rounded-2xl bg-gradient-to-b from-obsidian-surface to-obsidian-black border border-gold-tungsten/40 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-gold-tungsten font-semibold">
+          Direct Advisory & Architectural Evaluation
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
+          Architect Sovereign AI Automation for Your Enterprise
+        </h2>
+        <p class="text-sm text-text-muted leading-relaxed">
+          Bypass fragile chatbot wrappers. Consult directly with the systems architect to blueprint phone PBX automation, intelligent live intake, and enterprise data workflows.
+        </p>
+
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+          <a
+            href="mailto:dev@onuraksoy.com.tr"
+            class="px-6 py-3 rounded-lg bg-gold-tungsten text-obsidian-black font-semibold hover:bg-gold-highlight transition-colors flex items-center gap-2"
+          >
+            <span>dev@onuraksoy.com.tr</span>
+          </a>
+          <a
+            href="https://wa.me/905511817053"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>WhatsApp: +90 551 181 70 53</span>
+          </a>
+          <a
+            href="https://t.me/oaonuraksoy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-lg bg-obsidian-surface border border-obsidian-border text-text-primary hover:border-gold-tungsten transition-colors flex items-center gap-2"
+          >
+            <span>Telegram: @oaonuraksoy</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

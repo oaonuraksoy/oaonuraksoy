@@ -40,6 +40,7 @@ const globalIdMap = new Map();
 const profilePageUrls = [];
 const offersWebDesign = [];
 const offersCustomSoftware = [];
+const offersAiAutomation = [];
 
 function walk(dir, exts, out = []) {
   for (const f of fs.readdirSync(dir)) {
@@ -216,6 +217,8 @@ for (const file of htmlFiles) {
       const offerNames = serviceNode.hasOfferCatalog.itemListElement.map((o) => o.name);
       if (url.includes('web-tasarim') || url.includes('b2b-web-architecture')) {
         offersWebDesign.push(...offerNames);
+      } else if (url.includes('yapay-zeka') || url.includes('enterprise-ai')) {
+        offersAiAutomation.push(...offerNames);
       } else if (url.includes('web-yazilim') || url.includes('custom-software')) {
         offersCustomSoftware.push(...offerNames);
       }
@@ -337,9 +340,29 @@ if (JSON.stringify([...profilePageUrls].sort()) !== JSON.stringify(expectedProfi
   fail('dist', `K11 ProfilePage sayfaları tam olarak [${expectedProfileUrls.join(', ')}] olmalı (bulunan: [${profilePageUrls.join(', ')}])`);
 }
 
-const offerIntersection = offersWebDesign.filter((name) => offersCustomSoftware.includes(name));
-if (offerIntersection.length > 0) {
-  fail('dist', `K11 Web Tasarım ve Özel Yazılım servis teklif adlarında kesişim var: ${offerIntersection.join(', ')}`);
+const intersectionWD_CS = offersWebDesign.filter((name) => offersCustomSoftware.includes(name));
+const intersectionWD_AI = offersWebDesign.filter((name) => offersAiAutomation.includes(name));
+const intersectionCS_AI = offersCustomSoftware.filter((name) => offersAiAutomation.includes(name));
+
+if (intersectionWD_CS.length > 0) {
+  fail('dist', `K11 Web Tasarım ve Özel Yazılım servis teklif adlarında kesişim var: ${intersectionWD_CS.join(', ')}`);
+}
+if (intersectionWD_AI.length > 0) {
+  fail('dist', `K11 Web Tasarım ve Yapay Zeka Otomasyonu servis teklif adlarında kesişim var: ${intersectionWD_AI.join(', ')}`);
+}
+if (intersectionCS_AI.length > 0) {
+  fail('dist', `K11 Özel Yazılım ve Yapay Zeka Otomasyonu servis teklif adlarında kesişim var: ${intersectionCS_AI.join(', ')}`);
+}
+
+const hasAiPages = htmlFiles.some((f) => f.includes('yapay-zeka') || f.includes('enterprise-ai'));
+if (hasAiPages && offersAiAutomation.length === 0) {
+  fail('dist', 'K11 Yapay Zeka Otomasyonu servis teklif kataloğu boş');
+}
+if (offersWebDesign.length === 0) {
+  fail('dist', 'K11 Web Tasarım servis teklif kataloğu boş');
+}
+if (offersCustomSoftware.length === 0) {
+  fail('dist', 'K11 Özel Yazılım servis teklif kataloğu boş');
 }
 
 // ── K8: site haritaları ─────────────────────────────────────────────────────

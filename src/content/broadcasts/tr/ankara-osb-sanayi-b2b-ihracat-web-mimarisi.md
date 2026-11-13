@@ -4,6 +4,7 @@ description: "OSTİM, İvedik, Sincan ASO ve Başkent OSB'deki ihracatçı sanay
 seoTitle: "Ankara OSB Sanayi İhracat Portalı Mimarisi"
 seoDescription: "Ankara OSTİM, İvedik ve Başkent OSB sanayi firmaları için 50ms altı çok dilli B2B ihracat portalı mimarisi, statik hreflang ve GTIP/CAD RFQ veri sözleşmeleri."
 pubDate: 2026-11-01
+updatedDate: 2026-11-13
 lang: "tr"
 ref: "ankara-osb-sanayi-b2b-ihracat-web-mimarisi"
 doi: "10.5281/zenodo.24113990"
@@ -134,7 +135,7 @@ Kurumsal web mimarisinde DNS seviyesinde şu 4 protokol zorunlu olarak yapıland
 
 ## Ankara Sanayisi İçin Uygulama Yol Haritası
 
-Ankara merkezli sanayi firmanızın dijital altyapısını modernize etmek ve küresel ihracat pazarında güven inşa etmek istiyorsanız, [Ankara web yazılım](/ankara-web-yazilim/) ve kurumsal sistem mimarisi yaklaşımlarımızla adım adım ilerleyebilirsiniz:
+Ankara merkezli sanayi firmanızın dijital altyapısını modernize etmek ve küresel ihracat pazarında sarsılmaz bir güven inşa etmek istiyorsanız, [ankara kurumsal web tasarım](/ankara-kurumsal-web-tasarim/) ve [ankara web yazılım](/ankara-web-yazilim/) odaklı mühendislik yaklaşımlarımızla ilerleyebilirsiniz. ERP ve teklif süreçlerini otonomlaştırmak için [kurumsal yapay zeka otomasyonu](/ankara-yapay-zeka-otomasyonu/) hatlarını devreye alabilir; mimari denetim ve danışmanlık için doğrudan [Onur Aksoy (Hackonomist)](/about/) ile temasa geçebilirsiniz:
 
 1. **Altyapı Denetimi:** Mevcut web sitenizin TTFB, Core Web Vitals ve güvenlik açıklarını analiz edin.
 2. **Teknik Veri Sözleşmesi:** Ürünlerinizin GTIP kodlarını, teknik toleranslarını ve 3D modellerini kurumsal bir şemada toplayın.

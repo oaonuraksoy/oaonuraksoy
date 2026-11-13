@@ -237,21 +237,50 @@ const { project } = Astro.props;
     )}
 
     <!-- Bottom Inquiry Callout -->
-    <div class="mt-20 p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div>
-        <h3 class="text-lg font-bold text-text-primary">
-          Benzer bir sistem mimarisine mi ihtiyacınız var?
-        </h3>
-        <p class="text-sm text-text-muted mt-1">
-          Teknik danışmanlık, özel yazılım geliştirme veya sistem denetimi için doğrudan iletişime geçebilirsiniz.
-        </p>
+    <div class="mt-20 p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border space-y-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-lg font-bold text-text-primary">
+            Benzer bir sistem mimarisine mi ihtiyacınız var?
+          </h3>
+          <p class="text-sm text-text-muted mt-1">
+            Teknik danışmanlık, özel yazılım geliştirme veya sistem denetimi için doğrudan <a href="/about/" class="text-gold-tungsten hover:text-gold-highlight hover:underline underline-offset-2 transition-colors">Onur Aksoy (Hackonomist)</a> ile iletişime geçebilirsiniz.
+          </p>
+        </div>
+        <a
+          href="/contact/"
+          class="flex-shrink-0 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black text-xs font-bold hover:bg-gold-highlight transition-all"
+        >
+          Projeyi Konuşalım &rarr;
+        </a>
       </div>
-      <a
-        href="/contact/"
-        class="flex-shrink-0 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black text-xs font-bold hover:bg-gold-highlight transition-all"
-      >
-        Projeyi Konuşalım &rarr;
-      </a>
+
+      <div class="pt-6 border-t border-obsidian-border/60">
+        <div class="text-[11px] font-mono uppercase tracking-wider text-text-muted mb-3">Kurumsal Mimari Çözümleri</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <a
+            href="/ankara-kurumsal-web-tasarim/"
+            class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+          >
+            <span>Ankara Kurumsal Web Tasarım</span>
+            <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+          <a
+            href="/ankara-web-yazilim/"
+            class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+          >
+            <span>Ankara Özel Web Yazılım</span>
+            <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+          <a
+            href="/ankara-yapay-zeka-otomasyonu/"
+            class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+          >
+            <span>Ankara Yapay Zeka Otomasyonu</span>
+            <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+        </div>
+      </div>
     </div>
   </article>
 

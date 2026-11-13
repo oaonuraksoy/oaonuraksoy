@@ -4,6 +4,7 @@ description: "Kurumsal B2B şirketlerin 'ücretsiz ve pratik' zannederek kurduğ
 seoTitle: "WordPress mi Özel Yazılım mı? Maliyet Analizi"
 seoDescription: "WordPress kurumsal web sitesi ile özel yazılım arasındaki 3 yıllık sunucu, eklenti, bakım ve Google Ads reklam maliyeti (TCO) karşılaştırma rehberi."
 pubDate: 2026-11-02
+updatedDate: 2026-11-13
 lang: "tr"
 ref: "wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti"
 featured: false
@@ -112,7 +113,7 @@ Tablo açıkça göstermektedir ki; "ucuz" diye tercih edilen WordPress mimarisi
 
 ## Kurumsal Karar Vericiler İçin Çözüm Yolu
 
-Mevcut WordPress sitenizdeki eklenti bataklığından kurtulmak ve dijital varlıklarınızı gerçek bir kâr merkezine dönüştürmek için [Ankara web yazılım](/ankara-web-yazilim/) prensiplerimiz doğrultusunda şu adımları atabilirsiniz:
+Mevcut WordPress sitenizdeki eklenti bataklığından kurtulmak ve dijital varlıklarınızı gerçek bir kâr merkezine dönüştürmek için [ankara kurumsal web tasarım](/ankara-kurumsal-web-tasarim/) ve [ankara özel yazılım](/ankara-web-yazilim/) prensiplerimiz doğrultusunda şu adımları atabilirsiniz. Rutin operasyonları otonomlaştırmak adına [kurumsal yapay zeka otomasyonu](/ankara-yapay-zeka-otomasyonu/) çözümlerini inceleyebilir, sisteminizi baştan tasarlamak için [Onur Aksoy (Hackonomist)](/about/) ile görüşebilirsiniz:
 
 1. **Eklenti Denetimi Yapın:** Sitenizde kurulu olan 25-40 eklentinin hangilerinin gerçekten gerekli olduğunu, hangilerinin sadece basit bir CSS/JS fonksiyonu için kurulduğunu belirleyin.
 2. **Statik Mimariye Geçin:** İçeriklerinizi WordPress REST API üzerinden çekip Astro tabanlı modern bir ön yüze aktararak sunucu ve veritabanı yükünü sıfırlayın.

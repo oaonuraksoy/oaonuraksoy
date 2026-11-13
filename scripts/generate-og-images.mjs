@@ -87,6 +87,57 @@ function projectCardSvg({ name, subtitle, label, accent, tags }) {
 </svg>`;
 }
 
+const SERVICES = [
+  {
+    slug: 'ankara-yapay-zeka-otomasyonu',
+    label: 'KURUMSAL YAPAY ZEKA OTOMASYONU · ANKARA',
+    name: 'Yapay Zeka Otomasyonu',
+    subtitle: '7/24 Sesli Çağrı Merkezi · Canlı Destek · RAG & GEO Mimarisi',
+    accent: '#C58A3A',
+    tags: ['PBX / IVR Sesli Asistan', 'Niyet Odaklı Destek', 'Kurumsal RAG (MCP)', 'Sistem Mimarı']
+  },
+  {
+    slug: 'ankara-enterprise-ai-automation',
+    label: 'ENTERPRISE AI AUTOMATION · ANKARA',
+    name: 'Enterprise AI Automation',
+    subtitle: '24/7 Voice Call Center AI · Live Support · RAG & GEO Architecture',
+    accent: '#C58A3A',
+    tags: ['PBX / IVR Voice AI', 'Multilingual Support', 'Private RAG (MCP)', 'Systems Architect']
+  }
+];
+
+async function serviceCards() {
+  const srvDir = path.join(ROOT, 'public/images/services');
+  ensureDir(srvDir);
+  for (const s of SERVICES) {
+    const webpOut = path.join(srvDir, `${s.slug}.webp`);
+    const jpgOut = path.join(OUT, 'services', `${s.slug}.jpg`);
+    const svg = projectCardSvg({
+      name: s.name,
+      subtitle: s.subtitle,
+      label: s.label,
+      accent: s.accent,
+      tags: s.tags
+    });
+    const svgBuf = Buffer.from(svg);
+
+    const needWebp = FORCE || !fs.existsSync(webpOut);
+    if (needWebp) {
+      await sharp(svgBuf).resize(W, H).webp({ quality: 90 }).toFile(webpOut);
+      produced++;
+      console.log(`  ✓ ${path.relative(ROOT, webpOut)}`);
+    }
+
+    const needJpg = FORCE || !fs.existsSync(jpgOut) || (fs.existsSync(webpOut) && fs.statSync(webpOut).mtimeMs > fs.statSync(jpgOut).mtimeMs);
+    if (needJpg) {
+      ensureDir(jpgOut);
+      await toJpeg(sharp(svgBuf).resize(W, H).flatten({ background: '#08090A' })).toFile(jpgOut);
+      produced++;
+      console.log(`  ✓ ${path.relative(ROOT, jpgOut)}`);
+    }
+  }
+}
+
 async function projectCards() {
   const dir = path.join(ROOT, 'src/content/projects');
   for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
@@ -116,6 +167,7 @@ async function projectCards() {
 async function main() {
   console.log('🖼  Open Graph görselleri üretiliyor (1200×630 JPG)…');
   await convert(path.join(ROOT, 'public/images/onur-aksoy-og.webp'), path.join(OUT, 'onur-aksoy-og.jpg'));
+  await serviceCards();
   for (const sub of ['broadcasts', 'services']) {
     const dir = path.join(ROOT, 'public/images', sub);
     if (!fs.existsSync(dir)) continue;

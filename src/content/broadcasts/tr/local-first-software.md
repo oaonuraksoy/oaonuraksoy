@@ -4,6 +4,7 @@ description: "Kritik perakende, ERP ve masaüstü yazılımlarının neden çok 
 seoTitle: "Yerel Öncelikli (Local-First) Yazılım"
 seoDescription: "Perakende, ERP ve masaüstü yazılımları neden buluttan yerel önceliğe dönüyor: gömülü SQLite, LAN senkronizasyonu ve çevrimdışı dayanıklılık."
 pubDate: 2024-10-02
+updatedDate: 2026-11-13
 lang: "tr"
 ref: "local-first-software"
 doi: "10.5281/zenodo.24114159"
@@ -249,4 +250,4 @@ Aşağıdaki tablo, özdeş donanım konfigürasyonları altında perakende kasa
 
 Her ticari işlemi çok kiracılı bulut mikroservislerine taşıma çılgınlığı, mühendislik mükemmeliyetinden ziyade yazılım sağlayıcılarının gelir modelleri tarafından körüklendi. Ancak fiziksel ticaretin insan gerçekliğiyle buluştuğu gecikmeye duyarlı, görev açısından kritik operasyonlarda bulut tehlikeli bir tek hata noktasıdır (single point of failure).
 
-**Gömülü işlemsel depolama (SQLite WAL)**, **eşler arası ikili LAN senkronizasyonu**, **doğrudan çevre birimi kancaları** ve **donanım hızlandırmalı görselleştirme** bileşenlerini bir araya getiren Yerel Öncelikli Mühendislik yaklaşımı; gerçek yazılım dayanıklılığının, mikrosaniye hızının ve veri egemenliğinin her zaman sınırda (edge) ve kullanıcının kendi donanımında kalacağını açıkça kanıtlamaktadır.
+**Gömülü işlemsel depolama (SQLite WAL)**, **eşler arası ikili LAN senkronizasyonu**, **doğrudan çevre birimi kancaları** ve **donanım hızlandırmalı görselleştirme** bileşenlerini bir araya getiren Yerel Öncelikli Mühendislik yaklaşımı; gerçek yazılım dayanıklılığının, mikrosaniye hızının ve veri egemenliğinin her zaman sınırda (edge) ve kullanıcının kendi donanımında kalacağını açıkça kanıtlamaktadır. İşletmenizin ERP ve saha donanımlarını deterministik veri köprüleriyle modernleştirmek için [ankara web yazılım](/ankara-web-yazilim/) ve [ankara özel yazılım](/ankara-web-yazilim/) altyapılarımızı inceleyebilir; yerel ağları [kurumsal yapay zeka otomasyonu](/ankara-yapay-zeka-otomasyonu/) ile güçlendirmek ve mimari denetim talep etmek için doğrudan [Onur Aksoy (Hackonomist)](/about/) ile temasa geçebilirsiniz.

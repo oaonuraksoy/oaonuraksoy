@@ -237,21 +237,50 @@ const { project } = Astro.props;
     )}
 
     <!-- Bottom Inquiry Callout -->
-    <div class="mt-20 p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div>
-        <h3 class="text-lg font-bold text-text-primary">
-          Interested in a similar system architecture?
-        </h3>
-        <p class="text-sm text-text-muted mt-1">
-          Reach out directly to discuss technical consulting, bespoke implementation, or system audits.
-        </p>
+    <div class="mt-20 p-8 rounded-2xl bg-obsidian-surface border border-obsidian-border space-y-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-lg font-bold text-text-primary">
+            Interested in a similar system architecture?
+          </h3>
+          <p class="text-sm text-text-muted mt-1">
+            Reach out directly to <a href="/en/about/" class="text-gold-tungsten hover:text-gold-highlight hover:underline underline-offset-2 transition-colors">Onur Aksoy (Hackonomist)</a> to discuss technical consulting, bespoke implementation, or system audits.
+          </p>
+        </div>
+        <a
+          href="/en/contact/"
+          class="flex-shrink-0 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black text-xs font-bold hover:bg-gold-highlight transition-all"
+        >
+          Discuss Project &rarr;
+        </a>
       </div>
-      <a
-        href="/en/contact/"
-        class="flex-shrink-0 px-5 py-2.5 rounded-lg bg-gold-tungsten text-obsidian-black text-xs font-bold hover:bg-gold-highlight transition-all"
-      >
-        Discuss Project &rarr;
-      </a>
+
+      <div class="pt-6 border-t border-obsidian-border/60">
+        <div class="text-[11px] font-mono uppercase tracking-wider text-text-muted mb-3">Enterprise Architecture Solutions</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <a
+            href="/en/ankara-b2b-web-architecture/"
+            class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+          >
+            <span>Ankara B2B Web Architecture</span>
+            <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+          <a
+            href="/en/ankara-custom-software-architecture/"
+            class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+          >
+            <span>Ankara Custom Software</span>
+            <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+          <a
+            href="/en/ankara-enterprise-ai-automation/"
+            class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+          >
+            <span>Ankara Enterprise AI</span>
+            <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+        </div>
+      </div>
     </div>
   </article>
 

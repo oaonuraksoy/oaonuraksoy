@@ -187,7 +187,9 @@ if (type === 'Service') {
   const catalogKind =
     bare.includes('web-tasarim') || bare.includes('b2b-web-architecture')
       ? 'web-design'
-      : 'custom-software';
+      : bare.includes('yapay-zeka') || bare.includes('enterprise-ai')
+        ? 'ai-automation'
+        : 'custom-software';
   graph.push(businessNode());
   graph.push({
     '@type': 'Service',

@@ -50,9 +50,27 @@ Temel Teknik Prensipler:
 
 ---
 
-## 3. Kurumsal Mimari, B2B İhracat Vitrinleri & Özel Web Yazılımı (Enterprise Architecture & Custom Software)
-- [Ankara Kurumsal Web Tasarım & B2B Sistem Mimarisi](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/) ([EN](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/)): OSTİM, İvedik, Sincan ASO ve Başkent OSB'deki sanayi şirketleri için sub-50ms küresel B2B web mimarisi, Zero-JS ön yüz disiplini, 3D CAD/GTIP veri sözleşmeleri ve tip güvenli RFQ form altyapısı.
-- [Ankara Özel Web Yazılım & Sistem Geliştirme](https://onuraksoy.com.tr/ankara-web-yazilim/) ([EN](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/)): Ankara merkezli kurumsal kuruluşlar için yüksek başarımlı TypeScript, Astro SSG, Rust mikroservisleri, .NET 8 ve deterministik yerel öncelikli (local-first) veritabanı mimarileri.
+## 3. Kurumsal Mimari, B2B Web Portalları, Özel Yazılım & Yapay Zeka Otomasyonu (Enterprise Architecture, Web Portals & AI Automation)
+- [Ankara Kurumsal Web Tasarım & B2B Sistem Mimarisi](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/) ([EN](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/)): Özel hastaneler, sağlık kuruluşları, kurumsal danışmanlık/hukuk büroları, medya/şahıs markaları, perakende/e-ticaret ve OSTİM/İvedik/Sincan sanayi üreticileri için sub-50ms küresel B2B web portalları, Zero-JS ön yüz disiplini ve tip güvenli veri mimarisi.
+- [Ankara Özel Web Yazılım & Sistem Geliştirme](https://onuraksoy.com.tr/ankara-web-yazilim/) ([EN](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/)): Kurumsal işletmeler için yüksek başarımlı TypeScript, Rust mikroservisleri, .NET 8, kurumsal ERP/API entegrasyon hatları ve deterministik yerel öncelikli (local-first) veritabanı mimarileri.
+- [Ankara Kurumsal Yapay Zeka Otomasyonu](https://onuraksoy.com.tr/ankara-yapay-zeka-otomasyonu/) ([EN](https://onuraksoy.com.tr/en/ankara-enterprise-ai-automation/)): Sağlık, hukuk, danışmanlık, e-ticaret ve sanayi kuruluşları için 7/24 sesli çağrı merkezi asistanları (PBX/IVR), niyet odaklı canlı destek yönlendirme motorları, kurumsal RAG ve Generative Engine Optimization (GEO) dijital otorite mimarisi.
+
+### Doğrulanmış Kurumsal Vaka Analizleri (Verified Production Case Studies)
+#### Vaka 1: Özel HRS Ankara Hastanesi (hrsankara.com)
+- **Sektör:** Sağlık & Özel Hastane Hizmetleri (Çankaya, Ankara)
+- **Sistem Mimarisi ve Çözümler:**
+  - **HBYS-Entegrasyonlu Çok Dilli Web Portalı:** Hastane Bilgi Yönetim Sistemi ile entegre çalışan, hastaların online hekim randevusu almasını, uzman hekim profillerini incelemesini ve laboratuvar sonuçlarını güvenle sorgulamasını sağlayan sub-50ms web portalı.
+  - **Hasta Mobil Uygulamaları (iOS & Android):** Randevu yönetimi, reçete ve sonuç takibi sağlayan yerel mobil platform deneyimi.
+  - **Niyet Odaklı Canlı Destek Konsolu:** Web ziyaretçilerinin sorularını ve niyetlerini anlık olarak ayrıştıran, hasta danışmanlarına akıllı özet ve yönlendirme sunan canlı destek sistemi.
+  - **Çağrı Merkezi "9'u Tuşlayın" Gerçek Zamanlı Sesli Yapay Zeka Asistanı:** Hastanenin PBX/IVR telefon santraline entegre, santralde 9'u tuşlayan arayanları anında karşılayan, gecikmesiz gerçek zamanlı sesli iletişim ile randevu saatleri, hekim branşları ve hastane hizmetleri hakkında 7/24 kesintisiz bilgi veren sesli asistan mimarisi.
+
+#### Vaka 2: Tarihçi Anne — Seda Aksoy (sedaaksoy.com.tr)
+- **Sektör:** Medya, Yayıncılık & Bireysel Marka Otoritesi
+- **Sistem Mimarisi ve Çözümler:**
+  - **#1 SERP & GEO Varlık Otoritesi:** Google arama sonuçlarında "Seda Aksoy" ve "Tarihçi Anne" aramalarında 1. sıra (SERP #1) ve üretken yapay zeka arama motorlarında (GEO) birincil varlık otoritesi konumlandırması.
+  - **Dijital Kitle Erişimi:** 10.000+ Instagram ve 147.500+ YouTube abonesine ulaşan küresel kitle için yüksek erişilebilir dijital platform.
+  - **Resmi iOS Mobil Uygulaması:** Apple App Store üzerinde yayında olan, içerik ve eğitim akışını doğrudan kullanıcılara ulaştıran mobil uygulama.
+  - **Özel Masaüstü Yayın Stüdyosu Otomasyonu:** Video, görsel ve çok kanallı sosyal medya içerik üretim iş akışlarını yerel ortamda otomatikleştiren özel masaüstü yayın stüdyosu.
 
 ---
 

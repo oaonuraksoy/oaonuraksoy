@@ -301,13 +301,20 @@ const citation = (item.data.doi && item.data.scholarlyPaper) ? {
               Author & Systems Architect
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-text-primary">
-              Onur Aksoy <span class="text-sm font-normal text-gold-highlight font-mono">(a.k.a. Hackonomist)</span>
+              <a href="/en/about/" class="hover:text-gold-highlight transition-colors">Onur Aksoy (Hackonomist)</a>
             </h3>
           </div>
           <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
             Ankara-based Software Developer, Digital Strategist & Systems Architect. Specialist in deterministic state machines, local-first distributed topologies, low-level Rust network sniffers, and zero-server media engines.
           </p>
           <div class="flex items-center justify-center sm:justify-start gap-3 pt-2 text-xs font-mono">
+            <a
+              href="/en/about/"
+              class="text-gold-tungsten hover:text-gold-highlight transition-colors font-semibold"
+            >
+              About ↗
+            </a>
+            <span>•</span>
             <a
               href="https://github.com/oaonuraksoy"
               target="_blank"
@@ -336,6 +343,42 @@ const citation = (item.data.doi && item.data.scholarlyPaper) ? {
         </div>
       </div>
     </section>
+
+    <!-- Enterprise Architecture Solutions -->
+    <div class="mt-8 p-6 rounded-2xl border border-obsidian-border bg-obsidian-surface/60">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-obsidian-border/50 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold-tungsten"></span>
+          <span class="font-mono text-gold-tungsten uppercase tracking-wider text-[11px] font-semibold">
+            Enterprise Architecture Solutions
+          </span>
+        </div>
+        <span class="text-text-muted text-[11px] font-mono">Ankara & Global Systems Engineering</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <a
+          href="/en/ankara-b2b-web-architecture/"
+          class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+        >
+          <span>Ankara B2B Web Architecture</span>
+          <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+        </a>
+        <a
+          href="/en/ankara-custom-software-architecture/"
+          class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+        >
+          <span>Ankara Custom Software</span>
+          <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+        </a>
+        <a
+          href="/en/ankara-enterprise-ai-automation/"
+          class="p-3 rounded-lg bg-obsidian-black border border-obsidian-border hover:border-gold-tungsten/50 text-text-secondary hover:text-gold-highlight transition-colors flex items-center justify-between group"
+        >
+          <span>Ankara Enterprise AI</span>
+          <span class="text-gold-tungsten group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- Client-side Interactive Vector Mermaid Topology Renderer -->

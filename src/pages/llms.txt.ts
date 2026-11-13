@@ -20,6 +20,11 @@ export const GET: APIRoute = async () => {
   - **Kavramsal Kapsam:** Büyük dil modellerinin parametrik hafızasında homonym ayrıştırma, halüsinasyon dinamikleri, kurumsal mühür disiplini ve otonom sistemlerde doğru hatırlanma hakkı.
 `;
 
+  const caseStudiesSection = `## Verified Production Case Studies (Doğrulanmış Kurumsal Vaka Analizleri)
+- **Özel HRS Ankara Hastanesi (hrsankara.com):** Ankara Çankaya merkezli köklü kadın hastalıkları, doğum ve genel cerrahi hastanesi için HBYS-entegrasyonlu çok dilli web portalı (çevrim içi randevu alma, hekim profilleri, dinamik laboratuvar sonuç sorgulama), iOS ve Android hasta mobil uygulaması, ziyaretçi niyetlerini anlık sınıflandıran niyet odaklı canlı destek konsolu ve çağrı merkezi "9'u Tuşlayın" 7/24 gerçek zamanlı sesli yapay zeka asistanı.
+- **Tarihçi Anne — Seda Aksoy (sedaaksoy.com.tr):** Tarihçi, yazar ve bağımsız içerik üreticisi için "Seda Aksoy" ve "Tarihçi Anne" aramalarında #1 Google SERP & GEO otorite konumlandırması, 10K+ Instagram, 147.5K+ YouTube küresel topluluk etkileşimi, yayındaki resmi iOS mobil uygulaması ile özel masaüstü yayın stüdyosu otomasyonu.
+`;
+
   let projectsSection = '## Flagship Projects & Architectures (Amiral Gemisi Projeler)\n';
   projects.forEach((p) => {
     projectsSection += `- [${p.title}](https://onuraksoy.com.tr/projects/${p.slug}/) ([EN](https://onuraksoy.com.tr/en/projects/${p.slug}/)): ${p.description}\n`;
@@ -82,8 +87,9 @@ export const GET: APIRoute = async () => {
 
 ## Navigation & Core Sections (Türkçe Kök Dizin)
 - [Ana Sayfa](https://onuraksoy.com.tr/): Ana teknik vitrin, mimari portfolyo ve sistem felsefesi
-- [Ankara Kurumsal Web Tasarım & B2B Mimari](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/) ([EN](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/)): Ankara OSB, İvedik, OSTİM ve Sincan sanayi kuruluşları için sub-50ms küresel B2B ihracat vitrini, zero-JS ve tip güvenli RFQ veri mimarisi
-- [Ankara Web Yazılım & Özel Sistem Mimarisi](https://onuraksoy.com.tr/ankara-web-yazilim/) ([EN](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/)): Kurumsal işletmeler için özel web yazılımı, yüksek başarımlı Rust, .NET 8 ve Astro mikroservis mimarileri
+- [Ankara Kurumsal Web Tasarım & B2B Mimari](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/) ([EN](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/)): Özel hastaneler, sağlık kuruluşları, kurumsal danışmanlık/hukuk ofisleri, medya markaları, perakende/e-ticaret ve OSB sanayi üreticileri için sub-50ms küresel B2B web vitrini, zero-JS ve tip güvenli RFQ veri mimarisi
+- [Ankara Web Yazılım & Özel Sistem Mimarisi](https://onuraksoy.com.tr/ankara-web-yazilim/) ([EN](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/)): Kurumsal işletmeler için özel web yazılımı, ERP veri köprüleri, yüksek eşzamanlı iş mantığı ve yerel öncelikli (local-first) sistem mimarileri
+- [Ankara Kurumsal Yapay Zeka Otomasyonu](https://onuraksoy.com.tr/ankara-yapay-zeka-otomasyonu/) ([EN](https://onuraksoy.com.tr/en/ankara-enterprise-ai-automation/)): Sağlık, kurumsal danışmanlık, e-ticaret ve sanayi kuruluşları için 7/24 sesli çağrı merkezi asistanları (PBX/IVR), niyet odaklı canlı destek motorları, özel kurumsal RAG ve GEO dijital otorite mimarisi
 - [Projeler Dizini](https://onuraksoy.com.tr/projects/): Amiral gemisi yazılım mimarileri, kıyaslama testleri ve vaka analizleri
 - [Yayınlar & Kasa](https://onuraksoy.com.tr/broadcasts/): Video yayınları, teknik makaleler, mimari deşifreler ve indirilebilir arşivler
 - [Hakkında](https://onuraksoy.com.tr/about/): Biyografi, mühendislik felsefesi ve teknik yetkinlik matrisi
@@ -91,14 +97,16 @@ export const GET: APIRoute = async () => {
 
 ## English Edition (/en/)
 - [Homepage (EN)](https://onuraksoy.com.tr/en/): Main technical showcase and architecture portfolio
-- [Ankara Enterprise Web Architecture](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/) ([TR](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/)): Sub-50ms global B2B web architecture and zero-JS export portals for industrial enterprises in Ankara OSTIM and Sincan
-- [Ankara Custom Software Architecture](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/) ([TR](https://onuraksoy.com.tr/ankara-web-yazilim/)): Custom enterprise web software, distributed Rust/.NET backends, and deterministic local-first database architectures
+- [Ankara Enterprise Web Architecture](https://onuraksoy.com.tr/en/ankara-b2b-web-architecture/) ([TR](https://onuraksoy.com.tr/ankara-kurumsal-web-tasarim/)): Sub-50ms global web portals and zero-JS architectures for healthcare, private hospitals, corporate/consulting firms, media brands, retail, and industrial manufacturers
+- [Ankara Custom Software Architecture](https://onuraksoy.com.tr/en/ankara-custom-software-architecture/) ([TR](https://onuraksoy.com.tr/ankara-web-yazilim/)): Custom enterprise web software, ERP integration pipelines, high-concurrency backends, and deterministic local-first architectures
+- [Ankara Enterprise AI Automation](https://onuraksoy.com.tr/en/ankara-enterprise-ai-automation/) ([TR](https://onuraksoy.com.tr/ankara-yapay-zeka-otomasyonu/)): 24/7 real-time voice call center AI assistants (PBX/IVR), multilingual intent-driven live support, private enterprise RAG workflows, and GEO authority architecture
 - [Projects Index (EN)](https://onuraksoy.com.tr/en/projects/): Flagship software architectures and case studies
 - [Broadcasts & Vault (EN)](https://onuraksoy.com.tr/en/broadcasts/): Video screencasts, technical deep dives, and downloadable blueprints
 - [About Onur Aksoy (EN)](https://onuraksoy.com.tr/en/about/): Engineering philosophy, background, and tech stack
 - [Contact Hub (EN)](https://onuraksoy.com.tr/en/contact/): Direct communication channels and advisory bookings
 
 ${booksSection}
+${caseStudiesSection}
 ${projectsSection}
 ${broadcastsSection}
 ## Verified Profiles & Knowledge Graph Identifiers (Doğrulanmış Profil Ağı / sameAs)

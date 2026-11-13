@@ -4,6 +4,7 @@ description: "A financial and systems autopsy into why 'cheap and fast' WordPres
 seoTitle: "WordPress Plugin Debt vs Custom Code (TCO)"
 seoDescription: "The annual server, maintenance and ad-spend cost of WordPress plugin debt in B2B companies compared with the total cost of custom architecture."
 pubDate: 2026-11-02
+updatedDate: 2026-11-13
 lang: "en"
 ref: "wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti"
 featured: false
@@ -112,7 +113,7 @@ The economic conclusion is indisputable: The "inexpensive" CMS solution ultimate
 
 ## Architectural Strategic Path for Decision Makers
 
-To break free from recurring plugin debt and turn your digital presence into a capital-efficient revenue driver, consider the engineering approaches outlined in [Ankara custom software architecture](/en/ankara-custom-software-architecture/):
+To break free from recurring plugin debt and turn your digital presence into a capital-efficient revenue driver, consider the engineering approaches outlined in [Ankara B2B web architecture](/en/ankara-b2b-web-architecture/) and [Ankara custom software architecture](/en/ankara-custom-software-architecture/). Explore [enterprise AI automation](/en/ankara-enterprise-ai-automation/) to streamline operational queues, or schedule an architectural consultation with [Onur Aksoy (Hackonomist)](/en/about/):
 
 1. **Perform a Dependency Audit:** Catalogue all active plugins to isolate those providing trivial functionality that can be replaced with native CSS or static configuration.
 2. **Transition to Static Site Generation:** Ingest existing content via the CMS API into an Astro SSG pipeline, eliminating live PHP and database dependencies.

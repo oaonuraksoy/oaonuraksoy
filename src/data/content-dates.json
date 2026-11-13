@@ -12,7 +12,7 @@
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/components/Footer.astro": {
-    "last": "2026-11-10T15:50:41+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/components/Header.astro": {
@@ -20,7 +20,7 @@
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/components/JsonLd.astro": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/components/LatestBroadcasts.astro": {
@@ -172,19 +172,23 @@
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/about.astro": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/ankara-kurumsal-web-tasarim.astro": {
-    "last": "2026-11-10T13:18:38+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-04T23:19:08+03:00"
   },
   "src/pages/ankara-web-yazilim.astro": {
-    "last": "2026-11-10T13:18:38+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-04T23:19:08+03:00"
   },
+  "src/pages/ankara-yapay-zeka-otomasyonu.astro": {
+    "last": "2026-11-13T23:55:00+03:00",
+    "first": "2026-11-13T23:55:00+03:00"
+  },
   "src/pages/broadcasts/[...slug].astro": {
-    "last": "2026-11-10T17:43:29+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/broadcasts/index.astro": {
@@ -196,19 +200,23 @@
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/en/about.astro": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/en/ankara-b2b-web-architecture.astro": {
-    "last": "2026-11-10T13:18:38+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-04T23:19:08+03:00"
   },
   "src/pages/en/ankara-custom-software-architecture.astro": {
-    "last": "2026-11-10T13:18:38+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-04T23:19:08+03:00"
   },
+  "src/pages/en/ankara-enterprise-ai-automation.astro": {
+    "last": "2026-11-13T23:55:00+03:00",
+    "first": "2026-11-13T23:55:00+03:00"
+  },
   "src/pages/en/broadcasts/[...slug].astro": {
-    "last": "2026-11-10T17:43:29+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/en/broadcasts/index.astro": {
@@ -220,11 +228,11 @@
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/en/index.astro": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/en/projects/[...slug].astro": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/en/projects/index.astro": {
@@ -232,19 +240,19 @@
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/index.astro": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/llms-full.txt.ts": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/llms.txt.ts": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/projects/[...slug].astro": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/projects/index.astro": {
@@ -260,7 +268,7 @@
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/sitemap-images.xml.ts": {
-    "last": "2026-11-11T00:04:27+03:00",
+    "last": "2026-11-13T23:55:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/sitemap-video.xml.ts": {

@@ -168,10 +168,11 @@ export function graphJson(graph) {
 }
 
 /**
- * Kurumsal B2B Hizmet Alanları (6 Bölge — docs/API.md §1.6 ile uyumlu tipli nesneler).
+ * Kurumsal B2B Hizmet Alanları (7 Bölge — docs/API.md §1.6 ile uyumlu tipli nesneler).
  */
 export const SERVICE_AREA_SERVED = [
   { '@type': 'City', name: 'Ankara' },
+  { '@type': 'AdministrativeArea', name: 'Çankaya, Ankara' },
   { '@type': 'Place', name: 'OSTİM Organize Sanayi Bölgesi' },
   { '@type': 'Place', name: 'İvedik Organize Sanayi Bölgesi' },
   { '@type': 'Place', name: 'Başkent Organize Sanayi Bölgesi' },
@@ -213,9 +214,9 @@ export function businessNode() {
 
 /**
  * B2B Hizmet Teklif Kataloğu Üreticisi (OfferCatalog).
- * Kanibalizmi önlemek için web-design ve custom-software için sıfır kesişimli,
+ * Kanibalizmi önlemek için web-design, custom-software ve ai-automation için sıfır kesişimli,
  * bağımsız 4'er teklif içeren yapılandırılmış katalog döndürür.
- * @param {'web-design'|'custom-software'} kind
+ * @param {'web-design'|'custom-software'|'ai-automation'} kind
  * @param {'tr'|'en'} lang
  */
 export function serviceOfferCatalog(kind, lang) {
@@ -270,6 +271,70 @@ export function serviceOfferCatalog(kind, lang) {
           ? 'Kurumsal Web Tasarım & B2B İhracat Mimarisi Hizmetleri'
           : 'Corporate Web Design & B2B Export Architecture Services',
       itemListElement: offersData.map((o) => ({
+        '@type': 'Offer',
+        name: o.name,
+        description: o.description,
+        itemOffered: {
+          '@type': 'Service',
+          name: o.name,
+          description: o.description,
+          provider: { '@id': BUSINESS_ID }
+        }
+      }))
+    };
+  }
+
+  if (kind === 'ai-automation') {
+    const aiOffersData = [
+      {
+        name:
+          lang === 'tr'
+            ? '7/24 Gerçek Zamanlı Sesli Çağrı Merkezi Asistanları (PBX / IVR)'
+            : '24/7 Real-Time Voice Call Center AI Assistants (PBX / IVR)',
+        description:
+          lang === 'tr'
+            ? 'Gelen kurumsal çağrıları sıfır gecikmeyle karşılayan, PBX/IVR entegrasyonlu ve operatör yükünü hafifleten gerçek zamanlı sesli yapay zeka asistanları.'
+            : 'Ultra-low-latency enterprise voice AI assistants integrated directly into PBX/IVR systems for 24/7 call dispatch and automated triage.'
+      },
+      {
+        name:
+          lang === 'tr'
+            ? 'Çok Dilli Niyet Odaklı Canlı Destek & Operatör Yönlendirme Motoru'
+            : 'Multilingual Intent-Driven Live Support & Operator Routing Engine',
+        description:
+          lang === 'tr'
+            ? 'Ziyaretçi niyetini milisaniyeler içinde sınıflandıran, hasta/müşteri sorularını yanıtlayan ve karmaşık talepleri doğru birime aktaran canlı destek motoru.'
+            : 'Sub-second visitor intent classification engine delivering instant multilingual support and routing critical inquiries to human operators.'
+      },
+      {
+        name:
+          lang === 'tr'
+            ? 'Kurumsal Bilgi Tabanı (RAG) & Güvenli Karar Otomasyonu (MCP)'
+            : 'Private Enterprise Knowledge Retrieval (RAG) & Auditable MCP Workflows',
+        description:
+          lang === 'tr'
+            ? 'Kurum içi doküman ve veritabanlarını halüsinasyonsuz Model Context Protocol (MCP) üzerinden işleyen, denetlenebilir ve güvenli kurumsal RAG mimarisi.'
+            : 'Private, hallucination-resistant retrieval-augmented generation (RAG) and deterministic MCP workflows connecting strictly to internal enterprise data.'
+      },
+      {
+        name:
+          lang === 'tr'
+            ? 'Kurumsal Yapay Zeka Görünürlüğü (GEO) & Dijital Otorite Mimarisi'
+            : 'Generative Engine Optimization (GEO) & Entity Authority Architecture',
+        description:
+          lang === 'tr'
+            ? 'Yapay zeka arama motorları ve büyük dil modelleri (GEO/SGE) için doğrulanmış varlık mührü, tekil bilgi grafı ve dijital itibar konumlandırması.'
+            : 'Entity authority architecture and generative engine optimization (GEO) ensuring accurate citation across AI search and LLM response engines.'
+      }
+    ];
+
+    return {
+      '@type': 'OfferCatalog',
+      name:
+        lang === 'tr'
+          ? 'Kurumsal Yapay Zeka Otomasyonu & Çağrı Merkezi Ajanları (Ankara)'
+          : 'Enterprise AI Automation, Voice Agents & GEO Architecture (Ankara)',
+      itemListElement: aiOffersData.map((o) => ({
         '@type': 'Offer',
         name: o.name,
         description: o.description,

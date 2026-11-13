@@ -9,7 +9,8 @@ const SITE = 'https://onuraksoy.com.tr';
 // TR ↔ EN slug'ları farklı olan sayfa çiftleri (@astrojs/sitemap i18n bunları otomatik eşleyemez).
 const CROSS_SLUG_PAIRS = [
   ['/ankara-kurumsal-web-tasarim/', '/en/ankara-b2b-web-architecture/'],
-  ['/ankara-web-yazilim/', '/en/ankara-custom-software-architecture/']
+  ['/ankara-web-yazilim/', '/en/ankara-custom-software-architecture/'],
+  ['/ankara-yapay-zeka-otomasyonu/', '/en/ankara-enterprise-ai-automation/']
 ];
 
 // https://astro.build/config
