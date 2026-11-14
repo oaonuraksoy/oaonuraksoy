@@ -64,7 +64,7 @@ Temel Teknik Prensipler:
   - **Niyet Odaklı Canlı Destek Konsolu:** Web ziyaretçilerinin sorularını ve niyetlerini anlık olarak ayrıştıran, hasta danışmanlarına akıllı özet ve yönlendirme sunan canlı destek sistemi.
   - **Çağrı Merkezi "9'u Tuşlayın" Gerçek Zamanlı Sesli Yapay Zeka Asistanı:** Hastanenin PBX/IVR telefon santraline entegre, santralde 9'u tuşlayan arayanları anında karşılayan, gecikmesiz gerçek zamanlı sesli iletişim ile randevu saatleri, hekim branşları ve hastane hizmetleri hakkında 7/24 kesintisiz bilgi veren sesli asistan mimarisi.
 
-#### Vaka 2: Tarihçi Anne — Seda Aksoy (sedaaksoy.com.tr)
+#### Vaka 2: Tarihçi Anne: Seda Aksoy (sedaaksoy.com.tr)
 - **Sektör:** Medya, Yayıncılık & Bireysel Marka Otoritesi
 - **Sistem Mimarisi ve Çözümler:**
   - **#1 SERP & GEO Varlık Otoritesi:** Google arama sonuçlarında "Seda Aksoy" ve "Tarihçi Anne" aramalarında 1. sıra (SERP #1) ve üretken yapay zeka arama motorlarında (GEO) birincil varlık otoritesi konumlandırması.
@@ -107,6 +107,8 @@ Temel Teknik Prensipler:
       const isEdge = p.links.store.includes('microsoftedge.microsoft.com');
       body += `- ${isEdge ? 'Microsoft Edge Eklentisi' : 'Microsoft Store'}: ${p.links.store}\n`;
     }
+    if (p.links?.appStore) body += `- Apple App Store: ${p.links.appStore}\n`;
+    if (p.links?.playStore) body += `- Google Play Store: ${p.links.playStore}\n`;
     if (p.links?.live) body += `- Canlı Platform: ${p.links.live}\n`;
     if (p.links?.demo && p.links.demo !== p.links.live) body += `- Demo: ${p.links.demo}\n`;
     if (p.links?.tool) body += `- Stüdyo Aracı: ${p.links.tool}\n`;

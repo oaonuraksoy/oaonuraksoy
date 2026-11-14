@@ -1,0 +1,138 @@
+{
+  "id": "tarihci-anne-seda-aksoy",
+  "slug": "tarihci-anne-seda-aksoy",
+  "order": 2,
+  "featured": false,
+  "accentColor": "#C58A3A",
+  "tags": [
+    "Kişisel Marka Otoritesi",
+    "Teknik SEO & GEO",
+    "Organik Topluluk Büyümesi",
+    "Mobil Topluluk Uygulaması",
+    "İçerik Stratejisi",
+    "Çok Kanallı Dağıtım"
+  ],
+  "links": {
+    "live": "https://sedaaksoy.com.tr",
+    "appStore": "https://apps.apple.com/tr/app/tarih%C3%A7i-anne-seda-aksoy/id6743680837",
+    "playStore": "https://play.google.com/store/apps/details?id=com.tr.oahub.sonya"
+  },
+  "schema": {
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "iOS, Android, Web",
+    "price": "0",
+    "priceCurrency": "TRY"
+  },
+  "metrics": {
+    "en": [
+      { "label": "Organic Community", "value": "10K+ Followers" },
+      { "label": "SERP & GEO Rank", "value": "#1 Entity Authority" },
+      { "label": "Mobile Delivery", "value": "iOS & Android" },
+      { "label": "Core Web Vitals", "value": "100/100 Lighthouse" }
+    ],
+    "tr": [
+      { "label": "Organik Topluluk", "value": "10K+ Takipçi" },
+      { "label": "SERP ve GEO Konumu", "value": "#1 Varlık Otoritesi" },
+      { "label": "Mobil Dağıtım", "value": "iOS & Android" },
+      { "label": "Web Başarımı", "value": "100/100 Lighthouse" }
+    ]
+  },
+  "en": {
+    "title": "Tarihçi Anne: Seda Aksoy Web, 10K+ Growth & Mobile Ecosystem",
+    "seoTitle": "Tarihçi Anne: Web, 10K+ Growth & Mobile",
+    "seoDescription": "Tarihçi Anne Seda Aksoy digital ecosystem case study: #1 SERP and GEO entity authority, 10K+ organic growth, and iOS and Android mobile community app.",
+    "description": "An independent publishing ecosystem combining #1 search and AI entity authority, a 10K+ organic Instagram community, and dedicated iOS and Android mobile applications.",
+    "role": "Lead Systems Architect & Digital Growth Consultant",
+    "period": "2024 - Present",
+    "status": "In Production / Active Community",
+    "stackTitle": "Delivered Digital Layers",
+    "executiveOverview": "Independent content creators and authors face algorithmic vulnerability when relying solely on volatile social platform feeds: organic reach fluctuates, platform rule shifts disrupt community contact, and fragmented web identities dilute authority across search engines.\n\n**Tarihçi Anne (Seda Aksoy)** required an unshakeable digital presence that transforms social attention into permanent sovereign assets. The delivered system establishes three interconnected layers:\n- **Sovereign Web & Knowledge Graph Authority (sedaaksoy.com.tr):** Solidifying #1 ranking across Google SERP and generative engine optimization (GEO) for identity queries.\n- **Algorithmic Audience Acceleration (10K+ Instagram Followers):** Systematic content retention engineering, hooked video pacing, and disciplined multichannel content syndication.\n- **Dedicated Mobile Community Application (Tarihçi Anne):** Direct reader distribution via iOS App Store and Google Play Store with zero algorithmic intermediary.",
+    "mermaidTopology": "flowchart LR\n    subgraph Audience [\"Audience Acquisition\"]\n        IG[\"📸 Instagram (10K+ Followers)\"]\n        YT[\"▶️ Video Channels\"]\n        S[\"🔍 Search Engines & AI Models\"]\n    end\n\n    subgraph SovereignHub [\"Sovereign Web Platform\"]\n        Web[\"🌐 sedaaksoy.com.tr\"]\n        KG[\"🏷️ Knowledge Graph & GEO #1\"]\n        Blog[\"📚 Curated Articles & Book Index\"]\n    end\n\n    subgraph OwnedDelivery [\"Direct Mobile Distribution\"]\n        AppStore[\"🍎 Apple App Store\"]\n        PlayStore[\"🤖 Google Play Store\"]\n        Push[\"🔔 Direct Community Updates\"]\n    end\n\n    IG --> Web\n    YT --> Web\n    S --> KG\n    KG --> Web\n    Web --> AppStore\n    Web --> PlayStore\n    AppStore --> Push\n    PlayStore --> Push\n\n    style Audience fill:#08090A,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style SovereignHub fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style OwnedDelivery fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Architectural Benchmark: Sovereign Ecosystem vs. Platform-Only Creators",
+      "headers": ["Channel Metric", "Social-Only Creators", "Generic Website Wrappers", "Tarihçi Anne Sovereign Ecosystem"],
+      "rows": [
+        ["Search & AI Rank", "Scattered unverified mentions", "Generic keyword stuffing", "#1 SERP & verified GEO entity authority"],
+        ["Audience Ownership", "100% algorithm dependent", "Passive email subscription", "Official iOS & Android mobile community app"],
+        ["Web Performance", "Slow third-party templates", "Heavy content management plugins", "Sub-50ms edge delivery with 100/100 metrics"],
+        ["Content Preservation", "Ephemeral stories and reels", "Uncategorized blog posts", "Curated canonical archive and book catalog"],
+        ["Brand Immunity", "Vulnerable to account suspensions", "Fragile hosting dependency", "Diversified multi-asset digital architecture"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Organic Community Acceleration: From Zero to 10K+ on Instagram",
+        "content": "Building authentic audience momentum without paid media requires rigorous content pacing. By analyzing viewer retention drops, short-form historical narratives were restructured into high-engagement series.\n\nCombined with our [Ankara B2B web architecture](/en/ankara-b2b-web-architecture/) standards for media distribution, content themes were synchronized across social channels and permanent digital repositories."
+      },
+      {
+        "title": "2. Sovereign Web Architecture and #1 Knowledge Graph Authority",
+        "content": "Querying 'Seda Aksoy' or 'Seda Aksoy kimdir' previously yielded fragmented social links. We architected `sedaaksoy.com.tr` to establish unambiguous digital entity authority.\n\nApplying high-velocity schemas and semantic content models modeled on our [Ankara custom software](/en/ankara-custom-software-architecture/) frameworks, the platform achieved #1 rankings on Google SERP and authoritative positioning across AI search engines."
+      },
+      {
+        "title": "3. Dedicated Mobile Applications: Tarihçi Anne on iOS & Android",
+        "content": "To protect reader relationships against shifting social platform algorithms, **Tarihçi Anne** was launched on Apple App Store and Google Play Store.\n\nThe mobile application provides immediate access to book updates, curated historical essays, and event announcements, establishing a direct communication pipeline with readers."
+      },
+      {
+        "title": "4. Multichannel Syndication and Studio Production Discipline",
+        "content": "A high-frequency publishing routine demands streamlined production tooling. Workflows were established for rapid video framing, automated asset rendering, and metadata verification.\n\nThis disciplined pipeline maintains consistent publication cadences while preserving archival fidelity across web and mobile surfaces."
+      }
+    ],
+    "techStack": [
+      { "label": "Web Architecture", "value": "High-velocity web portal with 100/100 Core Web Vitals and edge caching" },
+      { "label": "Mobile Platform", "value": "Official iOS App Store and Google Play Store mobile community apps" },
+      { "label": "Entity Strategy", "value": "Schema.org graph integration, disambiguation engineering and GEO positioning" },
+      { "label": "Audience Funnel", "value": "Organic retention optimization, serialized narrative pacing and cross-links" },
+      { "label": "Publishing Studio", "value": "Automated media rendering, asset formatting and multichannel distribution" }
+    ],
+    "businessImpact": "The project secured undisputed #1 search and generative AI authority for Seda Aksoy, scaled organic Instagram followers beyond 10K, and established a direct sovereign mobile audience on iOS and Android."
+  },
+  "tr": {
+    "title": "Tarihçi Anne: Seda Aksoy Web, 10K+ Büyüme & Mobil Ekosistemi",
+    "seoTitle": "Tarihçi Anne: Web, 10K+ Büyüme ve Mobil",
+    "seoDescription": "Tarihçi Anne Seda Aksoy dijital ekosistemi vaka analizi: #1 SERP ve GEO otoritesi, 10K+ organik kitle büyümesi ve iOS ile Android mobil topluluk uygulaması.",
+    "description": "Arama motorlarında ve yapay zeka yanıtlarında #1 varlık otoritesi, 10K+ organik Instagram topluluğu ile iOS ve Android mobil uygulamasını birleştiren bağımsız dijital ekosistem.",
+    "role": "Baş Sistem Mimarı & Dijital Büyüme Danışmanı",
+    "period": "2024 - Günümüz",
+    "status": "Canlıda / Büyüyen Topluluk",
+    "stackTitle": "Teslim Edilen Dijital Katmanlar",
+    "executiveOverview": "Bağımsız araştırmacılar, yazarlar ve içerik üreticileri için yalnızca sosyal medya algoritmalarına dayanmak ciddi riskler taşır: Algoritma değişiklikleri organik erişimi düşürür, platform kuralları kitleyle olan teması koparabilir ve dağınık dijital kimlikler arama motorlarında otorite erozyonuna yol açar.\n\n**Tarihçi Anne (Seda Aksoy)** projesinde bu kırılganlığı aşmak amacıyla sosyal medya dikkatini kalıcı dijital varlıklara dönüştüren üç katmanlı bir sistem inşa edildi:\n- **Bağımsız Web ve Bilgi Grafı Otoritesi (sedaaksoy.com.tr):** Google arama sonuçlarında (SERP) ve üretken yapay zeka yanıtlarında (GEO) 'seda aksoy' ve 'seda aksoy kimdir' aramalarında #1 konumu güvenceye alan dijital merkez.\n- **Organik Topluluk Büyümesi (10K+ Instagram Takipçisi):** İzleyici tutundurma oranlarını artıran kurgu dinamikleri, merak uyandıran seri kurgusu ve disiplinli çok kanallı dağıtım stratejisi.\n- **Resmi Mobil Topluluk Uygulaması (Tarihçi Anne):** iOS App Store ve Google Play Store üzerinden okurlara doğrudan bildirim ve kürasyon sunan arayüz.",
+    "mermaidTopology": "flowchart LR\n    subgraph Audience [\"Kitle Kazanımı\"]\n        IG[\"📸 Instagram (10K+ Takipçi)\"]\n        YT[\"▶️ Video Kanalları\"]\n        S[\"🔍 Arama Motorları & Yapay Zeka\"]\n    end\n\n    subgraph SovereignHub [\"Egemen Web Portalı\"]\n        Web[\"🌐 sedaaksoy.com.tr\"]\n        KG[\"🏷️ Bilgi Grafı & GEO #1\"]\n        Blog[\"📚 Küratörlü Makaleler & Kitaplar\"]\n    end\n\n    subgraph OwnedDelivery [\"Doğrudan Mobil Dağıtım\"]\n        AppStore[\"🍎 Apple App Store\"]\n        PlayStore[\"🤖 Google Play Store\"]\n        Push[\"🔔 Doğrudan Okur Bildirimleri\"]\n    end\n\n    IG --> Web\n    YT --> Web\n    S --> KG\n    KG --> Web\n    Web --> AppStore\n    Web --> PlayStore\n    AppStore --> Push\n    PlayStore --> Push\n\n    style Audience fill:#08090A,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style SovereignHub fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style OwnedDelivery fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari Kıyaslama: Egemen Dijital Ekosistem ve Yalnızca Sosyal Medya",
+      "headers": ["Kanal ve Otorite Kriteri", "Yalnızca Sosyal Medya", "Şablon Blog Siteleri", "Tarihçi Anne Egemen Ekosistemi"],
+      "rows": [
+        ["Arama ve Yapay Zeka Sıralaması", "Dağınık ve doğrulanmamış linkler", "Yüzeysel anahtar kelime tekrarı", "#1 SERP ve tescilli GEO varlık otoritesi"],
+        ["Kitle Mülkiyeti", "%100 algoritma insafına bağlı", "Pasif e-posta listesi", "Resmi iOS ve Android mobil topluluk uygulaması"],
+        ["Web Performansı", "Hantal üçüncü taraf temalar", "Yavaş eklenti yükü", "50ms altı kenar ağ dağıtımı ve 100/100 skor"],
+        ["İçerik Arşivleme ve Kalıcılık", "Kaybolan hikaye ve paylaşımlar", "Kategorisiz dağınık yazılar", "Küratörlü makale arşivi ve kitap künyesi"],
+        ["Marka Güvenliği", "Hesap kısıtlamalarına açık", "Kırılgan barındırma altyapısı", "Çok varlıklı ve bağımsız dijital mimari"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Organik Topluluk Büyümesi: Instagram'da Sıfırdan 10K+ Takipçiye",
+        "content": "Ücretli reklam kullanmadan organik otorite inşa etmek, izleyicinin dikkat süresini saygıyla yönetmeyi gerektirir. Video izlenme verileri analiz edilerek tarih anlatıları merak uyandıran serilere dönüştürüldü.\n\n[Ankara kurumsal web tasarım](/ankara-kurumsal-web-tasarim/) yaklaşımımızdaki kullanıcı deneyimi disiplini, sosyal medya içeriklerinin kurgusuna ve kapak mimarisine uyarlandı."
+      },
+      {
+        "title": "2. Bağımsız Web Mimarisi ve #1 Bilgi Grafı Otoritesi",
+        "content": "Daha önce arama motorlarında yapılan 'Seda Aksoy' aramaları dağınık sosyal medya profilleri üretirken, `sedaaksoy.com.tr` devreye alınarak dijital kimlik netleştirildi.\n\n[Ankara web yazılım](/ankara-web-yazilim/) altyapımızla geliştirilen semantik şema modelleri sayesinde, web sitesi Google organik aramalarında ve yapay zeka arama motorlarında 1. sıraya yerleşti."
+      },
+      {
+        "title": "3. Özel Mobil Topluluk Uygulaması: Tarihçi Anne (iOS ve Android)",
+        "content": "Sosyal medya platformlarının keyfi algoritma kısıtlamalarına karşı okur iletişimini korumak amacıyla **Tarihçi Anne** mobil uygulaması hayata geçirildi.\n\nApple App Store ve Google Play Store üzerinden indirilebilen uygulama, yeni kitap duyurularını ve özel araştırma yazılarını doğrudan bildirimle kitleye ulaştırır."
+      },
+      {
+        "title": "4. Çok Kanallı Dağıtım ve Masaüstü Üretim Disiplini",
+        "content": "Düzenli içerik üretimi yüksek operasyonel disiplin gerektirir. Görsellerin boyutlandırılması, video kesitlerinin hazırlanması ve üstverilerin doğrulanması yerel masaüstü araçlarıyla standartlaştırıldı.\n\nBöylece üretim hızı artırılırken tüm platformlarda görsel ve teknik kalite tutarlılığı korundu."
+      }
+    ],
+    "techStack": [
+      { "label": "Web Mimarisi", "value": "100/100 Core Web Vitals dereceli kenar ağ web portalı" },
+      { "label": "Mobil Ekosistem", "value": "Resmi iOS App Store ve Google Play Store onaylı topluluk uygulamaları" },
+      { "label": "Varlık Stratejisi", "value": "Schema.org graf entegrasyonu, adaş ayrıştırma ve GEO konumlandırma" },
+      { "label": "Kitle Büyümesi", "value": "Organik tutundurma optimizasyonu, serileştirilmiş hikaye akışı" },
+      { "label": "Yayın Altyapısı", "value": "Çok kanallı medya optimizasyonu ve yerel içerik üretim standartları" }
+    ],
+    "businessImpact": "Seda Aksoy kişisel markası için arama motorlarında ve üretken yapay zeka yanıtlarında tartışmasız #1 varlık otoritesi sağlandı; Instagram takipçi kitlesi organik olarak 10K barajını aştı ve iOS ile Android mobil uygulamalarıyla aracısız bir okur kanalı oluşturuldu."
+  }
+}

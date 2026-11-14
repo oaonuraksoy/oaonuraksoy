@@ -5,6 +5,8 @@ import { getAllProjects } from '../../../utils/projects';
 const projects = await getAllProjects('en');
 
 const projectCategoryMap: Record<string, string[]> = {
+  'hrs-ankara-kadin-hastanesi': ['enterprise'],
+  'tarihci-anne-seda-aksoy': ['enterprise'],
   'seo-lens': ['extension', 'web-cloud'],
   '10sec': ['extension', 'ai'],
   'oadub': ['extension', 'ai'],
@@ -16,6 +18,7 @@ const projectCategoryMap: Record<string, string[]> = {
 
 const categoryCounts = {
   all: projects.length,
+  enterprise: projects.filter(p => projectCategoryMap[p.slug]?.includes('enterprise')).length,
   extension: projects.filter(p => projectCategoryMap[p.slug]?.includes('extension')).length,
   desktop: projects.filter(p => projectCategoryMap[p.slug]?.includes('desktop')).length,
   ai: projects.filter(p => projectCategoryMap[p.slug]?.includes('ai')).length,
@@ -24,18 +27,19 @@ const categoryCounts = {
 
 const categories = [
   { id: 'all', label: 'All Systems', count: categoryCounts.all },
+  { id: 'enterprise', label: 'Enterprise Case Studies', count: categoryCounts.enterprise },
   { id: 'extension', label: 'Browser Extensions', count: categoryCounts.extension },
   { id: 'desktop', label: 'Desktop & Local-First', count: categoryCounts.desktop },
   { id: 'ai', label: 'AI & Media', count: categoryCounts.ai },
   { id: 'web-cloud', label: 'Web & Store Platforms', count: categoryCounts['web-cloud'] },
 ];
 
-const title = "Flagship Projects & Architecture Case Studies — Onur Aksoy";
-const description = "Explore production-certified desktop applications, local-first distributed systems, and generative AI media pipelines developed by Onur Aksoy.";
+const title = "Projects & Enterprise Case Studies - Onur Aksoy";
+const description = "2 enterprise case studies and 7 production tools: Store-certified local-first systems, enterprise healthcare platforms, and generative AI media pipelines.";
 
 // CollectionPage + ItemList, BaseLayout → JsonLd üzerinden TEK @graph içinde üretilir.
 const itemList = {
-  name: 'Flagship Projects & Architecture Case Studies',
+  name: 'Projects & Enterprise Case Studies',
   items: projects.map((p) => ({ name: p.title, url: `https://onuraksoy.com.tr/en/projects/${p.slug}/` }))
 };
 ---
@@ -56,7 +60,7 @@ const itemList = {
         Projects & System Case Studies
       </h1>
       <p class="text-base text-text-muted leading-relaxed">
-        Production-certified desktop platforms, browser-native containerization engines, and generative AI pipelines built with high-availability, local-first principles.
+        2 enterprise case studies and 7 production tools: Store-certified desktop platforms, local-first healthcare architectures, and digital media pipelines.
       </p>
     </div>
 
@@ -228,6 +232,26 @@ const itemList = {
                       : 'Microsoft Store ↗'}
                   </a>
                 )}
+                {project.links?.appStore && (
+                  <a
+                    href={project.links.appStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                  >
+                    App Store ↗
+                  </a>
+                )}
+                {project.links?.playStore && (
+                  <a
+                    href={project.links.playStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                  >
+                    Google Play ↗
+                  </a>
+                )}
                 {project.links?.live && (
                   <a
                     href={project.links.live}
@@ -296,7 +320,9 @@ const itemList = {
                 href={`/en/projects/${project.slug}/`}
                 class="text-sm font-bold text-gold-tungsten hover:text-gold-highlight flex items-center gap-1.5 transition-colors"
               >
-                Deep-Dive Technical Case Study &rarr;
+                {projectCategoryMap[project.slug]?.includes('enterprise')
+                  ? 'Read Enterprise Case Study →'
+                  : 'Deep-Dive Technical Case Study →'}
               </a>
             </div>
           </article>

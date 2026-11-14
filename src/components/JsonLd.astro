@@ -75,7 +75,7 @@ if (!isHome) {
     crumbs.push({ name: sectionLabels[first]?.[lang] || pageName, url: pageUrl });
   } else {
     crumbs.push({ name: sectionLabels[first]?.[lang] || first, url: `${homeUrl}${first}/` });
-    crumbs.push({ name: project ? project.title.split(/\s+—\s+/)[0] : pageName, url: pageUrl });
+    crumbs.push({ name: project ? project.title.split(/(?:\s+—\s+|:\s+)/)[0] : pageName, url: pageUrl });
   }
   breadcrumb = breadcrumbNode(pageUrl, crumbs);
 }
@@ -139,9 +139,16 @@ if (itemList) {
 // ── SoftwareApplication (proje detay sayfaları) ──────────────────────────────
 if (type === 'SoftwareApplication' && project) {
   const s = project.schema;
-  const projectName = project.title.split(/\s+—\s+/)[0];
-  const sameAs = [project.links?.store, project.links?.github, project.links?.live, project.links?.tool]
-    .filter((u, i, arr): u is string => !!u && arr.indexOf(u) === i);
+  const projectName = project.title.split(/(?:\s+—\s+|:\s+)/)[0];
+  const sameAs = [
+    project.links?.store,
+    project.links?.appStore,
+    project.links?.playStore,
+    project.links?.github,
+    project.links?.live,
+    project.links?.tool
+  ].filter((u, i, arr): u is string => !!u && arr.indexOf(u) === i);
+  const targetInstallUrl = project.links?.store ?? project.links?.appStore ?? project.links?.playStore ?? project.links?.live;
   webpage.mainEntity = { '@id': `${pageUrl}#software` };
   webpage.about = { '@id': `${pageUrl}#software` };
   graph.push({
@@ -161,9 +168,9 @@ if (type === 'SoftwareApplication' && project) {
       price: s?.price ?? '0',
       priceCurrency: s?.priceCurrency ?? 'USD',
       availability: 'https://schema.org/InStock',
-      ...(project.links?.store ? { url: project.links.store } : {})
+      ...(targetInstallUrl ? { url: targetInstallUrl } : {})
     },
-    ...(project.links?.store ? { installUrl: project.links.store } : {}),
+    ...(targetInstallUrl ? { installUrl: targetInstallUrl } : {}),
     keywords: project.tags.join(', '),
     author: { '@id': PERSON_ID },
     creator: { '@id': PERSON_ID },

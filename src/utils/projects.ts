@@ -31,6 +31,7 @@ export interface ProjectLocalizedContent {
   mermaidTopology: string;
   benchmarks: BenchmarkTable;
   sections: ProjectSection[];
+  stackTitle?: string;
   techStack: TechStackItem[];
   businessImpact?: string;
   seoTitle?: string;
@@ -53,6 +54,8 @@ export interface ProjectRaw {
   tags: string[];
   links?: {
     store?: string;
+    appStore?: string;
+    playStore?: string;
     live?: string;
     tool?: string;
     demo?: string;
@@ -75,6 +78,8 @@ export interface ProjectLocalized {
   tags: string[];
   links?: {
     store?: string;
+    appStore?: string;
+    playStore?: string;
     live?: string;
     tool?: string;
     demo?: string;
@@ -92,6 +97,7 @@ export interface ProjectLocalized {
   mermaidTopology: string;
   benchmarks: BenchmarkTable;
   sections: ProjectSection[];
+  stackTitle?: string;
   techStack: TechStackItem[];
   businessImpact?: string;
   seoTitle?: string;
@@ -125,6 +131,7 @@ export async function getAllProjects(lang: 'en' | 'tr' = 'en'): Promise<ProjectL
         mermaidTopology: loc.mermaidTopology,
         benchmarks: loc.benchmarks,
         sections: loc.sections,
+        stackTitle: loc.stackTitle,
         techStack: loc.techStack,
         businessImpact: loc.businessImpact,
         seoTitle: loc.seoTitle,
@@ -183,5 +190,10 @@ function formatInline(text: string): string {
   return text
     .replace(/\*\*(.+?)\*\*/g, '<strong class="text-text-primary font-semibold">$1</strong>')
     .replace(/\*(.+?)\*/g, '<em class="text-text-primary">$1</em>')
-    .replace(/`(.+?)`/g, '<code class="text-gold-highlight bg-obsidian-surface px-1.5 py-0.5 rounded border border-obsidian-border font-mono text-xs">$1</code>');
+    .replace(/`(.+?)`/g, '<code class="text-gold-highlight bg-obsidian-surface px-1.5 py-0.5 rounded border border-obsidian-border font-mono text-xs">$1</code>')
+    .replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)]+)\)/g, (_match, label, href) => {
+      const isExternal = href.startsWith('http://') || href.startsWith('https://');
+      const attrs = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+      return `<a href="${href}" class="text-gold-highlight hover:underline underline-offset-4 font-medium"${attrs}>${label}</a>`;
+    });
 }

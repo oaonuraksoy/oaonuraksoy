@@ -1,0 +1,140 @@
+{
+  "id": "hrs-ankara-kadin-hastanesi",
+  "slug": "hrs-ankara-kadin-hastanesi",
+  "order": 1,
+  "featured": false,
+  "accentColor": "#C58A3A",
+  "tags": [
+    "Sağlık Bilişimi",
+    "Mobil Hasta Portalı",
+    "Sesli Yapay Zeka",
+    "Canlı Destek Konsolu",
+    "PBX Entegrasyonu",
+    "B2B Sağlık Ekosistemi"
+  ],
+  "links": {
+    "live": "https://hrsankara.com",
+    "appStore": "https://apps.apple.com/tr/app/hrs-mobil/id6797907890",
+    "playStore": "https://play.google.com/store/apps/details?id=com.hrsankara.app"
+  },
+  "schema": {
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "iOS, Android, Web",
+    "price": "0",
+    "priceCurrency": "TRY"
+  },
+  "metrics": {
+    "en": [
+      { "label": "Call Screening", "value": "24/7 Real-Time" },
+      { "label": "Mobile Platform", "value": "iOS & Android" },
+      { "label": "Portal Latency", "value": "< 50ms Edge" },
+      { "label": "Appointment Sync", "value": "Instant Bidirectional" }
+    ],
+    "tr": [
+      { "label": "Santral Ön Karşılama", "value": "7/24 Gerçek Zamanlı" },
+      { "label": "Mobil Platform", "value": "iOS & Android" },
+      { "label": "Portal Yanıtı", "value": "< 50ms Kenar Ağ" },
+      { "label": "Randevu Eşitleme", "value": "Anlık Çift Yönlü" }
+    ]
+  },
+  "en": {
+    "title": "HRS Ankara: Women's Hospital Digital Ecosystem, Mobile & Voice AI",
+    "seoTitle": "HRS Ankara: Hospital Ecosystem & Voice AI",
+    "seoDescription": "HRS Ankara Women's Hospital digital ecosystem case study: high-speed portal, iOS & Android patient mobile apps, and 24/7 call center voice AI assistant.",
+    "description": "An integrated healthcare digital ecosystem combining a high-performance web portal, cross-platform patient mobile apps, and a 24/7 voice AI assistant for call center triage.",
+    "role": "Lead Systems Architect & Digital Transformation Consultant",
+    "period": "2025 - Present",
+    "status": "In Production / Hospital Deployed",
+    "stackTitle": "Delivered System Layers",
+    "executiveOverview": "Private healthcare institutions face dual operational friction: patients experience delayed telephone queues during morning peak hours, while fragmented web forms fail to provide immediate clinical reassurance.\n\n**HRS Ankara Women's Hospital** required an unified digital architecture that eliminates operational bottlenecks. The delivered solution establishes a three-tier ecosystem:\n- **High-Velocity Web Architecture:** Fast clinical discovery, structured medical department hierarchies, and immediate online appointment booking with verified lab result retrieval.\n- **Cross-Platform Mobile Platform (HRS Mobil):** Native iOS and Android patient applications providing synchronized digital health records and direct physician scheduling.\n- **PBX Call Center Voice AI Assistant:** A 24/7 real-time voice triage agent on the hospital switchboard responding to routine patient inquiries, clinic hours, and directional appointments without human queue hold.",
+    "mermaidTopology": "flowchart LR\n    subgraph Channels [\"Patient Interaction Channels\"]\n        W[\"🌐 Web Portal (hrsankara.com)\"]\n        M1[\"🍎 iOS App Store\"]\n        M2[\"🤖 Android Play Store\"]\n        V[\"📞 PBX Switchboard Line\"]\n    end\n\n    subgraph EdgeLayer [\"Edge & Integration Gateway\"]\n        GW[\"⚡ Secure API Gateway\"]\n        AI_Voice[\"🎙️ 24/7 Switchboard Voice AI\"]\n        AI_Chat[\"💬 Intent-Aware Live Support\"]\n    end\n\n    subgraph HospitalCore [\"Hospital Clinical Core\"]\n        HIS[(\"🏥 Central Health Data Core\")]\n        ApptEngine[\"📅 Real-Time Appointment Hub\"]\n        LabPortal[\"🔬 Secure Lab Results Vault\"]\n    end\n\n    W --> GW\n    M1 --> GW\n    M2 --> GW\n    V --> AI_Voice\n    AI_Voice --> ApptEngine\n    W --> AI_Chat\n    GW <--> HIS\n    GW <--> ApptEngine\n    GW <--> LabPortal\n\n    style Channels fill:#08090A,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style EdgeLayer fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style HospitalCore fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Architectural Benchmark: Unified Health Ecosystem vs. Siloed Operations",
+      "headers": ["Operational Criterion", "Traditional Outsourced Desk", "Fragmented Web Portals", "HRS Integrated Health Ecosystem"],
+      "rows": [
+        ["Call Triage Velocity", "5 to 15 minute wait times", "Not applicable (voice absent)", "Sub-second zero-wait voice response"],
+        ["Appointment Booking", "Manual operator entry", "Delayed form confirmation", "Real-time bidirectional calendar booking"],
+        ["Mobile Integration", "None / responsive web only", "Isolated third-party wrappers", "Native iOS & Android synchronized apps"],
+        ["Lab Result Access", "Manual physical pickup", "Unsecured PDF downloads", "Secure tokenized digital result screens"],
+        ["Availability Window", "Restricted to work hours", "Static unassisted pages", "24/7 automated clinical triage and routing"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Hospital Web Portal: Clinical Architecture and Fast Scheduling",
+        "content": "A medical institution's digital front door must convey institutional credibility and deliver sub-50ms navigation. The redesigned web portal establishes dedicated physician profiles, departmental taxonomy, and instant scheduling.\n\nArchitectural integration with our [Ankara B2B web architecture](/en/ankara-b2b-web-architecture/) standards guarantees zero client-side bloat, high accessibility across mobile screens, and immediate discovery for international and domestic patients seeking obstetrics, gynecology, and surgical care."
+      },
+      {
+        "title": "2. Cross-Platform Patient Experience: HRS Mobil (iOS & Android)",
+        "content": "To eliminate the friction of repeated logins and forgotten credentials, **HRS Mobil** was deployed across Apple App Store and Google Play Store.\n\nPatients maintain direct access to appointment histories, digital prescriptions, and laboratory reports with cryptographic session verification, mirroring the high-performance delivery proven in our [Ankara custom software](/en/ankara-custom-software-architecture/) projects."
+      },
+      {
+        "title": "3. Switchboard Voice AI Assistant and Intent-Aware Live Support",
+        "content": "Routine repetitive phone calls regarding visiting hours, insurance acceptance, clinic locations, and appointment confirmations frequently overwhelm switchboard teams.\n\nIntegrating our [Ankara enterprise AI automation](/en/ankara-enterprise-ai-automation/) framework, the voice AI assistant operates directly on the PBX switchboard line. It conducts conversational clinical triage in natural speech, answers patient questions with verified facts, and automatically transfers complex cases to live duty nurses."
+      },
+      {
+        "title": "4. Patient Privacy, Data Integrity and Resilient Architecture",
+        "content": "All data exchanges between public web interfaces, mobile apps, and central clinical records strictly adhere to medical data confidentiality mandates.\n\nBy isolating sensitive health data behind strict API gateway boundaries and avoiding third-party analytics trackers, patient privacy is protected while maintaining sub-50ms retrieval benchmarks across all platforms."
+      }
+    ],
+    "techStack": [
+      { "label": "Web Presentation", "value": "High-velocity typed web architecture with sub-50ms edge delivery" },
+      { "label": "Mobile Platform", "value": "Cross-platform mobile apps published on official App Store & Google Play" },
+      { "label": "Voice AI Engine", "value": "PBX switchboard real-time speech synthesis and intent classification" },
+      { "label": "Live Chat Core", "value": "Intent-aware clinical assistance and triage routing engine" },
+      { "label": "Data Bridge", "value": "Secure bidirectional hospital integration gateway with tokenized access" },
+      { "label": "Security Model", "value": "Zero third-party trackers, end-to-end encrypted transport and role isolation" }
+    ],
+    "businessImpact": "The unified hospital ecosystem reduced routine switchboard queue congestion by a measurable margin, enabled 24/7 automated patient triage, and increased digital appointment bookings through synchronized mobile and web channels."
+  },
+  "tr": {
+    "title": "HRS Ankara: Kadın Hastanesi Dijital Ekosistemi, Mobil & Sesli AI",
+    "seoTitle": "HRS Ankara: Hastane Ekosistemi & Sesli AI",
+    "seoDescription": "Özel HRS Ankara Kadın Hastanesi dijital ekosistemi: Hızlı web portalı, iOS ve Android hasta mobil uygulaması ile 7/24 sesli çağrı merkezi yapay zeka asistanı.",
+    "description": "Yüksek performanslı kurumsal web portalı, çapraz platform mobil hasta uygulaması ve santral ön karşılama sesli yapay zeka asistanını birleştiren entegre sağlık ekosistemi.",
+    "role": "Baş Sistem Mimarı & Dijital Dönüşüm Danışmanı",
+    "period": "2025 - Günümüz",
+    "status": "Canlıda / Hastanede Aktif",
+    "stackTitle": "Teslim Edilen Sistem Katmanları",
+    "executiveOverview": "Özel sağlık kuruluşlarında hasta iletişimi iki kritik darboğazla karşılaşır: Sabah saatlerindeki yoğun telefon kuyrukları santral ekiplerini kilitler; dağınık web formları ise hastalara anlık klinik güven ve hızlı randevu teyidi veremez.\n\n**Özel HRS Ankara Kadın Hastanesi** için geliştirilen bu entegre dijital ekosistem, tüm hasta temas noktalarını tekil ve dayanıklı bir mimaride birleştirdi:\n- **Yüksek Hızlı Web Mimarisi:** Kapsamlı hekim ve branş yapısı, çevrim içi randevu akışı ve tahlil sonuç sorgulama arayüzü.\n- **Çapraz Platform Mobil Deneyim (HRS Mobil):** iOS App Store ve Google Play üzerinde yayınlanan, hastaların randevularını ve sonuçlarını cepten yönetmesini sağlayan yerel mobil uygulama.\n- **Santral Sesli Yapay Zeka Asistanı:** Hastanenin telefon santralinde 7/24 çalışan, tekrarlayan randevu ve klinik sorularını gerçek zamanlı yanıtlayıp doğru birime yönlendiren sesli yapay zeka mimarisi.",
+    "mermaidTopology": "flowchart LR\n    subgraph Channels [\"Hasta Etkileşim Kanalları\"]\n        W[\"🌐 Web Portalı (hrsankara.com)\"]\n        M1[\"🍎 iOS App Store (HRS Mobil)\"]\n        M2[\"🤖 Android Play Store (HRS Mobil)\"]\n        V[\"📞 Santral Telefon Hattı\"]\n    end\n\n    subgraph EdgeLayer [\"Ağ Geçidi ve Yapay Zeka\"]\n        GW[\"⚡ Güvenli API Ağ Geçidi\"]\n        AI_Voice[\"🎙️ 7/24 Santral Sesli Asistan\"]\n        AI_Chat[\"💬 Niyet Odaklı Canlı Destek\"]\n    end\n\n    subgraph HospitalCore [\"Merkezi Sağlık Veri Katmanı\"]\n        HIS[(\"🏥 Merkezi Klinik Veri Tabanı\")]\n        ApptEngine[\"📅 Gerçek Zamanlı Randevu Motoru\"]\n        LabPortal[\"🔬 Güvenli Tahlil Sonuç Ekranı\"]\n    end\n\n    W --> GW\n    M1 --> GW\n    M2 --> GW\n    V --> AI_Voice\n    AI_Voice --> ApptEngine\n    W --> AI_Chat\n    GW <--> HIS\n    GW <--> ApptEngine\n    GW <--> LabPortal\n\n    style Channels fill:#08090A,stroke:#8A5A20,stroke-width:1px,color:#EDEDED\n    style EdgeLayer fill:#14171D,stroke:#C58A3A,stroke-width:2px,color:#EDEDED\n    style HospitalCore fill:#0E1013,stroke:#D6A354,stroke-width:1px,color:#EDEDED",
+    "benchmarks": {
+      "title": "Mimari Kıyaslama: Bütünleşik Sağlık Ekosistemi ve Geleneksel Yapılar",
+      "headers": ["Operasyonel Kriter", "Geleneksel Çağrı Merkezi", "Dağınık Web Siteleri", "HRS Entegre Sağlık Ekosistemi"],
+      "rows": [
+        ["Santral Ön Karşılama Hızı", "5 ile 15 dakika kuyruk süresi", "Sesli kanal bulunmuyor", "Saniyeler içinde sıfır gecikmeli sesli yanıt"],
+        ["Randevu Alma Süreci", "Operatörle manuel kayıt", "Gecikmeli form onayı", "Anlık çift yönlü takvim eşitleme"],
+        ["Mobil Deneyim", "Yalnızca mobil tarayıcı", "Üçüncü taraf uyumsuz paketler", "Resmi iOS ve Android yerel uygulama deneyimi"],
+        ["Laboratuvar Sonuç Erişimi", "Fiziksel hastane ziyareti", "Güvensiz dosya indirme", "Şifreli ve doğrulanmış anlık sonuç ekranı"],
+        ["Hizmet Erişilebilirlik Penceresi", "Mesai saatleriyle kısıtlı", "Statik yanıtsız sayfalar", "7/24 kesintisiz klinik bilgilendirme ve yönlendirme"]
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Hastane Web Portalı: Hekim Mimarisi ve Çevrim İçi Randevu",
+        "content": "Sağlık kuruluşlarında web vitrini hem kurumsal otoriteyi hem de hasta güvenini ilk saniyede inşa etmelidir. Yenilenen web portalı, hekim profillerini, tıbbi bölümleri ve dinamik randevu adımlarını tek akışta sunar.\n\nSistem mimarisi, [Ankara kurumsal web tasarım](/ankara-kurumsal-web-tasarim/) yaklaşımımız doğrultusunda sıfır gereksiz istemci yüküyle çalışır ve [Ankara web yazılım](/ankara-web-yazilim/) prensiplerine uygun olarak klinik bilgi sistemleriyle güvenli çift yönlü veri köprüsü kurar."
+      },
+      {
+        "title": "2. Çapraz Platform Hasta Deneyimi: HRS Mobil (iOS ve Android)",
+        "content": "Hastaların geçmiş randevularını, tahlil sonuçlarını ve doktor takvimlerini cepten yönetebilmesi için **HRS Mobil** resmi uygulama mağazalarında yayına alındı.\n\nUygulama, hem Apple App Store hem de Google Play Store üzerinden indirilebilir durumdadır; hastaya özel şifreli oturum yönetimiyle sağlık verisi gizliliğini en üst düzeyde korur."
+      },
+      {
+        "title": "3. Santral Sesli Yapay Zeka Asistanı ve Akıllı Canlı Destek",
+        "content": "Hastanenin telefon santraline gelen tekrarlayan sorular (klinik saatleri, hekim branşları, sigorta anlaşmaları, randevu alma), insan operatörlerin üzerindeki iş yükünü artırır.\n\n[Ankara yapay zeka otomasyonu](/ankara-yapay-zeka-otomasyonu/) çerçevemiz kapsamında kurulan sesli yapay zeka asistanı, santral hattında arayan hastaları doğal Türkçe konuşmayla karşılar, soruları doğrulanmış kurumsal veriden anında yanıtlar ve randevu akışını otonom olarak yönetir."
+      },
+      {
+        "title": "4. Sağlık Verisi Gizliliği ve Dayanıklı Entegrasyon Mimarisi",
+        "content": "Tüm web, mobil ve sesli kanallar arasındaki veri akışı, hassas sağlık kayıtlarının korunması ilkelerine tam uyumlu olarak izole bir API ağ geçidi arkasında tutulur.\n\nÜçüncü taraf takipçilere ve dış kaynak bağımlılıklarına izin vermeyen bu mimari, kenar ağda 50 milisaniye altı yanıt hızlarıyla yüksek güvenlik ve kesintisiz iş sürekliliği sağlar."
+      }
+    ],
+    "techStack": [
+      { "label": "Web Mimarisi", "value": "Tip güvenli, kenar ağda 50ms altı çalışan yüksek hızlı web portalı" },
+      { "label": "Mobil Ekosistem", "value": "Resmi App Store ve Google Play onaylı çapraz platform hasta uygulaması" },
+      { "label": "Sesli Asistan Motoru", "value": "PBX santral entegrasyonlu 7/24 konuşma tanıma ve niyet sınıflandırma hattı" },
+      { "label": "Canlı Destek Çekirdeği", "value": "Niyet tabanlı akıllı klinik yönlendirme ve hasta danışmanı konsolu" },
+      { "label": "Veri Entegrasyonu", "value": "Merkezi hastane bilgi sistemleri için şifreli çift yönlü API ağ geçidi" },
+      { "label": "Güvenlik Modeli", "value": "Sıfır üçüncü taraf takipçi, uçtan uca şifreleme ve rol bazlı erişim denetimi" }
+    ],
+    "businessImpact": "Web, mobil ve sesli yapay zeka katmanlarının bütünleşik olarak devreye alınmasıyla santral çağrı kuyruklarında belirgin rahatlama sağlandı; 7/24 çevrim içi randevu hacmi arttı ve hastaların sonuç sorgulama süreçleri saniyeler düzeyine indi."
+  }
+}

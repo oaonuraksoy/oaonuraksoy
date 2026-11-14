@@ -61,7 +61,7 @@ function wrap(text, max) {
 }
 
 function projectCardSvg({ name, subtitle, label, accent, tags }) {
-  const nameSize = name.length > 16 ? 76 : 96;
+  const nameSize = name.length > 22 ? 64 : name.length > 16 ? 76 : 96;
   const sub = wrap(subtitle, 44);
   const tagText = tags.slice(0, 4).join('  ·  ');
   return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
@@ -147,8 +147,8 @@ async function projectCards() {
       const out = path.join(OUT, 'projects', `${data.slug}-${lang}.jpg`);
       if (!isStale(src, out)) continue;
       const loc = data[lang];
-      const [name, ...rest] = loc.title.split(/\s+—\s+/);
-      const subtitle = rest.join(' — ') || loc.description;
+      const [name, ...rest] = loc.title.split(/(?:\s+—\s+|:\s+)/);
+      const subtitle = rest.join(': ') || loc.description;
       const svg = projectCardSvg({
         name,
         subtitle,

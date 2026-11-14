@@ -1,7 +1,7 @@
 {
   "id": "ecommerce-image-enhancer",
   "slug": "ecommerce-image-enhancer",
-  "order": 6,
+  "order": 8,
   "featured": true,
   "accentColor": "#F0C878",
   "tags": ["Generative AI", "Diffusion Models", "Canvas API", "Computer Vision", "Prompt Architecture", "Google Flow"],

@@ -20,7 +20,7 @@
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/components/JsonLd.astro": {
-    "last": "2026-11-13T23:55:00+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/components/LatestBroadcasts.astro": {
@@ -36,7 +36,7 @@
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/content.config.ts": {
-    "last": "2026-11-10T17:43:29+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/content/broadcasts/en/ai-influencer-consistency-architecture.md": {
@@ -136,32 +136,40 @@
     "first": "2026-11-04T23:19:08+03:00"
   },
   "src/content/projects/10sec.json": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/content/projects/ecommerce-image-enhancer.json": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
+  "src/content/projects/hrs-ankara-kadin-hastanesi.json": {
+    "last": "2026-11-14T16:00:00+03:00",
+    "first": "2026-11-14T16:00:00+03:00"
+  },
   "src/content/projects/oa-sip-recorder.json": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/content/projects/oadub.json": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/content/projects/oapos.json": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/content/projects/orvyna-app-studio.json": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/content/projects/seo-lens.json": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-11-04T15:52:24+03:00"
+  },
+  "src/content/projects/tarihci-anne-seda-aksoy.json": {
+    "last": "2026-11-14T16:00:00+03:00",
+    "first": "2026-11-14T16:00:00+03:00"
   },
   "src/data/identity.mjs": {
     "last": "2026-11-11T00:04:27+03:00",
@@ -244,11 +252,11 @@
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/llms-full.txt.ts": {
-    "last": "2026-11-13T23:55:00+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/llms.txt.ts": {
-    "last": "2026-11-13T23:55:00+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/projects/[...slug].astro": {
@@ -268,7 +276,7 @@
     "first": "2026-11-02T19:15:15+03:00"
   },
   "src/pages/sitemap-images.xml.ts": {
-    "last": "2026-11-13T23:55:00+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/pages/sitemap-video.xml.ts": {
@@ -320,7 +328,7 @@
     "first": "2026-11-05T00:25:50+03:00"
   },
   "src/utils/projects.ts": {
-    "last": "2026-11-05T00:25:50+03:00",
+    "last": "2026-11-14T16:00:00+03:00",
     "first": "2026-09-27T15:00:36+03:00"
   },
   "src/utils/schema.mjs": {

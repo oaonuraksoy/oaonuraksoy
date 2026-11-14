@@ -32,6 +32,7 @@ const localizedContentSchema = z.object({
   mermaidTopology: z.string(),
   benchmarks: benchmarkTableSchema,
   sections: z.array(sectionItemSchema),
+  stackTitle: z.string().optional(),
   techStack: z.array(techStackItemSchema),
   businessImpact: z.string().optional(),
   // <title> için kısa SEO başlığı (marka eki ' | Onur Aksoy' otomatik eklenir; toplam ≤ 60 karakter)
@@ -52,6 +53,8 @@ const projects = defineCollection({
     links: z.object({
       live: z.string().url().optional(),
       store: z.string().url().optional(),
+      appStore: z.string().url().optional(),
+      playStore: z.string().url().optional(),
       github: z.string().url().optional(),
       demo: z.string().url().optional(),
       tool: z.string().url().optional()

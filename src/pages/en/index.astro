@@ -40,7 +40,7 @@ const homeFaqs = [
   },
   {
     question: "What are the flagship software products and systems developed by Onur Aksoy?",
-    answer: "Flagship systems include oaPOS (an offline-first POS and inventory desktop platform with LAN socket sync), oaDub (a real-time AI dubbing extension powered by Gemini 3.5 Live WebSocket), SEO Lens (a technical SEO and Schema.org inspector for Microsoft Edge), 10SeC (an in-browser FFmpeg WASM video splitter extension on Microsoft Edge Add-ons), Orvyna App Studio (an automated web2app packager for TestFlight and TWA), and oa_sip_recorder (a passive VoIP packet capture engine written in Rust)."
+    answer: "Flagship systems and enterprise case studies include: oaPOS (an offline-first POS and inventory desktop platform with LAN socket sync), oaDub (real-time AI dubbing extension), SEO Lens (technical SEO and Schema inspector on Microsoft Edge), 10SeC (in-browser video splitter extension on Microsoft Edge Add-ons), Orvyna App Studio (automated packager for TestFlight and TWA), and oa_sip_recorder (passive VoIP packet capture engine written in Rust); alongside enterprise web portals and certified App Store and Google Play mobile apps engineered for Özel HRS Ankara Hospital and Tarihçi Anne Seda Aksoy."
   },
   {
     question: "What does local-first architecture and deterministic AI design mean in practice?",
@@ -267,17 +267,37 @@ const homeFaqs = [
               <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 font-semibold">
                 Private Hospital & Healthcare Institution
               </span>
-              <a
-                href="https://hrsankara.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
-              >
-                hrsankara.com ↗
-              </a>
+              <div class="flex items-center gap-3">
+                <a
+                  href="https://hrsankara.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  hrsankara.com ↗
+                </a>
+                <a
+                  href="https://apps.apple.com/tr/app/hrs-mobil/id6797907890"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  App Store ↗
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.hrsankara.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  Google Play ↗
+                </a>
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-text-primary">
-              Özel HRS Ankara Women's & Children's Hospital
+            <h3 class="text-lg font-bold text-text-primary hover:text-gold-highlight transition-colors">
+              <a href="/en/projects/hrs-ankara-kadin-hastanesi/">
+                Özel HRS Ankara Women's & Children's Hospital
+              </a>
             </h3>
             <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
               <p>
@@ -291,12 +311,17 @@ const homeFaqs = [
               </p>
             </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
-            <a href="/en/ankara-enterprise-ai-automation/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Voice AI Assistant &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/en/ankara-custom-software-architecture/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Custom Portal & Mobile &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/en/about/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Systems Architect &rarr;</a>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <a href="/en/projects/hrs-ankara-kadin-hastanesi/" class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight transition-colors">
+              Read Full Case Study &rarr;
+            </a>
+            <div class="flex flex-wrap gap-3">
+              <a href="/en/ankara-enterprise-ai-automation/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Voice AI Assistant &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/en/ankara-custom-software-architecture/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Custom Portal & Mobile &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/en/about/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Systems Architect &rarr;</a>
+            </div>
           </div>
         </article>
 
@@ -307,17 +332,37 @@ const homeFaqs = [
               <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40 font-semibold">
                 Digital Publishing & Personal Authority
               </span>
-              <a
-                href="https://sedaaksoy.com.tr"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
-              >
-                sedaaksoy.com.tr ↗
-              </a>
+              <div class="flex items-center gap-3">
+                <a
+                  href="https://sedaaksoy.com.tr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  sedaaksoy.com.tr ↗
+                </a>
+                <a
+                  href="https://apps.apple.com/tr/app/tarih%C3%A7i-anne-seda-aksoy/id6743680837"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  App Store ↗
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.tr.oahub.sonya"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  Google Play ↗
+                </a>
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-text-primary">
-              Tarihçi Anne / Seda Aksoy
+            <h3 class="text-lg font-bold text-text-primary hover:text-gold-highlight transition-colors">
+              <a href="/en/projects/tarihci-anne-seda-aksoy/">
+                Tarihçi Anne / Seda Aksoy
+              </a>
             </h3>
             <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
               <p>
@@ -331,12 +376,17 @@ const homeFaqs = [
               </p>
             </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
-            <a href="/en/ankara-b2b-web-architecture/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">SEO & GEO Web Portal &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/en/ankara-enterprise-ai-automation/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Publishing Automation &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/en/about/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Systems Architect &rarr;</a>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <a href="/en/projects/tarihci-anne-seda-aksoy/" class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight transition-colors">
+              Read Full Case Study &rarr;
+            </a>
+            <div class="flex flex-wrap gap-3">
+              <a href="/en/ankara-b2b-web-architecture/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">SEO & GEO Web Portal &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/en/ankara-enterprise-ai-automation/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Publishing Automation &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/en/about/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Systems Architect &rarr;</a>
+            </div>
           </div>
         </article>
       </div>

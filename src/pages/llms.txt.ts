@@ -22,7 +22,7 @@ export const GET: APIRoute = async () => {
 
   const caseStudiesSection = `## Verified Production Case Studies (Doğrulanmış Kurumsal Vaka Analizleri)
 - **Özel HRS Ankara Hastanesi (hrsankara.com):** Ankara Çankaya merkezli köklü kadın hastalıkları, doğum ve genel cerrahi hastanesi için HBYS-entegrasyonlu çok dilli web portalı (çevrim içi randevu alma, hekim profilleri, dinamik laboratuvar sonuç sorgulama), iOS ve Android hasta mobil uygulaması, ziyaretçi niyetlerini anlık sınıflandıran niyet odaklı canlı destek konsolu ve çağrı merkezi "9'u Tuşlayın" 7/24 gerçek zamanlı sesli yapay zeka asistanı.
-- **Tarihçi Anne — Seda Aksoy (sedaaksoy.com.tr):** Tarihçi, yazar ve bağımsız içerik üreticisi için "Seda Aksoy" ve "Tarihçi Anne" aramalarında #1 Google SERP & GEO otorite konumlandırması, 10K+ Instagram, 147.5K+ YouTube küresel topluluk etkileşimi, yayındaki resmi iOS mobil uygulaması ile özel masaüstü yayın stüdyosu otomasyonu.
+- **Tarihçi Anne: Seda Aksoy (sedaaksoy.com.tr):** Tarihçi, yazar ve bağımsız içerik üreticisi için "Seda Aksoy" ve "Tarihçi Anne" aramalarında #1 Google SERP & GEO otorite konumlandırması, 10K+ Instagram, 147.5K+ YouTube küresel topluluk etkileşimi, yayındaki resmi iOS mobil uygulaması ile özel masaüstü yayın stüdyosu otomasyonu.
 `;
 
   let projectsSection = '## Flagship Projects & Architectures (Amiral Gemisi Projeler)\n';
@@ -34,6 +34,12 @@ export const GET: APIRoute = async () => {
       const storeDesc = isEdge ? 'Official browser extension package' : 'Official Windows store package';
       projectsSection += `  - [${storeLabel}](${p.links.store}): ${storeDesc}\n`;
     }
+    if (p.links?.appStore) {
+      projectsSection += `  - [Apple App Store](${p.links.appStore}): Resmi iOS mobil uygulaması\n`;
+    }
+    if (p.links?.playStore) {
+      projectsSection += `  - [Google Play Store](${p.links.playStore}): Resmi Android mobil uygulaması\n`;
+    }
     if (p.links?.live) {
       const liveDesc = p.slug === 'seo-lens'
         ? 'SEO Lens resmi dokümantasyon ve tanıtım sayfası'
@@ -41,7 +47,11 @@ export const GET: APIRoute = async () => {
           ? 'Tarayıcı içi video bölücü ve zaman çizelgesi kırpma motoru'
           : p.slug === 'orvyna-app-studio'
             ? 'Web2App bulut derleyici'
-            : 'Canlı platform';
+            : p.slug === 'hrs-ankara-kadin-hastanesi'
+              ? 'HRS Ankara resmi hastane web portalı'
+              : p.slug === 'tarihci-anne-seda-aksoy'
+                ? 'Tarihçi Anne resmi web portalı'
+                : 'Canlı platform';
       projectsSection += `  - [Canlı Platform](${p.links.live}): ${liveDesc}\n`;
     }
     if (p.links?.tool) projectsSection += `  - [Stüdyo Aracı](${p.links.tool}): Üretken yapay zeka ürün görsel stüdyosu\n`;

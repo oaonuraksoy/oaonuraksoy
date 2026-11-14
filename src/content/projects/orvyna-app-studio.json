@@ -1,7 +1,7 @@
 {
   "id": "orvyna-app-studio",
   "slug": "orvyna-app-studio",
-  "order": 4,
+  "order": 6,
   "featured": true,
   "accentColor": "#D6A354",
   "tags": ["iOS TestFlight", "App Store Connect", "Android TWA", "Web2App", "TypeScript", "Vite"],

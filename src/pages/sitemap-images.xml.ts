@@ -10,6 +10,8 @@ export const GET: APIRoute = async () => {
   ];
 
   const projectSlugs = [
+    'hrs-ankara-kadin-hastanesi',
+    'tarihci-anne-seda-aksoy',
     'oapos',
     'oadub',
     '10sec',

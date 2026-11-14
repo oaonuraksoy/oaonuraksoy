@@ -5,6 +5,8 @@ import { getAllProjects } from '../../utils/projects';
 const projects = await getAllProjects('tr');
 
 const projectCategoryMap: Record<string, string[]> = {
+  'hrs-ankara-kadin-hastanesi': ['enterprise'],
+  'tarihci-anne-seda-aksoy': ['enterprise'],
   'seo-lens': ['extension', 'web-cloud'],
   '10sec': ['extension', 'ai'],
   'oadub': ['extension', 'ai'],
@@ -16,6 +18,7 @@ const projectCategoryMap: Record<string, string[]> = {
 
 const categoryCounts = {
   all: projects.length,
+  enterprise: projects.filter(p => projectCategoryMap[p.slug]?.includes('enterprise')).length,
   extension: projects.filter(p => projectCategoryMap[p.slug]?.includes('extension')).length,
   desktop: projects.filter(p => projectCategoryMap[p.slug]?.includes('desktop')).length,
   ai: projects.filter(p => projectCategoryMap[p.slug]?.includes('ai')).length,
@@ -24,18 +27,19 @@ const categoryCounts = {
 
 const categories = [
   { id: 'all', label: 'Tümü', count: categoryCounts.all },
+  { id: 'enterprise', label: 'Kurumsal Vaka Analizleri', count: categoryCounts.enterprise },
   { id: 'extension', label: 'Tarayıcı Eklentileri', count: categoryCounts.extension },
   { id: 'desktop', label: 'Masaüstü & Yerel Sistemler', count: categoryCounts.desktop },
   { id: 'ai', label: 'Yapay Zeka & Medya', count: categoryCounts.ai },
   { id: 'web-cloud', label: 'Web & Mağaza Altyapısı', count: categoryCounts['web-cloud'] },
 ];
 
-const title = "Amiral Gemisi Projeler & Mimari Vaka Analizleri — Onur Aksoy";
-const description = "Onur Aksoy tarafından geliştirilen resmi mağaza onaylı masaüstü yazılımları, yerel öncelikli dağıtık sistemler ve üretken yapay zeka araçları.";
+const title = "Projeler & Kurumsal Vaka Analizleri - Onur Aksoy";
+const description = "7 üretim yazılımı ve 2 kurumsal vaka analizi: Resmi mağaza onaylı yerel öncelikli sistemler, kurumsal sağlık ve yayın portalları ile yapay zeka araçları.";
 
 // CollectionPage + ItemList, BaseLayout → JsonLd üzerinden TEK @graph içinde üretilir.
 const itemList = {
-  name: 'Amiral Gemisi Projeler & Mimari Vaka Analizleri',
+  name: 'Projeler & Kurumsal Vaka Analizleri',
   items: projects.map((p) => ({ name: p.title, url: `https://onuraksoy.com.tr/projects/${p.slug}/` }))
 };
 ---
@@ -56,7 +60,7 @@ const itemList = {
         Projeler & Sistem Vaka Analizleri
       </h1>
       <p class="text-base text-text-muted leading-relaxed">
-        Resmi mağaza sertifikalı masaüstü platformları, tarayıcı-yerel konteynerleştirme motorları ve yüksek erişilebilirlikli üretken yapay zeka iş akışları.
+        7 üretim yazılımı ve 2 kurumsal vaka analizi: Resmi mağaza sertifikalı masaüstü platformları, yerel öncelikli sağlık mimarileri ve yayın otomasyon sistemleri.
       </p>
     </div>
 
@@ -228,6 +232,26 @@ const itemList = {
                       : 'Microsoft Store ↗'}
                   </a>
                 )}
+                {project.links?.appStore && (
+                  <a
+                    href={project.links.appStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                  >
+                    App Store ↗
+                  </a>
+                )}
+                {project.links?.playStore && (
+                  <a
+                    href={project.links.playStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-md bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 hover:bg-gold-tungsten hover:text-obsidian-black transition-all"
+                  >
+                    Google Play ↗
+                  </a>
+                )}
                 {project.links?.live && (
                   <a
                     href={project.links.live}
@@ -296,7 +320,9 @@ const itemList = {
                 href={`/projects/${project.slug}/`}
                 class="text-sm font-bold text-gold-tungsten hover:text-gold-highlight flex items-center gap-1.5 transition-colors"
               >
-                Derinlemesine Teknik Vaka Analizi &rarr;
+                {projectCategoryMap[project.slug]?.includes('enterprise')
+                  ? 'Kurumsal Vaka Analizini İncele →'
+                  : 'Derinlemesine Teknik Vaka Analizi →'}
               </a>
             </div>
           </article>

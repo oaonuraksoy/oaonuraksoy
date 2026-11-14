@@ -40,7 +40,7 @@ const homeFaqs = [
   },
   {
     question: "Onur Aksoy tarafından geliştirilen amiral gemisi yazılım ve sistemler nelerdir?",
-    answer: "Öne çıkan amiral gemisi sistemler şunlardır: oaPOS (yerel ağ soket senkronizasyonlu çevrimdışı öncelikli masaüstü POS ve stok sistemi), oaDub (Gemini 3.5 Live WebSocket ile gerçek zamanlı yapay zeka dublaj eklentisi), SEO Lens (Microsoft Edge Add-ons onaylı teknik SEO ve Schema.org denetleyicisi), 10SeC (Microsoft Edge Add-ons onaylı tarayıcı içi FFmpeg WASM video parçalayıcı eklentisi), Orvyna App Studio (otomatik Apple TestFlight ve Google Play TWA paketleme stüdyosu) ve oa_sip_recorder (Rust ile yazılmış pasif VoIP paket dinleme motoru)."
+    answer: "Öne çıkan amiral gemisi sistemler ve kurumsal vaka analizleri şunlardır: oaPOS (yerel ağ soket senkronizasyonlu çevrimdışı öncelikli masaüstü POS ve stok sistemi), oaDub (gerçek zamanlı yapay zeka dublaj eklentisi), SEO Lens (Microsoft Edge Add-ons onaylı teknik SEO ve Schema denetleyicisi), 10SeC (Edge Add-ons onaylı tarayıcı içi video parçalayıcı eklentisi), Orvyna App Studio (Apple TestFlight ve Google Play TWA paketleme stüdyosu) ve oa_sip_recorder (Rust VoIP paket dinleme motoru); ayrıca Özel HRS Ankara Hastanesi ve Tarihçi Anne Seda Aksoy için geliştirilen resmi web portalları ile App Store ve Google Play onaylı mobil uygulamalar."
   },
   {
     question: "Yerel öncelikli (Local-First) ve deterministik yapay zeka mimarisi ne anlama gelir?",
@@ -267,17 +267,37 @@ const homeFaqs = [
               <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-gold-tungsten/15 text-gold-highlight border border-gold-tungsten/30 font-semibold">
                 Özel Hastane & Sağlık Kurumu
               </span>
-              <a
-                href="https://hrsankara.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
-              >
-                hrsankara.com ↗
-              </a>
+              <div class="flex items-center gap-3">
+                <a
+                  href="https://hrsankara.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  hrsankara.com ↗
+                </a>
+                <a
+                  href="https://apps.apple.com/tr/app/hrs-mobil/id6797907890"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  App Store ↗
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.hrsankara.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  Google Play ↗
+                </a>
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-text-primary">
-              Özel HRS Ankara Kadın Hastalıkları ve Doğum Hastanesi
+            <h3 class="text-lg font-bold text-text-primary hover:text-gold-highlight transition-colors">
+              <a href="/projects/hrs-ankara-kadin-hastanesi/">
+                Özel HRS Ankara Kadın Hastalıkları ve Doğum Hastanesi
+              </a>
             </h3>
             <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
               <p>
@@ -291,12 +311,17 @@ const homeFaqs = [
               </p>
             </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
-            <a href="/ankara-yapay-zeka-otomasyonu/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Yapay Zeka Asistanı &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/ankara-web-yazilim/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Özel Portal & Mobil &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/about/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Sistem Mimarı &rarr;</a>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <a href="/projects/hrs-ankara-kadin-hastanesi/" class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight transition-colors">
+              Tam Vaka Analizini İncele &rarr;
+            </a>
+            <div class="flex flex-wrap gap-3">
+              <a href="/ankara-yapay-zeka-otomasyonu/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Yapay Zeka Asistanı &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/ankara-web-yazilim/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Özel Portal & Mobil &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/about/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Sistem Mimarı &rarr;</a>
+            </div>
           </div>
         </article>
 
@@ -307,17 +332,37 @@ const homeFaqs = [
               <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40 font-semibold">
                 Dijital Yayıncılık & Kişisel Otorite
               </span>
-              <a
-                href="https://sedaaksoy.com.tr"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
-              >
-                sedaaksoy.com.tr ↗
-              </a>
+              <div class="flex items-center gap-3">
+                <a
+                  href="https://sedaaksoy.com.tr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  sedaaksoy.com.tr ↗
+                </a>
+                <a
+                  href="https://apps.apple.com/tr/app/tarih%C3%A7i-anne-seda-aksoy/id6743680837"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  App Store ↗
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.tr.oahub.sonya"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-text-dim hover:text-gold-highlight transition-colors"
+                >
+                  Google Play ↗
+                </a>
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-text-primary">
-              Tarihçi Anne / Seda Aksoy
+            <h3 class="text-lg font-bold text-text-primary hover:text-gold-highlight transition-colors">
+              <a href="/projects/tarihci-anne-seda-aksoy/">
+                Tarihçi Anne / Seda Aksoy
+              </a>
             </h3>
             <div class="space-y-2 text-xs sm:text-sm text-text-muted leading-relaxed">
               <p>
@@ -331,12 +376,17 @@ const homeFaqs = [
               </p>
             </div>
           </div>
-          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-wrap gap-3 text-xs">
-            <a href="/ankara-kurumsal-web-tasarim/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">SEO & GEO Web Portalı &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/ankara-yapay-zeka-otomasyonu/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Yayın Otomasyonu &rarr;</a>
-            <span class="text-obsidian-border">•</span>
-            <a href="/about/" class="text-gold-tungsten hover:text-gold-highlight transition-colors font-medium">Mimari & Biyografi &rarr;</a>
+          <div class="mt-6 pt-4 border-t border-obsidian-border/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <a href="/projects/tarihci-anne-seda-aksoy/" class="text-xs font-bold text-gold-tungsten hover:text-gold-highlight transition-colors">
+              Tam Vaka Analizini İncele &rarr;
+            </a>
+            <div class="flex flex-wrap gap-3">
+              <a href="/ankara-kurumsal-web-tasarim/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">SEO & GEO Web Portalı &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/ankara-yapay-zeka-otomasyonu/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Yayın Otomasyonu &rarr;</a>
+              <span class="text-obsidian-border">•</span>
+              <a href="/about/" class="text-text-dim hover:text-gold-highlight transition-colors font-medium">Mimari & Biyografi &rarr;</a>
+            </div>
           </div>
         </article>
       </div>

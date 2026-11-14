@@ -1,7 +1,7 @@
 {
   "id": "oapos",
   "slug": "oapos",
-  "order": 1,
+  "order": 3,
   "featured": true,
   "accentColor": "#C58A3A",
   "tags": [".NET 8", "WPF / DirectX", "C#", "PostgreSQL", "SQLite Embedded", "Redis Cache", "Local Socket Sync", "MS Store"],

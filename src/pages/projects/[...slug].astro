@@ -91,6 +91,26 @@ const { project } = Astro.props;
                 : 'Microsoft Store Onaylı ↗'}
             </a>
           )}
+          {project.links?.appStore && (
+            <a
+              href={project.links.appStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
+            >
+              App Store ↗
+            </a>
+          )}
+          {project.links?.playStore && (
+            <a
+              href={project.links.playStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
+            >
+              Google Play ↗
+            </a>
+          )}
           {project.links?.live && (
             <a
               href={project.links.live}
@@ -98,7 +118,7 @@ const { project } = Astro.props;
               rel="noopener noreferrer"
               class="text-xs font-semibold px-4 py-2 rounded-lg bg-gold-tungsten text-obsidian-black hover:bg-gold-highlight transition-all"
             >
-              Uygulamayı Aç ↗
+              Canlı Platformu Aç ↗
             </a>
           )}
           {project.links?.tool && (
@@ -208,7 +228,7 @@ const { project } = Astro.props;
       <section class="my-12">
         <h2 class="text-2xl font-bold text-text-primary mb-6 pb-2 border-b border-obsidian-border flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-gold-tungsten"></span>
-          Teknoloji Yığını
+          {project.stackTitle ?? 'Teknoloji Yığını'}
         </h2>
         <div class="overflow-hidden rounded-xl border border-obsidian-border bg-obsidian-surface/60">
           <dl class="divide-y divide-obsidian-border/50">
