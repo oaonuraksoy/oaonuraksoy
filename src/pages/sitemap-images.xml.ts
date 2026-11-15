@@ -22,6 +22,7 @@ export const GET: APIRoute = async () => {
   ];
 
   const broadcastSlugs = [
+    'sentetik-teknik-borc-ve-deterministik-mimari',
     'sub-50ms-global-b2b-portals-edge-zero-js',
     'kurumsal-web-siber-guvenlik-standartlari-2026',
     'wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti',
@@ -95,7 +96,7 @@ export const GET: APIRoute = async () => {
     }
   ];
 
-  // 5. Broadcasts TR & EN (All 8 technical broadcasts)
+  // 5. Broadcasts TR & EN (All 13 technical broadcasts)
   for (const slug of broadcastSlugs) {
     const img = `https://onuraksoy.com.tr/images/broadcasts/${slug}.webp`;
     pagesWithImages.push({
