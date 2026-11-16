@@ -57,7 +57,7 @@
       },
       {
         "title": "3. Direct Store Delivery Pipeline",
-        "content": "Operating directly within the modern browser sandbox via Web Streams and API integrations, users can configure, test, and dispatch their apps directly to Apple App Store Connect / TestFlight for iOS and generate production-ready Google Play TWA AAB bundles without exposing proprietary source code to third-party build servers."
+        "content": "Operating directly within the modern browser sandbox via Web Streams and API integrations, users can configure, test, and dispatch their apps directly to Apple App Store Connect / TestFlight for iOS and generate production-ready Google Play TWA AAB bundles without exposing proprietary source code to third-party build servers.\n\nEnsuring determinism across automated application and asset generation pipelines prevents drift in production workflows. For visual character and stylistic consistency, explore the [AI influencer consistency architecture](/en/broadcasts/ai-influencer-consistency-architecture/) framework. For managing drift and technical fragility in generative codebases, study [synthetic technical debt and deterministic architecture](/en/broadcasts/sentetik-teknik-borc-ve-deterministik-mimari/), alongside the [E-Commerce Image Enhancer](/en/projects/ecommerce-image-enhancer/) project."
       }
     ],
     "techStack": [
@@ -102,7 +102,7 @@
       },
       {
         "title": "3. Doğrudan Mağaza Dağıtım Hattı",
-        "content": "Tüm süreç tarayıcı kum havuzunda yürütülür; iOS tarafında doğrudan Apple App Store Connect ve TestFlight API entegrasyonuyla dağıtım başlatılır, Android için ise Google Play uyumlu TWA AAB paketleri üçüncü taraf derleme sunucularına kaynak kod iletmeden üretilir."
+        "content": "Tüm süreç tarayıcı kum havuzunda yürütülür; iOS tarafında doğrudan Apple App Store Connect ve TestFlight API entegrasyonuyla dağıtım başlatılır, Android için ise Google Play uyumlu TWA AAB paketleri üçüncü taraf derleme sunucularına kaynak kod iletmeden üretilir.\n\nKodsuz uygulama ve varlık üretim hatlarında determinizm sağlamak, sentetik üretimdeki tutarsızlıkları önlemek adına kritik bir gerekliliktir. Görsel üretimdeki karakter ve stil sürekliliği için [yapay zeka tutarlılık mimarisi](/broadcasts/ai-influencer-consistency-architecture/) yayını, kod üretimindeki risk yönetimi için [sentetik teknik borç ve deterministik mimari](/broadcasts/sentetik-teknik-borc-ve-deterministik-mimari/) araştırması ve e-ticaret görsel otomasyonu için [E-Commerce Image Enhancer](/projects/ecommerce-image-enhancer/) projesi incelenebilir."
       }
     ],
     "techStack": [

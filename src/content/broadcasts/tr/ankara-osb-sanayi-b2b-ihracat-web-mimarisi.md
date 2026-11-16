@@ -59,7 +59,7 @@ OSTİM, İvedik Organize Sanayi Bölgesi, Sincan ASO 1. OSB ve Başkent OSB baş
 
 Fakat bu yüksek mühendislik gücünün yurt dışındaki potansiyel alıcılara yansıyan yüzüne baktığımızda acı bir tabloyla karşılaşıyoruz: **Milyonlarca dolarlık üretim kabiliyetine sahip sanayi devlerimiz, internette 8-10 saniyede açılan, kırık WordPress şablonlarına hapsolmuş, teknik şartnamesi bulunmayan ve kurumsal e-posta itibarı sıfırlanmış web siteleriyle temsil ediliyor.**
 
-Kendi geliştirdiğim sistemlerde ve kurumsal danışmanlık süreçlerimde incelediğim yüzlerce ihracatçı firma verisi bana tek bir gerçeği gösterdi: **Küresel bir satın alma yöneticisi (Procurement Manager), fabrikanızın kapısından içeri girmeden önce web sitenizin teknik altyapısını inceler.** Ağır, hantal ve amatör bir web sitesi; alıcıda doğrudan "Bu şirket üretim süreçlerinde de özensizdir" algısı yaratır.
+Kendi geliştirdiğim sistemlerde ve kurumsal danışmanlık süreçlerimde incelediğim yüzlerce ihracatçı firma verisi bana tek bir gerçeği gösterdi: **Küresel bir satın alma yöneticisi (Procurement Manager), fabrikanızın kapısından içeri girmeden önce web sitenizin teknik altyapısını inceler.** Ağır, hantal ve amatör bir web sitesi; alıcıda doğrudan "Bu şirket üretim süreçlerinde de özensizdir" algısı yaratır. Nitekim [Yapay Zeka Sizi Tanımıyor](/#kitap) kitabımda ve [sayfa sıralamasından varlık mutabakatına](/broadcasts/sayfa-siralamasindan-varlik-mutabakatina/) başlıklı analizimde ele aldığım gibi; dijital dünyada sadece arama motorunda çıkmak yetmez, yapay zeka ve kurumsal karar ajanlarının gözünde tescilli bir varlık olarak doğrulanmak şarttır.
 
 Bu yayında; Ankara sanayi ve OSB firmalarının ihracat vitrinlerini küresel güven standardına ulaştıran 5 kritik teknik mimari kriteri inceliyoruz.
 

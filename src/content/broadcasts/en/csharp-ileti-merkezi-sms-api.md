@@ -45,7 +45,7 @@ faqs:
 
 From desktop enterprise tools and point-of-sale software to web APIs and user authentication flows, telecommunications SMS gateways are a mission-critical infrastructure component. Yet when integrating regional telecom APIs, developers are frequently confronted with antiquated sample code, fragile XML string concatenations, and a complete absence of type safety.
 
-While engineering my Windows desktop POS system oaPOS and various client platforms, I encountered this exact integration bottleneck. Rather than relying on unmaintained third-party NuGet packages, I architected this open-source **C# XML API Library**—a zero-dependency, type-safe wrapper that drops into any .NET application via a single class file.
+While engineering my Windows desktop POS system [oaPOS](/en/projects/oapos/), my sovereign telephony logger [oa-sip-recorder](/en/projects/oa-sip-recorder/), and various client platforms, I encountered this exact integration bottleneck. This architecture adheres directly to our [local-first software](/en/broadcasts/local-first-software/) engineering standards. Rather than relying on unmaintained third-party packages, I architected this open-source **C# XML API Library**: a zero-dependency, type-safe wrapper that drops into any .NET application via a single class file. To engineer custom sovereign integrations for your enterprise, explore our [Ankara custom software architecture](/en/ankara-custom-software-architecture/) frameworks.
 
 In this walkthrough and video breakdown, I demonstrate how to dispatch transactional alerts, handle high-priority two-factor authentication (OTP) tokens, trigger batch recipient broadcasts, and query account credit balances.
 

@@ -67,7 +67,7 @@
       },
       {
         "title": "4. Memory Safety, Zero-Copy Parsing & Concurrency in Rust",
-        "content": "Engineered with Rust's ownership model, oa_sip_recorder eliminates data races, buffer overflows, and garbage collection latency spikes. Packet processing pipelines communicate across crossbeam multi-producer multi-consumer channels. The packet header parsers slice directly into byte buffers without memory reallocations, ensuring that multi-gigabit network interfaces can be inspected while maintaining a total resident memory footprint below 25 megabytes."
+        "content": "Engineered with Rust's ownership model, oa_sip_recorder eliminates data races, buffer overflows, and garbage collection latency spikes. Packet processing pipelines communicate across crossbeam multi-producer multi-consumer channels. The packet header parsers slice directly into byte buffers without memory reallocations, ensuring that multi-gigabit network interfaces can be inspected while maintaining a total resident memory footprint below 25 megabytes.\n\nThis deterministic packet parsing engine reflects the operational rigor of [local-first software architecture](/en/broadcasts/local-first-software/) in real-time streaming contexts. For enterprise telecommunications scaling into intelligent voice infrastructure, explore the [enterprise voice AI PBX architecture](/en/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/) monograph alongside the real-time audio translation capabilities of [oaDub](/en/projects/oadub/)."
       }
     ],
     "techStack": [
@@ -116,7 +116,7 @@
       },
       {
         "title": "4. Rust ile Bellek Güvenliği, Sıfır-Kopya Ayrıştırma & Eşzamanlılık",
-        "content": "Rust'ın sahiplik (ownership) modeliyle tasarlanan oa_sip_recorder; bellek taşmalarını, yarış durumlarını (data race) ve çöp toplayıcı (GC) duraksamalarını derleme anında yok eder. Paket işleme boru hatları crossbeam MPMC kanalları üzerinden asenkron konuşur. Ağ başlık ayrıştırıcıları bellek yeniden tahsisine (re-allocation) gitmeden doğrudan bayt dilimleri üzerinden çalışır; bu da çoklu gigabit ağ arayüzlerinde dahi toplam bellek tüketiminin 25 megabaytın altında kalmasını sağlar."
+        "content": "Rust'ın sahiplik (ownership) modeliyle tasarlanan oa_sip_recorder; bellek taşmalarını, yarış durumlarını (data race) ve çöp toplayıcı (GC) duraksamalarını derleme anında yok eder. Paket işleme boru hatları crossbeam MPMC kanalları üzerinden asenkron konuşur. Ağ başlık ayrıştırıcıları bellek yeniden tahsisine (re-allocation) gitmeden doğrudan bayt dilimleri üzerinden çalışır; bu da çoklu gigabit ağ arayüzlerinde dahi toplam bellek tüketiminin 25 megabaytın altında kalmasını sağlar.\n\nBu deterministik paket ayrıştırma altyapısı, [yerel öncelikli yazılım mimarisi](/broadcasts/local-first-software/) yaklaşımının gerçek zamanlı veri akışlarındaki karşılığıdır. Kurumsal telekomünikasyon altyapılarında sesli yapay zeka dönüşümü için [kurumsal sesli yapay zeka santral mimarisi](/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/) yayını ve gerçek zamanlı ses çevirisi sağlayan [oaDub](/projects/oadub/) projesi tamamlayıcı bir bütünlük sunar."
       }
     ],
     "techStack": [

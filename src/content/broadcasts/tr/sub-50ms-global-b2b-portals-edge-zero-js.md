@@ -64,7 +64,7 @@ Dijital dünyada çoğu şirket hız konusunu yalnızca bir teknik teferruat vey
 
 Özellikle küresel pazara yüksek katma değerli ürünler ihraç eden bir üreticiyseniz; Almanya'daki bir mühendislik direktörü, İtalya'daki bir satın alma uzmanı veya ABD'deki bir tedarik zinciri yöneticisi sitenize girdiğinde sayfa anında karşısına çıkmalıdır. 3 saniye dönen beyaz ekranlar, yüklenirken zıplayan butonlar ve tarayıcıyı donduran JavaScript kütüphaneleri, potansiyel müşterinize bilinçaltında tek bir mesaj fısıldar: *"Biz henüz dijital altyapımızı bile verimli yönetemiyoruz."*
 
-Kendi geliştirdiğim sistemlerde, [oaPOS](/projects/oapos/) ve [oaTeklif](/broadcasts/oateklif-ucretsiz-teklif-olusturucu/) gibi yüksek performanslı mimarilerde uyguladığım değişmez bir ilke vardır: **Gereksiz katmanları yok et, deterministik ol ve veriyi kullanıcıya en yakın noktada teslim et.**
+Kendi geliştirdiğim sistemlerde, [oaPOS](/projects/oapos/) ve [oaTeklif](/broadcasts/oateklif-ucretsiz-teklif-olusturucu/) gibi yüksek performanslı mimarilerde uyguladığım değişmez bir ilke vardır: **Gereksiz katmanları yok et, deterministik ol ve veriyi kullanıcıya en yakın noktada teslim et.** Benzer şekilde görsel varlıkların optimize edilmesinde [E-Commerce Image Enhancer](/projects/ecommerce-image-enhancer/) ve video parçalamada [10SeC](/projects/10sec/) araçlarımızda uyguladığımız sıfır gecikme felsefesi, istemci üzerindeki yükü minimize etmeyi amaçlar.
 
 Bu yayında; küresel ölçekte **50 milisaniyenin altında açılan** kurumsal B2B portallar inşa etmenin arkasındaki 5 mimari ayağı inceliyoruz.
 

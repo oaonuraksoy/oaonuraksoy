@@ -22,6 +22,8 @@ export const GET: APIRoute = async () => {
   ];
 
   const broadcastSlugs = [
+    'sayfa-siralamasindan-varlik-mutabakatina',
+    'kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi',
     'sentetik-teknik-borc-ve-deterministik-mimari',
     'sub-50ms-global-b2b-portals-edge-zero-js',
     'kurumsal-web-siber-guvenlik-standartlari-2026',

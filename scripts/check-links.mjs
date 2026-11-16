@@ -24,6 +24,7 @@ findHtml(distDir);
 
 let brokenCount = 0;
 const checked = new Set();
+const htmlCache = new Map();
 
 for (const file of htmlFiles) {
   const relPath = path.relative(distDir, file);
@@ -45,21 +46,35 @@ for (const file of htmlFiles) {
       continue;
     }
 
-    let targetPath = raw.split('?')[0];
+    const [beforeHash, hash] = raw.split('#');
+    let targetPath = beforeHash.split('?')[0];
     if (targetPath.startsWith('/')) {
       targetPath = targetPath.slice(1);
     }
 
     const possibleFiles = [
-      path.join(distDir, targetPath),
+      ...(targetPath ? [path.join(distDir, targetPath)] : []),
       path.join(distDir, targetPath, 'index.html'),
-      path.join(distDir, targetPath + '.html')
+      ...(targetPath ? [path.join(distDir, targetPath + '.html')] : [])
     ];
 
-    const exists = possibleFiles.some((p) => fs.existsSync(p));
-    if (!exists) {
+    const resolvedFile = possibleFiles.find((p) => fs.existsSync(p) && fs.statSync(p).isFile());
+    if (!resolvedFile) {
       console.error(`❌ [BROKEN LINK] in ${relPath}: ${raw}`);
       brokenCount++;
+    } else if (hash && resolvedFile.endsWith('.html')) {
+      let targetHtml = htmlCache.get(resolvedFile);
+      if (targetHtml === undefined) {
+        targetHtml = fs.readFileSync(resolvedFile, 'utf8');
+        htmlCache.set(resolvedFile, targetHtml);
+      }
+      const hasAnchor = new RegExp('\\bid=["\']' + hash.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '["\']').test(targetHtml);
+      if (!hasAnchor) {
+        console.error(`❌ [BROKEN ANCHOR] in ${relPath}: ${raw} (missing id="${hash}")`);
+        brokenCount++;
+      } else {
+        checked.add(raw);
+      }
     } else {
       checked.add(raw);
     }

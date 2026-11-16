@@ -48,13 +48,13 @@ faqs:
 
 ## Kendi Sunucumda Şifre Egemenliği: Neden Vaultwarden?
 
-Yıllarca kendi sunucularımda, ajans operasyonlarımda ve bağımsız dijital ürünlerimde yüzlerce sunucu anahtarını, veri tabanı şifresini, müşteri API token'ını ve ödeme ağ geçidi kimliklerini yönetirken bir şeyi çok net anladım: **Master parolanızı ve kritik iki adımlı doğrulama (TOTP) tohumlarınızı üçüncü parti ticari bulutlara emanet etmek, tüm dijital altyapınızı başkasının insafına bırakmaktır.**
+Yıllarca kendi sunucularımda, ajans operasyonlarımda ve bağımsız dijital ürünlerimde yüzlerce sunucu anahtarını, veri tabanı şifresini, müşteri API token'ını ve ödeme ağ geçidi kimliklerini yönetirken bir şeyi çok net anladım: **Master parolanızı ve kritik iki adımlı doğrulama (TOTP) tohumlarınızı üçüncü parti ticari bulutlara emanet etmek, tüm dijital altyapınızı başkasının insafına bırakmaktır.** Nitekim [kurumsal web siber güvenlik standartları](/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/) analizimizde vurguladığımız gibi, üçüncü parti sızıntı vektörlerini sıfıra indirmek modern bilgi güvenliğinin ana şartıdır.
 
 LastPass'in yaşadığı yıkıcı veri sızıntılarını veya ticari şifre yöneticilerinin bir gecede fiyat modellerini değiştirip özellik kısıtlamalarını hepimiz gördük. Ancak resmi Bitwarden sunucusunu kendi VDS'inize kurmaya kalktığınızda karşınıza ağır bir kurumsal .NET mimarisi, MSSQL veritabanı konteynerleri ve minimum 3-4 GB bellek tüketimi çıkıyor.
 
-Tam bu noktada devreye Rust ile baştan yazılan **Vaultwarden** giriyor. Kendi üretim sunucularımda test ettiğimde gördüm ki; resmi Bitwarden API sözleşmesini %100 uygularken sunucu belleğinden yalnızca **25 ila 40 megabayt** tüketiyor. Üstelik resmi Bitwarden'da yıllık 10-40$ abonelik ücretiyle satılan **dahili TOTP kod üretimi (Google Authenticator yerine geçen 30 saniyelik 2FA kodları)**, şifreli ek dosya yükleme ve organizasyon içi parola paylaşımı Vaultwarden üzerinde tamamen limitsiz ve ücretsiz.
+Tam bu noktada devreye Rust ile baştan yazılan **Vaultwarden** giriyor. Kendi üretim sunucularımda test ettiğimde gördüm ki; resmi Bitwarden API sözleşmesini %100 uygularken sunucu belleğinden yalnızca **25 ila 40 megabayt** tüketiyor. Üstelik resmi Bitwarden'da yıllık 10-40$ abonelik ücretiyle satılan **dahili TOTP kod üretimi (Google Authenticator yerine geçen 30 saniyelik 2FA kodları)**, şifreli ek dosya yükleme ve organizasyon içi parola paylaşımı Vaultwarden üzerinde tamamen limitsiz ve ücretsiz. Bu yaklaşım, savunduğumuz [yerel öncelikli yazılım](/broadcasts/local-first-software/) mimarisinin sunucu tarafındaki doğrudan bir uzantısıdır.
 
-Bu rehberde; Plesk kontrol paneli kurulu veya standart bir Ubuntu Linux sunucuda, tek komutla çalışan açık kaynaklı kurulum sihirbazım `oaVaultWardenInstaller` ile Vaultwarden'ı nasıl ayağa kaldırdığımızı uçtan uca anlatıyorum.
+Bu rehberde; Plesk kontrol paneli kurulu veya standart bir Ubuntu Linux sunucuda, tek komutla çalışan açık kaynaklı kurulum sihirbazım `oaVaultWardenInstaller` ile Vaultwarden'ı nasıl ayağa kaldırdığımızı uçtan uca anlatıyorum. Kurumsal sistemlerinizin sunucu omurgasını güçlendirmek için [Ankara web yazılım](/ankara-web-yazilim/) altyapılarımızı inceleyebilirsiniz.
 
 ```mermaid
 flowchart TD

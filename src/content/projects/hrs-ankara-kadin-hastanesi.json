@@ -74,7 +74,7 @@
       },
       {
         "title": "4. Patient Privacy, Data Integrity and Resilient Architecture",
-        "content": "All data exchanges between public web interfaces, mobile apps, and central clinical records strictly adhere to medical data confidentiality mandates.\n\nBy isolating sensitive health data behind strict API gateway boundaries and avoiding third-party analytics trackers, patient privacy is protected while maintaining sub-50ms retrieval benchmarks across all platforms."
+        "content": "All data exchanges between public web interfaces, mobile apps, and central clinical records strictly adhere to medical data confidentiality mandates.\n\nBy isolating sensitive health data behind strict API gateway boundaries and avoiding third-party analytics trackers, patient privacy is protected while maintaining sub-50ms retrieval benchmarks across all platforms.\n\nData sovereignty and patient confidentiality in healthcare environments rely on isolated architectural boundaries and zero-trust principles. For intelligent voice routing in clinical operations, review the [enterprise voice AI PBX architecture](/en/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/) monograph. Institutional defense standards are detailed in [enterprise web cybersecurity standards](/en/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/), while high-traffic content syndication practices are presented in the [Tarihçi Anne Seda Aksoy](/en/projects/tarihci-anne-seda-aksoy/) case study."
       }
     ],
     "techStack": [
@@ -124,7 +124,7 @@
       },
       {
         "title": "4. Sağlık Verisi Gizliliği ve Dayanıklı Entegrasyon Mimarisi",
-        "content": "Tüm web, mobil ve sesli kanallar arasındaki veri akışı, hassas sağlık kayıtlarının korunması ilkelerine tam uyumlu olarak izole bir API ağ geçidi arkasında tutulur.\n\nÜçüncü taraf takipçilere ve dış kaynak bağımlılıklarına izin vermeyen bu mimari, kenar ağda 50 milisaniye altı yanıt hızlarıyla yüksek güvenlik ve kesintisiz iş sürekliliği sağlar."
+        "content": "Tüm web, mobil ve sesli kanallar arasındaki veri akışı, hassas sağlık kayıtlarının korunması ilkelerine tam uyumlu olarak izole bir API ağ geçidi arkasında tutulur.\n\nÜçüncü taraf takipçilere ve dış kaynak bağımlılıklarına izin vermeyen bu mimari, kenar ağda 50 milisaniye altı yanıt hızlarıyla yüksek güvenlik ve kesintisiz iş sürekliliği sağlar.\n\nSağlık sektöründe veri egemenliği ve hasta mahremiyeti, izole sistem sınırları ve sıfır güven ilkeleriyle korunur. Çok kanallı hasta iletişimi için [kurumsal sesli yapay zeka santral mimarisi](/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/) yayını ve kurumsal dijital varlıkların savunma standartları için [kurumsal web siber güvenlik standartları](/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/) makalesi incelenebilir. Yüksek trafikli dijital varlık yönetimi ve çok kanallı dağıtım disiplini için [Tarihçi Anne Seda Aksoy](/projects/tarihci-anne-seda-aksoy/) vaka analizi değerlendirilebilir."
       }
     ],
     "techStack": [

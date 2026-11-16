@@ -42,6 +42,15 @@ downloads:
     type: "cs"
     driveUrl: "/vault/local-first/lan_binary_sync_protocol.cs"
     hash: "sha256:734a0a4b31a508a43f59aa8dbb459b5421ceb4c9c25b2cb0a54fe05e61d21597"
+faqs:
+  - question: "How does SQLite WAL (Write-Ahead Logging) concurrency deliver high-throughput LAN operations?"
+    answer: "Standard SQLite configurations lock the entire database file during writes. In contrast, Write-Ahead Logging (WAL) decouples concurrent readers from active writers. Leveraging memory-mapped I/O (mmap) and shared-memory index files, multiple local-area checkout terminals execute sub-millisecond reads and writes concurrently against a primary LAN database node without lock contention."
+  - question: "How does deterministic state replication resolve offline data mutations after a WAN network partition?"
+    answer: "Local-first terminals do not pause operations when wide-area connectivity fails; every mutation appends to an immutable local binary ledger. Once LAN or WAN routing restores, deterministic sequence counters and conflict-free replicated data types (CRDT) reconcile diverging states automatically. The central server serves strictly as a passive replication relay rather than a blocking gating authority."
+  - question: "How does local-first systems architecture reduce 5-year total cost of ownership compared to cloud SaaS?"
+    answer: "Cloud SaaS vendors bill per-terminal monthly subscriptions alongside egress bandwidth and auxiliary API fees. Over a five-year lifecycle across dozens of terminals, recurring operational costs accumulate exponentially. Local-first software executes directly upon owned edge hardware, eliminating recurring cloud server rents and delivering up to 75 percent net capital savings."
+  - question: "How does passive hardware and VoIP telephony telemetry function without cloud dependencies?"
+    answer: "Peripheral hardware including ESC/POS thermal printers, digital weighing scales, and barcode scanners communicates directly through low-level operating system drivers and raw COM sockets. Telephony telemetry over SIP and RTP is monitored at the socket layer within the local subnet, archiving call telemetry and device health entirely within the sovereign local network."
 ---
 
 ## The Cloud Hostage Crisis: The Illusion of Centralized SaaS
@@ -250,4 +259,4 @@ The table below contrasts real-world performance telemetry collected across reta
 
 The unquestioned rush to move every business transaction to multi-tenant cloud microservices was driven by vendor revenue models, not engineering excellence. For latency-critical, mission-critical operations where physical commerce interfaces with human reality, the cloud is a dangerous single point of failure.
 
-By uniting **embedded transactional storage (SQLite WAL)**, **peer-to-peer binary LAN replication**, **direct low-level peripheral hooks**, and **hardware-accelerated rendering**, the Local-First Engineering paradigm proves that true software resilience, microsecond speed, and data sovereignty will always belong to the edge. To architect offline-first hardware and ERP integrations for your enterprise, explore our [Ankara custom software architecture](/en/ankara-custom-software-architecture/) engineering solutions, deploy [enterprise AI automation](/en/ankara-enterprise-ai-automation/) workflows, or consult directly with [Onur Aksoy (Hackonomist)](/en/about/).
+By uniting **embedded transactional storage (SQLite WAL)**, **peer-to-peer binary LAN replication**, **direct low-level peripheral hooks**, and **hardware-accelerated rendering**, the Local-First Engineering paradigm proves that true software resilience, microsecond speed, and data sovereignty will always belong to the edge. We have demonstrated this engineering philosophy in production across our desktop POS system [oaPOS](/en/projects/oapos/), our sovereign telephony logger [oa-sip-recorder](/en/projects/oa-sip-recorder/), and our client-side media fragmentation utility [10SeC](/en/projects/10sec/). To architect offline-first hardware and ERP integrations for your enterprise, explore our [Ankara custom software architecture](/en/ankara-custom-software-architecture/) engineering solutions, deploy [enterprise AI automation](/en/ankara-enterprise-ai-automation/) workflows, or consult directly with [Onur Aksoy (Hackonomist)](/en/about/).

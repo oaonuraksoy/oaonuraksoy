@@ -15,21 +15,9 @@ scholarlyPaper:
   language: "en"
 featured: true
 tags: ["SyntheticTechnicalDebt", "DeterministicSystems", "InvariantGates", "SystemsArchitecture", "RoleIsolation", "SoftwareVerification", "ZeroJS"]
-duration: "PT17M20S"
+duration: "PT31S"
+youtubeId: "OHbQEEI6dBA"
 thumbnail: "/images/broadcasts/sentetik-teknik-borc-ve-deterministik-mimari.webp"
-chapters:
-  - time: "00:00"
-    title: "The Velocity Illusion and Stochastic Code Synthesis"
-  - time: "03:15"
-    title: "Classical Debt vs. Synthetic Technical Debt D_syn(t)"
-  - time: "06:40"
-    title: "Silent State Drift and the Test Oracle Fallacy"
-  - time: "10:10"
-    title: "Asymmetric Role Isolation and Subversion Resistance"
-  - time: "13:25"
-    title: "5 Tier Compile-Time Invariant Gate Architecture"
-  - time: "15:45"
-    title: "100 Enterprise Iterations Empirical Benchmark"
 downloads:
   - name: "CERN/Zenodo Open Access Academic Technical Paper (PDF)"
     size: "30.1 KB"

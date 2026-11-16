@@ -59,6 +59,10 @@
     "last": "2026-11-05T00:25:50+03:00",
     "first": "2026-11-03T01:02:05+03:00"
   },
+  "src/content/broadcasts/en/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi.md": {
+    "last": "2026-11-16T09:45:00+03:00",
+    "first": "2026-11-16T09:45:00+03:00"
+  },
   "src/content/broadcasts/en/kurumsal-web-siber-guvenlik-standartlari-2026.md": {
     "last": "2026-11-05T00:25:50+03:00",
     "first": "2026-11-04T23:19:08+03:00"
@@ -74,6 +78,10 @@
   "src/content/broadcasts/en/oateklif-ucretsiz-teklif-olusturucu.md": {
     "last": "2026-11-05T00:25:50+03:00",
     "first": "2026-11-03T01:02:05+03:00"
+  },
+  "src/content/broadcasts/en/sayfa-siralamasindan-varlik-mutabakatina.md": {
+    "last": "2026-11-16T09:45:00+03:00",
+    "first": "2026-11-16T09:45:00+03:00"
   },
   "src/content/broadcasts/en/sentetik-teknik-borc-ve-deterministik-mimari.md": {
     "last": "2026-11-15T18:30:00+03:00",
@@ -111,6 +119,10 @@
     "last": "2026-11-05T00:25:50+03:00",
     "first": "2026-11-03T01:02:05+03:00"
   },
+  "src/content/broadcasts/tr/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi.md": {
+    "last": "2026-11-16T09:45:00+03:00",
+    "first": "2026-11-16T09:45:00+03:00"
+  },
   "src/content/broadcasts/tr/kurumsal-web-siber-guvenlik-standartlari-2026.md": {
     "last": "2026-11-10T13:18:38+03:00",
     "first": "2026-11-04T23:19:08+03:00"
@@ -126,6 +138,10 @@
   "src/content/broadcasts/tr/oateklif-ucretsiz-teklif-olusturucu.md": {
     "last": "2026-11-05T00:25:50+03:00",
     "first": "2026-11-03T01:02:05+03:00"
+  },
+  "src/content/broadcasts/tr/sayfa-siralamasindan-varlik-mutabakatina.md": {
+    "last": "2026-11-16T09:45:00+03:00",
+    "first": "2026-11-16T09:45:00+03:00"
   },
   "src/content/broadcasts/tr/sentetik-teknik-borc-ve-deterministik-mimari.md": {
     "last": "2026-11-15T18:30:00+03:00",

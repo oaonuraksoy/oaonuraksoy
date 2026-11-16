@@ -56,7 +56,7 @@
       },
       {
         "title": "3. Rapid Batch Processing & Marketplace Presets",
-        "content": "- Automated aspect ratio conforming for Amazon (1:1 pure white), Instagram Shop, and Shopify hero banners.\n- One-click preset environments: Minimalist marble countertop, warm wooden surface, modern sunlit loft, or monochrome obsidian showcase."
+        "content": "- Automated aspect ratio conforming for Amazon (1:1 pure white), Instagram Shop, and Shopify hero banners.\n- One-click preset environments: Minimalist marble countertop, warm wooden surface, modern sunlit loft, or monochrome obsidian showcase.\n\nPreserving brand coherence across automated e-commerce catalogs requires strict control over generative model weights. For character and stylistic fidelity under generative pipelines, review the [AI influencer consistency architecture](/en/broadcasts/ai-influencer-consistency-architecture/) study. High-throughput edge storefront delivery is analyzed in [sub-50ms global portal architecture](/en/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/), while broader packaging workflows can be viewed in [Orvyna App Studio](/en/projects/orvyna-app-studio/)."
       }
     ],
     "techStack": [
@@ -99,7 +99,7 @@
       },
       {
         "title": "3. Hızlı Toplu İşlem & Pazaryeri Hazır Ayarları",
-        "content": "- Amazon için saf beyaz arka plan (1:1), Instagram Vitrin ve Shopify afişleri için otomatik oran uyarlama.\n- Tek tıkla seçilebilen lüks mermer tezgah, sıcak ahşap yüzey, güneş alan modern çatı katı veya obsidian siyahı minimalist sahneler."
+        "content": "- Amazon için saf beyaz arka plan (1:1), Instagram Vitrin ve Shopify afişleri için otomatik oran uyarlama.\n- Tek tıkla seçilebilen lüks mermer tezgah, sıcak ahşap yüzey, güneş alan modern çatı katı veya obsidian siyahı minimalist sahneler.\n\nKatalog görsellerinde kurumsal kimlik tutarlılığını korumak, üretken modellerin kontrol edilebilirliği ile doğrudan ilişkilidir. Üretim süreçlerinde parametrik kontrol için [yapay zeka görsel tutarlılık mimarisi](/broadcasts/ai-influencer-consistency-architecture/) ilkeleri uygulanırken, yüksek hızlı vitrin dağıtımı tarafında [50 milisaniye altı küresel web mimarisi](/broadcasts/sub-50ms-global-b2b-portals-edge-zero-js/) esastır. Bu tür çok kanallı üretim araçlarının entegrasyonu için [Orvyna App Studio](/projects/orvyna-app-studio/) projesi incelenebilir."
       }
     ],
     "techStack": [

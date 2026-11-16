@@ -43,7 +43,9 @@ faqs:
 
 Yazılım geliştiricisi, bağımsız danışman veya ajans sahibi olarak potansiyel bir müşteriye sunduğunuz kurumsal teklif belgesi, teknik yetkinliğinizin ve profesyonelliğinizin ilk vitrinidir. Kendi projelerimde ve kurumsal danışmanlık süreçlerimde yıllarca aynı çileyi çektim: **Ya her seferinde tabloları kayan, yazı tipleri bozulan Microsoft Word şablonlarıyla saatlerce boğuşuyordum ya da ayda sadece 3-5 teklif PDF'i almak için aylık 20-30 dolar isteyen bulut faturalandırma yazılımlarına abone olmak zorunda kalıyordum.**
 
-Bu gereksiz sürtünmeyi ortadan kaldırmak için C# .NET altyapısıyla **oaTeklif** masaüstü uygulamasını geliştirdim. Tamamen yerel öncelikli (offline-first) mimariyle çalışan bu araç; hiçbir bulut hesabı, internet bağlantısı veya aylık abonelik gerektirmeden saniyeler içinde kurumsal kimliğinize uygun, vektörel netlikte PDF teklifleri hazırlamanızı sağlıyor.
+Bu gereksiz sürtünmeyi ortadan kaldırmak için C# .NET altyapısıyla **oaTeklif** masaüstü uygulamasını geliştirdim. Tamamen yerel öncelikli (offline-first) mimariyle çalışan bu araç; hiçbir bulut hesabı, internet bağlantısı veya aylık abonelik gerektirmeden saniyeler içinde kurumsal kimliğinize uygun, vektörel netlikte PDF teklifleri hazırlamanızı sağlıyor. Masaüstü perakende çözümümüz [oaPOS](/projects/oapos/) ve yerel video işleme aracımız [10SeC](/projects/10sec/) gibi, oaTeklif de kullanıcı verisini sunucularda rehin tutmayan egemen yazılım prensipleriyle tasarlandı.
+
+Özellikle [Ankara OSB sanayi B2B ihracat web mimarisi](/broadcasts/ankara-osb-sanayi-b2b-ihracat-web-mimarisi/) analizimizde ele aldığımız kurumsal RFQ ve teklif süreçlerinde, hızlı ve hatasız fiyatlandırma belgeleri sunmak uluslararası alıcı güvenini tesis eden temel unsurdur. Şirketinizin dijital kurumsal vitrinini güçlendirmek için [Ankara kurumsal web tasarım](/ankara-kurumsal-web-tasarim/) standartlarımızı inceleyebilirsiniz.
 
 Bu yayında; oaTeklif'in arkasındaki yazılım mimarisini, dinamik KDV/iskonto hesaplama motorunu ve tek bir tıklamayla nasıl profesyonel PDF belgesi ürettiğimizi inceliyoruz.
 

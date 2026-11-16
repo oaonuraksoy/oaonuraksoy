@@ -63,7 +63,7 @@ However, as **2026 arrived**, high-throughput multi-agent systems and mission-cr
 
 ### The Modern oaHub Production Backbone: Rust DAG Engines & MCP
 
-In oaHub's production infrastructure, we replaced visual drag-and-drop Node.js workflows with **deterministic Directed Acyclic Graph (DAG) engines compiled in pure Rust, orchestrated over the Model Context Protocol (MCP)**:
+In oaHub's production infrastructure, we replaced visual drag-and-drop Node.js workflows with **deterministic Directed Acyclic Graph (DAG) engines compiled in pure Rust, orchestrated over the Model Context Protocol (MCP)**. This evolution directly embodies our [AI-native systems architecture](/en/broadcasts/ai-native-architecture/) framework, replacing brittle prompt wrappers with deterministic finite-state machines. Similarly, as detailed in our architectural guide on [enterprise voice AI telephony and private RAG architecture](/en/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/), mission-critical operations demand total data sovereignty with zero leaks. To modernize legacy automation pipelines across your enterprise, explore our [Ankara enterprise AI automation](/en/ankara-enterprise-ai-automation/) capabilities:
 
 - **`Tinyflows` (`tinyhumansai/tinyflows` + `tinymcp`):** A 100% Rust (`#![forbid(unsafe_code)]`) micro-orchestration engine with compile-time verified `WorkflowGraph` state machines. It executes thousands of parallel agent tasks in a single native binary using less than 15 MB of RAM.
 - **`GraphBit` (`InfinitiBit/graphbit`):** A Rust-native deterministic multi-agent DAG engine powered by Tokio async tasks, featuring built-in circuit breakers, strict state validation, and sub-5ms inter-agent dispatch latency.

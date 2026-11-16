@@ -59,7 +59,7 @@ Throughout major manufacturing corridors—from Ankara's OSTIM and Sincan Indust
 
 Yet when global procurement executives inspect their digital entry points, they frequently encounter an unacceptable reality: **Enterprises possessing millions of dollars in advanced manufacturing assets are represented by bloated, slow-rendering WordPress templates, missing engineering specifications, and broken email security records.**
 
-Across dozens of architectural advisory audits, one operational truth has proven invariant: **A chief procurement officer or technical sourcing director assesses your manufacturing discipline through the technical rigor of your digital infrastructure before ever visiting your factory floor.** A sluggish, amateurish web portal immediately raises doubts regarding your internal quality assurance standards.
+Across dozens of architectural advisory audits, one operational truth has proven invariant: **A chief procurement officer or technical sourcing director assesses your manufacturing discipline through the technical rigor of your digital infrastructure before ever visiting your factory floor.** A sluggish, amateurish web portal immediately raises doubts regarding your internal quality assurance standards. As explored in my monograph [Yapay Zeka Sizi Tanımıyor](/en/#book) and detailed in our analysis [from page rank to entity reconciliation](/en/broadcasts/sayfa-siralamasindan-varlik-mutabakatina/), ranking on search engines is insufficient; organizations must establish sovereign entity authority to be recognized by autonomous procurement agents.
 
 In this technical broadcast, I dissect the 5 architectural criteria required to elevate an industrial export showcase into a resilient, globally trusted platform.
 

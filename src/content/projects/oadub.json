@@ -68,7 +68,7 @@
       },
       {
         "title": "4. Zero-Server Privacy Architecture & Microsoft Edge Store Distribution",
-        "content": "User privacy is guaranteed by design: oaDub features zero intermediary backend servers, zero telemetry proxies, and zero third-party databases. The user's Google AI Studio API key is encrypted and stored exclusively inside `chrome.storage.local`. All WebSocket handshakes occur strictly between the user's browser client and Google's official Gemini endpoint. Officially certified and published on Microsoft Edge Add-ons with automated CI/CD release pipelines."
+        "content": "User privacy is guaranteed by design: oaDub features zero intermediary backend servers, zero telemetry proxies, and zero third-party databases. The user's Google AI Studio API key is encrypted and stored exclusively inside `chrome.storage.local`. All WebSocket handshakes occur strictly between the user's browser client and Google's official Gemini endpoint. Officially certified and published on Microsoft Edge Add-ons with automated CI/CD release pipelines.\n\nClient-side intelligence combines strict user privacy standards with foundational [AI-native architecture](/en/broadcasts/ai-native-architecture/) design. For enterprise voice automation scenarios, review the [enterprise voice AI PBX architecture](/en/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/) treatise, or explore browser-based multimedia processing in the [10SeC video slicer](/en/projects/10sec/) case study."
       }
     ],
     "techStack": [
@@ -117,7 +117,7 @@
       },
       {
         "title": "4. Sıfır-Sunucu Gizlilik Mimarisi & Microsoft Edge Mağaza Dağıtımı",
-        "content": "Kullanıcı gizliliği tasarım gereği garanti altındadır: oaDub hiçbir ara sunucu, proxy veya üçüncü taraf telemetri veritabanı barındırmaz. Kullanıcının Google AI Studio API anahtarı şifrelenerek yalnızca `chrome.storage.local` üzerinde tutulur. Tüm WebSocket el sıkışmaları doğrudan kullanıcının tarayıcısı ile resmi Google Gemini uç noktası arasında gerçekleşir. Resmi Microsoft Edge Eklentiler mağazasında onaylı ve otomatik CI/CD hatlarıyla yayınlanmaktadır."
+        "content": "Kullanıcı gizliliği tasarım gereği garanti altındadır: oaDub hiçbir ara sunucu, proxy veya üçüncü taraf telemetri veritabanı barındırmaz. Kullanıcının Google AI Studio API anahtarı şifrelenerek yalnızca `chrome.storage.local` üzerinde tutulur. Tüm WebSocket el sıkışmaları doğrudan kullanıcının tarayıcısı ile resmi Google Gemini uç noktası arasında gerçekleşir. Resmi Microsoft Edge Eklentiler mağazasında onaylı ve otomatik CI/CD hatlarıyla yayınlanmaktadır.\n\nİstemci taraflı yapay zeka entegrasyonu, modern veri gizliliği standartlarını [yapay zeka temelli mimari](/broadcasts/ai-native-architecture/) ilkeleriyle birleştirir. Kurumsal ölçekteki sesli iletişim senaryoları için [kurumsal sesli yapay zeka santral mimarisi](/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/) yayınını inceleyebilir, tarayıcı içi yüksek hızlı medya işleme yetenekleri için [10SeC video parçalayıcı](/projects/10sec/) projesine göz atabilirsiniz."
       }
     ],
     "techStack": [

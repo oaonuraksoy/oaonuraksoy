@@ -48,13 +48,13 @@ faqs:
 
 ## Sovereign Credential Architecture: Why I Host Vaultwarden
 
-Over years of architecting sovereign infrastructure, shipping digital products, and managing enterprise client keys across hundreds of servers, one realization became undeniable: **Delegating master passwords and two-factor authentication (TOTP) seed secrets to commercial third-party clouds is an unacceptable systemic vulnerability.**
+Over years of architecting sovereign infrastructure, shipping digital products, and managing enterprise client keys across hundreds of servers, one realization became undeniable: **Delegating master passwords and two-factor authentication (TOTP) seed secrets to commercial third-party clouds is an unacceptable systemic vulnerability.** As underscored in our breakdown of [enterprise cybersecurity standards](/en/broadcasts/kurumsal-web-siber-guvenlik-standartlari-2026/), eliminating third-party attack vectors is the baseline requirement of modern operational security.
 
 We have all witnessed recurring breaches in centralized SaaS vaults like LastPass, as well as unpredictable licensing shifts where essential security features are abruptly locked behind enterprise subscription paywalls. However, attempting to self-host the official Bitwarden stack on a standard VPS presents a massive hurdle: an enterprise .NET architecture with MSSQL containers demanding **3 to 4 gigabytes of memory** just to idle.
 
-That is where **Vaultwarden**—rewritten from the ground up in Rust—completely alters the equation. Running in my production clusters, it implements the official Bitwarden client API with 100% fidelity while consuming a minuscule **25 to 40 megabytes of RAM**. Even better: features paywalled in commercial SaaS (built-in rolling 30-second TOTP authenticators, encrypted attachments, and organization sharing) are entirely unlocked, private, and unmetered.
+That is where **Vaultwarden** (rewritten from the ground up in Rust) completely alters the equation. Running in my production clusters, it implements the official Bitwarden client API with 100% fidelity while consuming a minuscule **25 to 40 megabytes of RAM**. Even better: features paywalled in commercial SaaS (built-in rolling 30-second TOTP authenticators, encrypted attachments, and organization sharing) are entirely unlocked, private, and unmetered. This aligns directly with our [local-first software](/en/broadcasts/local-first-software/) philosophy applied to backend credential vaults.
 
-In this architectural guide and screencast, I walk through deploying a hardened Vaultwarden instance on Linux / Plesk using my open-source `oaVaultWardenInstaller` script.
+In this architectural guide and screencast, I walk through deploying a hardened Vaultwarden instance on Linux / Plesk using my open-source `oaVaultWardenInstaller` script. To evaluate custom sovereign server environments for your organization, review our [Ankara custom software architecture](/en/ankara-custom-software-architecture/) frameworks.
 
 ```mermaid
 flowchart TD

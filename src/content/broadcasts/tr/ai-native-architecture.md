@@ -42,6 +42,15 @@ downloads:
     type: "ts"
     driveUrl: "/vault/ai-native/deterministic-agent-fsm-engine.ts"
     hash: "sha256:801b57f0d10eefecdff41c268221f78b1d046e5a5aa261b2d300f5f3c0bb2b48"
+faqs:
+  - question: "Deterministik sonlu durum makineleri (FSM) basit prompt sarmalayıcılarına göre neden daha güvenilirdir?"
+    answer: "Prompt sarmalayıcıları tüm akışı olasılıksal bir dil modelinin insafına bırakır ve zincirleme adımlarda hata olasılığı katlanarak artar. Deterministik durum makineleri ise olası tüm durumları ve durum geçişlerini önceden kodlanmış tip sözleşmeleriyle sınırlar. Dil modeli yalnızca geçerli durumlar arasında veri taşır; tanımlanmamış veya geçersiz bir duruma geçiş yapması matematiksel olarak engellenir."
+  - question: "Çift kademeli üretici ve hasmane denetçi rol izolasyonu nasıl uygulanır?"
+    answer: "Kod veya iş mantığı üreten model ile üretilen çıktıyı doğrulayan model fiziksel olarak ayrıştırılır. Üretici ajan hızlı ve maliyet odaklı bir modelle çalışırken, denetçi ajan daha yüksek akıl yürütme seviyesine sahip ayrı bir model ve salt okunur yetkilerle çalışır. Denetçi, üreticinin yazdığı çıktıyı statik AST analizinden ve şema doğrulamalarından geçirerek sahte veya manipülatif durum geçişlerini derleme anında reddeder."
+  - question: "Kademeli model yönlendirme (routing) token gecikmesini ve maliyetini nasıl optimize eder?"
+    answer: "Her kullanıcı isteğini en pahalı amiral gemisi modellere göndermek hem gecikmeyi (TTFT) artırır hem de maliyetleri patlatır. Kademeli yönlendirme mimarisinde sınıflandırma, veri çıkarma ve ön kontrol gibi basit işler hafif ve hiper hızlı modellere aktarılır. Ağır mimari analiz ve stratejik planlama gerektiren görevler ise yüksek muhakeme modellerine yönlendirilir; böylece ortalama işlem maliyeti yüzde 80 düşürülür."
+  - question: "Devre kesici (circuit-breaker) ve yedekleme (fallback) mekanizmaları kurumsal üretimde neyi garanti eder?"
+    answer: "Dış yapay zeka sağlayıcılarının API kesintilerinde, hız sınırına takılmalarında veya modelin sonsuz döngüye girmesi durumunda devre kesiciler yürütmeyi anında durdurur. Sistem deterministik yerel kurallara, statik şablonlara veya kurum içi yerel modellere otomatik yük devrederek müşteri tarafında kesinti yaşanmasını ve kontrolsüz token faturası oluşmasını engeller."
 ---
 
 ## İlkel Prompt Sarmalayıcılarının Yapısal İflası
@@ -244,4 +253,4 @@ Yazılım mühendisliğinin geleceği, her şeye kadir yapay zeka modelleri uğr
 3. **Dinamik graf budama içeren sıkı belirteç bütçelemesi**, ve
 4. **Kalıcı duruma yazılmadan önce çift kademeli hasmane denetim döngüsü**,
 
-sayesinde mühendislik ekipleri oyuncak chatbot sarmalayıcılarının ötesine geçerek, kesintisiz kurumsal üretimde güvenle çalışan egemen sistemler inşa eder. Ankara ve küresel pazarda işletmeniz için bu mimariyi hayata geçirmek istiyorsanız [ankara yapay zeka ajansı](/ankara-yapay-zeka-otomasyonu/) ve [kurumsal yapay zeka otomasyonu](/ankara-yapay-zeka-otomasyonu/) yaklaşımlarımızı inceleyebilir; [ankara web yazılım](/ankara-web-yazilim/) sistemleri ve mimari danışmanlık için doğrudan [Onur Aksoy (Hackonomist)](/about/) ile temasa geçebilirsiniz.
+sayesinde mühendislik ekipleri oyuncak chatbot sarmalayıcılarının ötesine geçerek, kesintisiz kurumsal üretimde güvenle çalışan egemen sistemler inşa eder. Bu disiplini gerçek zamanlı ses ve yapay zeka entegrasyonu sağlayan [oaDub](/projects/oadub/) aracımızda ve kurumsal telefon altyapılarını otonomlaştıran [kurumsal sesli yapay zeka santral ve izole RAG mimarisi](/broadcasts/kurumsal-sesli-yapay-zeka-santral-ve-ozel-rag-mimarisi/) rehberimizde olduğu gibi üretim ölçeğinde uyguluyoruz. Ankara ve küresel pazarda işletmeniz için bu mimariyi hayata geçirmek istiyorsanız [ankara yapay zeka ajansı](/ankara-yapay-zeka-otomasyonu/) ve [kurumsal yapay zeka otomasyonu](/ankara-yapay-zeka-otomasyonu/) yaklaşımlarımızı inceleyebilir; [ankara web yazılım](/ankara-web-yazilim/) sistemleri ve mimari danışmanlık için doğrudan [Onur Aksoy (Hackonomist)](/about/) ile temasa geçebilirsiniz.

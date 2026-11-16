@@ -64,7 +64,7 @@ In standard web development discourse, performance is frequently treated as an a
 
 For an export manufacturer delivering high-precision systems to global markets, when a Chief Technology Officer in Munich or a Supply Chain VP in Chicago opens your digital portal, the page must render instantaneously. Spinning loaders, shifting buttons, and unresponsive mobile interfaces transmit an unmistakable subtext: *"If this organization struggles to optimize its public digital infrastructure, how disciplined can its manufacturing operations truly be?"*
 
-Throughout high-concurrency systems like [oaPOS](/en/projects/oapos/) and [oaTeklif](/en/broadcasts/oateklif-ucretsiz-teklif-olusturucu/), I adhere to a rigorous engineering principle: **Eliminate unnecessary runtime layers, enforce determinism, and deliver state at the physical edge of the network.**
+Throughout high-concurrency systems like [oaPOS](/en/projects/oapos/) and [oaTeklif](/en/broadcasts/oateklif-ucretsiz-teklif-olusturucu/), I adhere to a rigorous engineering principle: **Eliminate unnecessary runtime layers, enforce determinism, and deliver state at the physical edge of the network.** Similarly, in optimizing high-resolution visual assets via [E-Commerce Image Enhancer](/en/projects/ecommerce-image-enhancer/) and client-side media fragmentation with [10SeC](/en/projects/10sec/), our focus remains on eradicating client runtime friction.
 
 In this flagship broadcast, I dissect the 5 foundational pillars required to construct global B2B web portals that render in **under 50 milliseconds worldwide**.
 

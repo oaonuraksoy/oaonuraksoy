@@ -60,7 +60,7 @@
       },
       {
         "title": "4. Enterprise Inventory & Fiscal Compliance",
-        "content": "- Dynamic inventory categorisation, barcode variation hierarchies, and supplier batch tracking.\n- Daily Z-report calculations, cashier end-of-day balances, and automated thermal printer dispatch via ESC/POS protocol.\n- Microsoft Store certification adhering to Windows Desktop Bridge security, application sandboxing, and silent update compliance."
+        "content": "- Dynamic inventory categorisation, barcode variation hierarchies, and supplier batch tracking.\n- Daily Z-report calculations, cashier end-of-day balances, and automated thermal printer dispatch via ESC/POS protocol.\n- Microsoft Store certification adhering to Windows Desktop Bridge security, application sandboxing, and silent update compliance.\n\nThis autonomous desktop architecture embodies the core principles of [local-first software design](/en/broadcasts/local-first-software/) to withstand network partitioning. Eliminating recurring SaaS rent in favor of long-term stability aligns directly with [custom software architecture economics](/en/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/), while low-latency network telemetry can be explored in the [oa_sip_recorder](/en/projects/oa-sip-recorder/) case study."
       }
     ],
     "techStack": [
@@ -109,7 +109,7 @@
       },
       {
         "title": "4. Kurumsal Envanter & Mali Raporlama",
-        "content": "- Detaylı stok kategorizasyonu, varyasyonlu barkod tanımları, tedarikçi ve son kullanma tarihi takibi.\n- Gün sonu Z-raporu hesaplamaları, kasiyer devir bakiyeleri ve ESC/POS protokolüyle doğrudan termal fiş yazıcı yönetimi.\n- Windows Desktop Bridge ve MSIX paketleme standartlarıyla resmi Microsoft Store güvenlik denetimlerinden tam puan."
+        "content": "- Detaylı stok kategorizasyonu, varyasyonlu barkod tanımları, tedarikçi ve son kullanma tarihi takibi.\n- Gün sonu Z-raporu hesaplamaları, kasiyer devir bakiyeleri ve ESC/POS protokolüyle doğrudan termal fiş yazıcı yönetimi.\n- Windows Desktop Bridge ve MSIX paketleme standartlarıyla resmi Microsoft Store güvenlik denetimlerinden tam puan.\n\nBu bağımsız masaüstü altyapısı, ağ kesintilerine dayanıklı [yerel öncelikli yazılım mimarisi](/broadcasts/local-first-software/) prensiplerini somutlaştırır. SaaS kiralama bağımlılıkları yerine [özel yazılım geliştirme maliyet dinamikleri](/broadcasts/wordpress-eklenti-borcu-vs-ozel-yazilim-maliyeti/) ile tam kontrol sağlanırken, telekomünikasyon tarafındaki düşük gecikmeli veri işleme disiplini için [oa_sip_recorder](/projects/oa-sip-recorder/) projesi incelenebilir."
       }
     ],
     "techStack": [

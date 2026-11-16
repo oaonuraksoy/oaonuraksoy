@@ -39,6 +39,15 @@ downloads:
     type: "sh"
     driveUrl: "/vault/ai-influencer/ypp_audio_spectral_randomizer.sh"
     hash: "sha256:03e10e4b5f3855f3a6d9e74684aa38cafdd0bc55a4a3238334d212f6296085f0"
+faqs:
+  - question: "Çok açılı difüzyon renderlarında yüz ve ürün gizil uzay kayması (latent drift) nasıl engellenir?"
+    answer: "Serbest difüzyon modellerinde kamera açısı değiştikçe karakterin yüz hatları veya ürün geometrisi bozulur. Bu kaymayı engellemek için IP-Adapter FaceID Plus V2 ve özel eğitilmiş karakter LoRA ağırlıkları sabitlenir. ControlNet DWPose ve OpenPose derinlik haritalarıyla kemik iskeleti kilitlenirken, ComfyUI FaceDetailer döngüsü yüz bölgesine ikinci bir lokal difüzyon uygulayarak mikrosaniyelik açı değişimlerinde dahi piksel düzeyinde tutarlılık sağlar."
+  - question: "Deterministik tohum (seed) ve LoRA koşullandırması neden serbest metin istemlerine (prompt) üstündür?"
+    answer: "Metin istemleri olasılıksal ağırlık uzayında geniş ve belirsiz bir hacmi hedefler; tek bir kelime değişikliği karakterin kimliğini tamamen başkalaştırır. Düşük dereceli uyarlama (LoRA) matrisleri ise modelin çapraz dikkat (cross-attention) katmanlarına doğrudan kalıcı bir biyometrik imza ekler. Sabit rastgele tohum değerleri ve sayısal LoRA ağırlıkları sayesinde sahne ne kadar karmaşık olursa olsun karakterin kimliği deterministik olarak korunur."
+  - question: "Stüdyo e-ticaret varlıkları için alt piksel alfa matlaştırma (sub-pixel alpha matting) nasıl uygulanır?"
+    answer: "Standart yeşil perde veya kaba arka plan silme araçları saç tellerinde ve şeffaf ürün kenarlarında halo izleri bırakır. RMBG-2.0 ve BiRefNet benzeri yüksek çözünürlüklü derinlik modelleri kullanılarak saç teli ve transparan kumaş dokuları alt piksel hassasiyetinde ayrıştırılır. Alfa matlaştırma katmanı doğrudan stüdyo aydınlatma haritasıyla harmanlanarak e-ticaret platformlarına hazır kayıpsız PNG/WebP çıktıları üretilir."
+  - question: "Yerel ve uç bilişim (edge) GPU boru hatları bulut API maliyetlerini nasıl kontrol altında tutar?"
+    answer: "Görsel başına ücret alan ticari bulut API'leri (Midjourney, Runway vb.) binlerce varyasyon üreten kurumsal bir stüdyo için devasa maliyetler çıkarır. Şirket bünyesindeki RTX 4090 veya yerel sunucu GPU'ları üzerinde çalışan ComfyUI ve TensorRT hızlandırmalı açık kaynaklı FLUX boru hatları, görsel başına üretim maliyetini sıfıra yakın elektriğe indirir ve verilerin üçüncü partilere sızmasını tamamen engeller."
 ---
 
 ## İlk 45 Günde Gelen Sessiz Algoritmik Ölüm
@@ -261,4 +270,6 @@ Bu yayında detaylandırılan tüm araçlar ve şemalar **The Vault** üzerinden
 
 2026 ve ötesinde bir yapay zeka influencer'ı yönetmek, sıradan bir görsel üreticisinin değil; **platform algoritmalarını, veri boru hatlarını ve donanım telemetrisini anlayan teknik bir geliştiricinin (hacker & builder)** işidir.
 
-Platform algoritmaları her geçen gün daha sofistike hale gelirken; başarı şansı rastgele prompting yapanlarda değil, **akustik spektrogramları manipüle edebilen, PRNU sensör gürültüsü enjekte eden, donanım telemetrisini simüle eden ve LoRA hiperparametrelerini matematiksel bir disiplinle optimize edenlerde** olacaktır.
+Bu mühendislik disiplinini, sanal içerik ve karakter üretimini stüdyo ölçeğinde yönettiğimiz [Orvyna App Studio](/projects/orvyna-app-studio/) projemizde ve e-ticaret katalogları için alt piksel netliğinde görsel üreten [E-Commerce Image Enhancer](/projects/ecommerce-image-enhancer/) aracımızda somutlaştırdık. Sürecin arkasındaki deterministik otomasyon felsefesini [yapay zeka yerel mimari](/broadcasts/ai-native-architecture/) analizimizde detaylandırdığımız gibi; rastgele prompt denemeleri yerine ölçülebilir, tekrarlanabilir ve dayanıklı veri boru hatları kurmak esastır.
+
+Platform algoritmaları her geçen gün daha sofistike hale gelirken; başarı şansı rastgele prompting yapanlarda değil, **akustik spektrogramları manipüle edebilen, PRNU sensör gürültüsü enjekte eden, donanım telemetrisini simüle eden ve LoRA hiperparametrelerini matematiksel bir disiplinle optimize edenlerde** olacaktır. Kurumsal ölçekte benzer görsel zeka ve otomasyon hatları kurmak için [Ankara yapay zeka otomasyonu](/ankara-yapay-zeka-otomasyonu/) hizmetlerimizi inceleyebilir; sistem mimarisi danışmanlığı için doğrudan [Onur Aksoy (Hackonomist)](/about/) ile iletişime geçebilirsiniz.

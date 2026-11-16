@@ -15,21 +15,9 @@ scholarlyPaper:
   language: "en"
 featured: true
 tags: ["SentetikTeknikBorc", "DeterministikMimari", "DegismezKapilar", "SistemMimarisi", "YazilimMimarisi", "AsimetrikDenetim", "ZeroJS"]
-duration: "PT17M20S"
+duration: "PT31S"
+youtubeId: "OHbQEEI6dBA"
 thumbnail: "/images/broadcasts/sentetik-teknik-borc-ve-deterministik-mimari.webp"
-chapters:
-  - time: "00:00"
-    title: "Hız İllüzyonu ve Stokastik Kod Üretimi"
-  - time: "03:15"
-    title: "Klasik Borç vs. Sentetik Teknik Borç D_syn(t)"
-  - time: "06:40"
-    title: "Sessiz Durum Kayması ve Test Yanılsaması"
-  - time: "10:10"
-    title: "Asimetrik Rol İzolasyonu ve Alt Ajan Hiyerarşisi"
-  - time: "13:25"
-    title: "5 Kademeli Derleme Zamanı Değişmez Kapıları"
-  - time: "15:45"
-    title: "100 İterasyon Ampirik Verisi ve Deterministik Hız"
 downloads:
   - name: "CERN/Zenodo Açık Erişim Akademik Teknik Makale (PDF)"
     size: "30.1 KB"

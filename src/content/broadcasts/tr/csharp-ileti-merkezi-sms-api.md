@@ -45,7 +45,7 @@ faqs:
 
 Masaüstü otomasyon yazılımlarından e-ticaret arka yüzlerine ve iki adımlı doğrulama (2FA) kapılarına kadar kurumsal uygulamalarda SMS ağ geçitleri vazgeçilmez bir altyapı bileşenidir. Ancak telekom ve toplu SMS sağlayıcılarının resmi belgelerini incelediğinizde genellikle karşınıza güncelliğini yitirmiş örnek kodlar, karmaşık XML paketleri ve tip güvenliğinden yoksun yapılar çıkar.
 
-Masaüstü POS yazılımım oaPOS ve çeşitli kurumsal müşteri projelerimde İleti Merkezi SMS ağ geçidini entegre ederken yaşadığım zaman kaybını başkaları yaşamasın diye bu açık kaynaklı **C# XML API Kütüphanesini** geliştirdim. Tek bir `.cs` dosyasıyla projenize ekleyebileceğiniz, sıfır dış bağımlılıklı ve tip güvenli bir servis katmanı sunar.
+Masaüstü POS yazılımım [oaPOS](/projects/oapos/), pasif telemetri aracım [oa-sip-recorder](/projects/oa-sip-recorder/) ve çeşitli kurumsal müşteri projelerimde İleti Merkezi SMS ağ geçidini entegre ederken yaşadığım zaman kaybını başkaları yaşamasın diye bu açık kaynaklı **C# XML API Kütüphanesini** geliştirdim. Bu mimari, savunduğumuz [yerel öncelikli yazılım](/broadcasts/local-first-software/) standartlarıyla tam uyumludur. Şirketinizin kritik masaüstü veya sunucu entegrasyonlarını hayata geçirmek için [Ankara web yazılım](/ankara-web-yazilim/) çözümlerimizden yararlanabilirsiniz. Tek bir `.cs` dosyasıyla projenize ekleyebileceğiniz, sıfır dış bağımlılıklı ve tip güvenli bir servis katmanı sunar.
 
 Bu yayında; C# .NET üzerinde tekli bildirim, yüksek hızlı OTP doğrulama, toplu mesaj gönderimi ve hesap bakiye sorgulama adımlarını canlı olarak inceliyoruz.
 
