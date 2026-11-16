@@ -50,7 +50,8 @@ const ytWatchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
       src={thumbUrl}
       alt={title}
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
-      loading="lazy"
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-obsidian-black/90 via-obsidian-black/20 to-transparent"></div>
 
@@ -90,6 +91,15 @@ const ytWatchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
         <span>{lang === 'tr' ? "YouTube'da Aç ↗" : 'Watch on YouTube ↗'}</span>
       </a>
     </div>
+
+    <noscript>
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+        title={title}
+        class="w-full h-full absolute inset-0 border-0"
+        allowfullscreen
+      ></iframe>
+    </noscript>
   </div>
 
   <!-- Chapters & Key Moments (GEO / SGE Booster) -->

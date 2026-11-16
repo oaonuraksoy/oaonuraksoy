@@ -22,6 +22,9 @@ import {
 } from '../data/identity.mjs';
 import { imageMeta } from './image-meta.mjs';
 
+const IMAGE_LICENSE_URL = 'https://creativecommons.org/licenses/by-nc-nd/4.0/';
+const IMAGE_ACQUIRE_PAGE_URL = `${SITE_URL}/contact/`;
+
 /** @param {'tr'|'en'} lang */
 export const inLanguage = (lang) => (lang === 'tr' ? 'tr-TR' : 'en-US');
 
@@ -92,7 +95,9 @@ export function personImageNode() {
     caption: PERSON.name,
     creditText: PERSON.name,
     creator: { '@id': PERSON_ID },
-    copyrightNotice: `© ${PERSON.name}`
+    copyrightNotice: `© ${PERSON.name}`,
+    license: IMAGE_LICENSE_URL,
+    acquireLicensePage: IMAGE_ACQUIRE_PAGE_URL
   };
 }
 
@@ -126,7 +131,12 @@ export function primaryImageNode(pageUrl, imageUrl, caption) {
     contentUrl: m.url,
     ...(m.width ? { width: m.width, height: m.height } : {}),
     ...(m.type ? { encodingFormat: m.type } : {}),
-    caption
+    caption,
+    creditText: PERSON.name,
+    creator: { '@id': PERSON_ID },
+    copyrightNotice: `© ${PERSON.name}`,
+    license: IMAGE_LICENSE_URL,
+    acquireLicensePage: IMAGE_ACQUIRE_PAGE_URL
   };
 }
 

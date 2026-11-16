@@ -20,6 +20,7 @@ export const GET: APIRoute = async () => {
   const content = `# robots.txt — https://onuraksoy.com.tr
 User-agent: *
 Allow: /
+Disallow: /cdn-cgi/
 
 # Arama motorları / Search engines
 ${block(SEARCH_BOTS)}

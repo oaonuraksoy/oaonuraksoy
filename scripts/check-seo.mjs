@@ -147,6 +147,13 @@ for (const file of htmlFiles) {
       if (n['@type'] === 'ProfessionalService' || n['@id']?.endsWith('#business')) {
         if (n.sameAs) fail(r, 'K10 ProfessionalService kişisel sameAs içeremez');
       }
+      if (n['@type'] === 'ImageObject') {
+        for (const prop of ['contentUrl', 'license', 'acquireLicensePage', 'creditText', 'copyrightNotice']) {
+          if (!n[prop] || typeof n[prop] !== 'string' || !n[prop].trim()) {
+            fail(r, `ImageObject (${n['@id'] || 'isimsiz'}) eksik veya boş ${prop} alanı`);
+          }
+        }
+      }
     }
 
     // K11: Sayfa tipi ayrımı & kanibalizm engeli (veri toplama ve sayfa denetimi)
