@@ -29,6 +29,7 @@ AGENTS.md
 ARCHITECTURE.md
 CONTEXT.md
 .agent/
+.agents/
 
 # Logs & Temporary Files
 npm-debug.log*
