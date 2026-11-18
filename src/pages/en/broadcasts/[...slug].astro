@@ -41,6 +41,16 @@ const hasVideo = !!item.data.youtubeId;
 const hasAudio = !!item.data.spotifyUrl;
 const hasDownloads = !!(item.data.downloads && item.data.downloads.length > 0);
 
+const coLocatedPdfPath = (item.data.doi && item.data.scholarlyPaper?.pdfPath)
+  ? `/en/broadcasts/${Astro.params.slug}/${item.data.scholarlyPaper.pdfPath.split('/').pop()}`
+  : item.data.scholarlyPaper?.pdfPath;
+
+const visibleDownloads = (item.data.downloads || []).map((d) =>
+  coLocatedPdfPath && d.driveUrl === item.data.scholarlyPaper?.pdfPath
+    ? { ...d, driveUrl: coLocatedPdfPath }
+    : d
+);
+
 const citation = (item.data.doi && item.data.scholarlyPaper) ? {
   title: item.data.scholarlyPaper.title,
   author: 'Aksoy, Onur',
@@ -48,7 +58,7 @@ const citation = (item.data.doi && item.data.scholarlyPaper) ? {
   authorInstitution: 'oaHub Systems Architecture, Ankara, Turkey',
   publicationDate: item.data.scholarlyPaper.publicationDate,
   doi: item.data.doi,
-  pdfUrl: `https://onuraksoy.com.tr${item.data.scholarlyPaper.pdfPath}`,
+  pdfUrl: `https://onuraksoy.com.tr${coLocatedPdfPath}`,
   abstractHtmlUrl: canonicalUrl,
   technicalReportInstitution: 'oaHub Research & CERN Zenodo',
   language: item.data.scholarlyPaper.language || 'en',
@@ -126,11 +136,11 @@ const citation = (item.data.doi && item.data.scholarlyPaper) ? {
             </a>
           </>
         )}
-        {item.data.scholarlyPaper?.pdfPath && (
+        {coLocatedPdfPath && (
           <>
             <span>•</span>
             <a
-              href={item.data.scholarlyPaper.pdfPath}
+              href={coLocatedPdfPath}
               target="_blank"
               rel="noopener noreferrer"
               class="px-2 py-0.5 rounded bg-obsidian-surface border border-gold-tungsten/40 text-gold-highlight hover:border-gold-tungsten transition-colors"
@@ -229,7 +239,7 @@ const citation = (item.data.doi && item.data.scholarlyPaper) ? {
     <!-- Case 3: 20TB Google Drive Download Vault -->
     {hasDownloads && (
       <section aria-label="Project Download Vault">
-        <DriveDownloadCard downloads={item.data.downloads} lang="en" />
+        <DriveDownloadCard downloads={visibleDownloads} lang="en" />
       </section>
     )}
 

@@ -261,20 +261,42 @@ for (const file of htmlFiles) {
           if (citAuthor !== 'Aksoy, Onur') fail(r, `K13b citation_author "Aksoy, Onur" olmalı (mevcut: ${citAuthor})`);
           if (!citDate || !/^\d{4}\/\d{2}\/\d{2}$/.test(citDate)) fail(r, `K13b citation_publication_date YYYY/MM/DD formatında olmalı (mevcut: ${citDate})`);
           if (!citDoi) fail(r, 'K13b citation_doi meta etiketi bulunamadı');
-          if (!citPdfUrl || !/^https:\/\/onuraksoy\.com\.tr\/papers\/.+\.pdf$/.test(citPdfUrl)) {
-            fail(r, `K13b citation_pdf_url https://onuraksoy.com.tr/papers/*.pdf formatında olmalı (mevcut: ${citPdfUrl})`);
+          if (!citPdfUrl || !citPdfUrl.startsWith(url) || !citPdfUrl.endsWith('.pdf')) {
+            fail(r, `K13b citation_pdf_url ${url}*.pdf formatında olmalı (mevcut: ${citPdfUrl})`);
           } else {
-            const paperFileName = citPdfUrl.replace('https://onuraksoy.com.tr/papers/', '');
-            const paperDistPath = path.resolve(DIST, 'papers', paperFileName);
-            if (!fs.existsSync(paperDistPath)) {
-              fail(r, `K13b dist/papers/${paperFileName} mevcut değil`);
+            const paperFileName = citPdfUrl.slice(url.length);
+            const slug = url.slice(`${SITE_URL}/en/broadcasts/`.length).replace(/\/$/, '');
+            if (!paperFileName || paperFileName.includes('/') || !slug) {
+              fail(r, `K13b citation_pdf_url aynı alt dizin altında geçerli bir PDF dosyası olmalı (mevcut: ${citPdfUrl})`);
             } else {
-              const header = Buffer.alloc(5);
-              const fd = fs.openSync(paperDistPath, 'r');
-              fs.readSync(fd, header, 0, 5, 0);
-              fs.closeSync(fd);
-              if (header.toString('utf8') !== '%PDF-') {
-                fail(r, `K13b dist/papers/${paperFileName} geçerli bir PDF değil (%PDF- ile başlamıyor)`);
+              const verifyPdf = (distPath, distLabel) => {
+                if (!fs.existsSync(distPath)) {
+                  fail(r, `K13b ${distLabel} mevcut değil`);
+                  return;
+                }
+                const header = Buffer.alloc(5);
+                const fd = fs.openSync(distPath, 'r');
+                fs.readSync(fd, header, 0, 5, 0);
+                fs.closeSync(fd);
+                if (header.toString('utf8') !== '%PDF-') {
+                  fail(r, `K13b ${distLabel} geçerli bir PDF değil (%PDF- ile başlamıyor)`);
+                }
+              };
+
+              verifyPdf(
+                path.resolve(DIST, 'en', 'broadcasts', slug, paperFileName),
+                `dist/en/broadcasts/${slug}/${paperFileName}`
+              );
+              verifyPdf(
+                path.resolve(DIST, 'papers', paperFileName),
+                `dist/papers/${paperFileName}`
+              );
+
+              const relPdfHref = `/en/broadcasts/${slug}/${paperFileName}`;
+              const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const hasVisiblePdfAnchor = new RegExp(`<a\\b[^>]*\\bhref=["'](?:${esc(relPdfHref)}|${esc(citPdfUrl)})["']`, 'i').test(html);
+              if (!hasVisiblePdfAnchor) {
+                fail(r, `K13b sayfada görünür "${relPdfHref}" bağlantısı bulunamadı`);
               }
             }
           }

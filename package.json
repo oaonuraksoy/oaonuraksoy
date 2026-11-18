@@ -16,10 +16,10 @@
     "cf:purge": "node .local-ops/purge-cloudflare.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^8.1.4",
-    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/mdx": "^8.1.6",
+    "@astrojs/sitemap": "^3.7.5",
     "@astrojs/tailwind": "^6.0.2",
-    "astro": "^7.4.10",
+    "astro": "^7.4.12",
     "tailwindcss": "^3.4.19"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "sharp": "^0.35.5"
   },
   "overrides": {
+    "picomatch": "file:./vendor/picomatch-4.0.8.tgz",
     "postcss-selector-parser": "^6.1.5"
   }
 }

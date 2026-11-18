@@ -49,7 +49,8 @@ export const PERSON = {
   },
   identifiers: [
     { propertyID: 'ORCID', value: '0009-0001-4481-1759', url: 'https://orcid.org/0009-0001-4481-1759' },
-    { propertyID: 'Crunchbase', value: 'onur-aksoy-1c4f', url: 'https://www.crunchbase.com/person/onur-aksoy-1c4f' }
+    { propertyID: 'Crunchbase', value: 'onur-aksoy-1c4f', url: 'https://www.crunchbase.com/person/onur-aksoy-1c4f' },
+    { propertyID: 'OpenAlex', value: 'A5161362719', url: 'https://openalex.org/authors/A5161362719' }
   ],
   knowsAbout: [
     'Software Architecture',
@@ -72,7 +73,7 @@ export const PERSON = {
 
 /**
  * Doğrulanmış profil ağı. `sameAs: true` olanlar Person.sameAs ve <link rel="me">
- * çıktısına girer. Son doğrulama: 2026-11-10.
+ * çıktısına girer. Son doğrulama: 2026-11-16.
  * Google Play: Doğrulanmış geliştirici slug adresi (developer?id=OAHub) kullanılır;
  * sayısal eşdeğeri https://play.google.com/store/apps/dev?id=4726753033755911771 (aynı sayfa).
  * Eski dev?id=7416640262739590935 adresi 404 döndüğü için kaldırılmıştır.
@@ -80,6 +81,9 @@ export const PERSON = {
 export const PROFILES = [
   { key: 'orcid', label: 'ORCID iD (0009-0001-4481-1759)', url: 'https://orcid.org/0009-0001-4481-1759', desc: { tr: 'Kalıcı uluslararası yaratıcı/araştırmacı tanımlayıcısı', en: 'Persistent international researcher/creator identifier' }, sameAs: true, relMe: true },
   { key: 'crunchbase', label: 'Crunchbase (onur-aksoy-1c4f)', url: 'https://www.crunchbase.com/person/onur-aksoy-1c4f', desc: { tr: 'Girişimcilik ve dijital ürün profili', en: 'Entrepreneurship and digital product profile' }, sameAs: true, relMe: true },
+  { key: 'openalex', label: 'OpenAlex (A5161362719)', url: 'https://openalex.org/authors/A5161362719', desc: { tr: 'Uluslararası açık akademik yayın ve atıf grafı', en: 'International open scholarly publications and citation graph' }, sameAs: true, relMe: true },
+  { key: 'dergipark', label: 'DergiPark (@oaonuraksoy)', url: 'https://dergipark.org.tr/tr/pub/@oaonuraksoy', desc: { tr: 'TÜBİTAK ULAKBİM akademik araştırmacı profili', en: 'TUBITAK ULAKBIM academic researcher profile' }, sameAs: true, relMe: true },
+  { key: 'sciprofiles', label: 'SciProfiles (@oaonuraksoy)', url: 'https://sciprofiles.com/profile/oaonuraksoy', desc: { tr: 'Uluslararası araştırmacı ağı ve yayın profili', en: 'International researcher network and publication profile' }, sameAs: true, relMe: true },
   { key: 'github', label: 'GitHub (@oaonuraksoy)', url: 'https://github.com/oaonuraksoy', desc: { tr: 'Açık kaynak depolar ve geliştirici profili', en: 'Open-source repositories and developer profile' }, sameAs: true, relMe: true },
   { key: 'linkedin', label: 'LinkedIn (in/oaonuraksoy)', url: 'https://www.linkedin.com/in/oaonuraksoy/', desc: { tr: 'Profesyonel kariyer ve kurumsal danışmanlık', en: 'Professional career and enterprise advisory' }, sameAs: true, relMe: true },
   { key: 'youtube', label: 'YouTube (@oaonuraksoy)', url: 'https://www.youtube.com/@oaonuraksoy', desc: { tr: 'Mimari video yayınları ve ekran kayıtları', en: 'Architecture videos and screencasts' }, sameAs: true, relMe: true },
